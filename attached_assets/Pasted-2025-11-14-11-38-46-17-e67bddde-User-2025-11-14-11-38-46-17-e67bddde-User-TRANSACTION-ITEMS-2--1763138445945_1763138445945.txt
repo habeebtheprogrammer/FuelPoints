@@ -1,0 +1,152 @@
+2025-11-14 11:38:46.17
+e67bddde
+User
+{
+2025-11-14 11:38:46.17
+e67bddde
+User
+🛒 TRANSACTION ITEMS (2 items):
+2025-11-14 11:38:46.17
+e67bddde
+User
+}
+2025-11-14 11:38:46.17
+e67bddde
+User
+"quantity": 1,
+2025-11-14 11:38:46.17
+e67bddde
+User
+{
+2025-11-14 11:38:46.17
+e67bddde
+User
+"description": "IB SPEARMINT TIN MINT",
+2025-11-14 11:38:46.17
+e67bddde
+User
+Qty: 1, Amount: $0.00
+2025-11-14 11:38:46.17
+e67bddde
+User
+"description": "VIVAZEN KRATOM SHOT",
+2025-11-14 11:38:46.17
+e67bddde
+User
+1. UPC: 034000000067
+2025-11-14 11:38:46.17
+e67bddde
+User
+},
+2025-11-14 11:38:46.17
+e67bddde
+User
+"lineItems": [
+2025-11-14 11:38:46.17
+e67bddde
+User
+2. UPC: 609465149325
+2025-11-14 11:38:46.17
+e67bddde
+User
+Qty: 1, Amount: $6.99
+2025-11-14 11:38:46.17
+e67bddde
+User
+Desc: IB SPEARMINT TIN MINT
+2025-11-14 11:38:46.17
+e67bddde
+User
+"amount": 0
+2025-11-14 11:38:46.17
+e67bddde
+User
+[2025-11-14T16:38:46.176Z] 💰 POS Calculate Redemption Request:
+2025-11-14 11:38:46.17
+e67bddde
+User
+"quantity": 1,
+2025-11-14 11:38:46.17
+e67bddde
+User
+Body: {
+2025-11-14 11:38:46.17
+e67bddde
+User
+Desc: VIVAZEN KRATOM SHOT
+2025-11-14 11:38:46.17
+e67bddde
+User
+"upc": "609465149325",
+2025-11-14 11:38:46.17
+e67bddde
+User
+"amount": 6.99
+2025-11-14 11:38:46.17
+e67bddde
+User
+}
+2025-11-14 11:38:46.17
+e67bddde
+User
+]
+2025-11-14 11:38:46.17
+e67bddde
+User
+"customerId": 1,
+2025-11-14 11:38:46.17
+e67bddde
+User
+"eligibleSubtotal": 6.99,
+2025-11-14 11:38:46.25
+e67bddde
+User
+📊 Calculation: subtotal=$6.99, points=175, redemption=$1
+2025-11-14 11:38:49.02
+e67bddde
+User
+[2025-11-14T16:38:49.026Z] 💓 Heartbeat from Store 1340
+2025-11-14 11:38:51.71
+e67bddde
+User
+[2025-11-14T16:38:51.713Z] 💓 Heartbeat from Store 1340
+2025-11-14 11:39:07.65
+e67bddde
+User
+[2025-11-14T16:39:07.658Z] 💓 Heartbeat from Store 1340
+2025-11-14 11:39:23.84
+e67bddde
+User
+[2025-11-14T16:39:23.839Z] 💓 Heartbeat from Store 1340
+2025-11-14 11:39:39.92
+e67bddde
+User
+[2025-11-14T16:39:39.921Z] 💓 Heartbeat from Store 1340
+2025-11-14 11:39:49.05
+e67bddde
+User
+[2025-11-14T16:39:49.052Z] 💓 Heartbeat from Store 1340
+2025-11-14 11:39:56.12
+e67bddde
+User
+[2025-11-14T16:39:56.121Z] 💓 Heartbeat from Store 1340
+2025-11-14 11:40:12.04
+e67bddde
+User
+[2025-11-14T16:40:12.043Z] 💓 Heartbeat from Store 1340
+2025-11-14 11:40:28.12
+e67bddde
+User
+[2025-11-14T16:40:28.119Z] 💓 Heartbeat from Store 1340
+2025-11-14 11:40:28.12
+e67bddde
+User
+[2025-11-14T16:40:28.119Z] 💓 Heartbeat from Store 1340
+
+
+Collapse
+
+Wrap
+
+Colors
+

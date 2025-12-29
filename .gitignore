@@ -1,0 +1,16 @@
+node_modules/
+.expo/
+dist/
+npm-debug.*
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
+web-build/
+.DS_Store
+
+# Large data files (exceed GitHub 100MB limit)
+attached_assets/*.csv
+attached_assets/CONSOLIDATED*

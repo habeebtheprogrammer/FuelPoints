@@ -1,0 +1,2098 @@
+Microsoft Windows [Version 10.0.19045.6466]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\Landover Sunoco>cd downloads
+
+C:\Users\Landover Sunoco\Downloads>cd store_deployment
+
+C:\Users\Landover Sunoco\Downloads\store_deployment>cd store_deployment
+
+C:\Users\Landover Sunoco\Downloads\store_deployment\store_deployment>python main.py
+13:01:37 - INFO - ================================================================================
+13:01:37 - INFO - Birdies Sales Data Collection - Starting
+13:01:37 - INFO - Store: 1200
+13:01:37 - INFO - Timestamp: 2025-11-19 13:01:37
+13:01:37 - INFO - ================================================================================
+13:01:37 - INFO - Testing API connection...
+13:01:37 - INFO - API connection test successful
+13:01:37 - INFO - Step 1: Scanning network folders for XML files...
+13:01:37 - INFO - Starting folder scan...
+13:01:37 - INFO - Scanned main folder: found 30 XML files
+13:01:38 - INFO - Scanned PJR folder: found 6 CPJR files
+13:01:38 - INFO - Total files found: 36
+13:01:38 - INFO - Found 36 XML files in network folders
+13:01:38 - INFO - Step 2: Organizing files into date folders...
+13:01:41 - INFO - Organized 36 files into 7 date folders
+13:01:41 - INFO - Organized into 7 date folders
+13:01:41 - INFO - Step 3: Finding unprocessed days (looking back 7 days)...
+13:01:41 - INFO - Found 0 unprocessed days in last 7 days
+13:01:41 - INFO - No unprocessed days found - all caught up!
+13:01:41 - INFO - ================================================================================
+13:01:41 - INFO - Birdies Sales Data Collection - Complete
+13:01:41 - INFO - ================================================================================
+
+C:\Users\Landover Sunoco\Downloads\store_deployment\store_deployment>del C:\birdiesloyalty\2025\11\13\JSONFILES\sent_log.json
+
+C:\Users\Landover Sunoco\Downloads\store_deployment\store_deployment>del C:\birdiesloyalty\2025\11\14\JSONFILES\sent_log.json
+
+C:\Users\Landover Sunoco\Downloads\store_deployment\store_deployment>del C:\birdiesloyalty\2025\11\15\JSONFILES\sent_log.json
+
+C:\Users\Landover Sunoco\Downloads\store_deployment\store_deployment>del C:\birdiesloyalty\2025\11\16\JSONFILES\sent_log.json
+
+C:\Users\Landover Sunoco\Downloads\store_deployment\store_deployment>del C:\birdiesloyalty\2025\11\17\JSONFILES\sent_log.json
+
+C:\Users\Landover Sunoco\Downloads\store_deployment\store_deployment>del C:\birdiesloyalty\2025\11\18\JSONFILES\sent_log.json
+
+C:\Users\Landover Sunoco\Downloads\store_deployment\store_deployment>python main.py
+13:02:58 - INFO - ================================================================================
+13:02:58 - INFO - Birdies Sales Data Collection - Starting
+13:02:58 - INFO - Store: 1200
+13:02:58 - INFO - Timestamp: 2025-11-19 13:02:58
+13:02:58 - INFO - ================================================================================
+13:02:58 - INFO - Testing API connection...
+13:02:58 - INFO - API connection test successful
+13:02:58 - INFO - Step 1: Scanning network folders for XML files...
+13:02:58 - INFO - Starting folder scan...
+13:02:58 - INFO - Scanned main folder: found 30 XML files
+13:02:58 - INFO - Scanned PJR folder: found 6 CPJR files
+13:02:58 - INFO - Total files found: 36
+13:02:58 - INFO - Found 36 XML files in network folders
+13:02:58 - INFO - Step 2: Organizing files into date folders...
+13:03:02 - INFO - Organized 36 files into 7 date folders
+13:03:02 - INFO - Organized into 7 date folders
+13:03:02 - INFO - Step 3: Finding unprocessed days (looking back 7 days)...
+13:03:02 - INFO - Found 6 unprocessed days in last 7 days
+13:03:02 - INFO - Found 6 unprocessed days
+13:03:02 - INFO - Processing date: 2025-11-18
+13:03:02 - INFO - Processing XML files for 2025-11-18
+13:03:02 - INFO - Found 10 XML files to process
+13:03:02 - INFO - Uploading FGM34025111823434613489780.xml (12710 bytes)
+13:03:03 - INFO - Uploading raw XML: FGM34025111823434613489780.xml (12710 bytes)
+13:03:03 - INFO - API call successful: raw-xml/upload
+13:03:03 - INFO - Successfully uploaded FGM34025111823434613489780.xml
+13:03:03 - INFO - Uploading FGM34025111823434713489781.xml (28595 bytes)
+13:03:03 - INFO - Uploading raw XML: FGM34025111823434713489781.xml (28595 bytes)
+13:03:03 - INFO - API call successful: raw-xml/upload
+13:03:03 - INFO - Successfully uploaded FGM34025111823434713489781.xml
+13:03:03 - INFO - Uploading FGM34025111823434913489782.xml (4409 bytes)
+13:03:03 - INFO - Uploading raw XML: FGM34025111823434913489782.xml (4409 bytes)
+13:03:03 - INFO - API call successful: raw-xml/upload
+13:03:03 - INFO - Successfully uploaded FGM34025111823434913489782.xml
+13:03:03 - INFO - Uploading ISM34025111823435113489784.xml (118148 bytes)
+13:03:03 - INFO - Uploading raw XML: ISM34025111823435113489784.xml (118148 bytes)
+13:03:04 - INFO - API call successful: raw-xml/upload
+13:03:04 - INFO - Successfully uploaded ISM34025111823435113489784.xml
+13:03:04 - INFO - Uploading MCM34025111823435313489785.xml (10948 bytes)
+13:03:04 - INFO - Uploading raw XML: MCM34025111823435313489785.xml (10948 bytes)
+13:03:04 - INFO - API call successful: raw-xml/upload
+13:03:04 - INFO - Successfully uploaded MCM34025111823435313489785.xml
+13:03:04 - INFO - Completed processing for 2025-11-18: 5 files uploaded
+13:03:04 - INFO - Processing date: 2025-11-17
+13:03:04 - INFO - Processing XML files for 2025-11-17
+13:03:04 - INFO - Found 10 XML files to process
+13:03:04 - INFO - Uploading FGM34025111723595613486504.xml (13834 bytes)
+13:03:04 - INFO - Uploading raw XML: FGM34025111723595613486504.xml (13834 bytes)
+13:03:04 - INFO - API call successful: raw-xml/upload
+13:03:04 - INFO - Successfully uploaded FGM34025111723595613486504.xml
+13:03:04 - INFO - Uploading FGM34025111723595713486505.xml (28570 bytes)
+13:03:04 - INFO - Uploading raw XML: FGM34025111723595713486505.xml (28570 bytes)
+13:03:04 - INFO - API call successful: raw-xml/upload
+13:03:04 - INFO - Successfully uploaded FGM34025111723595713486505.xml
+13:03:04 - INFO - Uploading FGM34025111723595913486506.xml (4411 bytes)
+13:03:04 - INFO - Uploading raw XML: FGM34025111723595913486506.xml (4411 bytes)
+13:03:05 - INFO - API call successful: raw-xml/upload
+13:03:05 - INFO - Successfully uploaded FGM34025111723595913486506.xml
+13:03:05 - INFO - Uploading ISM34025111800000313486508.xml (132480 bytes)
+13:03:05 - INFO - Uploading raw XML: ISM34025111800000313486508.xml (132480 bytes)
+13:03:05 - INFO - API call successful: raw-xml/upload
+13:03:05 - INFO - Successfully uploaded ISM34025111800000313486508.xml
+13:03:05 - INFO - Uploading MCM34025111800000513486509.xml (12142 bytes)
+13:03:05 - INFO - Uploading raw XML: MCM34025111800000513486509.xml (12142 bytes)
+13:03:05 - INFO - API call successful: raw-xml/upload
+13:03:05 - INFO - Successfully uploaded MCM34025111800000513486509.xml
+13:03:05 - INFO - Completed processing for 2025-11-17: 5 files uploaded
+13:03:05 - INFO - Processing date: 2025-11-16
+13:03:05 - INFO - Processing XML files for 2025-11-16
+13:03:05 - INFO - Found 10 XML files to process
+13:03:05 - INFO - Uploading FGM34025111623344113482943.xml (13845 bytes)
+13:03:05 - INFO - Uploading raw XML: FGM34025111623344113482943.xml (13845 bytes)
+13:03:05 - INFO - API call successful: raw-xml/upload
+13:03:05 - INFO - Successfully uploaded FGM34025111623344113482943.xml
+13:03:05 - INFO - Uploading FGM34025111623344213482944.xml (28576 bytes)
+13:03:05 - INFO - Uploading raw XML: FGM34025111623344213482944.xml (28576 bytes)
+13:03:06 - INFO - API call successful: raw-xml/upload
+13:03:06 - INFO - Successfully uploaded FGM34025111623344213482944.xml
+13:03:06 - INFO - Uploading FGM34025111623344413482945.xml (4408 bytes)
+13:03:06 - INFO - Uploading raw XML: FGM34025111623344413482945.xml (4408 bytes)
+13:03:06 - INFO - API call successful: raw-xml/upload
+13:03:06 - INFO - Successfully uploaded FGM34025111623344413482945.xml
+13:03:06 - INFO - Uploading ISM34025111623344613482947.xml (110159 bytes)
+13:03:06 - INFO - Uploading raw XML: ISM34025111623344613482947.xml (110159 bytes)
+13:03:06 - INFO - API call successful: raw-xml/upload
+13:03:06 - INFO - Successfully uploaded ISM34025111623344613482947.xml
+13:03:06 - INFO - Uploading MCM34025111623344813482948.xml (10955 bytes)
+13:03:06 - INFO - Uploading raw XML: MCM34025111623344813482948.xml (10955 bytes)
+13:03:06 - INFO - API call successful: raw-xml/upload
+13:03:06 - INFO - Successfully uploaded MCM34025111623344813482948.xml
+13:03:06 - INFO - Completed processing for 2025-11-16: 5 files uploaded
+13:03:06 - INFO - Processing date: 2025-11-15
+13:03:06 - INFO - Processing XML files for 2025-11-15
+13:03:06 - INFO - Found 10 XML files to process
+13:03:06 - INFO - Uploading FGM34025111523482113479850.xml (13276 bytes)
+13:03:06 - INFO - Uploading raw XML: FGM34025111523482113479850.xml (13276 bytes)
+13:03:07 - INFO - API call successful: raw-xml/upload
+13:03:07 - INFO - Successfully uploaded FGM34025111523482113479850.xml
+13:03:07 - INFO - Uploading FGM34025111523482213479851.xml (28561 bytes)
+13:03:07 - INFO - Uploading raw XML: FGM34025111523482213479851.xml (28561 bytes)
+13:03:07 - INFO - API call successful: raw-xml/upload
+13:03:07 - INFO - Successfully uploaded FGM34025111523482213479851.xml
+13:03:07 - INFO - Uploading FGM34025111523482513479852.xml (4408 bytes)
+13:03:07 - INFO - Uploading raw XML: FGM34025111523482513479852.xml (4408 bytes)
+13:03:07 - INFO - API call successful: raw-xml/upload
+13:03:07 - INFO - Successfully uploaded FGM34025111523482513479852.xml
+13:03:07 - INFO - Uploading ISM34025111523482713479854.xml (122395 bytes)
+13:03:07 - INFO - Uploading raw XML: ISM34025111523482713479854.xml (122395 bytes)
+13:03:07 - INFO - API call successful: raw-xml/upload
+13:03:07 - INFO - Successfully uploaded ISM34025111523482713479854.xml
+13:03:07 - INFO - Uploading MCM34025111523482913479855.xml (11556 bytes)
+13:03:07 - INFO - Uploading raw XML: MCM34025111523482913479855.xml (11556 bytes)
+13:03:13 - INFO - API call successful: raw-xml/upload
+13:03:13 - INFO - Successfully uploaded MCM34025111523482913479855.xml
+13:03:13 - INFO - Completed processing for 2025-11-15: 5 files uploaded
+13:03:13 - INFO - Processing date: 2025-11-14
+13:03:13 - INFO - Processing XML files for 2025-11-14
+13:03:13 - INFO - Found 10 XML files to process
+13:03:13 - INFO - Uploading FGM34025111423555813476253.xml (13278 bytes)
+13:03:13 - INFO - Uploading raw XML: FGM34025111423555813476253.xml (13278 bytes)
+13:03:13 - INFO - API call successful: raw-xml/upload
+13:03:13 - INFO - Successfully uploaded FGM34025111423555813476253.xml
+13:03:13 - INFO - Uploading FGM34025111423555913476254.xml (28586 bytes)
+13:03:13 - INFO - Uploading raw XML: FGM34025111423555913476254.xml (28586 bytes)
+13:03:13 - INFO - API call successful: raw-xml/upload
+13:03:13 - INFO - Successfully uploaded FGM34025111423555913476254.xml
+13:03:13 - INFO - Uploading FGM34025111423560113476255.xml (4410 bytes)
+13:03:13 - INFO - Uploading raw XML: FGM34025111423560113476255.xml (4410 bytes)
+13:03:13 - INFO - API call successful: raw-xml/upload
+13:03:13 - INFO - Successfully uploaded FGM34025111423560113476255.xml
+13:03:13 - INFO - Uploading ISM34025111423560313476257.xml (136097 bytes)
+13:03:13 - INFO - Uploading raw XML: ISM34025111423560313476257.xml (136097 bytes)
+13:03:14 - INFO - API call successful: raw-xml/upload
+13:03:14 - INFO - Successfully uploaded ISM34025111423560313476257.xml
+13:03:14 - INFO - Uploading MCM34025111423560513476258.xml (12766 bytes)
+13:03:14 - INFO - Uploading raw XML: MCM34025111423560513476258.xml (12766 bytes)
+13:03:14 - INFO - API call successful: raw-xml/upload
+13:03:14 - INFO - Successfully uploaded MCM34025111423560513476258.xml
+13:03:14 - INFO - Completed processing for 2025-11-14: 5 files uploaded
+13:03:14 - INFO - Processing date: 2025-11-13
+13:03:14 - INFO - Processing XML files for 2025-11-13
+13:03:14 - INFO - Found 10 XML files to process
+13:03:14 - INFO - Uploading FGM34025111323580013472179.xml (13289 bytes)
+13:03:14 - INFO - Uploading raw XML: FGM34025111323580013472179.xml (13289 bytes)
+13:03:15 - INFO - API call successful: raw-xml/upload
+13:03:15 - INFO - Successfully uploaded FGM34025111323580013472179.xml
+13:03:15 - INFO - Uploading FGM34025111323580113472180.xml (28604 bytes)
+13:03:15 - INFO - Uploading raw XML: FGM34025111323580113472180.xml (28604 bytes)
+13:03:15 - INFO - API call successful: raw-xml/upload
+13:03:15 - INFO - Successfully uploaded FGM34025111323580113472180.xml
+13:03:15 - INFO - Uploading FGM34025111323580313472181.xml (4411 bytes)
+13:03:15 - INFO - Uploading raw XML: FGM34025111323580313472181.xml (4411 bytes)
+13:03:15 - INFO - API call successful: raw-xml/upload
+13:03:15 - INFO - Successfully uploaded FGM34025111323580313472181.xml
+13:03:15 - INFO - Uploading ISM34025111323580513472183.xml (127450 bytes)
+13:03:15 - INFO - Uploading raw XML: ISM34025111323580513472183.xml (127450 bytes)
+13:03:16 - INFO - API call successful: raw-xml/upload
+13:03:16 - INFO - Successfully uploaded ISM34025111323580513472183.xml
+13:03:16 - INFO - Uploading MCM34025111323580713472184.xml (13362 bytes)
+13:03:16 - INFO - Uploading raw XML: MCM34025111323580713472184.xml (13362 bytes)
+13:03:16 - INFO - API call successful: raw-xml/upload
+13:03:16 - INFO - Successfully uploaded MCM34025111323580713472184.xml
+13:03:16 - INFO - Completed processing for 2025-11-13: 5 files uploaded
+13:03:16 - INFO - ================================================================================
+13:03:16 - INFO - Processing Summary:
+13:03:16 - INFO -   Successfully processed: 6 days
+13:03:16 - INFO -   Failed or partial:     0 days
+13:03:16 - INFO - ================================================================================
+13:03:16 - INFO - Birdies Sales Data Collection - Complete
+13:03:16 - INFO - ================================================================================
+
+C:\Users\Landover Sunoco\Downloads\store_deployment\store_deployment>python main.py
+13:08:01 - INFO - ================================================================================
+13:08:01 - INFO - Birdies Sales Data Collection - Starting
+13:08:01 - INFO - Store: 1200
+13:08:01 - INFO - Timestamp: 2025-11-19 13:08:01
+13:08:01 - INFO - ================================================================================
+13:08:01 - INFO - Testing API connection...
+13:08:02 - INFO - API connection test successful
+13:08:02 - INFO - Step 1: Scanning network folders for XML files...
+13:08:02 - INFO - Starting folder scan...
+13:08:02 - INFO - Scanned main folder: found 30 XML files
+13:08:02 - INFO - Scanned PJR folder: found 6 CPJR files
+13:08:02 - INFO - Total files found: 36
+13:08:02 - INFO - Found 36 XML files in network folders
+13:08:02 - INFO - Step 2: Organizing files into date folders...
+13:08:06 - INFO - Organized 36 files into 7 date folders
+13:08:06 - INFO - Organized into 7 date folders
+13:08:06 - INFO - Step 3: Finding unprocessed days (looking back 7 days)...
+13:08:06 - INFO - Found 0 unprocessed days in last 7 days
+13:08:06 - INFO - No unprocessed days found - all caught up!
+13:08:06 - INFO - ================================================================================
+13:08:06 - INFO - Birdies Sales Data Collection - Complete
+13:08:06 - INFO - ================================================================================
+
+C:\Users\Landover Sunoco\Downloads\store_deployment\store_deployment>python main.py
+13:08:25 - INFO - ================================================================================
+13:08:25 - INFO - Birdies Sales Data Collection - Starting
+13:08:25 - INFO - Store: 1200
+13:08:25 - INFO - Timestamp: 2025-11-19 13:08:25
+13:08:25 - INFO - ================================================================================
+13:08:25 - INFO - Testing API connection...
+13:08:26 - INFO - API connection test successful
+13:08:26 - INFO - Step 1: Scanning network folders for XML files...
+13:08:26 - INFO - Starting folder scan...
+13:08:26 - INFO - Scanned main folder: found 30 XML files
+13:08:26 - INFO - Scanned PJR folder: found 6 CPJR files
+13:08:26 - INFO - Total files found: 36
+13:08:26 - INFO - Found 36 XML files in network folders
+13:08:26 - INFO - Step 2: Organizing files into date folders...
+13:08:26 - INFO - Copied FGM34025111323580013472179.xml to 2025-11-13 folder
+13:08:26 - INFO - Copied FGM34025111323580113472180.xml to 2025-11-13 folder
+13:08:26 - INFO - Copied FGM34025111323580313472181.xml to 2025-11-13 folder
+13:08:26 - INFO - Copied FGM34025111423555813476253.xml to 2025-11-14 folder
+13:08:26 - INFO - Copied FGM34025111423555913476254.xml to 2025-11-14 folder
+13:08:26 - INFO - Copied FGM34025111423560113476255.xml to 2025-11-14 folder
+13:08:26 - INFO - Copied FGM34025111523482113479850.xml to 2025-11-15 folder
+13:08:26 - INFO - Copied FGM34025111523482213479851.xml to 2025-11-15 folder
+13:08:26 - INFO - Copied FGM34025111523482513479852.xml to 2025-11-15 folder
+13:08:26 - INFO - Copied FGM34025111623344113482943.xml to 2025-11-16 folder
+13:08:26 - INFO - Copied FGM34025111623344213482944.xml to 2025-11-16 folder
+13:08:26 - INFO - Copied FGM34025111623344413482945.xml to 2025-11-16 folder
+13:08:26 - INFO - Copied FGM34025111723595613486504.xml to 2025-11-17 folder
+13:08:26 - INFO - Copied FGM34025111723595713486505.xml to 2025-11-17 folder
+13:08:27 - INFO - Copied FGM34025111723595913486506.xml to 2025-11-17 folder
+13:08:27 - INFO - Copied FGM34025111823434613489780.xml to 2025-11-18 folder
+13:08:27 - INFO - Copied FGM34025111823434713489781.xml to 2025-11-18 folder
+13:08:27 - INFO - Copied FGM34025111823434913489782.xml to 2025-11-18 folder
+13:08:27 - INFO - Copied ISM34025111323580513472183.xml to 2025-11-13 folder
+13:08:27 - INFO - Copied ISM34025111423560313476257.xml to 2025-11-14 folder
+13:08:27 - INFO - Copied ISM34025111523482713479854.xml to 2025-11-15 folder
+13:08:27 - INFO - Copied ISM34025111623344613482947.xml to 2025-11-16 folder
+13:08:27 - INFO - Copied ISM34025111800000313486508.xml to 2025-11-17 folder
+13:08:27 - INFO - Copied ISM34025111823435113489784.xml to 2025-11-18 folder
+13:08:27 - INFO - Copied MCM34025111323580713472184.xml to 2025-11-13 folder
+13:08:28 - INFO - Copied MCM34025111423560513476258.xml to 2025-11-14 folder
+13:08:28 - INFO - Copied MCM34025111523482913479855.xml to 2025-11-15 folder
+13:08:28 - INFO - Copied MCM34025111623344813482948.xml to 2025-11-16 folder
+13:08:28 - INFO - Copied MCM34025111800000513486509.xml to 2025-11-17 folder
+13:08:28 - INFO - Copied MCM34025111823435313489785.xml to 2025-11-18 folder
+13:08:29 - INFO - Copied CPJR12112025235513.xml to 2100-01-01 folder
+13:08:29 - INFO - Copied CPJR13112025235558.xml to 2100-01-01 folder
+13:08:30 - INFO - Copied CPJR14112025235354.xml to 2100-01-01 folder
+13:08:31 - INFO - Copied CPJR15112025234608.xml to 2100-01-01 folder
+13:08:31 - INFO - Copied CPJR16112025233237.xml to 2100-01-01 folder
+13:08:32 - INFO - Copied CPJR17112025235757.xml to 2100-01-01 folder
+13:08:32 - INFO - Organized 36 files into 7 date folders
+13:08:32 - INFO - Organized into 7 date folders
+13:08:32 - INFO - Step 3: Finding unprocessed days (looking back 7 days)...
+13:08:32 - INFO - Found 6 unprocessed days in last 7 days
+13:08:32 - INFO - Found 6 unprocessed days
+13:08:32 - INFO - Processing date: 2025-11-18
+13:08:32 - INFO - Processing XML files for 2025-11-18
+13:08:32 - INFO - Found 10 XML files to process
+13:08:32 - INFO - Uploading FGM34025111823434613489780.xml (12710 bytes)
+13:08:32 - INFO - Uploading raw XML: FGM34025111823434613489780.xml (12710 bytes)
+13:08:32 - ERROR - API client error 404:
+13:08:32 - ERROR - Failed to upload FGM34025111823434613489780.xml:
+13:08:32 - INFO - Uploading FGM34025111823434713489781.xml (28595 bytes)
+13:08:32 - INFO - Uploading raw XML: FGM34025111823434713489781.xml (28595 bytes)
+13:08:32 - ERROR - API client error 404:
+13:08:32 - ERROR - Failed to upload FGM34025111823434713489781.xml:
+13:08:32 - INFO - Uploading FGM34025111823434913489782.xml (4409 bytes)
+13:08:32 - INFO - Uploading raw XML: FGM34025111823434913489782.xml (4409 bytes)
+13:08:33 - ERROR - API client error 404:
+13:08:33 - ERROR - Failed to upload FGM34025111823434913489782.xml:
+13:08:33 - INFO - Uploading ISM34025111823435113489784.xml (118148 bytes)
+13:08:33 - INFO - Uploading raw XML: ISM34025111823435113489784.xml (118148 bytes)
+13:08:33 - ERROR - API client error 404:
+13:08:33 - ERROR - Failed to upload ISM34025111823435113489784.xml:
+13:08:33 - INFO - Uploading MCM34025111823435313489785.xml (10948 bytes)
+13:08:33 - INFO - Uploading raw XML: MCM34025111823435313489785.xml (10948 bytes)
+13:08:34 - ERROR - API client error 404:
+13:08:34 - ERROR - Failed to upload MCM34025111823435313489785.xml:
+13:08:34 - INFO - Uploading FGM34025111823434613489780.xml (12710 bytes)
+13:08:34 - INFO - Uploading raw XML: FGM34025111823434613489780.xml (12710 bytes)
+13:08:34 - ERROR - API client error 404:
+13:08:34 - ERROR - Failed to upload FGM34025111823434613489780.xml:
+13:08:34 - INFO - Uploading FGM34025111823434713489781.xml (28595 bytes)
+13:08:34 - INFO - Uploading raw XML: FGM34025111823434713489781.xml (28595 bytes)
+13:08:34 - ERROR - API client error 404:
+13:08:34 - ERROR - Failed to upload FGM34025111823434713489781.xml:
+13:08:34 - INFO - Uploading FGM34025111823434913489782.xml (4409 bytes)
+13:08:34 - INFO - Uploading raw XML: FGM34025111823434913489782.xml (4409 bytes)
+13:08:34 - ERROR - API client error 404:
+13:08:34 - ERROR - Failed to upload FGM34025111823434913489782.xml:
+13:08:34 - INFO - Uploading ISM34025111823435113489784.xml (118148 bytes)
+13:08:34 - INFO - Uploading raw XML: ISM34025111823435113489784.xml (118148 bytes)
+13:08:35 - ERROR - API client error 404:
+13:08:35 - ERROR - Failed to upload ISM34025111823435113489784.xml:
+13:08:35 - INFO - Uploading MCM34025111823435313489785.xml (10948 bytes)
+13:08:35 - INFO - Uploading raw XML: MCM34025111823435313489785.xml (10948 bytes)
+13:08:35 - ERROR - API client error 404:
+13:08:35 - ERROR - Failed to upload MCM34025111823435313489785.xml:
+13:08:35 - ERROR - No files uploaded for 2025-11-18
+13:08:35 - INFO - Processing date: 2025-11-17
+13:08:35 - INFO - Processing XML files for 2025-11-17
+13:08:35 - INFO - Found 10 XML files to process
+13:08:35 - INFO - Uploading FGM34025111723595613486504.xml (13834 bytes)
+13:08:35 - INFO - Uploading raw XML: FGM34025111723595613486504.xml (13834 bytes)
+13:08:35 - ERROR - API client error 404:
+13:08:35 - ERROR - Failed to upload FGM34025111723595613486504.xml:
+13:08:35 - INFO - Uploading FGM34025111723595713486505.xml (28570 bytes)
+13:08:35 - INFO - Uploading raw XML: FGM34025111723595713486505.xml (28570 bytes)
+13:08:36 - ERROR - API client error 404:
+13:08:36 - ERROR - Failed to upload FGM34025111723595713486505.xml:
+13:08:36 - INFO - Uploading FGM34025111723595913486506.xml (4411 bytes)
+13:08:36 - INFO - Uploading raw XML: FGM34025111723595913486506.xml (4411 bytes)
+13:08:36 - ERROR - API client error 404:
+13:08:36 - ERROR - Failed to upload FGM34025111723595913486506.xml:
+13:08:36 - INFO - Uploading ISM34025111800000313486508.xml (132480 bytes)
+13:08:36 - INFO - Uploading raw XML: ISM34025111800000313486508.xml (132480 bytes)
+13:08:37 - ERROR - API client error 404:
+13:08:37 - ERROR - Failed to upload ISM34025111800000313486508.xml:
+13:08:37 - INFO - Uploading MCM34025111800000513486509.xml (12142 bytes)
+13:08:37 - INFO - Uploading raw XML: MCM34025111800000513486509.xml (12142 bytes)
+13:08:37 - ERROR - API client error 404:
+13:08:37 - ERROR - Failed to upload MCM34025111800000513486509.xml:
+13:08:37 - INFO - Uploading FGM34025111723595613486504.xml (13834 bytes)
+13:08:37 - INFO - Uploading raw XML: FGM34025111723595613486504.xml (13834 bytes)
+13:08:37 - ERROR - API client error 404:
+13:08:37 - ERROR - Failed to upload FGM34025111723595613486504.xml:
+13:08:37 - INFO - Uploading FGM34025111723595713486505.xml (28570 bytes)
+13:08:37 - INFO - Uploading raw XML: FGM34025111723595713486505.xml (28570 bytes)
+13:08:37 - ERROR - API client error 404:
+13:08:37 - ERROR - Failed to upload FGM34025111723595713486505.xml:
+13:08:37 - INFO - Uploading FGM34025111723595913486506.xml (4411 bytes)
+13:08:37 - INFO - Uploading raw XML: FGM34025111723595913486506.xml (4411 bytes)
+13:08:38 - ERROR - API client error 404:
+13:08:38 - ERROR - Failed to upload FGM34025111723595913486506.xml:
+13:08:38 - INFO - Uploading ISM34025111800000313486508.xml (132480 bytes)
+13:08:38 - INFO - Uploading raw XML: ISM34025111800000313486508.xml (132480 bytes)
+13:08:38 - ERROR - API client error 404:
+13:08:38 - ERROR - Failed to upload ISM34025111800000313486508.xml:
+13:08:38 - INFO - Uploading MCM34025111800000513486509.xml (12142 bytes)
+13:08:38 - INFO - Uploading raw XML: MCM34025111800000513486509.xml (12142 bytes)
+13:08:38 - ERROR - API client error 404:
+13:08:38 - ERROR - Failed to upload MCM34025111800000513486509.xml:
+13:08:38 - ERROR - No files uploaded for 2025-11-17
+13:08:38 - INFO - Processing date: 2025-11-16
+13:08:38 - INFO - Processing XML files for 2025-11-16
+13:08:38 - INFO - Found 10 XML files to process
+13:08:38 - INFO - Uploading FGM34025111623344113482943.xml (13845 bytes)
+13:08:38 - INFO - Uploading raw XML: FGM34025111623344113482943.xml (13845 bytes)
+13:08:39 - ERROR - API client error 404:
+13:08:39 - ERROR - Failed to upload FGM34025111623344113482943.xml:
+13:08:39 - INFO - Uploading FGM34025111623344213482944.xml (28576 bytes)
+13:08:39 - INFO - Uploading raw XML: FGM34025111623344213482944.xml (28576 bytes)
+13:08:39 - ERROR - API client error 404:
+13:08:39 - ERROR - Failed to upload FGM34025111623344213482944.xml:
+13:08:39 - INFO - Uploading FGM34025111623344413482945.xml (4408 bytes)
+13:08:39 - INFO - Uploading raw XML: FGM34025111623344413482945.xml (4408 bytes)
+13:08:39 - ERROR - API client error 404:
+13:08:39 - ERROR - Failed to upload FGM34025111623344413482945.xml:
+13:08:39 - INFO - Uploading ISM34025111623344613482947.xml (110159 bytes)
+13:08:39 - INFO - Uploading raw XML: ISM34025111623344613482947.xml (110159 bytes)
+13:08:40 - ERROR - API client error 404:
+13:08:40 - ERROR - Failed to upload ISM34025111623344613482947.xml:
+13:08:40 - INFO - Uploading MCM34025111623344813482948.xml (10955 bytes)
+13:08:40 - INFO - Uploading raw XML: MCM34025111623344813482948.xml (10955 bytes)
+13:08:40 - ERROR - API client error 404:
+13:08:40 - ERROR - Failed to upload MCM34025111623344813482948.xml:
+13:08:40 - INFO - Uploading FGM34025111623344113482943.xml (13845 bytes)
+13:08:40 - INFO - Uploading raw XML: FGM34025111623344113482943.xml (13845 bytes)
+13:08:41 - ERROR - API client error 404:
+13:08:41 - ERROR - Failed to upload FGM34025111623344113482943.xml:
+13:08:41 - INFO - Uploading FGM34025111623344213482944.xml (28576 bytes)
+13:08:41 - INFO - Uploading raw XML: FGM34025111623344213482944.xml (28576 bytes)
+13:08:41 - ERROR - API client error 404:
+13:08:41 - ERROR - Failed to upload FGM34025111623344213482944.xml:
+13:08:41 - INFO - Uploading FGM34025111623344413482945.xml (4408 bytes)
+13:08:41 - INFO - Uploading raw XML: FGM34025111623344413482945.xml (4408 bytes)
+13:08:41 - ERROR - API client error 404:
+13:08:41 - ERROR - Failed to upload FGM34025111623344413482945.xml:
+13:08:41 - INFO - Uploading ISM34025111623344613482947.xml (110159 bytes)
+13:08:41 - INFO - Uploading raw XML: ISM34025111623344613482947.xml (110159 bytes)
+13:08:42 - ERROR - API client error 404:
+13:08:42 - ERROR - Failed to upload ISM34025111623344613482947.xml:
+13:08:42 - INFO - Uploading MCM34025111623344813482948.xml (10955 bytes)
+13:08:42 - INFO - Uploading raw XML: MCM34025111623344813482948.xml (10955 bytes)
+13:08:42 - ERROR - API client error 404:
+13:08:42 - ERROR - Failed to upload MCM34025111623344813482948.xml:
+13:08:42 - ERROR - No files uploaded for 2025-11-16
+13:08:42 - INFO - Processing date: 2025-11-15
+13:08:42 - INFO - Processing XML files for 2025-11-15
+13:08:42 - INFO - Found 10 XML files to process
+13:08:42 - INFO - Uploading FGM34025111523482113479850.xml (13276 bytes)
+13:08:42 - INFO - Uploading raw XML: FGM34025111523482113479850.xml (13276 bytes)
+13:08:42 - ERROR - API client error 404:
+13:08:42 - ERROR - Failed to upload FGM34025111523482113479850.xml:
+13:08:42 - INFO - Uploading FGM34025111523482213479851.xml (28561 bytes)
+13:08:42 - INFO - Uploading raw XML: FGM34025111523482213479851.xml (28561 bytes)
+13:08:43 - ERROR - API client error 404:
+13:08:43 - ERROR - Failed to upload FGM34025111523482213479851.xml:
+13:08:43 - INFO - Uploading FGM34025111523482513479852.xml (4408 bytes)
+13:08:43 - INFO - Uploading raw XML: FGM34025111523482513479852.xml (4408 bytes)
+13:08:43 - ERROR - API client error 404:
+13:08:43 - ERROR - Failed to upload FGM34025111523482513479852.xml:
+13:08:43 - INFO - Uploading ISM34025111523482713479854.xml (122395 bytes)
+13:08:43 - INFO - Uploading raw XML: ISM34025111523482713479854.xml (122395 bytes)
+13:08:44 - ERROR - API client error 404:
+13:08:44 - ERROR - Failed to upload ISM34025111523482713479854.xml:
+13:08:44 - INFO - Uploading MCM34025111523482913479855.xml (11556 bytes)
+13:08:44 - INFO - Uploading raw XML: MCM34025111523482913479855.xml (11556 bytes)
+13:08:44 - ERROR - API client error 404:
+13:08:44 - ERROR - Failed to upload MCM34025111523482913479855.xml:
+13:08:44 - INFO - Uploading FGM34025111523482113479850.xml (13276 bytes)
+13:08:44 - INFO - Uploading raw XML: FGM34025111523482113479850.xml (13276 bytes)
+13:08:44 - ERROR - API client error 404:
+13:08:44 - ERROR - Failed to upload FGM34025111523482113479850.xml:
+13:08:44 - INFO - Uploading FGM34025111523482213479851.xml (28561 bytes)
+13:08:44 - INFO - Uploading raw XML: FGM34025111523482213479851.xml (28561 bytes)
+13:08:45 - ERROR - API client error 404:
+13:08:45 - ERROR - Failed to upload FGM34025111523482213479851.xml:
+13:08:45 - INFO - Uploading FGM34025111523482513479852.xml (4408 bytes)
+13:08:45 - INFO - Uploading raw XML: FGM34025111523482513479852.xml (4408 bytes)
+13:08:45 - ERROR - API client error 404:
+13:08:45 - ERROR - Failed to upload FGM34025111523482513479852.xml:
+13:08:45 - INFO - Uploading ISM34025111523482713479854.xml (122395 bytes)
+13:08:45 - INFO - Uploading raw XML: ISM34025111523482713479854.xml (122395 bytes)
+13:08:46 - ERROR - API client error 404:
+13:08:46 - ERROR - Failed to upload ISM34025111523482713479854.xml:
+13:08:46 - INFO - Uploading MCM34025111523482913479855.xml (11556 bytes)
+13:08:46 - INFO - Uploading raw XML: MCM34025111523482913479855.xml (11556 bytes)
+13:08:46 - ERROR - API client error 404:
+13:08:46 - ERROR - Failed to upload MCM34025111523482913479855.xml:
+13:08:46 - ERROR - No files uploaded for 2025-11-15
+13:08:46 - INFO - Processing date: 2025-11-14
+13:08:46 - INFO - Processing XML files for 2025-11-14
+13:08:46 - INFO - Found 10 XML files to process
+13:08:46 - INFO - Uploading FGM34025111423555813476253.xml (13278 bytes)
+13:08:46 - INFO - Uploading raw XML: FGM34025111423555813476253.xml (13278 bytes)
+13:08:46 - ERROR - API client error 404:
+13:08:46 - ERROR - Failed to upload FGM34025111423555813476253.xml:
+13:08:46 - INFO - Uploading FGM34025111423555913476254.xml (28586 bytes)
+13:08:46 - INFO - Uploading raw XML: FGM34025111423555913476254.xml (28586 bytes)
+13:08:46 - ERROR - API client error 404:
+13:08:46 - ERROR - Failed to upload FGM34025111423555913476254.xml:
+13:08:46 - INFO - Uploading FGM34025111423560113476255.xml (4410 bytes)
+13:08:46 - INFO - Uploading raw XML: FGM34025111423560113476255.xml (4410 bytes)
+13:08:47 - ERROR - API client error 404:
+13:08:47 - ERROR - Failed to upload FGM34025111423560113476255.xml:
+13:08:47 - INFO - Uploading ISM34025111423560313476257.xml (136097 bytes)
+13:08:47 - INFO - Uploading raw XML: ISM34025111423560313476257.xml (136097 bytes)
+13:08:47 - ERROR - API client error 404:
+13:08:47 - ERROR - Failed to upload ISM34025111423560313476257.xml:
+13:08:47 - INFO - Uploading MCM34025111423560513476258.xml (12766 bytes)
+13:08:47 - INFO - Uploading raw XML: MCM34025111423560513476258.xml (12766 bytes)
+13:08:48 - ERROR - API client error 404:
+13:08:48 - ERROR - Failed to upload MCM34025111423560513476258.xml:
+13:08:48 - INFO - Uploading FGM34025111423555813476253.xml (13278 bytes)
+13:08:48 - INFO - Uploading raw XML: FGM34025111423555813476253.xml (13278 bytes)
+13:08:48 - ERROR - API client error 404:
+13:08:48 - ERROR - Failed to upload FGM34025111423555813476253.xml:
+13:08:48 - INFO - Uploading FGM34025111423555913476254.xml (28586 bytes)
+13:08:48 - INFO - Uploading raw XML: FGM34025111423555913476254.xml (28586 bytes)
+13:08:48 - ERROR - API client error 404:
+13:08:48 - ERROR - Failed to upload FGM34025111423555913476254.xml:
+13:08:48 - INFO - Uploading FGM34025111423560113476255.xml (4410 bytes)
+13:08:48 - INFO - Uploading raw XML: FGM34025111423560113476255.xml (4410 bytes)
+13:08:49 - ERROR - API client error 404:
+13:08:49 - ERROR - Failed to upload FGM34025111423560113476255.xml:
+13:08:49 - INFO - Uploading ISM34025111423560313476257.xml (136097 bytes)
+13:08:49 - INFO - Uploading raw XML: ISM34025111423560313476257.xml (136097 bytes)
+13:08:49 - ERROR - API client error 404:
+13:08:49 - ERROR - Failed to upload ISM34025111423560313476257.xml:
+13:08:49 - INFO - Uploading MCM34025111423560513476258.xml (12766 bytes)
+13:08:49 - INFO - Uploading raw XML: MCM34025111423560513476258.xml (12766 bytes)
+13:08:49 - ERROR - API client error 404:
+13:08:49 - ERROR - Failed to upload MCM34025111423560513476258.xml:
+13:08:49 - ERROR - No files uploaded for 2025-11-14
+13:08:49 - INFO - Processing date: 2025-11-13
+13:08:49 - INFO - Processing XML files for 2025-11-13
+13:08:49 - INFO - Found 10 XML files to process
+13:08:49 - INFO - Uploading FGM34025111323580013472179.xml (13289 bytes)
+13:08:49 - INFO - Uploading raw XML: FGM34025111323580013472179.xml (13289 bytes)
+13:08:50 - ERROR - API client error 404:
+13:08:50 - ERROR - Failed to upload FGM34025111323580013472179.xml:
+13:08:50 - INFO - Uploading FGM34025111323580113472180.xml (28604 bytes)
+13:08:50 - INFO - Uploading raw XML: FGM34025111323580113472180.xml (28604 bytes)
+13:08:50 - ERROR - API client error 404:
+13:08:50 - ERROR - Failed to upload FGM34025111323580113472180.xml:
+13:08:50 - INFO - Uploading FGM34025111323580313472181.xml (4411 bytes)
+13:08:50 - INFO - Uploading raw XML: FGM34025111323580313472181.xml (4411 bytes)
+13:08:50 - ERROR - API client error 404:
+13:08:50 - ERROR - Failed to upload FGM34025111323580313472181.xml:
+13:08:50 - INFO - Uploading ISM34025111323580513472183.xml (127450 bytes)
+13:08:50 - INFO - Uploading raw XML: ISM34025111323580513472183.xml (127450 bytes)
+13:08:51 - ERROR - API client error 404:
+13:08:51 - ERROR - Failed to upload ISM34025111323580513472183.xml:
+13:08:51 - INFO - Uploading MCM34025111323580713472184.xml (13362 bytes)
+13:08:51 - INFO - Uploading raw XML: MCM34025111323580713472184.xml (13362 bytes)
+13:08:51 - ERROR - API client error 404:
+13:08:51 - ERROR - Failed to upload MCM34025111323580713472184.xml:
+13:08:51 - INFO - Uploading FGM34025111323580013472179.xml (13289 bytes)
+13:08:51 - INFO - Uploading raw XML: FGM34025111323580013472179.xml (13289 bytes)
+13:08:52 - ERROR - API client error 404:
+13:08:52 - ERROR - Failed to upload FGM34025111323580013472179.xml:
+13:08:52 - INFO - Uploading FGM34025111323580113472180.xml (28604 bytes)
+13:08:52 - INFO - Uploading raw XML: FGM34025111323580113472180.xml (28604 bytes)
+13:08:52 - ERROR - API client error 404:
+13:08:52 - ERROR - Failed to upload FGM34025111323580113472180.xml:
+13:08:52 - INFO - Uploading FGM34025111323580313472181.xml (4411 bytes)
+13:08:52 - INFO - Uploading raw XML: FGM34025111323580313472181.xml (4411 bytes)
+13:08:52 - ERROR - API client error 404:
+13:08:52 - ERROR - Failed to upload FGM34025111323580313472181.xml:
+13:08:52 - INFO - Uploading ISM34025111323580513472183.xml (127450 bytes)
+13:08:52 - INFO - Uploading raw XML: ISM34025111323580513472183.xml (127450 bytes)
+13:08:53 - ERROR - API client error 404:
+13:08:53 - ERROR - Failed to upload ISM34025111323580513472183.xml:
+13:08:53 - INFO - Uploading MCM34025111323580713472184.xml (13362 bytes)
+13:08:53 - INFO - Uploading raw XML: MCM34025111323580713472184.xml (13362 bytes)
+13:08:53 - ERROR - API client error 404:
+13:08:53 - ERROR - Failed to upload MCM34025111323580713472184.xml:
+13:08:53 - ERROR - No files uploaded for 2025-11-13
+13:08:53 - INFO - ================================================================================
+13:08:53 - INFO - Processing Summary:
+13:08:53 - INFO -   Successfully processed: 0 days
+13:08:53 - INFO -   Failed or partial:     6 days
+13:08:53 - INFO - ================================================================================
+13:08:53 - INFO - Birdies Sales Data Collection - Complete
+13:08:53 - INFO - ================================================================================
+
+C:\Users\Landover Sunoco\Downloads\store_deployment\store_deployment>python main.py
+13:11:32 - INFO - ================================================================================
+13:11:32 - INFO - Birdies Sales Data Collection - Starting
+13:11:32 - INFO - Store: 1200
+13:11:32 - INFO - Timestamp: 2025-11-19 13:11:32
+13:11:32 - INFO - ================================================================================
+13:11:32 - INFO - Testing API connection...
+13:11:40 - INFO - API connection test successful
+13:11:40 - INFO - Step 1: Scanning network folders for XML files...
+13:11:40 - INFO - Starting folder scan...
+13:11:40 - INFO - Scanned main folder: found 30 XML files
+13:11:40 - INFO - Scanned PJR folder: found 6 CPJR files
+13:11:40 - INFO - Total files found: 36
+13:11:40 - INFO - Found 36 XML files in network folders
+13:11:40 - INFO - Step 2: Organizing files into date folders...
+13:11:40 - INFO - Copied FGM34025111323580013472179.xml to 2025-11-13 folder
+13:11:40 - INFO - Copied FGM34025111323580113472180.xml to 2025-11-13 folder
+13:11:40 - INFO - Copied FGM34025111323580313472181.xml to 2025-11-13 folder
+13:11:40 - INFO - Copied FGM34025111423555813476253.xml to 2025-11-14 folder
+13:11:40 - INFO - Copied FGM34025111423555913476254.xml to 2025-11-14 folder
+13:11:40 - INFO - Copied FGM34025111423560113476255.xml to 2025-11-14 folder
+13:11:41 - INFO - Copied FGM34025111523482113479850.xml to 2025-11-15 folder
+13:11:41 - INFO - Copied FGM34025111523482213479851.xml to 2025-11-15 folder
+13:11:41 - INFO - Copied FGM34025111523482513479852.xml to 2025-11-15 folder
+13:11:41 - INFO - Copied FGM34025111623344113482943.xml to 2025-11-16 folder
+13:11:41 - INFO - Copied FGM34025111623344213482944.xml to 2025-11-16 folder
+13:11:41 - INFO - Copied FGM34025111623344413482945.xml to 2025-11-16 folder
+13:11:41 - INFO - Copied FGM34025111723595613486504.xml to 2025-11-17 folder
+13:11:41 - INFO - Copied FGM34025111723595713486505.xml to 2025-11-17 folder
+13:11:41 - INFO - Copied FGM34025111723595913486506.xml to 2025-11-17 folder
+13:11:41 - INFO - Copied FGM34025111823434613489780.xml to 2025-11-18 folder
+13:11:41 - INFO - Copied FGM34025111823434713489781.xml to 2025-11-18 folder
+13:11:41 - INFO - Copied FGM34025111823434913489782.xml to 2025-11-18 folder
+13:11:41 - INFO - Copied ISM34025111323580513472183.xml to 2025-11-13 folder
+13:11:42 - INFO - Copied ISM34025111423560313476257.xml to 2025-11-14 folder
+13:11:42 - INFO - Copied ISM34025111523482713479854.xml to 2025-11-15 folder
+13:11:42 - INFO - Copied ISM34025111623344613482947.xml to 2025-11-16 folder
+13:11:42 - INFO - Copied ISM34025111800000313486508.xml to 2025-11-17 folder
+13:11:42 - INFO - Copied ISM34025111823435113489784.xml to 2025-11-18 folder
+13:11:42 - INFO - Copied MCM34025111323580713472184.xml to 2025-11-13 folder
+13:11:42 - INFO - Copied MCM34025111423560513476258.xml to 2025-11-14 folder
+13:11:42 - INFO - Copied MCM34025111523482913479855.xml to 2025-11-15 folder
+13:11:42 - INFO - Copied MCM34025111623344813482948.xml to 2025-11-16 folder
+13:11:43 - INFO - Copied MCM34025111800000513486509.xml to 2025-11-17 folder
+13:11:43 - INFO - Copied MCM34025111823435313489785.xml to 2025-11-18 folder
+13:11:43 - INFO - Copied CPJR12112025235513.xml to 2100-01-01 folder
+13:11:44 - INFO - Copied CPJR13112025235558.xml to 2100-01-01 folder
+13:11:45 - INFO - Copied CPJR14112025235354.xml to 2100-01-01 folder
+13:11:46 - INFO - Copied CPJR15112025234608.xml to 2100-01-01 folder
+13:11:46 - INFO - Copied CPJR16112025233237.xml to 2100-01-01 folder
+13:11:47 - INFO - Copied CPJR17112025235757.xml to 2100-01-01 folder
+13:11:47 - INFO - Organized 36 files into 7 date folders
+13:11:47 - INFO - Organized into 7 date folders
+13:11:47 - INFO - Step 3: Finding unprocessed days (looking back 7 days)...
+13:11:47 - INFO - Found 6 unprocessed days in last 7 days
+13:11:47 - INFO - Found 6 unprocessed days
+13:11:47 - INFO - Processing date: 2025-11-18
+13:11:47 - INFO - Processing XML files for 2025-11-18
+13:11:47 - INFO - Found 10 XML files to process
+13:11:47 - INFO - Uploading FGM34025111823434613489780.xml (12710 bytes)
+13:11:47 - INFO - Uploading raw XML: FGM34025111823434613489780.xml (12710 bytes)
+13:11:47 - ERROR - API client error 404: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:11:47 - ERROR - Failed to upload FGM34025111823434613489780.xml: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:11:47 - INFO - Uploading FGM34025111823434713489781.xml (28595 bytes)
+13:11:47 - INFO - Uploading raw XML: FGM34025111823434713489781.xml (28595 bytes)
+13:11:47 - ERROR - API client error 404: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:11:47 - ERROR - Failed to upload FGM34025111823434713489781.xml: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:11:47 - INFO - Uploading FGM34025111823434913489782.xml (4409 bytes)
+13:11:47 - INFO - Uploading raw XML: FGM34025111823434913489782.xml (4409 bytes)
+13:11:48 - ERROR - API client error 404: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:11:48 - ERROR - Failed to upload FGM34025111823434913489782.xml: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:11:48 - INFO - Uploading ISM34025111823435113489784.xml (118148 bytes)
+13:11:48 - INFO - Uploading raw XML: ISM34025111823435113489784.xml (118148 bytes)
+13:11:48 - ERROR - API client error 404: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:11:48 - ERROR - Failed to upload ISM34025111823435113489784.xml: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:11:48 - INFO - Uploading MCM34025111823435313489785.xml (10948 bytes)
+13:11:48 - INFO - Uploading raw XML: MCM34025111823435313489785.xml (10948 bytes)
+13:11:49 - ERROR - API client error 404: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:11:49 - ERROR - Failed to upload MCM34025111823435313489785.xml: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:11:49 - INFO - Uploading FGM34025111823434613489780.xml (12710 bytes)
+13:11:49 - INFO - Uploading raw XML: FGM34025111823434613489780.xml (12710 bytes)
+13:11:49 - ERROR - API client error 404: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:11:49 - ERROR - Failed to upload FGM34025111823434613489780.xml: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:11:49 - INFO - Uploading FGM34025111823434713489781.xml (28595 bytes)
+13:11:49 - INFO - Uploading raw XML: FGM34025111823434713489781.xml (28595 bytes)
+13:11:49 - ERROR - API client error 404: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:11:49 - ERROR - Failed to upload FGM34025111823434713489781.xml: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:11:49 - INFO - Uploading FGM34025111823434913489782.xml (4409 bytes)
+13:11:49 - INFO - Uploading raw XML: FGM34025111823434913489782.xml (4409 bytes)
+13:11:49 - ERROR - API client error 404: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:11:49 - ERROR - Failed to upload FGM34025111823434913489782.xml: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:11:49 - INFO - Uploading ISM34025111823435113489784.xml (118148 bytes)
+13:11:49 - INFO - Uploading raw XML: ISM34025111823435113489784.xml (118148 bytes)
+13:11:50 - ERROR - API client error 404: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:11:50 - ERROR - Failed to upload ISM34025111823435113489784.xml: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:11:50 - INFO - Uploading MCM34025111823435313489785.xml (10948 bytes)
+13:11:50 - INFO - Uploading raw XML: MCM34025111823435313489785.xml (10948 bytes)
+13:11:50 - ERROR - API client error 404: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:11:50 - ERROR - Failed to upload MCM34025111823435313489785.xml: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:11:50 - ERROR - No files uploaded for 2025-11-18
+13:11:50 - INFO - Processing date: 2025-11-17
+13:11:50 - INFO - Processing XML files for 2025-11-17
+13:11:50 - INFO - Found 10 XML files to process
+13:11:50 - INFO - Uploading FGM34025111723595613486504.xml (13834 bytes)
+13:11:50 - INFO - Uploading raw XML: FGM34025111723595613486504.xml (13834 bytes)
+13:11:50 - ERROR - API client error 404: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:11:50 - ERROR - Failed to upload FGM34025111723595613486504.xml: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:11:50 - INFO - Uploading FGM34025111723595713486505.xml (28570 bytes)
+13:11:50 - INFO - Uploading raw XML: FGM34025111723595713486505.xml (28570 bytes)
+13:11:51 - ERROR - API client error 404: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:11:51 - ERROR - Failed to upload FGM34025111723595713486505.xml: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:11:51 - INFO - Uploading FGM34025111723595913486506.xml (4411 bytes)
+13:11:51 - INFO - Uploading raw XML: FGM34025111723595913486506.xml (4411 bytes)
+13:11:51 - ERROR - API client error 404: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:11:51 - ERROR - Failed to upload FGM34025111723595913486506.xml: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:11:51 - INFO - Uploading ISM34025111800000313486508.xml (132480 bytes)
+13:11:51 - INFO - Uploading raw XML: ISM34025111800000313486508.xml (132480 bytes)
+13:11:52 - ERROR - API client error 404: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:11:52 - ERROR - Failed to upload ISM34025111800000313486508.xml: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:11:52 - INFO - Uploading MCM34025111800000513486509.xml (12142 bytes)
+13:11:52 - INFO - Uploading raw XML: MCM34025111800000513486509.xml (12142 bytes)
+13:11:52 - ERROR - API client error 404: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:11:52 - ERROR - Failed to upload MCM34025111800000513486509.xml: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:11:52 - INFO - Uploading FGM34025111723595613486504.xml (13834 bytes)
+13:11:52 - INFO - Uploading raw XML: FGM34025111723595613486504.xml (13834 bytes)
+13:11:52 - ERROR - API client error 404: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:11:52 - ERROR - Failed to upload FGM34025111723595613486504.xml: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:11:52 - INFO - Uploading FGM34025111723595713486505.xml (28570 bytes)
+13:11:52 - INFO - Uploading raw XML: FGM34025111723595713486505.xml (28570 bytes)
+13:11:52 - ERROR - API client error 404: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:11:52 - ERROR - Failed to upload FGM34025111723595713486505.xml: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:11:52 - INFO - Uploading FGM34025111723595913486506.xml (4411 bytes)
+13:11:52 - INFO - Uploading raw XML: FGM34025111723595913486506.xml (4411 bytes)
+13:11:53 - ERROR - API client error 404: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:11:53 - ERROR - Failed to upload FGM34025111723595913486506.xml: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:11:53 - INFO - Uploading ISM34025111800000313486508.xml (132480 bytes)
+13:11:53 - INFO - Uploading raw XML: ISM34025111800000313486508.xml (132480 bytes)
+13:11:53 - ERROR - API client error 404: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:11:53 - ERROR - Failed to upload ISM34025111800000313486508.xml: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:11:53 - INFO - Uploading MCM34025111800000513486509.xml (12142 bytes)
+13:11:53 - INFO - Uploading raw XML: MCM34025111800000513486509.xml (12142 bytes)
+13:11:54 - ERROR - API client error 404: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:11:54 - ERROR - Failed to upload MCM34025111800000513486509.xml: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:11:54 - ERROR - No files uploaded for 2025-11-17
+13:11:54 - INFO - Processing date: 2025-11-16
+13:11:54 - INFO - Processing XML files for 2025-11-16
+13:11:54 - INFO - Found 10 XML files to process
+13:11:54 - INFO - Uploading FGM34025111623344113482943.xml (13845 bytes)
+13:11:54 - INFO - Uploading raw XML: FGM34025111623344113482943.xml (13845 bytes)
+13:11:54 - ERROR - API client error 404: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:11:54 - ERROR - Failed to upload FGM34025111623344113482943.xml: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:11:54 - INFO - Uploading FGM34025111623344213482944.xml (28576 bytes)
+13:11:54 - INFO - Uploading raw XML: FGM34025111623344213482944.xml (28576 bytes)
+13:11:54 - ERROR - API client error 404: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:11:54 - ERROR - Failed to upload FGM34025111623344213482944.xml: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:11:54 - INFO - Uploading FGM34025111623344413482945.xml (4408 bytes)
+13:11:54 - INFO - Uploading raw XML: FGM34025111623344413482945.xml (4408 bytes)
+13:11:55 - ERROR - API client error 404: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:11:55 - ERROR - Failed to upload FGM34025111623344413482945.xml: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:11:55 - INFO - Uploading ISM34025111623344613482947.xml (110159 bytes)
+13:11:55 - INFO - Uploading raw XML: ISM34025111623344613482947.xml (110159 bytes)
+13:11:55 - ERROR - API client error 404: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:11:55 - ERROR - Failed to upload ISM34025111623344613482947.xml: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:11:55 - INFO - Uploading MCM34025111623344813482948.xml (10955 bytes)
+13:11:55 - INFO - Uploading raw XML: MCM34025111623344813482948.xml (10955 bytes)
+13:11:56 - ERROR - API client error 404: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:11:56 - ERROR - Failed to upload MCM34025111623344813482948.xml: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:11:56 - INFO - Uploading FGM34025111623344113482943.xml (13845 bytes)
+13:11:56 - INFO - Uploading raw XML: FGM34025111623344113482943.xml (13845 bytes)
+13:11:56 - ERROR - API client error 404: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:11:56 - ERROR - Failed to upload FGM34025111623344113482943.xml: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:11:56 - INFO - Uploading FGM34025111623344213482944.xml (28576 bytes)
+13:11:56 - INFO - Uploading raw XML: FGM34025111623344213482944.xml (28576 bytes)
+13:11:56 - ERROR - API client error 404: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:11:56 - ERROR - Failed to upload FGM34025111623344213482944.xml: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:11:56 - INFO - Uploading FGM34025111623344413482945.xml (4408 bytes)
+13:11:56 - INFO - Uploading raw XML: FGM34025111623344413482945.xml (4408 bytes)
+13:11:56 - ERROR - API client error 404: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:11:56 - ERROR - Failed to upload FGM34025111623344413482945.xml: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:11:56 - INFO - Uploading ISM34025111623344613482947.xml (110159 bytes)
+13:11:56 - INFO - Uploading raw XML: ISM34025111623344613482947.xml (110159 bytes)
+13:11:57 - ERROR - API client error 404: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:11:57 - ERROR - Failed to upload ISM34025111623344613482947.xml: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:11:57 - INFO - Uploading MCM34025111623344813482948.xml (10955 bytes)
+13:11:57 - INFO - Uploading raw XML: MCM34025111623344813482948.xml (10955 bytes)
+13:11:57 - ERROR - API client error 404: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:11:57 - ERROR - Failed to upload MCM34025111623344813482948.xml: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:11:57 - ERROR - No files uploaded for 2025-11-16
+13:11:57 - INFO - Processing date: 2025-11-15
+13:11:57 - INFO - Processing XML files for 2025-11-15
+13:11:57 - INFO - Found 10 XML files to process
+13:11:57 - INFO - Uploading FGM34025111523482113479850.xml (13276 bytes)
+13:11:57 - INFO - Uploading raw XML: FGM34025111523482113479850.xml (13276 bytes)
+13:11:58 - ERROR - API client error 404: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:11:58 - ERROR - Failed to upload FGM34025111523482113479850.xml: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:11:58 - INFO - Uploading FGM34025111523482213479851.xml (28561 bytes)
+13:11:58 - INFO - Uploading raw XML: FGM34025111523482213479851.xml (28561 bytes)
+13:11:58 - ERROR - API client error 404: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:11:58 - ERROR - Failed to upload FGM34025111523482213479851.xml: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:11:58 - INFO - Uploading FGM34025111523482513479852.xml (4408 bytes)
+13:11:58 - INFO - Uploading raw XML: FGM34025111523482513479852.xml (4408 bytes)
+13:11:58 - ERROR - API client error 404: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:11:58 - ERROR - Failed to upload FGM34025111523482513479852.xml: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:11:58 - INFO - Uploading ISM34025111523482713479854.xml (122395 bytes)
+13:11:58 - INFO - Uploading raw XML: ISM34025111523482713479854.xml (122395 bytes)
+13:11:59 - ERROR - API client error 404: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:11:59 - ERROR - Failed to upload ISM34025111523482713479854.xml: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:11:59 - INFO - Uploading MCM34025111523482913479855.xml (11556 bytes)
+13:11:59 - INFO - Uploading raw XML: MCM34025111523482913479855.xml (11556 bytes)
+13:11:59 - ERROR - API client error 404: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:11:59 - ERROR - Failed to upload MCM34025111523482913479855.xml: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:11:59 - INFO - Uploading FGM34025111523482113479850.xml (13276 bytes)
+13:11:59 - INFO - Uploading raw XML: FGM34025111523482113479850.xml (13276 bytes)
+13:11:59 - ERROR - API client error 404: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:11:59 - ERROR - Failed to upload FGM34025111523482113479850.xml: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:11:59 - INFO - Uploading FGM34025111523482213479851.xml (28561 bytes)
+13:11:59 - INFO - Uploading raw XML: FGM34025111523482213479851.xml (28561 bytes)
+13:12:00 - ERROR - API client error 404: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:12:00 - ERROR - Failed to upload FGM34025111523482213479851.xml: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:12:00 - INFO - Uploading FGM34025111523482513479852.xml (4408 bytes)
+13:12:00 - INFO - Uploading raw XML: FGM34025111523482513479852.xml (4408 bytes)
+13:12:00 - ERROR - API client error 404: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:12:00 - ERROR - Failed to upload FGM34025111523482513479852.xml: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:12:00 - INFO - Uploading ISM34025111523482713479854.xml (122395 bytes)
+13:12:00 - INFO - Uploading raw XML: ISM34025111523482713479854.xml (122395 bytes)
+13:12:01 - ERROR - API client error 404: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:12:01 - ERROR - Failed to upload ISM34025111523482713479854.xml: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:12:01 - INFO - Uploading MCM34025111523482913479855.xml (11556 bytes)
+13:12:01 - INFO - Uploading raw XML: MCM34025111523482913479855.xml (11556 bytes)
+13:12:01 - ERROR - API client error 404: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:12:01 - ERROR - Failed to upload MCM34025111523482913479855.xml: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:12:01 - ERROR - No files uploaded for 2025-11-15
+13:12:01 - INFO - Processing date: 2025-11-14
+13:12:01 - INFO - Processing XML files for 2025-11-14
+13:12:01 - INFO - Found 10 XML files to process
+13:12:01 - INFO - Uploading FGM34025111423555813476253.xml (13278 bytes)
+13:12:01 - INFO - Uploading raw XML: FGM34025111423555813476253.xml (13278 bytes)
+13:12:01 - ERROR - API client error 404: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:12:01 - ERROR - Failed to upload FGM34025111423555813476253.xml: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:12:01 - INFO - Uploading FGM34025111423555913476254.xml (28586 bytes)
+13:12:01 - INFO - Uploading raw XML: FGM34025111423555913476254.xml (28586 bytes)
+13:12:02 - ERROR - API client error 404: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:12:02 - ERROR - Failed to upload FGM34025111423555913476254.xml: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:12:02 - INFO - Uploading FGM34025111423560113476255.xml (4410 bytes)
+13:12:02 - INFO - Uploading raw XML: FGM34025111423560113476255.xml (4410 bytes)
+13:12:02 - ERROR - API client error 404: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:12:02 - ERROR - Failed to upload FGM34025111423560113476255.xml: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:12:02 - INFO - Uploading ISM34025111423560313476257.xml (136097 bytes)
+13:12:02 - INFO - Uploading raw XML: ISM34025111423560313476257.xml (136097 bytes)
+13:12:02 - ERROR - API client error 404: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:12:02 - ERROR - Failed to upload ISM34025111423560313476257.xml: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:12:02 - INFO - Uploading MCM34025111423560513476258.xml (12766 bytes)
+13:12:02 - INFO - Uploading raw XML: MCM34025111423560513476258.xml (12766 bytes)
+13:12:03 - ERROR - API client error 404: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:12:03 - ERROR - Failed to upload MCM34025111423560513476258.xml: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:12:03 - INFO - Uploading FGM34025111423555813476253.xml (13278 bytes)
+13:12:03 - INFO - Uploading raw XML: FGM34025111423555813476253.xml (13278 bytes)
+13:12:03 - ERROR - API client error 404: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:12:03 - ERROR - Failed to upload FGM34025111423555813476253.xml: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:12:03 - INFO - Uploading FGM34025111423555913476254.xml (28586 bytes)
+13:12:03 - INFO - Uploading raw XML: FGM34025111423555913476254.xml (28586 bytes)
+13:12:03 - ERROR - API client error 404: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:12:03 - ERROR - Failed to upload FGM34025111423555913476254.xml: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:12:03 - INFO - Uploading FGM34025111423560113476255.xml (4410 bytes)
+13:12:03 - INFO - Uploading raw XML: FGM34025111423560113476255.xml (4410 bytes)
+13:12:03 - ERROR - API client error 404: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:12:03 - ERROR - Failed to upload FGM34025111423560113476255.xml: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:12:03 - INFO - Uploading ISM34025111423560313476257.xml (136097 bytes)
+13:12:03 - INFO - Uploading raw XML: ISM34025111423560313476257.xml (136097 bytes)
+13:12:04 - ERROR - API client error 404: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:12:04 - ERROR - Failed to upload ISM34025111423560313476257.xml: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:12:04 - INFO - Uploading MCM34025111423560513476258.xml (12766 bytes)
+13:12:04 - INFO - Uploading raw XML: MCM34025111423560513476258.xml (12766 bytes)
+13:12:05 - ERROR - API client error 404: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:12:05 - ERROR - Failed to upload MCM34025111423560513476258.xml: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:12:05 - ERROR - No files uploaded for 2025-11-14
+13:12:05 - INFO - Processing date: 2025-11-13
+13:12:05 - INFO - Processing XML files for 2025-11-13
+13:12:05 - INFO - Found 10 XML files to process
+13:12:05 - INFO - Uploading FGM34025111323580013472179.xml (13289 bytes)
+13:12:05 - INFO - Uploading raw XML: FGM34025111323580013472179.xml (13289 bytes)
+13:12:05 - ERROR - API client error 404: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:12:05 - ERROR - Failed to upload FGM34025111323580013472179.xml: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:12:05 - INFO - Uploading FGM34025111323580113472180.xml (28604 bytes)
+13:12:05 - INFO - Uploading raw XML: FGM34025111323580113472180.xml (28604 bytes)
+13:12:05 - ERROR - API client error 404: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:12:05 - ERROR - Failed to upload FGM34025111323580113472180.xml: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:12:05 - INFO - Uploading FGM34025111323580313472181.xml (4411 bytes)
+13:12:05 - INFO - Uploading raw XML: FGM34025111323580313472181.xml (4411 bytes)
+13:12:05 - ERROR - API client error 404: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:12:05 - ERROR - Failed to upload FGM34025111323580313472181.xml: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:12:05 - INFO - Uploading ISM34025111323580513472183.xml (127450 bytes)
+13:12:05 - INFO - Uploading raw XML: ISM34025111323580513472183.xml (127450 bytes)
+13:12:06 - ERROR - API client error 404: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:12:06 - ERROR - Failed to upload ISM34025111323580513472183.xml: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:12:06 - INFO - Uploading MCM34025111323580713472184.xml (13362 bytes)
+13:12:06 - INFO - Uploading raw XML: MCM34025111323580713472184.xml (13362 bytes)
+13:12:06 - ERROR - API client error 404: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:12:06 - ERROR - Failed to upload MCM34025111323580713472184.xml: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:12:06 - INFO - Uploading FGM34025111323580013472179.xml (13289 bytes)
+13:12:06 - INFO - Uploading raw XML: FGM34025111323580013472179.xml (13289 bytes)
+13:12:07 - ERROR - API client error 404: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:12:07 - ERROR - Failed to upload FGM34025111323580013472179.xml: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:12:07 - INFO - Uploading FGM34025111323580113472180.xml (28604 bytes)
+13:12:07 - INFO - Uploading raw XML: FGM34025111323580113472180.xml (28604 bytes)
+13:12:07 - ERROR - API client error 404: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:12:07 - ERROR - Failed to upload FGM34025111323580113472180.xml: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:12:07 - INFO - Uploading FGM34025111323580313472181.xml (4411 bytes)
+13:12:07 - INFO - Uploading raw XML: FGM34025111323580313472181.xml (4411 bytes)
+13:12:07 - ERROR - API client error 404: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:12:07 - ERROR - Failed to upload FGM34025111323580313472181.xml: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:12:07 - INFO - Uploading ISM34025111323580513472183.xml (127450 bytes)
+13:12:07 - INFO - Uploading raw XML: ISM34025111323580513472183.xml (127450 bytes)
+13:12:08 - ERROR - API client error 404: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:12:08 - ERROR - Failed to upload ISM34025111323580513472183.xml: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:12:08 - INFO - Uploading MCM34025111323580713472184.xml (13362 bytes)
+13:12:08 - INFO - Uploading raw XML: MCM34025111323580713472184.xml (13362 bytes)
+13:12:08 - ERROR - API client error 404: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:12:08 - ERROR - Failed to upload MCM34025111323580713472184.xml: <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /api/raw-xml/upload</pre>
+</body>
+</html>
+
+13:12:08 - ERROR - No files uploaded for 2025-11-13
+13:12:08 - INFO - ================================================================================
+13:12:08 - INFO - Processing Summary:
+13:12:08 - INFO -   Successfully processed: 0 days
+13:12:08 - INFO -   Failed or partial:     6 days
+13:12:08 - INFO - ================================================================================
+13:12:08 - INFO - Birdies Sales Data Collection - Complete
+13:12:08 - INFO - ================================================================================
+
+C:\Users\Landover Sunoco\Downloads\store_deployment\store_deployment>

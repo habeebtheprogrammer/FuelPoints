@@ -1,0 +1,689 @@
+Microsoft Windows [Version 10.0.19045.6456]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\store>cd downloads
+
+C:\Users\store\Downloads>python verifonepunch.py
+[2025-12-04 12:03:05] ============================================================
+[2025-12-04 12:03:05] 🐦 BIRDIES LOYALTY EDGE AGENT - PUNCH CARD SUPPORT (VERIFONE)
+[2025-12-04 12:03:05] ============================================================
+[2025-12-04 12:03:05]   Store: 1350
+[2025-12-04 12:03:05]   Backend: https://salmanloyalty.replit.app
+[2025-12-04 12:03:05]   Listening on: 0.0.0.0:9000
+[2025-12-04 12:03:05] ============================================================
+[2025-12-04 12:03:05] ✓ TCP server listening on 0.0.0.0:9000
+[2025-12-04 12:03:05] Waiting for Verifone Commander/EPS connections...
+[2025-12-04 12:03:06] ✓ Heartbeat sent to backend (Store 1350)
+[2025-12-04 12:03:22] ✓ Heartbeat sent to backend (Store 1350)
+[2025-12-04 12:03:34] 🔌 Connection from ('192.168.15.135', 55526)
+[2025-12-04 12:03:34] ← Received from EPS:
+<?xml version="1.0" ?>
+<ns2:GetLoyaltyOnlineStatusRequest xmlns:ns2="http://www.pcats.org/schema/naxml/loyalty/v01" xmlns:ns4="http://www.pcats.org/schema/core/v01" xmlns:ns3="http://www.naxml.org/POSBO/Vocabulary/2003-10-16">
+        <ns2:RequestHeader>
+                <ns2:POSLoyaltyInterfaceVersion>1.1</ns2:POSLoyaltyInterfaceVersion>
+                <ns3:VendorName>VIPER</ns3:VendorName>
+                <ns3:VendorModelVersion>9.03.00</ns3:VendorModelVersion>
+                <ns2:POSSequenceID>1-101</ns2:POSSequenceID>
+                <ns2:LoyaltySequenceID/>
+                <ns2:StoreLocationID>24354</ns2:StoreLocationID>
+                <ns2:LoyaltyOfflineFlag value="no"/>
+        </ns2:RequestHeader>
+</ns2:GetLoyaltyOnlineStatusRequest>
+
+[2025-12-04 12:03:34] ✓ Responding to GetLoyaltyOnlineStatus - Loyalty is ONLINE
+[2025-12-04 12:03:34] → Sent to EPS:
+<?xml version="1.0" ?>
+<ns3:GetLoyaltyOnlineStatusResponse xmlns:ns2="http://www.naxml.org/POSBO/Vocabulary/2003-10-16" xmlns:ns4="http://www.pcats.org/schema/core/v01" xmlns:ns3="http://www.pcats.org/schema/naxml/loyalty/v01">
+
+
+        <ns3:ResponseHeader overallResult="success">
+                <ns3:POSLoyaltyInterfaceVersion>1.0</ns3:POSLoyaltyInterfaceVersion>
+                <ns2:VendorName>BirdiesLoyalty</ns2:VendorName>
+                <ns2:VendorModelVersion>1.0</ns2:VendorModelVersion>
+                <ns3:POSSequenceID>1-101</ns3:POSSequenceID>
+                <ns3:LoyaltySequenceID>LOY-1040A68BEEB5</ns3:LoyaltySequenceID>
+                <ns4:Result>
+                        <Success/>
+                </ns4:Result>
+        </ns3:ResponseHeader>
+
+
+        <ns3:PromptForLoyaltyFlag value="yes"/>
+
+
+</ns3:GetLoyaltyOnlineStatusResponse>
+
+[2025-12-04 12:03:37] ✓ Heartbeat sent to backend (Store 1350)
+[2025-12-04 12:03:53] ✓ Heartbeat sent to backend (Store 1350)
+[2025-12-04 12:04:01] ← Received from EPS:
+<?xml version="1.0" ?>
+<ns2:GetRewardsRequest xmlns:ns2="http://www.pcats.org/schema/naxml/loyalty/v01" xmlns:ns4="http://www.pcats.org/schema/core/v01" xmlns:ns3="http://www.naxml.org/POSBO/Vocabulary/2003-10-16">
+        <ns2:RequestHeader>
+                <ns2:POSLoyaltyInterfaceVersion>1.1</ns2:POSLoyaltyInterfaceVersion>
+                <ns3:VendorName>VIPER:ruby2</ns3:VendorName>
+                <ns3:VendorModelVersion>9.03.00:Base 053.40.00</ns3:VendorModelVersion>
+                <ns2:POSSequenceID>1011762641249125</ns2:POSSequenceID>
+                <ns2:StoreLocationID>24354</ns2:StoreLocationID>
+                <ns2:LoyaltyOfflineFlag value="no"/>
+        </ns2:RequestHeader>
+        <ns2:LoyaltyID entryMethod="manual">5551234567</ns2:LoyaltyID>
+        <ns2:FuelPriceData/>
+        <ns2:TransactionData>
+                <ns2:TransactionHeader>
+                        <ns3:OutsideSalesFlag value="no"/>
+                        <ns3:RegisterID>1</ns3:RegisterID>
+                        <ns3:CashierID>17</ns3:CashierID>
+                        <ns2:TillID>001</ns2:TillID>
+                        <ns2:POSTransactionID>0101641844</ns2:POSTransactionID>
+                        <ns2:BusinessPeriod>
+                                <ns3:BusinessDate>2025-12-04</ns3:BusinessDate>
+                                <ns3:PrimaryReportPeriod interval="day">2874</ns3:PrimaryReportPeriod>
+                                <ns3:BeginDate>2025-12-03</ns3:BeginDate>
+                                <ns3:BeginTime>23:02:34-05:00</ns3:BeginTime>
+                                <ns3:EndDate>2100-01-01</ns3:EndDate>
+                                <ns3:EndTime>00:00:00-05:00</ns3:EndTime>
+                        </ns2:BusinessPeriod>
+                        <ns3:EventStartDate>2025-12-04</ns3:EventStartDate>
+                        <ns3:EventStartTime>12:03:59-05:00</ns3:EventStartTime>
+                </ns2:TransactionHeader>
+                <ns2:TransactionDetailGroup>
+                        <ns2:TransactionLine status="normal">
+                                <ns2:LineNumber>1</ns2:LineNumber>
+                                <ns2:ItemLine discountable="yes">
+                                        <ns3:ItemCode>
+                                                <ns3:POSCodeFormat format="plu"/>
+                                                <ns3:POSCode>81003051808</ns3:POSCode>
+                                                <ns3:POSCodeModifier>0</ns3:POSCodeModifier>
+                                        </ns3:ItemCode>
+                                        <ns3:MerchandiseCode>7</ns3:MerchandiseCode>
+                                        <ns3:Description>12oz ALANI Cherry Twist</ns3:Description>
+                                        <ns3:ActualSalesPrice>3.69</ns3:ActualSalesPrice>
+                                        <ns3:RegularSellPrice>3.69</ns3:RegularSellPrice>
+                                        <ns3:SellingUnits>1.000</ns3:SellingUnits>
+                                        <ns3:SalesQuantity>1</ns3:SalesQuantity>
+                                        <ns3:SalesAmount>3.69</ns3:SalesAmount>
+                                        <ns2:SalesUOM>EA</ns2:SalesUOM>
+                                        <ns3:PaymentSystemsProductCode>420</ns3:PaymentSystemsProductCode>
+                                </ns2:ItemLine>
+                        </ns2:TransactionLine>
+                        <ns2:TransactionLine status="normal">
+                                <ns2:LineNumber>2</ns2:LineNumber>
+                                <ns2:MerchandiseCodeLine discountable="no">
+                                        <ns3:MerchandiseCode>n/a</ns3:MerchandiseCode>
+                                        <ns3:ActualSalesPrice>0.22</ns3:ActualSalesPrice>
+                                        <ns3:SalesQuantity>1</ns3:SalesQuantity>
+                                        <ns3:SalesAmount>0.22</ns3:SalesAmount>
+                                        <ns2:SalesUOM>EA</ns2:SalesUOM>
+                                        <ns3:PaymentSystemsProductCode>950</ns3:PaymentSystemsProductCode>
+                                </ns2:MerchandiseCodeLine>
+                        </ns2:TransactionLine>
+                </ns2:TransactionDetailGroup>
+        </ns2:TransactionData>
+</ns2:GetRewardsRequest>
+
+[2025-12-04 12:04:01] ============================================================
+[2025-12-04 12:04:01] 🛒 TRANSACTION ITEMS (2 items):
+[2025-12-04 12:04:01]   1. Line 1: UPC: 81003051808 | Qty 1.0 | Price $0.00 | Amount $3.69
+[2025-12-04 12:04:01]   2. Line 2: UPC:  | Qty 1.0 | Price $0.00 | Amount $0.22
+[2025-12-04 12:04:01] ============================================================
+[2025-12-04 12:04:01] ✓ Customer found: John Doe (51 pts)
+[2025-12-04 12:04:02] 🎯 PUNCH CARD STATUS (with projected basket punches):
+[2025-12-04 12:04:02]   • buy 3 alani get 4th free: 1 + 1 basket = 2/2 🎁 REWARD TRIGGERED!
+[2025-12-04 12:04:02] 🔍 Evaluating promotions for 2 item(s)...
+[2025-12-04 12:04:02]   ✓ Backend returned 0 promotion(s)
+[2025-12-04 12:04:02] → Sent to EPS:
+<?xml version="1.0" ?>
+<ns3:GetRewardsResponse xmlns:ns2="http://www.naxml.org/POSBO/Vocabulary/2003-10-16" xmlns:ns4="http://www.pcats.org/schema/core/v01" xmlns:ns3="http://www.pcats.org/schema/naxml/loyalty/v01">
+
+
+        <ns3:ResponseHeader overallResult="success">
+                <ns3:POSLoyaltyInterfaceVersion>1.0</ns3:POSLoyaltyInterfaceVersion>
+                <ns2:VendorName>BirdiesLoyalty</ns2:VendorName>
+                <ns2:VendorModelVersion>1.0</ns2:VendorModelVersion>
+                <ns3:POSSequenceID>1011762641249125</ns3:POSSequenceID>
+                <ns3:LoyaltySequenceID>LOY-00575CB2DC4A</ns3:LoyaltySequenceID>
+                <ns4:Result>
+                        <Success/>
+                </ns4:Result>
+        </ns3:ResponseHeader>
+
+
+        <ns3:LoyaltyIDValidFlag value="yes">John Doe</ns3:LoyaltyIDValidFlag>
+
+
+        <ns3:LoyaltyMemberID>****</ns3:LoyaltyMemberID>
+
+
+        <ns3:PointsBalance>51</ns3:PointsBalance>
+
+
+        <ns3:RewardActions/>
+
+
+</ns3:GetRewardsResponse>
+
+[2025-12-04 12:04:08] ← Received from EPS:
+<?xml version="1.0" ?>
+<ns2:FinalizeRewardsRequest xmlns:ns2="http://www.pcats.org/schema/naxml/loyalty/v01" xmlns:ns4="http://www.pcats.org/schema/core/v01" xmlns:ns3="http://www.naxml.org/POSBO/Vocabulary/2003-10-16">
+        <ns2:RequestHeader>
+                <ns2:POSLoyaltyInterfaceVersion>1.1</ns2:POSLoyaltyInterfaceVersion>
+                <ns3:VendorName>VIPER:ruby2</ns3:VendorName>
+                <ns3:VendorModelVersion>9.03.00:Base 053.40.00</ns3:VendorModelVersion>
+                <ns2:POSSequenceID>1011762641249128</ns2:POSSequenceID>
+                <ns2:LoyaltySequenceID>LOY-00575CB2DC4A</ns2:LoyaltySequenceID>
+                <ns2:StoreLocationID>24354</ns2:StoreLocationID>
+                <ns2:LoyaltyOfflineFlag value="no"/>
+        </ns2:RequestHeader>
+        <ns2:LoyaltyID entryMethod="manual">5551234567</ns2:LoyaltyID>
+        <ns2:TransactionData>
+                <ns2:TransactionHeader>
+                        <ns3:OutsideSalesFlag value="no"/>
+                        <ns3:RegisterID>1</ns3:RegisterID>
+                        <ns3:CashierID>17</ns3:CashierID>
+                        <ns2:TillID>001</ns2:TillID>
+                        <ns2:POSTransactionID>0101641844</ns2:POSTransactionID>
+                        <ns2:BusinessPeriod>
+                                <ns3:BusinessDate>2025-12-04</ns3:BusinessDate>
+                                <ns3:PrimaryReportPeriod interval="day">2874</ns3:PrimaryReportPeriod>
+                                <ns3:BeginDate>2025-12-03</ns3:BeginDate>
+                                <ns3:BeginTime>23:02:34-05:00</ns3:BeginTime>
+                                <ns3:EndDate>2100-01-01</ns3:EndDate>
+                                <ns3:EndTime>00:00:00-05:00</ns3:EndTime>
+                        </ns2:BusinessPeriod>
+                        <ns3:EventStartDate>2025-12-04</ns3:EventStartDate>
+                        <ns3:EventStartTime>12:04:05-05:00</ns3:EventStartTime>
+                </ns2:TransactionHeader>
+                <ns2:TransactionDetailGroup>
+                        <ns2:TransactionLine status="normal">
+                                <ns2:LineNumber>1</ns2:LineNumber>
+                                <ns2:ItemLine discountable="yes">
+                                        <ns3:ItemCode>
+                                                <ns3:POSCodeFormat format="plu"/>
+                                                <ns3:POSCode>81003051808</ns3:POSCode>
+                                                <ns3:POSCodeModifier>0</ns3:POSCodeModifier>
+                                        </ns3:ItemCode>
+                                        <ns3:MerchandiseCode>7</ns3:MerchandiseCode>
+                                        <ns3:Description>12oz ALANI Cherry Twist</ns3:Description>
+                                        <ns3:ActualSalesPrice>3.69</ns3:ActualSalesPrice>
+                                        <ns3:RegularSellPrice>3.69</ns3:RegularSellPrice>
+                                        <ns3:SellingUnits>1.000</ns3:SellingUnits>
+                                        <ns3:SalesQuantity>1</ns3:SalesQuantity>
+                                        <ns3:SalesAmount>3.69</ns3:SalesAmount>
+                                        <ns2:SalesUOM>EA</ns2:SalesUOM>
+                                        <ns3:PaymentSystemsProductCode>420</ns3:PaymentSystemsProductCode>
+                                </ns2:ItemLine>
+                        </ns2:TransactionLine>
+                        <ns2:TransactionLine status="normal">
+                                <ns2:LineNumber>2</ns2:LineNumber>
+                                <ns2:MerchandiseCodeLine discountable="no">
+                                        <ns3:MerchandiseCode>n/a</ns3:MerchandiseCode>
+                                        <ns3:ActualSalesPrice>0.22</ns3:ActualSalesPrice>
+                                        <ns3:SalesQuantity>1</ns3:SalesQuantity>
+                                        <ns3:SalesAmount>0.22</ns3:SalesAmount>
+                                        <ns2:SalesUOM>EA</ns2:SalesUOM>
+                                        <ns3:PaymentSystemsProductCode>950</ns3:PaymentSystemsProductCode>
+                                </ns2:MerchandiseCodeLine>
+                        </ns2:TransactionLine>
+                        <ns2:TransactionLine status="normal">
+                                <ns2:LineNumber>3</ns2:LineNumber>
+                                <ns2:TenderInfo entryMethod="other">
+                                        <ns3:TenderCode>cash</ns3:TenderCode>
+                                        <ns2:TenderSubCode>Other</ns2:TenderSubCode>
+                                        <ns3:TenderAmount currency="USD">3.91</ns3:TenderAmount>
+                                        <ns3:ChangeFlag value="no"/>
+                                </ns2:TenderInfo>
+                        </ns2:TransactionLine>
+                </ns2:TransactionDetailGroup>
+        </ns2:TransactionData>
+</ns2:FinalizeRewardsRequest>
+
+[2025-12-04 12:04:08] 🏁 Finalizing transaction: Customer 1, Subtotal $3.91
+[2025-12-04 12:04:08]   ✓ Points: earned 19, balance 70
+[2025-12-04 12:04:09] ✓ Heartbeat sent to backend (Store 1350)
+[2025-12-04 12:04:09]   🎯 PUNCHES RECORDED:
+[2025-12-04 12:04:09]      • buy 3 alani get 4th free: +1 → 2/2
+[2025-12-04 12:04:09]   🎁 Redeemed punch reward: buy 3 alani get 4th free
+[2025-12-04 12:04:09] → Sent to EPS:
+<?xml version="1.0" ?>
+<ns3:FinalizeRewardsResponse xmlns:ns2="http://www.naxml.org/POSBO/Vocabulary/2003-10-16" xmlns:ns4="http://www.pcats.org/schema/core/v01" xmlns:ns3="http://www.pcats.org/schema/naxml/loyalty/v01">
+
+
+        <ns3:ResponseHeader overallResult="success">
+                <ns3:POSLoyaltyInterfaceVersion>1.0</ns3:POSLoyaltyInterfaceVersion>
+                <ns2:VendorName>BirdiesLoyalty</ns2:VendorName>
+                <ns2:VendorModelVersion>1.0</ns2:VendorModelVersion>
+                <ns3:POSSequenceID>1011762641249128</ns3:POSSequenceID>
+                <ns3:LoyaltySequenceID>LOY-00575CB2DC4A</ns3:LoyaltySequenceID>
+                <ns4:Result>
+                        <Success/>
+                </ns4:Result>
+        </ns3:ResponseHeader>
+
+
+</ns3:FinalizeRewardsResponse>
+
+[2025-12-04 12:04:24] ✓ Heartbeat sent to backend (Store 1350)
+[2025-12-04 12:04:40] ✓ Heartbeat sent to backend (Store 1350)
+[2025-12-04 12:04:55] ✓ Heartbeat sent to backend (Store 1350)
+[2025-12-04 12:05:11] ✓ Heartbeat sent to backend (Store 1350)
+[2025-12-04 12:05:14] ← Received from EPS:
+<?xml version="1.0" ?>
+<ns2:GetRewardsRequest xmlns:ns2="http://www.pcats.org/schema/naxml/loyalty/v01" xmlns:ns4="http://www.pcats.org/schema/core/v01" xmlns:ns3="http://www.naxml.org/POSBO/Vocabulary/2003-10-16">
+        <ns2:RequestHeader>
+                <ns2:POSLoyaltyInterfaceVersion>1.1</ns2:POSLoyaltyInterfaceVersion>
+                <ns3:VendorName>VIPER:ruby2</ns3:VendorName>
+                <ns3:VendorModelVersion>9.03.00:Base 053.40.00</ns3:VendorModelVersion>
+                <ns2:POSSequenceID>1011762641249133</ns2:POSSequenceID>
+                <ns2:StoreLocationID>24354</ns2:StoreLocationID>
+                <ns2:LoyaltyOfflineFlag value="no"/>
+        </ns2:RequestHeader>
+        <ns2:LoyaltyID entryMethod="manual">5551234567</ns2:LoyaltyID>
+        <ns2:FuelPriceData/>
+        <ns2:TransactionData>
+                <ns2:TransactionHeader>
+                        <ns3:OutsideSalesFlag value="no"/>
+                        <ns3:RegisterID>1</ns3:RegisterID>
+                        <ns3:CashierID>17</ns3:CashierID>
+                        <ns2:TillID>001</ns2:TillID>
+                        <ns2:POSTransactionID>0101641959</ns2:POSTransactionID>
+                        <ns2:BusinessPeriod>
+                                <ns3:BusinessDate>2025-12-04</ns3:BusinessDate>
+                                <ns3:PrimaryReportPeriod interval="day">2874</ns3:PrimaryReportPeriod>
+                                <ns3:BeginDate>2025-12-03</ns3:BeginDate>
+                                <ns3:BeginTime>23:02:34-05:00</ns3:BeginTime>
+                                <ns3:EndDate>2100-01-01</ns3:EndDate>
+                                <ns3:EndTime>00:00:00-05:00</ns3:EndTime>
+                        </ns2:BusinessPeriod>
+                        <ns3:EventStartDate>2025-12-04</ns3:EventStartDate>
+                        <ns3:EventStartTime>12:05:12-05:00</ns3:EventStartTime>
+                </ns2:TransactionHeader>
+                <ns2:TransactionDetailGroup>
+                        <ns2:TransactionLine status="normal">
+                                <ns2:LineNumber>1</ns2:LineNumber>
+                                <ns2:ItemLine discountable="yes">
+                                        <ns3:ItemCode>
+                                                <ns3:POSCodeFormat format="plu"/>
+                                                <ns3:POSCode>81003051808</ns3:POSCode>
+                                                <ns3:POSCodeModifier>0</ns3:POSCodeModifier>
+                                        </ns3:ItemCode>
+                                        <ns3:MerchandiseCode>7</ns3:MerchandiseCode>
+                                        <ns3:Description>12oz ALANI Cherry Twist</ns3:Description>
+                                        <ns3:ActualSalesPrice>3.69</ns3:ActualSalesPrice>
+                                        <ns3:RegularSellPrice>3.69</ns3:RegularSellPrice>
+                                        <ns3:SellingUnits>1.000</ns3:SellingUnits>
+                                        <ns3:SalesQuantity>1</ns3:SalesQuantity>
+                                        <ns3:SalesAmount>3.69</ns3:SalesAmount>
+                                        <ns2:SalesUOM>EA</ns2:SalesUOM>
+                                        <ns3:PaymentSystemsProductCode>420</ns3:PaymentSystemsProductCode>
+                                </ns2:ItemLine>
+                        </ns2:TransactionLine>
+                        <ns2:TransactionLine status="normal">
+                                <ns2:LineNumber>2</ns2:LineNumber>
+                                <ns2:MerchandiseCodeLine discountable="no">
+                                        <ns3:MerchandiseCode>n/a</ns3:MerchandiseCode>
+                                        <ns3:ActualSalesPrice>0.22</ns3:ActualSalesPrice>
+                                        <ns3:SalesQuantity>1</ns3:SalesQuantity>
+                                        <ns3:SalesAmount>0.22</ns3:SalesAmount>
+                                        <ns2:SalesUOM>EA</ns2:SalesUOM>
+                                        <ns3:PaymentSystemsProductCode>950</ns3:PaymentSystemsProductCode>
+                                </ns2:MerchandiseCodeLine>
+                        </ns2:TransactionLine>
+                </ns2:TransactionDetailGroup>
+        </ns2:TransactionData>
+</ns2:GetRewardsRequest>
+
+[2025-12-04 12:05:14] ============================================================
+[2025-12-04 12:05:14] 🛒 TRANSACTION ITEMS (2 items):
+[2025-12-04 12:05:14]   1. Line 1: UPC: 81003051808 | Qty 1.0 | Price $0.00 | Amount $3.69
+[2025-12-04 12:05:14]   2. Line 2: UPC:  | Qty 1.0 | Price $0.00 | Amount $0.22
+[2025-12-04 12:05:14] ============================================================
+[2025-12-04 12:05:14] ✓ Customer found: John Doe (70 pts)
+[2025-12-04 12:05:15] 🎯 PUNCH CARD STATUS (with projected basket punches):
+[2025-12-04 12:05:15]   • buy 3 alani get 4th free: 0 + 1 basket = 1/2
+[2025-12-04 12:05:15] 🔍 Evaluating promotions for 2 item(s)...
+[2025-12-04 12:05:15]   ✓ Backend returned 0 promotion(s)
+[2025-12-04 12:05:15] → Sent to EPS:
+<?xml version="1.0" ?>
+<ns3:GetRewardsResponse xmlns:ns2="http://www.naxml.org/POSBO/Vocabulary/2003-10-16" xmlns:ns4="http://www.pcats.org/schema/core/v01" xmlns:ns3="http://www.pcats.org/schema/naxml/loyalty/v01">
+
+
+        <ns3:ResponseHeader overallResult="success">
+                <ns3:POSLoyaltyInterfaceVersion>1.0</ns3:POSLoyaltyInterfaceVersion>
+                <ns2:VendorName>BirdiesLoyalty</ns2:VendorName>
+                <ns2:VendorModelVersion>1.0</ns2:VendorModelVersion>
+                <ns3:POSSequenceID>1011762641249133</ns3:POSSequenceID>
+                <ns3:LoyaltySequenceID>LOY-B6CBDC66CA2A</ns3:LoyaltySequenceID>
+                <ns4:Result>
+                        <Success/>
+                </ns4:Result>
+        </ns3:ResponseHeader>
+
+
+        <ns3:LoyaltyIDValidFlag value="yes">John Doe</ns3:LoyaltyIDValidFlag>
+
+
+        <ns3:LoyaltyMemberID>****</ns3:LoyaltyMemberID>
+
+
+        <ns3:PointsBalance>70</ns3:PointsBalance>
+
+
+        <ns3:RewardActions/>
+
+
+</ns3:GetRewardsResponse>
+
+[2025-12-04 12:05:22] ← Received from EPS:
+<?xml version="1.0" ?>
+<ns2:FinalizeRewardsRequest xmlns:ns2="http://www.pcats.org/schema/naxml/loyalty/v01" xmlns:ns4="http://www.pcats.org/schema/core/v01" xmlns:ns3="http://www.naxml.org/POSBO/Vocabulary/2003-10-16">
+        <ns2:RequestHeader>
+                <ns2:POSLoyaltyInterfaceVersion>1.1</ns2:POSLoyaltyInterfaceVersion>
+                <ns3:VendorName>VIPER:ruby2</ns3:VendorName>
+                <ns3:VendorModelVersion>9.03.00:Base 053.40.00</ns3:VendorModelVersion>
+                <ns2:POSSequenceID>1011762641249136</ns2:POSSequenceID>
+                <ns2:LoyaltySequenceID>LOY-B6CBDC66CA2A</ns2:LoyaltySequenceID>
+                <ns2:StoreLocationID>24354</ns2:StoreLocationID>
+                <ns2:LoyaltyOfflineFlag value="no"/>
+        </ns2:RequestHeader>
+        <ns2:LoyaltyID entryMethod="manual">5551234567</ns2:LoyaltyID>
+        <ns2:TransactionData>
+                <ns2:TransactionHeader>
+                        <ns3:OutsideSalesFlag value="no"/>
+                        <ns3:RegisterID>1</ns3:RegisterID>
+                        <ns3:CashierID>17</ns3:CashierID>
+                        <ns2:TillID>001</ns2:TillID>
+                        <ns2:POSTransactionID>0101641959</ns2:POSTransactionID>
+                        <ns2:BusinessPeriod>
+                                <ns3:BusinessDate>2025-12-04</ns3:BusinessDate>
+                                <ns3:PrimaryReportPeriod interval="day">2874</ns3:PrimaryReportPeriod>
+                                <ns3:BeginDate>2025-12-03</ns3:BeginDate>
+                                <ns3:BeginTime>23:02:34-05:00</ns3:BeginTime>
+                                <ns3:EndDate>2100-01-01</ns3:EndDate>
+                                <ns3:EndTime>00:00:00-05:00</ns3:EndTime>
+                        </ns2:BusinessPeriod>
+                        <ns3:EventStartDate>2025-12-04</ns3:EventStartDate>
+                        <ns3:EventStartTime>12:05:20-05:00</ns3:EventStartTime>
+                </ns2:TransactionHeader>
+                <ns2:TransactionDetailGroup>
+                        <ns2:TransactionLine status="normal">
+                                <ns2:LineNumber>1</ns2:LineNumber>
+                                <ns2:ItemLine discountable="yes">
+                                        <ns3:ItemCode>
+                                                <ns3:POSCodeFormat format="plu"/>
+                                                <ns3:POSCode>81003051808</ns3:POSCode>
+                                                <ns3:POSCodeModifier>0</ns3:POSCodeModifier>
+                                        </ns3:ItemCode>
+                                        <ns3:MerchandiseCode>7</ns3:MerchandiseCode>
+                                        <ns3:Description>12oz ALANI Cherry Twist</ns3:Description>
+                                        <ns3:ActualSalesPrice>3.69</ns3:ActualSalesPrice>
+                                        <ns3:RegularSellPrice>3.69</ns3:RegularSellPrice>
+                                        <ns3:SellingUnits>1.000</ns3:SellingUnits>
+                                        <ns3:SalesQuantity>1</ns3:SalesQuantity>
+                                        <ns3:SalesAmount>3.69</ns3:SalesAmount>
+                                        <ns2:SalesUOM>EA</ns2:SalesUOM>
+                                        <ns3:PaymentSystemsProductCode>420</ns3:PaymentSystemsProductCode>
+                                </ns2:ItemLine>
+                        </ns2:TransactionLine>
+                        <ns2:TransactionLine status="normal">
+                                <ns2:LineNumber>2</ns2:LineNumber>
+                                <ns2:MerchandiseCodeLine discountable="no">
+                                        <ns3:MerchandiseCode>n/a</ns3:MerchandiseCode>
+                                        <ns3:ActualSalesPrice>0.22</ns3:ActualSalesPrice>
+                                        <ns3:SalesQuantity>1</ns3:SalesQuantity>
+                                        <ns3:SalesAmount>0.22</ns3:SalesAmount>
+                                        <ns2:SalesUOM>EA</ns2:SalesUOM>
+                                        <ns3:PaymentSystemsProductCode>950</ns3:PaymentSystemsProductCode>
+                                </ns2:MerchandiseCodeLine>
+                        </ns2:TransactionLine>
+                        <ns2:TransactionLine status="normal">
+                                <ns2:LineNumber>3</ns2:LineNumber>
+                                <ns2:TenderInfo entryMethod="other">
+                                        <ns3:TenderCode>cash</ns3:TenderCode>
+                                        <ns2:TenderSubCode>Other</ns2:TenderSubCode>
+                                        <ns3:TenderAmount currency="USD">3.91</ns3:TenderAmount>
+                                        <ns3:ChangeFlag value="no"/>
+                                </ns2:TenderInfo>
+                        </ns2:TransactionLine>
+                </ns2:TransactionDetailGroup>
+        </ns2:TransactionData>
+</ns2:FinalizeRewardsRequest>
+
+[2025-12-04 12:05:22] 🏁 Finalizing transaction: Customer 1, Subtotal $3.91
+[2025-12-04 12:05:23]   ✓ Points: earned 19, balance 89
+[2025-12-04 12:05:24]   🎯 PUNCHES RECORDED:
+[2025-12-04 12:05:24]      • buy 3 alani get 4th free: +1 → 1/2
+[2025-12-04 12:05:24] → Sent to EPS:
+<?xml version="1.0" ?>
+<ns3:FinalizeRewardsResponse xmlns:ns2="http://www.naxml.org/POSBO/Vocabulary/2003-10-16" xmlns:ns4="http://www.pcats.org/schema/core/v01" xmlns:ns3="http://www.pcats.org/schema/naxml/loyalty/v01">
+
+
+        <ns3:ResponseHeader overallResult="success">
+                <ns3:POSLoyaltyInterfaceVersion>1.0</ns3:POSLoyaltyInterfaceVersion>
+                <ns2:VendorName>BirdiesLoyalty</ns2:VendorName>
+                <ns2:VendorModelVersion>1.0</ns2:VendorModelVersion>
+                <ns3:POSSequenceID>1011762641249136</ns3:POSSequenceID>
+                <ns3:LoyaltySequenceID>LOY-B6CBDC66CA2A</ns3:LoyaltySequenceID>
+                <ns4:Result>
+                        <Success/>
+                </ns4:Result>
+        </ns3:ResponseHeader>
+
+
+</ns3:FinalizeRewardsResponse>
+
+[2025-12-04 12:05:26] ✓ Heartbeat sent to backend (Store 1350)
+[2025-12-04 12:05:42] ✓ Heartbeat sent to backend (Store 1350)
+[2025-12-04 12:05:57] ✓ Heartbeat sent to backend (Store 1350)
+[2025-12-04 12:06:08] ← Received from EPS:
+<?xml version="1.0" ?>
+<ns2:GetRewardsRequest xmlns:ns2="http://www.pcats.org/schema/naxml/loyalty/v01" xmlns:ns4="http://www.pcats.org/schema/core/v01" xmlns:ns3="http://www.naxml.org/POSBO/Vocabulary/2003-10-16">
+        <ns2:RequestHeader>
+                <ns2:POSLoyaltyInterfaceVersion>1.1</ns2:POSLoyaltyInterfaceVersion>
+                <ns3:VendorName>VIPER:ruby2</ns3:VendorName>
+                <ns3:VendorModelVersion>9.03.00:Base 053.40.00</ns3:VendorModelVersion>
+                <ns2:POSSequenceID>1011762641249141</ns2:POSSequenceID>
+                <ns2:StoreLocationID>24354</ns2:StoreLocationID>
+                <ns2:LoyaltyOfflineFlag value="no"/>
+        </ns2:RequestHeader>
+        <ns2:LoyaltyID entryMethod="manual">5551234567</ns2:LoyaltyID>
+        <ns2:FuelPriceData/>
+        <ns2:TransactionData>
+                <ns2:TransactionHeader>
+                        <ns3:OutsideSalesFlag value="no"/>
+                        <ns3:RegisterID>1</ns3:RegisterID>
+                        <ns3:CashierID>17</ns3:CashierID>
+                        <ns2:TillID>001</ns2:TillID>
+                        <ns2:POSTransactionID>0101642053</ns2:POSTransactionID>
+                        <ns2:BusinessPeriod>
+                                <ns3:BusinessDate>2025-12-04</ns3:BusinessDate>
+                                <ns3:PrimaryReportPeriod interval="day">2874</ns3:PrimaryReportPeriod>
+                                <ns3:BeginDate>2025-12-03</ns3:BeginDate>
+                                <ns3:BeginTime>23:02:34-05:00</ns3:BeginTime>
+                                <ns3:EndDate>2100-01-01</ns3:EndDate>
+                                <ns3:EndTime>00:00:00-05:00</ns3:EndTime>
+                        </ns2:BusinessPeriod>
+                        <ns3:EventStartDate>2025-12-04</ns3:EventStartDate>
+                        <ns3:EventStartTime>12:06:05-05:00</ns3:EventStartTime>
+                </ns2:TransactionHeader>
+                <ns2:TransactionDetailGroup>
+                        <ns2:TransactionLine status="normal">
+                                <ns2:LineNumber>1</ns2:LineNumber>
+                                <ns2:ItemLine discountable="yes">
+                                        <ns3:ItemCode>
+                                                <ns3:POSCodeFormat format="plu"/>
+                                                <ns3:POSCode>81003051808</ns3:POSCode>
+                                                <ns3:POSCodeModifier>0</ns3:POSCodeModifier>
+                                        </ns3:ItemCode>
+                                        <ns3:MerchandiseCode>7</ns3:MerchandiseCode>
+                                        <ns3:Description>12oz ALANI Cherry Twist</ns3:Description>
+                                        <ns3:ActualSalesPrice>3.69</ns3:ActualSalesPrice>
+                                        <ns3:RegularSellPrice>3.69</ns3:RegularSellPrice>
+                                        <ns3:SellingUnits>1.000</ns3:SellingUnits>
+                                        <ns3:SalesQuantity>1</ns3:SalesQuantity>
+                                        <ns3:SalesAmount>3.69</ns3:SalesAmount>
+                                        <ns2:SalesUOM>EA</ns2:SalesUOM>
+                                        <ns3:PaymentSystemsProductCode>420</ns3:PaymentSystemsProductCode>
+                                </ns2:ItemLine>
+                        </ns2:TransactionLine>
+                        <ns2:TransactionLine status="normal">
+                                <ns2:LineNumber>2</ns2:LineNumber>
+                                <ns2:MerchandiseCodeLine discountable="no">
+                                        <ns3:MerchandiseCode>n/a</ns3:MerchandiseCode>
+                                        <ns3:ActualSalesPrice>0.22</ns3:ActualSalesPrice>
+                                        <ns3:SalesQuantity>1</ns3:SalesQuantity>
+                                        <ns3:SalesAmount>0.22</ns3:SalesAmount>
+                                        <ns2:SalesUOM>EA</ns2:SalesUOM>
+                                        <ns3:PaymentSystemsProductCode>950</ns3:PaymentSystemsProductCode>
+                                </ns2:MerchandiseCodeLine>
+                        </ns2:TransactionLine>
+                </ns2:TransactionDetailGroup>
+        </ns2:TransactionData>
+</ns2:GetRewardsRequest>
+
+[2025-12-04 12:06:08] ============================================================
+[2025-12-04 12:06:08] 🛒 TRANSACTION ITEMS (2 items):
+[2025-12-04 12:06:08]   1. Line 1: UPC: 81003051808 | Qty 1.0 | Price $0.00 | Amount $3.69
+[2025-12-04 12:06:08]   2. Line 2: UPC:  | Qty 1.0 | Price $0.00 | Amount $0.22
+[2025-12-04 12:06:08] ============================================================
+[2025-12-04 12:06:08] ✓ Customer found: John Doe (89 pts)
+[2025-12-04 12:06:09] 🎯 PUNCH CARD STATUS (with projected basket punches):
+[2025-12-04 12:06:09]   • buy 3 alani get 4th free: 1 + 1 basket = 2/2 🎁 REWARD TRIGGERED!
+[2025-12-04 12:06:09] 🔍 Evaluating promotions for 2 item(s)...
+[2025-12-04 12:06:09]   ✓ Backend returned 0 promotion(s)
+[2025-12-04 12:06:09] → Sent to EPS:
+<?xml version="1.0" ?>
+<ns3:GetRewardsResponse xmlns:ns2="http://www.naxml.org/POSBO/Vocabulary/2003-10-16" xmlns:ns4="http://www.pcats.org/schema/core/v01" xmlns:ns3="http://www.pcats.org/schema/naxml/loyalty/v01">
+
+
+        <ns3:ResponseHeader overallResult="success">
+                <ns3:POSLoyaltyInterfaceVersion>1.0</ns3:POSLoyaltyInterfaceVersion>
+                <ns2:VendorName>BirdiesLoyalty</ns2:VendorName>
+                <ns2:VendorModelVersion>1.0</ns2:VendorModelVersion>
+                <ns3:POSSequenceID>1011762641249141</ns3:POSSequenceID>
+                <ns3:LoyaltySequenceID>LOY-ADD0884A7FB0</ns3:LoyaltySequenceID>
+                <ns4:Result>
+                        <Success/>
+                </ns4:Result>
+        </ns3:ResponseHeader>
+
+
+        <ns3:LoyaltyIDValidFlag value="yes">John Doe</ns3:LoyaltyIDValidFlag>
+
+
+        <ns3:LoyaltyMemberID>****</ns3:LoyaltyMemberID>
+
+
+        <ns3:PointsBalance>89</ns3:PointsBalance>
+
+
+        <ns3:RewardActions/>
+
+
+</ns3:GetRewardsResponse>
+
+[2025-12-04 12:06:12] ✓ Heartbeat sent to backend (Store 1350)
+[2025-12-04 12:06:18] ← Received from EPS:
+<?xml version="1.0" ?>
+<ns2:FinalizeRewardsRequest xmlns:ns2="http://www.pcats.org/schema/naxml/loyalty/v01" xmlns:ns4="http://www.pcats.org/schema/core/v01" xmlns:ns3="http://www.naxml.org/POSBO/Vocabulary/2003-10-16">
+        <ns2:RequestHeader>
+                <ns2:POSLoyaltyInterfaceVersion>1.1</ns2:POSLoyaltyInterfaceVersion>
+                <ns3:VendorName>VIPER:ruby2</ns3:VendorName>
+                <ns3:VendorModelVersion>9.03.00:Base 053.40.00</ns3:VendorModelVersion>
+                <ns2:POSSequenceID>1011762641249144</ns2:POSSequenceID>
+                <ns2:LoyaltySequenceID>LOY-ADD0884A7FB0</ns2:LoyaltySequenceID>
+                <ns2:StoreLocationID>24354</ns2:StoreLocationID>
+                <ns2:LoyaltyOfflineFlag value="no"/>
+        </ns2:RequestHeader>
+        <ns2:LoyaltyID entryMethod="manual">5551234567</ns2:LoyaltyID>
+        <ns2:TransactionData>
+                <ns2:TransactionHeader>
+                        <ns3:OutsideSalesFlag value="no"/>
+                        <ns3:RegisterID>1</ns3:RegisterID>
+                        <ns3:CashierID>17</ns3:CashierID>
+                        <ns2:TillID>001</ns2:TillID>
+                        <ns2:POSTransactionID>0101642053</ns2:POSTransactionID>
+                        <ns2:BusinessPeriod>
+                                <ns3:BusinessDate>2025-12-04</ns3:BusinessDate>
+                                <ns3:PrimaryReportPeriod interval="day">2874</ns3:PrimaryReportPeriod>
+                                <ns3:BeginDate>2025-12-03</ns3:BeginDate>
+                                <ns3:BeginTime>23:02:34-05:00</ns3:BeginTime>
+                                <ns3:EndDate>2100-01-01</ns3:EndDate>
+                                <ns3:EndTime>00:00:00-05:00</ns3:EndTime>
+                        </ns2:BusinessPeriod>
+                        <ns3:EventStartDate>2025-12-04</ns3:EventStartDate>
+                        <ns3:EventStartTime>12:06:15-05:00</ns3:EventStartTime>
+                </ns2:TransactionHeader>
+                <ns2:TransactionDetailGroup>
+                        <ns2:TransactionLine status="normal">
+                                <ns2:LineNumber>1</ns2:LineNumber>
+                                <ns2:ItemLine discountable="yes">
+                                        <ns3:ItemCode>
+                                                <ns3:POSCodeFormat format="plu"/>
+                                                <ns3:POSCode>81003051808</ns3:POSCode>
+                                                <ns3:POSCodeModifier>0</ns3:POSCodeModifier>
+                                        </ns3:ItemCode>
+                                        <ns3:MerchandiseCode>7</ns3:MerchandiseCode>
+                                        <ns3:Description>12oz ALANI Cherry Twist</ns3:Description>
+                                        <ns3:ActualSalesPrice>3.69</ns3:ActualSalesPrice>
+                                        <ns3:RegularSellPrice>3.69</ns3:RegularSellPrice>
+                                        <ns3:SellingUnits>1.000</ns3:SellingUnits>
+                                        <ns3:SalesQuantity>1</ns3:SalesQuantity>
+                                        <ns3:SalesAmount>3.69</ns3:SalesAmount>
+                                        <ns2:SalesUOM>EA</ns2:SalesUOM>
+                                        <ns3:PaymentSystemsProductCode>420</ns3:PaymentSystemsProductCode>
+                                </ns2:ItemLine>
+                        </ns2:TransactionLine>
+                        <ns2:TransactionLine status="normal">
+                                <ns2:LineNumber>2</ns2:LineNumber>
+                                <ns2:MerchandiseCodeLine discountable="no">
+                                        <ns3:MerchandiseCode>n/a</ns3:MerchandiseCode>
+                                        <ns3:ActualSalesPrice>0.22</ns3:ActualSalesPrice>
+                                        <ns3:SalesQuantity>1</ns3:SalesQuantity>
+                                        <ns3:SalesAmount>0.22</ns3:SalesAmount>
+                                        <ns2:SalesUOM>EA</ns2:SalesUOM>
+                                        <ns3:PaymentSystemsProductCode>950</ns3:PaymentSystemsProductCode>
+                                </ns2:MerchandiseCodeLine>
+                        </ns2:TransactionLine>
+                        <ns2:TransactionLine status="normal">
+                                <ns2:LineNumber>3</ns2:LineNumber>
+                                <ns2:TenderInfo entryMethod="other">
+                                        <ns3:TenderCode>cash</ns3:TenderCode>
+                                        <ns2:TenderSubCode>Other</ns2:TenderSubCode>
+                                        <ns3:TenderAmount currency="USD">3.91</ns3:TenderAmount>
+                                        <ns3:ChangeFlag value="no"/>
+                                </ns2:TenderInfo>
+                        </ns2:TransactionLine>
+                </ns2:TransactionDetailGroup>
+        </ns2:TransactionData>
+</ns2:FinalizeRewardsRequest>
+
+[2025-12-04 12:06:18] 🏁 Finalizing transaction: Customer 1, Subtotal $3.91
+[2025-12-04 12:06:18]   ✓ Points: earned 19, balance 108
+[2025-12-04 12:06:19]   🎯 PUNCHES RECORDED:
+[2025-12-04 12:06:19]      • buy 3 alani get 4th free: +1 → 2/2
+[2025-12-04 12:06:19]   🎁 Redeemed punch reward: buy 3 alani get 4th free
+[2025-12-04 12:06:19] → Sent to EPS:
+<?xml version="1.0" ?>
+<ns3:FinalizeRewardsResponse xmlns:ns2="http://www.naxml.org/POSBO/Vocabulary/2003-10-16" xmlns:ns4="http://www.pcats.org/schema/core/v01" xmlns:ns3="http://www.pcats.org/schema/naxml/loyalty/v01">
+
+
+        <ns3:ResponseHeader overallResult="success">
+                <ns3:POSLoyaltyInterfaceVersion>1.0</ns3:POSLoyaltyInterfaceVersion>
+                <ns2:VendorName>BirdiesLoyalty</ns2:VendorName>
+                <ns2:VendorModelVersion>1.0</ns2:VendorModelVersion>
+                <ns3:POSSequenceID>1011762641249144</ns3:POSSequenceID>
+                <ns3:LoyaltySequenceID>LOY-ADD0884A7FB0</ns3:LoyaltySequenceID>
+                <ns4:Result>
+                        <Success/>
+                </ns4:Result>
+        </ns3:ResponseHeader>
+
+
+</ns3:FinalizeRewardsResponse>
+
+[2025-12-04 12:06:28] ✓ Heartbeat sent to backend (Store 1350)
+[2025-12-04 12:06:43] ✓ Heartbeat sent to backend (Store 1350)
+[
+
+
+

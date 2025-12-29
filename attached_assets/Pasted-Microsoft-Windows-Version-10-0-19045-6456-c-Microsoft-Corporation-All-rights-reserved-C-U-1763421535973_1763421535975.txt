@@ -1,0 +1,2023 @@
+Microsoft Windows [Version 10.0.19045.6456]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\store>cd downloads
+
+C:\Users\store\Downloads>python edge_agent_amountoff.py
+[2025-11-17 18:11:52] Starting Birdies Loyalty Edge Agent (DB + Discount)
+[2025-11-17 18:11:52] Store: 1340 | POS Type: Passport | POS ID: 24379
+[2025-11-17 18:11:52] Backend: https://salmanloyalty.replit.app
+[2025-11-17 18:11:52] Listening on 10.96.10.175:9000
+[2025-11-17 18:11:52] ✓ Heartbeat thread started
+[2025-11-17 18:11:53] ✓ Heartbeat sent to backend (Store 1340)
+[2025-11-17 18:12:03] POS connected from 10.5.50.2:58351
+[2025-11-17 18:12:04] ✓ Heartbeat sent to backend (Store 1340)
+[2025-11-17 18:12:04] ← Received from POS:
+<?xml version="1.0" ?>
+<GetLoyaltyOnlineStatusRequest>
+        <RequestHeader>
+                <POSLoyaltyInterfaceVersion>1.0</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>00-0^3399283^</POSSequenceID>
+                <LoyaltySequenceID/>
+                <StoreLocationID>24379</StoreLocationID>
+                <LoyaltyOfflineFlag value="no"/>
+        </RequestHeader>
+</GetLoyaltyOnlineStatusRequest>
+
+[2025-11-17 18:12:04] → Sent to POS:
+<?xml version="1.0" ?>
+<GetLoyaltyOnlineStatusResponse>
+        <ResponseHeader>
+                <POSLoyaltyInterfaceVersion>1.0</POSLoyaltyInterfaceVersion>
+                <VendorName>DemoLoyalty</VendorName>
+                <VendorModelVersion>1.0</VendorModelVersion>
+                <POSSequenceID>00-0^3399283^</POSSequenceID>
+                <LoyaltySequenceID>LOY-EC24CDDD7B4B</LoyaltySequenceID>
+        </ResponseHeader>
+        <PromptForLoyaltyFlag value="yes"/>
+</GetLoyaltyOnlineStatusResponse>
+
+[2025-11-17 18:12:04] ✓ Heartbeat sent to backend (Store 1340)
+[2025-11-17 18:12:04] ← Received from POS:
+<?xml version="1.0" ?>
+<EndPeriodRequest>
+        <RequestHeader>
+                <POSLoyaltyInterfaceVersion>1.2</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>99-0^2974010^</POSSequenceID>
+                <LoyaltySequenceID/>
+                <StoreLocationID>24379</StoreLocationID>
+                <LoyaltyOfflineFlag value="yes"/>
+        </RequestHeader>
+        <FromPeriod>
+                <BusinessPeriod>
+                        <BusinessDate>2025-01-23</BusinessDate>
+                        <PrimaryReportPeriod interval="day">1198</PrimaryReportPeriod>
+                        <SecondaryReportPeriod interval="cashier">0</SecondaryReportPeriod>
+                        <BeginDate>2025-01-23</BeginDate>
+                        <BeginTime>00:06:18-05:00</BeginTime>
+                        <EndDate>2025-01-24</EndDate>
+                        <EndTime>00:05:23-05:00</EndTime>
+                </BusinessPeriod>
+        </FromPeriod>
+        <ToPeriod>
+                <BusinessPeriod>
+                        <BusinessDate>2025-01-24</BusinessDate>
+                        <PrimaryReportPeriod interval="day">1199</PrimaryReportPeriod>
+                        <SecondaryReportPeriod interval="cashier">0</SecondaryReportPeriod>
+                        <BeginDate>2025-01-24</BeginDate>
+                        <BeginTime>00:05:23-05:00</BeginTime>
+                        <EndDate>2100-01-01</EndDate>
+                        <EndTime>00:00:00-05:00</EndTime>
+                </BusinessPeriod>
+        </ToPeriod>
+</EndPeriodRequest>
+
+[2025-11-17 18:12:04] → Sent to POS:
+<?xml version="1.0" ?>
+<EndPeriodResponse>
+
+
+        <ResponseHeader>
+                <POSLoyaltyInterfaceVersion>1.0</POSLoyaltyInterfaceVersion>
+                <VendorName>DemoLoyalty</VendorName>
+                <VendorModelVersion>1.0</VendorModelVersion>
+                <POSSequenceID>99-0^2974010^</POSSequenceID>
+                <LoyaltySequenceID>LOY-1FE2DF609D07</LoyaltySequenceID>
+        </ResponseHeader>
+
+
+        <Result value="success"/>
+
+
+</EndPeriodResponse>
+
+[2025-11-17 18:12:09] ✓ Heartbeat sent to backend (Store 1340)
+[2025-11-17 18:12:09] ← Received from POS:
+<?xml version="1.0" ?>
+<BeginCustomerRequest>
+        <RequestHeader>
+                <POSLoyaltyInterfaceVersion>1.0</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>02-0^3399284^</POSSequenceID>
+                <LoyaltySequenceID/>
+                <StoreLocationID>24379</StoreLocationID>
+                <LoyaltyOfflineFlag value="no"/>
+        </RequestHeader>
+        <OutsideSalesFlag value="no"/>
+        <RegisterID>2</RegisterID>
+</BeginCustomerRequest>
+
+[2025-11-17 18:12:09] BeginCustomerRequest received (no response required)
+[2025-11-17 18:12:24] ✓ Heartbeat sent to backend (Store 1340)
+[2025-11-17 18:12:40] ✓ Heartbeat sent to backend (Store 1340)
+[2025-11-17 18:12:43] ← Received from POS:
+<?xml version="1.0" ?>
+<EndCustomerRequest>
+        <RequestHeader>
+                <POSLoyaltyInterfaceVersion>1.0</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>02-0^3399285^</POSSequenceID>
+                <LoyaltySequenceID/>
+                <StoreLocationID>24379</StoreLocationID>
+                <LoyaltyOfflineFlag value="no"/>
+        </RequestHeader>
+</EndCustomerRequest>
+
+[2025-11-17 18:12:43] EndCustomerRequest received (no response required)
+[2025-11-17 18:12:51] ← Received from POS:
+<?xml version="1.0" ?>
+<BeginCustomerRequest>
+        <RequestHeader>
+                <POSLoyaltyInterfaceVersion>1.0</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>05-3399286</POSSequenceID>
+                <LoyaltySequenceID/>
+                <StoreLocationID>24379</StoreLocationID>
+                <LoyaltyOfflineFlag value="no"/>
+        </RequestHeader>
+        <OutsideSalesFlag value="yes"/>
+        <FuelPositionID>5</FuelPositionID>
+</BeginCustomerRequest>
+
+[2025-11-17 18:12:51] BeginCustomerRequest received (no response required)
+[2025-11-17 18:12:54] ← Received from POS:
+<?xml version="1.0" ?>
+<EndPeriodRequest>
+        <RequestHeader>
+                <POSLoyaltyInterfaceVersion>1.2</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>99-0^2974010^</POSSequenceID>
+                <LoyaltySequenceID/>
+                <StoreLocationID>24379</StoreLocationID>
+                <LoyaltyOfflineFlag value="yes"/>
+        </RequestHeader>
+        <FromPeriod>
+                <BusinessPeriod>
+                        <BusinessDate>2025-01-23</BusinessDate>
+                        <PrimaryReportPeriod interval="day">1198</PrimaryReportPeriod>
+                        <SecondaryReportPeriod interval="cashier">0</SecondaryReportPeriod>
+                        <BeginDate>2025-01-23</BeginDate>
+                        <BeginTime>00:06:18-05:00</BeginTime>
+                        <EndDate>2025-01-24</EndDate>
+                        <EndTime>00:05:23-05:00</EndTime>
+                </BusinessPeriod>
+        </FromPeriod>
+        <ToPeriod>
+                <BusinessPeriod>
+                        <BusinessDate>2025-01-24</BusinessDate>
+                        <PrimaryReportPeriod interval="day">1199</PrimaryReportPeriod>
+                        <SecondaryReportPeriod interval="cashier">0</SecondaryReportPeriod>
+                        <BeginDate>2025-01-24</BeginDate>
+                        <BeginTime>00:05:23-05:00</BeginTime>
+                        <EndDate>2100-01-01</EndDate>
+                        <EndTime>00:00:00-05:00</EndTime>
+                </BusinessPeriod>
+        </ToPeriod>
+</EndPeriodRequest>
+
+[2025-11-17 18:12:54] → Sent to POS:
+<?xml version="1.0" ?>
+<EndPeriodResponse>
+
+
+        <ResponseHeader>
+                <POSLoyaltyInterfaceVersion>1.0</POSLoyaltyInterfaceVersion>
+                <VendorName>DemoLoyalty</VendorName>
+                <VendorModelVersion>1.0</VendorModelVersion>
+                <POSSequenceID>99-0^2974010^</POSSequenceID>
+                <LoyaltySequenceID>LOY-A27DA76F66BF</LoyaltySequenceID>
+        </ResponseHeader>
+
+
+        <Result value="success"/>
+
+
+</EndPeriodResponse>
+
+[2025-11-17 18:12:55] ✓ Heartbeat sent to backend (Store 1340)
+[2025-11-17 18:13:04] ← Received from POS:
+<?xml version="1.0" ?>
+<GetLoyaltyOnlineStatusRequest>
+        <RequestHeader>
+                <POSLoyaltyInterfaceVersion>1.0</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>00-0^3399287^</POSSequenceID>
+                <LoyaltySequenceID/>
+                <StoreLocationID>24379</StoreLocationID>
+                <LoyaltyOfflineFlag value="no"/>
+        </RequestHeader>
+</GetLoyaltyOnlineStatusRequest>
+
+[2025-11-17 18:13:04] → Sent to POS:
+<?xml version="1.0" ?>
+<GetLoyaltyOnlineStatusResponse>
+        <ResponseHeader>
+                <POSLoyaltyInterfaceVersion>1.0</POSLoyaltyInterfaceVersion>
+                <VendorName>DemoLoyalty</VendorName>
+                <VendorModelVersion>1.0</VendorModelVersion>
+                <POSSequenceID>00-0^3399287^</POSSequenceID>
+                <LoyaltySequenceID>LOY-24E111A7295E</LoyaltySequenceID>
+        </ResponseHeader>
+        <PromptForLoyaltyFlag value="yes"/>
+</GetLoyaltyOnlineStatusResponse>
+
+[2025-11-17 18:13:04] ✓ Heartbeat sent to backend (Store 1340)
+[2025-11-17 18:13:11] ✓ Heartbeat sent to backend (Store 1340)
+[2025-11-17 18:13:12] ← Received from POS:
+<?xml version="1.0" ?>
+<BeginCustomerRequest>
+        <RequestHeader>
+                <POSLoyaltyInterfaceVersion>1.0</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>02-0^3399288^</POSSequenceID>
+                <LoyaltySequenceID/>
+                <StoreLocationID>24379</StoreLocationID>
+                <LoyaltyOfflineFlag value="no"/>
+        </RequestHeader>
+        <OutsideSalesFlag value="no"/>
+        <RegisterID>2</RegisterID>
+</BeginCustomerRequest>
+
+[2025-11-17 18:13:12] BeginCustomerRequest received (no response required)
+[2025-11-17 18:13:18] ← Received from POS:
+<?xml version="1.0" ?>
+<BeginCustomerRequest>
+        <RequestHeader>
+                <POSLoyaltyInterfaceVersion>1.0</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>04-3399289</POSSequenceID>
+                <LoyaltySequenceID/>
+                <StoreLocationID>24379</StoreLocationID>
+                <LoyaltyOfflineFlag value="no"/>
+        </RequestHeader>
+        <OutsideSalesFlag value="yes"/>
+        <FuelPositionID>4</FuelPositionID>
+</BeginCustomerRequest>
+
+[2025-11-17 18:13:18] BeginCustomerRequest received (no response required)
+[2025-11-17 18:13:26] ✓ Heartbeat sent to backend (Store 1340)
+[2025-11-17 18:13:34] ← Received from POS:
+<?xml version="1.0" ?>
+<EndCustomerRequest>
+        <RequestHeader>
+                <POSLoyaltyInterfaceVersion>1.0</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>02-0^3399290^</POSSequenceID>
+                <LoyaltySequenceID/>
+                <StoreLocationID>24379</StoreLocationID>
+                <LoyaltyOfflineFlag value="no"/>
+        </RequestHeader>
+</EndCustomerRequest>
+
+[2025-11-17 18:13:34] EndCustomerRequest received (no response required)
+[2025-11-17 18:13:42] ✓ Heartbeat sent to backend (Store 1340)
+[2025-11-17 18:13:44] ← Received from POS:
+<?xml version="1.0" ?>
+<EndPeriodRequest>
+        <RequestHeader>
+                <POSLoyaltyInterfaceVersion>1.2</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>99-0^2974010^</POSSequenceID>
+                <LoyaltySequenceID/>
+                <StoreLocationID>24379</StoreLocationID>
+                <LoyaltyOfflineFlag value="yes"/>
+        </RequestHeader>
+        <FromPeriod>
+                <BusinessPeriod>
+                        <BusinessDate>2025-01-23</BusinessDate>
+                        <PrimaryReportPeriod interval="day">1198</PrimaryReportPeriod>
+                        <SecondaryReportPeriod interval="cashier">0</SecondaryReportPeriod>
+                        <BeginDate>2025-01-23</BeginDate>
+                        <BeginTime>00:06:18-05:00</BeginTime>
+                        <EndDate>2025-01-24</EndDate>
+                        <EndTime>00:05:23-05:00</EndTime>
+                </BusinessPeriod>
+        </FromPeriod>
+        <ToPeriod>
+                <BusinessPeriod>
+                        <BusinessDate>2025-01-24</BusinessDate>
+                        <PrimaryReportPeriod interval="day">1199</PrimaryReportPeriod>
+                        <SecondaryReportPeriod interval="cashier">0</SecondaryReportPeriod>
+                        <BeginDate>2025-01-24</BeginDate>
+                        <BeginTime>00:05:23-05:00</BeginTime>
+                        <EndDate>2100-01-01</EndDate>
+                        <EndTime>00:00:00-05:00</EndTime>
+                </BusinessPeriod>
+        </ToPeriod>
+</EndPeriodRequest>
+
+[2025-11-17 18:13:44] → Sent to POS:
+<?xml version="1.0" ?>
+<EndPeriodResponse>
+
+
+        <ResponseHeader>
+                <POSLoyaltyInterfaceVersion>1.0</POSLoyaltyInterfaceVersion>
+                <VendorName>DemoLoyalty</VendorName>
+                <VendorModelVersion>1.0</VendorModelVersion>
+                <POSSequenceID>99-0^2974010^</POSSequenceID>
+                <LoyaltySequenceID>LOY-67781B81B204</LoyaltySequenceID>
+        </ResponseHeader>
+
+
+        <Result value="success"/>
+
+
+</EndPeriodResponse>
+
+[2025-11-17 18:13:54] ← Received from POS:
+<?xml version="1.0" ?>
+<BeginCustomerRequest>
+        <RequestHeader>
+                <POSLoyaltyInterfaceVersion>1.0</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>08-3399291</POSSequenceID>
+                <LoyaltySequenceID/>
+                <StoreLocationID>24379</StoreLocationID>
+                <LoyaltyOfflineFlag value="no"/>
+        </RequestHeader>
+        <OutsideSalesFlag value="yes"/>
+        <FuelPositionID>8</FuelPositionID>
+</BeginCustomerRequest>
+
+[2025-11-17 18:13:54] BeginCustomerRequest received (no response required)
+[2025-11-17 18:13:57] ✓ Heartbeat sent to backend (Store 1340)
+[2025-11-17 18:14:04] ← Received from POS:
+<?xml version="1.0" ?>
+<GetLoyaltyOnlineStatusRequest>
+        <RequestHeader>
+                <POSLoyaltyInterfaceVersion>1.0</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>00-0^3399292^</POSSequenceID>
+                <LoyaltySequenceID/>
+                <StoreLocationID>24379</StoreLocationID>
+                <LoyaltyOfflineFlag value="no"/>
+        </RequestHeader>
+</GetLoyaltyOnlineStatusRequest>
+
+[2025-11-17 18:14:04] → Sent to POS:
+<?xml version="1.0" ?>
+<GetLoyaltyOnlineStatusResponse>
+        <ResponseHeader>
+                <POSLoyaltyInterfaceVersion>1.0</POSLoyaltyInterfaceVersion>
+                <VendorName>DemoLoyalty</VendorName>
+                <VendorModelVersion>1.0</VendorModelVersion>
+                <POSSequenceID>00-0^3399292^</POSSequenceID>
+                <LoyaltySequenceID>LOY-4F45A4444A27</LoyaltySequenceID>
+        </ResponseHeader>
+        <PromptForLoyaltyFlag value="yes"/>
+</GetLoyaltyOnlineStatusResponse>
+
+[2025-11-17 18:14:04] ✓ Heartbeat sent to backend (Store 1340)
+[2025-11-17 18:14:06] ← Received from POS:
+<?xml version="1.0" ?>
+<BeginCustomerRequest>
+        <RequestHeader>
+                <POSLoyaltyInterfaceVersion>1.0</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>02-0^3399293^</POSSequenceID>
+                <LoyaltySequenceID/>
+                <StoreLocationID>24379</StoreLocationID>
+                <LoyaltyOfflineFlag value="no"/>
+        </RequestHeader>
+        <OutsideSalesFlag value="no"/>
+        <RegisterID>2</RegisterID>
+</BeginCustomerRequest>
+
+[2025-11-17 18:14:06] BeginCustomerRequest received (no response required)
+[2025-11-17 18:14:13] ✓ Heartbeat sent to backend (Store 1340)
+[2025-11-17 18:14:17] ← Received from POS:
+<?xml version="1.0" ?>
+<GetRewardsRequest>
+        <RequestHeader>
+                <POSLoyaltyInterfaceVersion>1.0</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>02-7411^3399294^</POSSequenceID>
+                <LoyaltySequenceID/>
+                <StoreLocationID>24379</StoreLocationID>
+                <LoyaltyOfflineFlag value="no"/>
+        </RequestHeader>
+        <LoyaltyID entryMethod="manual">5551234567</LoyaltyID>
+        <TransactionData>
+                <TransactionHeader>
+                        <TrainingModeFlag value="no"/>
+                        <OutsideSalesFlag value="no"/>
+                        <RegisterID>2</RegisterID>
+                        <CashierID>8989</CashierID>
+                        <TillID>000000023235</TillID>
+                        <POSTransactionID>7411</POSTransactionID>
+                        <BusinessPeriod>
+                                <BusinessDate>2025-11-17</BusinessDate>
+                                <PrimaryReportPeriod interval="day">1496</PrimaryReportPeriod>
+                                <SecondaryReportPeriod interval="cashier">1496</SecondaryReportPeriod>
+                                <BeginDate>2025-11-17</BeginDate>
+                                <BeginTime>00:05:09</BeginTime>
+                                <EndDate>2100-01-01</EndDate>
+                                <EndTime>00:00:00</EndTime>
+                        </BusinessPeriod>
+                        <EventStartDate>2025-11-17</EventStartDate>
+                        <EventStartTime>18:14:31</EventStartTime>
+                </TransactionHeader>
+                <TransactionDetailGroup>
+                        <TransactionLine status="normal">
+                                <LineNumber>1</LineNumber>
+                                <ItemLine discountable="yes">
+                                        <ItemCode>
+                                                <POSCodeFormat>upcA</POSCodeFormat>
+                                                <POSCode>810030518082</POSCode>
+                                                <POSCodeModifier name="pc">0</POSCodeModifier>
+                                        </ItemCode>
+                                        <MerchandiseCode>7</MerchandiseCode>
+                                        <Description>12oz ALANI Cherry Twist</Description>
+                                        <EntryMethod>scan</EntryMethod>
+                                        <ActualSalesPrice>3.69</ActualSalesPrice>
+                                        <RegularSellPrice>3.69</RegularSellPrice>
+                                        <SellingUnits>1</SellingUnits>
+                                        <SalesQuantity>1</SalesQuantity>
+                                        <SalesAmount>3.69</SalesAmount>
+                                        <ItemTax>
+                                                <TaxLevelID>101</TaxLevelID>
+                                                <TaxCollectedAmount>.22</TaxCollectedAmount>
+                                        </ItemTax>
+                                </ItemLine>
+                        </TransactionLine>
+                        <TransactionLine status="normal">
+                                <LineNumber>2</LineNumber>
+                                <TransactionTax>
+                                        <TaxLevelID>101</TaxLevelID>
+                                        <TaxableSalesAmount>3.69</TaxableSalesAmount>
+                                        <TaxCollectedAmount>.22</TaxCollectedAmount>
+                                        <TaxableSalesRefundedAmount>0</TaxableSalesRefundedAmount>
+                                        <TaxRefundedAmount>0</TaxRefundedAmount>
+                                </TransactionTax>
+                        </TransactionLine>
+                </TransactionDetailGroup>
+        </TransactionData>
+</GetRewardsRequest>
+
+[2025-11-17 18:14:17] ============================================================
+[2025-11-17 18:14:17] 🛒 TRANSACTION ITEMS (1 items):
+[2025-11-17 18:14:17]   1. Line 1: UPC: 810030518082
+[2025-11-17 18:14:17]      Desc: 12oz ALANI Cherry Twist
+[2025-11-17 18:14:17]      Qty: 1.0, Price: $3.69, Amount: $3.69
+[2025-11-17 18:14:17] ============================================================
+[2025-11-17 18:14:17] DEBUG: LoyaltyID='', PhoneNumber='5551234567'
+[2025-11-17 18:14:17] ✓ Customer found: John Doe (68 pts)
+[2025-11-17 18:14:17] 🔍 Evaluating promotions for 1 item(s)...
+[2025-11-17 18:14:17] 📤 Calling promotion API: https://salmanloyalty.replit.app/api/pos/evaluate-promotions
+[2025-11-17 18:14:17]    Payload: {'pdiStoreNumber': '1340', 'items': [{'upc': '810030518082', 'quantity': 1.0, 'price': 3.69}]}
+[2025-11-17 18:14:18] 📥 API Response: Status 200
+[2025-11-17 18:14:18]    Response data: {'promotions': [{'upc': '810030518082', 'promotionId': 20, 'itemGroupName': 'alani', 'discountType': 'amountoff', 'quantity': 1, 'bundleCount': 1, 'promoPrice': '0.69', 'regularPrice': '3.69', 'discount': '3.00', 'description': '1 x ($3.00 off 1)'}]}
+[2025-11-17 18:14:18] ✓ Found 1 active promotion(s)
+[2025-11-17 18:14:18]   • 1 x ($3.00 off 1): alani - Discount: $3.00
+[2025-11-17 18:14:18] 📍 Applying amountoff promo: 1 x ($3.00 off 1)
+[2025-11-17 18:14:18]    Per-unit new price: $0.6900
+[2025-11-17 18:14:18]    ✓ Applying to line 1: 1 units @ $0.6900 each
+[2025-11-17 18:14:18] Eligible subtotal: $3.69
+[2025-11-17 18:14:18] Customer does not have enough points for redemption, or subtotal is $0.00
+[2025-11-17 18:14:18] Sending 1 reward(s) to POS
+[2025-11-17 18:14:18] → Sent to POS:
+<?xml version="1.0" ?>
+<GetRewardsResponse>
+
+
+        <ResponseHeader>
+                <POSLoyaltyInterfaceVersion>1.0</POSLoyaltyInterfaceVersion>
+                <VendorName>DemoLoyalty</VendorName>
+                <VendorModelVersion>1.0</VendorModelVersion>
+                <POSSequenceID>02-7411^3399294^</POSSequenceID>
+                <LoyaltySequenceID>LOY-17303D8C2590</LoyaltySequenceID>
+        </ResponseHeader>
+
+
+        <LoyaltyIDValidFlag value="yes">******4567</LoyaltyIDValidFlag>
+
+
+        <RewardActions>
+
+
+
+                <AddReward>
+
+
+                        <LoyaltyRewardID>PROMO-20</LoyaltyRewardID>
+
+
+                        <InstantRewardFlag value="yes"/>
+
+
+                        <RewardTargetLineNumber>1</RewardTargetLineNumber>
+
+
+                        <RewardDiscountMethod>newPrice</RewardDiscountMethod>
+
+
+                        <RewardValue>0.6900</RewardValue>
+
+
+                        <RewardLimit type="quantity">1</RewardLimit>
+
+
+                        <RewardReceiptDescShort>PROMO</RewardReceiptDescShort>
+
+
+                        <RewardReceiptDescLong>alani</RewardReceiptDescLong>
+
+
+                </AddReward>
+
+
+        </RewardActions>
+
+
+</GetRewardsResponse>
+
+[2025-11-17 18:14:22] ← Received from POS:
+<?xml version="1.0" ?>
+<EndCustomerRequest>
+        <RequestHeader>
+                <POSLoyaltyInterfaceVersion>1.0</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>05-3399295</POSSequenceID>
+                <LoyaltySequenceID/>
+                <StoreLocationID>24379</StoreLocationID>
+                <LoyaltyOfflineFlag value="no"/>
+        </RequestHeader>
+</EndCustomerRequest>
+
+[2025-11-17 18:14:22] EndCustomerRequest received (no response required)
+[2025-11-17 18:14:28] ✓ Heartbeat sent to backend (Store 1340)
+[2025-11-17 18:14:34] ← Received from POS:
+<?xml version="1.0" ?>
+<EndPeriodRequest>
+        <RequestHeader>
+                <POSLoyaltyInterfaceVersion>1.2</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>99-0^2974010^</POSSequenceID>
+                <LoyaltySequenceID/>
+                <StoreLocationID>24379</StoreLocationID>
+                <LoyaltyOfflineFlag value="yes"/>
+        </RequestHeader>
+        <FromPeriod>
+                <BusinessPeriod>
+                        <BusinessDate>2025-01-23</BusinessDate>
+                        <PrimaryReportPeriod interval="day">1198</PrimaryReportPeriod>
+                        <SecondaryReportPeriod interval="cashier">0</SecondaryReportPeriod>
+                        <BeginDate>2025-01-23</BeginDate>
+                        <BeginTime>00:06:18-05:00</BeginTime>
+                        <EndDate>2025-01-24</EndDate>
+                        <EndTime>00:05:23-05:00</EndTime>
+                </BusinessPeriod>
+        </FromPeriod>
+        <ToPeriod>
+                <BusinessPeriod>
+                        <BusinessDate>2025-01-24</BusinessDate>
+                        <PrimaryReportPeriod interval="day">1199</PrimaryReportPeriod>
+                        <SecondaryReportPeriod interval="cashier">0</SecondaryReportPeriod>
+                        <BeginDate>2025-01-24</BeginDate>
+                        <BeginTime>00:05:23-05:00</BeginTime>
+                        <EndDate>2100-01-01</EndDate>
+                        <EndTime>00:00:00-05:00</EndTime>
+                </BusinessPeriod>
+        </ToPeriod>
+</EndPeriodRequest>
+
+[2025-11-17 18:14:34] → Sent to POS:
+<?xml version="1.0" ?>
+<EndPeriodResponse>
+
+
+        <ResponseHeader>
+                <POSLoyaltyInterfaceVersion>1.0</POSLoyaltyInterfaceVersion>
+                <VendorName>DemoLoyalty</VendorName>
+                <VendorModelVersion>1.0</VendorModelVersion>
+                <POSSequenceID>99-0^2974010^</POSSequenceID>
+                <LoyaltySequenceID>LOY-0F80BB653DCB</LoyaltySequenceID>
+        </ResponseHeader>
+
+
+        <Result value="success"/>
+
+
+</EndPeriodResponse>
+
+[2025-11-17 18:14:37] ← Received from POS:
+<?xml version="1.0" ?>
+<BeginCustomerRequest>
+        <RequestHeader>
+                <POSLoyaltyInterfaceVersion>1.0</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>03-3399296</POSSequenceID>
+                <LoyaltySequenceID/>
+                <StoreLocationID>24379</StoreLocationID>
+                <LoyaltyOfflineFlag value="no"/>
+        </RequestHeader>
+        <OutsideSalesFlag value="yes"/>
+        <FuelPositionID>3</FuelPositionID>
+</BeginCustomerRequest>
+
+[2025-11-17 18:14:37] BeginCustomerRequest received (no response required)
+[2025-11-17 18:14:42] ← Received from POS:
+<?xml version="1.0" ?>
+<BeginCustomerRequest>
+        <RequestHeader>
+                <POSLoyaltyInterfaceVersion>1.0</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>07-3399297</POSSequenceID>
+                <LoyaltySequenceID/>
+                <StoreLocationID>24379</StoreLocationID>
+                <LoyaltyOfflineFlag value="no"/>
+        </RequestHeader>
+        <OutsideSalesFlag value="yes"/>
+        <FuelPositionID>7</FuelPositionID>
+</BeginCustomerRequest>
+
+[2025-11-17 18:14:42] BeginCustomerRequest received (no response required)
+[2025-11-17 18:14:44] ✓ Heartbeat sent to backend (Store 1340)
+[2025-11-17 18:14:56] ← Received from POS:
+<?xml version="1.0" ?>
+<FinalizeRewardsRequest>
+        <RequestHeader>
+                <POSLoyaltyInterfaceVersion>1.0</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>02-7411^3399298^</POSSequenceID>
+                <LoyaltySequenceID>LOY-17303D8C2590</LoyaltySequenceID>
+                <StoreLocationID>24379</StoreLocationID>
+                <LoyaltyOfflineFlag value="no"/>
+        </RequestHeader>
+        <LoyaltyID entryMethod="manual">******4567</LoyaltyID>
+        <TransactionData>
+                <TransactionHeader>
+                        <TrainingModeFlag value="no"/>
+                        <OutsideSalesFlag value="no"/>
+                        <RegisterID>2</RegisterID>
+                        <CashierID>8989</CashierID>
+                        <TillID>000000023235</TillID>
+                        <POSTransactionID>7411</POSTransactionID>
+                        <BusinessPeriod>
+                                <BusinessDate>2025-11-17</BusinessDate>
+                                <PrimaryReportPeriod interval="day">1496</PrimaryReportPeriod>
+                                <SecondaryReportPeriod interval="cashier">1496</SecondaryReportPeriod>
+                                <BeginDate>2025-11-17</BeginDate>
+                                <BeginTime>00:05:09</BeginTime>
+                                <EndDate>2100-01-01</EndDate>
+                                <EndTime>00:00:00</EndTime>
+                        </BusinessPeriod>
+                        <EventStartDate>2025-11-17</EventStartDate>
+                        <EventStartTime>18:14:31</EventStartTime>
+                        <EventEndDate>2025-11-17</EventEndDate>
+                        <EventEndTime>18:14:31</EventEndTime>
+                </TransactionHeader>
+                <TransactionDetailGroup>
+                        <TransactionLine status="normal">
+                                <LineNumber>1</LineNumber>
+                                <ItemLine discountable="yes">
+                                        <ItemCode>
+                                                <POSCodeFormat>upcA</POSCodeFormat>
+                                                <POSCode>810030518082</POSCode>
+                                                <POSCodeModifier name="pc">0</POSCodeModifier>
+                                        </ItemCode>
+                                        <MerchandiseCode>7</MerchandiseCode>
+                                        <Description>12oz ALANI Cherry Twist</Description>
+                                        <EntryMethod>scan</EntryMethod>
+                                        <ActualSalesPrice>.69</ActualSalesPrice>
+                                        <RegularSellPrice>3.69</RegularSellPrice>
+                                        <SellingUnits>1</SellingUnits>
+                                        <SalesQuantity>1</SalesQuantity>
+                                        <SalesAmount>3.69</SalesAmount>
+                                        <Promotion status="normal">
+                                                <PromotionID>10000001</PromotionID>
+                                                <LoyaltyRewardID>PROMO-20</LoyaltyRewardID>
+                                                <PromotionAmount>3</PromotionAmount>
+                                                <PromotionReason>loyaltyOffer</PromotionReason>
+                                        </Promotion>
+                                        <ItemTax>
+                                                <TaxLevelID>101</TaxLevelID>
+                                                <TaxCollectedAmount>.04</TaxCollectedAmount>
+                                        </ItemTax>
+                                </ItemLine>
+                        </TransactionLine>
+                        <TransactionLine status="normal">
+                                <LineNumber>2</LineNumber>
+                                <TransactionTax>
+                                        <TaxLevelID>101</TaxLevelID>
+                                        <TaxableSalesAmount>.69</TaxableSalesAmount>
+                                        <TaxCollectedAmount>.04</TaxCollectedAmount>
+                                        <TaxableSalesRefundedAmount>0</TaxableSalesRefundedAmount>
+                                        <TaxRefundedAmount>0</TaxRefundedAmount>
+                                </TransactionTax>
+                        </TransactionLine>
+                        <TransactionLine status="normal">
+                                <LineNumber>4</LineNumber>
+                                <TenderInfo>
+                                        <TenderCode>cash</TenderCode>
+                                        <TenderSubCode>generic</TenderSubCode>
+                                        <ISOPrefix/>
+                                        <LoyaltyRewardID/>
+                                        <TenderAmount>.73</TenderAmount>
+                                        <ChangeFlag value="no"/>
+                                </TenderInfo>
+                        </TransactionLine>
+                </TransactionDetailGroup>
+        </TransactionData>
+</FinalizeRewardsRequest>
+
+[2025-11-17 18:14:56] Finalize: eligible subtotal $3.69
+[2025-11-17 18:14:56] ℹ No loyalty tender detected in finalize
+[2025-11-17 18:14:56] ✓ Transaction finalized: Redeemed 0 pts ($0.00); Earned 18 pts; New balance 86 pts
+[2025-11-17 18:14:56] → Sent to POS:
+<?xml version="1.0" ?>
+<FinalizeRewardsResponse>
+
+
+        <ResponseHeader>
+                <POSLoyaltyInterfaceVersion>1.0</POSLoyaltyInterfaceVersion>
+                <VendorName>DemoLoyalty</VendorName>
+                <VendorModelVersion>1.0</VendorModelVersion>
+                <POSSequenceID>02-7411^3399298^</POSSequenceID>
+                <LoyaltySequenceID>LOY-17303D8C2590</LoyaltySequenceID>
+        </ResponseHeader>
+
+
+        <CustomerMessageData>
+
+
+                <ReceiptData>
+
+
+                        <ReceiptLine>Points Earned: 18 pts</ReceiptLine>
+
+
+                        <ReceiptLine>New Balance: 86 pts</ReceiptLine>
+
+
+                </ReceiptData>
+
+
+        </CustomerMessageData>
+
+
+</FinalizeRewardsResponse>
+
+[2025-11-17 18:14:59] ✓ Heartbeat sent to backend (Store 1340)
+[2025-11-17 18:14:59] ← Received from POS:
+<?xml version="1.0" ?>
+<EndCustomerRequest>
+        <RequestHeader>
+                <POSLoyaltyInterfaceVersion>1.0</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>02-0^3399299^</POSSequenceID>
+                <LoyaltySequenceID>LOY-17303D8C2590</LoyaltySequenceID>
+                <StoreLocationID>24379</StoreLocationID>
+                <LoyaltyOfflineFlag value="no"/>
+        </RequestHeader>
+</EndCustomerRequest>
+
+[2025-11-17 18:14:59] EndCustomerRequest received (no response required)
+[2025-11-17 18:15:04] ← Received from POS:
+<?xml version="1.0" ?>
+<GetLoyaltyOnlineStatusRequest>
+        <RequestHeader>
+                <POSLoyaltyInterfaceVersion>1.0</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>00-0^3399300^</POSSequenceID>
+                <LoyaltySequenceID/>
+                <StoreLocationID>24379</StoreLocationID>
+                <LoyaltyOfflineFlag value="no"/>
+        </RequestHeader>
+</GetLoyaltyOnlineStatusRequest>
+
+[2025-11-17 18:15:04] → Sent to POS:
+<?xml version="1.0" ?>
+<GetLoyaltyOnlineStatusResponse>
+        <ResponseHeader>
+                <POSLoyaltyInterfaceVersion>1.0</POSLoyaltyInterfaceVersion>
+                <VendorName>DemoLoyalty</VendorName>
+                <VendorModelVersion>1.0</VendorModelVersion>
+                <POSSequenceID>00-0^3399300^</POSSequenceID>
+                <LoyaltySequenceID>LOY-43395E3D0BC6</LoyaltySequenceID>
+        </ResponseHeader>
+        <PromptForLoyaltyFlag value="yes"/>
+</GetLoyaltyOnlineStatusResponse>
+
+[2025-11-17 18:15:04] ✓ Heartbeat sent to backend (Store 1340)
+[2025-11-17 18:15:15] ✓ Heartbeat sent to backend (Store 1340)
+[2025-11-17 18:15:18] ← Received from POS:
+<?xml version="1.0" ?>
+<EndCustomerRequest>
+        <RequestHeader>
+                <POSLoyaltyInterfaceVersion>1.0</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>08-3399301</POSSequenceID>
+                <LoyaltySequenceID/>
+                <StoreLocationID>24379</StoreLocationID>
+                <LoyaltyOfflineFlag value="no"/>
+        </RequestHeader>
+</EndCustomerRequest>
+
+[2025-11-17 18:15:18] EndCustomerRequest received (no response required)
+[2025-11-17 18:15:24] ← Received from POS:
+<?xml version="1.0" ?>
+<EndPeriodRequest>
+        <RequestHeader>
+                <POSLoyaltyInterfaceVersion>1.2</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>99-0^2974010^</POSSequenceID>
+                <LoyaltySequenceID/>
+                <StoreLocationID>24379</StoreLocationID>
+                <LoyaltyOfflineFlag value="yes"/>
+        </RequestHeader>
+        <FromPeriod>
+                <BusinessPeriod>
+                        <BusinessDate>2025-01-23</BusinessDate>
+                        <PrimaryReportPeriod interval="day">1198</PrimaryReportPeriod>
+                        <SecondaryReportPeriod interval="cashier">0</SecondaryReportPeriod>
+                        <BeginDate>2025-01-23</BeginDate>
+                        <BeginTime>00:06:18-05:00</BeginTime>
+                        <EndDate>2025-01-24</EndDate>
+                        <EndTime>00:05:23-05:00</EndTime>
+                </BusinessPeriod>
+        </FromPeriod>
+        <ToPeriod>
+                <BusinessPeriod>
+                        <BusinessDate>2025-01-24</BusinessDate>
+                        <PrimaryReportPeriod interval="day">1199</PrimaryReportPeriod>
+                        <SecondaryReportPeriod interval="cashier">0</SecondaryReportPeriod>
+                        <BeginDate>2025-01-24</BeginDate>
+                        <BeginTime>00:05:23-05:00</BeginTime>
+                        <EndDate>2100-01-01</EndDate>
+                        <EndTime>00:00:00-05:00</EndTime>
+                </BusinessPeriod>
+        </ToPeriod>
+</EndPeriodRequest>
+
+[2025-11-17 18:15:24] → Sent to POS:
+<?xml version="1.0" ?>
+<EndPeriodResponse>
+
+
+        <ResponseHeader>
+                <POSLoyaltyInterfaceVersion>1.0</POSLoyaltyInterfaceVersion>
+                <VendorName>DemoLoyalty</VendorName>
+                <VendorModelVersion>1.0</VendorModelVersion>
+                <POSSequenceID>99-0^2974010^</POSSequenceID>
+                <LoyaltySequenceID>LOY-85AD92B8D819</LoyaltySequenceID>
+        </ResponseHeader>
+
+
+        <Result value="success"/>
+
+
+</EndPeriodResponse>
+
+[2025-11-17 18:15:30] ✓ Heartbeat sent to backend (Store 1340)
+[2025-11-17 18:15:45] ✓ Heartbeat sent to backend (Store 1340)
+[2025-11-17 18:15:52] ← Received from POS:
+<?xml version="1.0" ?>
+<EndCustomerRequest>
+        <RequestHeader>
+                <POSLoyaltyInterfaceVersion>1.0</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>03-3399302</POSSequenceID>
+                <LoyaltySequenceID/>
+                <StoreLocationID>24379</StoreLocationID>
+                <LoyaltyOfflineFlag value="no"/>
+        </RequestHeader>
+</EndCustomerRequest>
+
+[2025-11-17 18:15:52] EndCustomerRequest received (no response required)
+[2025-11-17 18:15:56] ← Received from POS:
+<?xml version="1.0" ?>
+<EndCustomerRequest>
+        <RequestHeader>
+                <POSLoyaltyInterfaceVersion>1.0</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>04-3399303</POSSequenceID>
+                <LoyaltySequenceID/>
+                <StoreLocationID>24379</StoreLocationID>
+                <LoyaltyOfflineFlag value="no"/>
+        </RequestHeader>
+</EndCustomerRequest>
+
+[2025-11-17 18:15:56] EndCustomerRequest received (no response required)
+[2025-11-17 18:16:01] ✓ Heartbeat sent to backend (Store 1340)
+[2025-11-17 18:16:02] ← Received from POS:
+<?xml version="1.0" ?>
+<BeginCustomerRequest>
+        <RequestHeader>
+                <POSLoyaltyInterfaceVersion>1.0</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>02-0^3399304^</POSSequenceID>
+                <LoyaltySequenceID/>
+                <StoreLocationID>24379</StoreLocationID>
+                <LoyaltyOfflineFlag value="no"/>
+        </RequestHeader>
+        <OutsideSalesFlag value="no"/>
+        <RegisterID>2</RegisterID>
+</BeginCustomerRequest>
+
+[2025-11-17 18:16:02] BeginCustomerRequest received (no response required)
+[2025-11-17 18:16:02] ← Received from POS:
+<?xml version="1.0" ?>
+<BeginCustomerRequest>
+        <RequestHeader>
+                <POSLoyaltyInterfaceVersion>1.0</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>01-3399305</POSSequenceID>
+                <LoyaltySequenceID/>
+                <StoreLocationID>24379</StoreLocationID>
+                <LoyaltyOfflineFlag value="no"/>
+        </RequestHeader>
+        <OutsideSalesFlag value="yes"/>
+        <FuelPositionID>1</FuelPositionID>
+</BeginCustomerRequest>
+
+[2025-11-17 18:16:02] BeginCustomerRequest received (no response required)
+[2025-11-17 18:16:04] ← Received from POS:
+<?xml version="1.0" ?>
+<GetLoyaltyOnlineStatusRequest>
+        <RequestHeader>
+                <POSLoyaltyInterfaceVersion>1.0</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>00-0^3399306^</POSSequenceID>
+                <LoyaltySequenceID/>
+                <StoreLocationID>24379</StoreLocationID>
+                <LoyaltyOfflineFlag value="no"/>
+        </RequestHeader>
+</GetLoyaltyOnlineStatusRequest>
+
+[2025-11-17 18:16:04] → Sent to POS:
+<?xml version="1.0" ?>
+<GetLoyaltyOnlineStatusResponse>
+        <ResponseHeader>
+                <POSLoyaltyInterfaceVersion>1.0</POSLoyaltyInterfaceVersion>
+                <VendorName>DemoLoyalty</VendorName>
+                <VendorModelVersion>1.0</VendorModelVersion>
+                <POSSequenceID>00-0^3399306^</POSSequenceID>
+                <LoyaltySequenceID>LOY-6A46F92B6C4F</LoyaltySequenceID>
+        </ResponseHeader>
+        <PromptForLoyaltyFlag value="yes"/>
+</GetLoyaltyOnlineStatusResponse>
+
+[2025-11-17 18:16:04] ✓ Heartbeat sent to backend (Store 1340)
+[2025-11-17 18:16:14] ← Received from POS:
+<?xml version="1.0" ?>
+<EndPeriodRequest>
+        <RequestHeader>
+                <POSLoyaltyInterfaceVersion>1.2</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>99-0^2974010^</POSSequenceID>
+                <LoyaltySequenceID/>
+                <StoreLocationID>24379</StoreLocationID>
+                <LoyaltyOfflineFlag value="yes"/>
+        </RequestHeader>
+        <FromPeriod>
+                <BusinessPeriod>
+                        <BusinessDate>2025-01-23</BusinessDate>
+                        <PrimaryReportPeriod interval="day">1198</PrimaryReportPeriod>
+                        <SecondaryReportPeriod interval="cashier">0</SecondaryReportPeriod>
+                        <BeginDate>2025-01-23</BeginDate>
+                        <BeginTime>00:06:18-05:00</BeginTime>
+                        <EndDate>2025-01-24</EndDate>
+                        <EndTime>00:05:23-05:00</EndTime>
+                </BusinessPeriod>
+        </FromPeriod>
+        <ToPeriod>
+                <BusinessPeriod>
+                        <BusinessDate>2025-01-24</BusinessDate>
+                        <PrimaryReportPeriod interval="day">1199</PrimaryReportPeriod>
+                        <SecondaryReportPeriod interval="cashier">0</SecondaryReportPeriod>
+                        <BeginDate>2025-01-24</BeginDate>
+                        <BeginTime>00:05:23-05:00</BeginTime>
+                        <EndDate>2100-01-01</EndDate>
+                        <EndTime>00:00:00-05:00</EndTime>
+                </BusinessPeriod>
+        </ToPeriod>
+</EndPeriodRequest>
+
+[2025-11-17 18:16:14] → Sent to POS:
+<?xml version="1.0" ?>
+<EndPeriodResponse>
+
+
+        <ResponseHeader>
+                <POSLoyaltyInterfaceVersion>1.0</POSLoyaltyInterfaceVersion>
+                <VendorName>DemoLoyalty</VendorName>
+                <VendorModelVersion>1.0</VendorModelVersion>
+                <POSSequenceID>99-0^2974010^</POSSequenceID>
+                <LoyaltySequenceID>LOY-6E65E3906181</LoyaltySequenceID>
+        </ResponseHeader>
+
+
+        <Result value="success"/>
+
+
+</EndPeriodResponse>
+
+[2025-11-17 18:16:17] ✓ Heartbeat sent to backend (Store 1340)
+[2025-11-17 18:16:25] ← Received from POS:
+<?xml version="1.0" ?>
+<GetRewardsRequest>
+        <RequestHeader>
+                <POSLoyaltyInterfaceVersion>1.0</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>02-7415^3399307^</POSSequenceID>
+                <LoyaltySequenceID/>
+                <StoreLocationID>24379</StoreLocationID>
+                <LoyaltyOfflineFlag value="no"/>
+        </RequestHeader>
+        <LoyaltyID entryMethod="manual">5551234567</LoyaltyID>
+        <TransactionData>
+                <TransactionHeader>
+                        <TrainingModeFlag value="no"/>
+                        <OutsideSalesFlag value="no"/>
+                        <RegisterID>2</RegisterID>
+                        <CashierID>8989</CashierID>
+                        <TillID>000000023235</TillID>
+                        <POSTransactionID>7415</POSTransactionID>
+                        <BusinessPeriod>
+                                <BusinessDate>2025-11-17</BusinessDate>
+                                <PrimaryReportPeriod interval="day">1496</PrimaryReportPeriod>
+                                <SecondaryReportPeriod interval="cashier">1496</SecondaryReportPeriod>
+                                <BeginDate>2025-11-17</BeginDate>
+                                <BeginTime>00:05:09</BeginTime>
+                                <EndDate>2100-01-01</EndDate>
+                                <EndTime>00:00:00</EndTime>
+                        </BusinessPeriod>
+                        <EventStartDate>2025-11-17</EventStartDate>
+                        <EventStartTime>18:16:39</EventStartTime>
+                </TransactionHeader>
+                <TransactionDetailGroup>
+                        <TransactionLine status="normal">
+                                <LineNumber>1</LineNumber>
+                                <ItemLine discountable="yes">
+                                        <ItemCode>
+                                                <POSCodeFormat>upcA</POSCodeFormat>
+                                                <POSCode>810030518082</POSCode>
+                                                <POSCodeModifier name="pc">0</POSCodeModifier>
+                                        </ItemCode>
+                                        <MerchandiseCode>7</MerchandiseCode>
+                                        <Description>12oz ALANI Cherry Twist</Description>
+                                        <EntryMethod>scan</EntryMethod>
+                                        <ActualSalesPrice>3.69</ActualSalesPrice>
+                                        <RegularSellPrice>3.69</RegularSellPrice>
+                                        <SellingUnits>1</SellingUnits>
+                                        <SalesQuantity>1</SalesQuantity>
+                                        <SalesAmount>3.69</SalesAmount>
+                                        <ItemTax>
+                                                <TaxLevelID>101</TaxLevelID>
+                                                <TaxCollectedAmount>.22</TaxCollectedAmount>
+                                        </ItemTax>
+                                </ItemLine>
+                        </TransactionLine>
+                        <TransactionLine status="normal">
+                                <LineNumber>2</LineNumber>
+                                <TransactionTax>
+                                        <TaxLevelID>101</TaxLevelID>
+                                        <TaxableSalesAmount>3.69</TaxableSalesAmount>
+                                        <TaxCollectedAmount>.22</TaxCollectedAmount>
+                                        <TaxableSalesRefundedAmount>0</TaxableSalesRefundedAmount>
+                                        <TaxRefundedAmount>0</TaxRefundedAmount>
+                                </TransactionTax>
+                        </TransactionLine>
+                </TransactionDetailGroup>
+        </TransactionData>
+</GetRewardsRequest>
+
+[2025-11-17 18:16:25] ============================================================
+[2025-11-17 18:16:25] 🛒 TRANSACTION ITEMS (1 items):
+[2025-11-17 18:16:25]   1. Line 1: UPC: 810030518082
+[2025-11-17 18:16:25]      Desc: 12oz ALANI Cherry Twist
+[2025-11-17 18:16:25]      Qty: 1.0, Price: $3.69, Amount: $3.69
+[2025-11-17 18:16:25] ============================================================
+[2025-11-17 18:16:25] DEBUG: LoyaltyID='', PhoneNumber='5551234567'
+[2025-11-17 18:16:25] ✓ Customer found: John Doe (86 pts)
+[2025-11-17 18:16:25] 🔍 Evaluating promotions for 1 item(s)...
+[2025-11-17 18:16:25] 📤 Calling promotion API: https://salmanloyalty.replit.app/api/pos/evaluate-promotions
+[2025-11-17 18:16:25]    Payload: {'pdiStoreNumber': '1340', 'items': [{'upc': '810030518082', 'quantity': 1.0, 'price': 3.69}]}
+[2025-11-17 18:16:26] 📥 API Response: Status 200
+[2025-11-17 18:16:26]    Response data: {'promotions': [{'upc': '810030518082', 'promotionId': 20, 'itemGroupName': 'alani', 'discountType': 'amountoff', 'quantity': 1, 'bundleCount': 1, 'promoPrice': '3.19', 'regularPrice': '3.69', 'discount': '0.50', 'description': '1 x ($0.50 off 1)'}]}
+[2025-11-17 18:16:26] ✓ Found 1 active promotion(s)
+[2025-11-17 18:16:26]   • 1 x ($0.50 off 1): alani - Discount: $0.50
+[2025-11-17 18:16:26] 📍 Applying amountoff promo: 1 x ($0.50 off 1)
+[2025-11-17 18:16:26]    Per-unit new price: $3.1900
+[2025-11-17 18:16:26]    ✓ Applying to line 1: 1 units @ $3.1900 each
+[2025-11-17 18:16:26] Eligible subtotal: $3.69
+[2025-11-17 18:16:26] Customer does not have enough points for redemption, or subtotal is $0.00
+[2025-11-17 18:16:26] Sending 1 reward(s) to POS
+[2025-11-17 18:16:26] → Sent to POS:
+<?xml version="1.0" ?>
+<GetRewardsResponse>
+
+
+        <ResponseHeader>
+                <POSLoyaltyInterfaceVersion>1.0</POSLoyaltyInterfaceVersion>
+                <VendorName>DemoLoyalty</VendorName>
+                <VendorModelVersion>1.0</VendorModelVersion>
+                <POSSequenceID>02-7415^3399307^</POSSequenceID>
+                <LoyaltySequenceID>LOY-E86AA2781D3D</LoyaltySequenceID>
+        </ResponseHeader>
+
+
+        <LoyaltyIDValidFlag value="yes">******4567</LoyaltyIDValidFlag>
+
+
+        <RewardActions>
+
+
+
+                <AddReward>
+
+
+                        <LoyaltyRewardID>PROMO-20</LoyaltyRewardID>
+
+
+                        <InstantRewardFlag value="yes"/>
+
+
+                        <RewardTargetLineNumber>1</RewardTargetLineNumber>
+
+
+                        <RewardDiscountMethod>newPrice</RewardDiscountMethod>
+
+
+                        <RewardValue>3.1900</RewardValue>
+
+
+                        <RewardLimit type="quantity">1</RewardLimit>
+
+
+                        <RewardReceiptDescShort>PROMO</RewardReceiptDescShort>
+
+
+                        <RewardReceiptDescLong>alani</RewardReceiptDescLong>
+
+
+                </AddReward>
+
+
+        </RewardActions>
+
+
+</GetRewardsResponse>
+
+[2025-11-17 18:16:32] ✓ Heartbeat sent to backend (Store 1340)
+[2025-11-17 18:16:33] ← Received from POS:
+<?xml version="1.0" ?>
+<BeginCustomerRequest>
+        <RequestHeader>
+                <POSLoyaltyInterfaceVersion>1.0</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>02-3399308</POSSequenceID>
+                <LoyaltySequenceID/>
+                <StoreLocationID>24379</StoreLocationID>
+                <LoyaltyOfflineFlag value="no"/>
+        </RequestHeader>
+        <OutsideSalesFlag value="yes"/>
+        <FuelPositionID>2</FuelPositionID>
+</BeginCustomerRequest>
+
+[2025-11-17 18:16:33] BeginCustomerRequest received (no response required)
+[2025-11-17 18:16:47] ← Received from POS:
+<?xml version="1.0" ?>
+<CancelTransactionRequest>
+        <RequestHeader>
+                <POSLoyaltyInterfaceVersion>1.0</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>02-7415^3399309^</POSSequenceID>
+                <LoyaltySequenceID>LOY-E86AA2781D3D</LoyaltySequenceID>
+                <StoreLocationID>24379</StoreLocationID>
+                <LoyaltyOfflineFlag value="no"/>
+        </RequestHeader>
+</CancelTransactionRequest>
+
+[2025-11-17 18:16:47] Transaction cancelled, customer session cleared
+[2025-11-17 18:16:47] → Sent to POS:
+<?xml version="1.0" ?>
+<CancelTransactionResponse>
+        <ResponseHeader>
+                <POSLoyaltyInterfaceVersion>1.0</POSLoyaltyInterfaceVersion>
+                <VendorName>DemoLoyalty</VendorName>
+                <VendorModelVersion>1.0</VendorModelVersion>
+                <POSSequenceID>02-7415^3399309^</POSSequenceID>
+                <LoyaltySequenceID>LOY-E86AA2781D3D</LoyaltySequenceID>
+        </ResponseHeader>
+</CancelTransactionResponse>
+
+[2025-11-17 18:16:47] ✓ Heartbeat sent to backend (Store 1340)
+[2025-11-17 18:16:53] ← Received from POS:
+<?xml version="1.0" ?>
+<BeginCustomerRequest>
+        <RequestHeader>
+                <POSLoyaltyInterfaceVersion>1.0</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>02-0^3399310^</POSSequenceID>
+                <LoyaltySequenceID/>
+                <StoreLocationID>24379</StoreLocationID>
+                <LoyaltyOfflineFlag value="no"/>
+        </RequestHeader>
+        <OutsideSalesFlag value="no"/>
+        <RegisterID>2</RegisterID>
+</BeginCustomerRequest>
+
+[2025-11-17 18:16:53] BeginCustomerRequest received (no response required)
+[2025-11-17 18:17:03] ✓ Heartbeat sent to backend (Store 1340)
+[2025-11-17 18:17:04] ← Received from POS:
+<?xml version="1.0" ?>
+<GetLoyaltyOnlineStatusRequest>
+        <RequestHeader>
+                <POSLoyaltyInterfaceVersion>1.0</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>00-0^3399311^</POSSequenceID>
+                <LoyaltySequenceID/>
+                <StoreLocationID>24379</StoreLocationID>
+                <LoyaltyOfflineFlag value="no"/>
+        </RequestHeader>
+</GetLoyaltyOnlineStatusRequest>
+
+[2025-11-17 18:17:04] → Sent to POS:
+<?xml version="1.0" ?>
+<GetLoyaltyOnlineStatusResponse>
+        <ResponseHeader>
+                <POSLoyaltyInterfaceVersion>1.0</POSLoyaltyInterfaceVersion>
+                <VendorName>DemoLoyalty</VendorName>
+                <VendorModelVersion>1.0</VendorModelVersion>
+                <POSSequenceID>00-0^3399311^</POSSequenceID>
+                <LoyaltySequenceID>LOY-763395AB1290</LoyaltySequenceID>
+        </ResponseHeader>
+        <PromptForLoyaltyFlag value="yes"/>
+</GetLoyaltyOnlineStatusResponse>
+
+[2025-11-17 18:17:04] ✓ Heartbeat sent to backend (Store 1340)
+[2025-11-17 18:17:04] ← Received from POS:
+<?xml version="1.0" ?>
+<EndPeriodRequest>
+        <RequestHeader>
+                <POSLoyaltyInterfaceVersion>1.2</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>99-0^2974010^</POSSequenceID>
+                <LoyaltySequenceID/>
+                <StoreLocationID>24379</StoreLocationID>
+                <LoyaltyOfflineFlag value="yes"/>
+        </RequestHeader>
+        <FromPeriod>
+                <BusinessPeriod>
+                        <BusinessDate>2025-01-23</BusinessDate>
+                        <PrimaryReportPeriod interval="day">1198</PrimaryReportPeriod>
+                        <SecondaryReportPeriod interval="cashier">0</SecondaryReportPeriod>
+                        <BeginDate>2025-01-23</BeginDate>
+                        <BeginTime>00:06:18-05:00</BeginTime>
+                        <EndDate>2025-01-24</EndDate>
+                        <EndTime>00:05:23-05:00</EndTime>
+                </BusinessPeriod>
+        </FromPeriod>
+        <ToPeriod>
+                <BusinessPeriod>
+                        <BusinessDate>2025-01-24</BusinessDate>
+                        <PrimaryReportPeriod interval="day">1199</PrimaryReportPeriod>
+                        <SecondaryReportPeriod interval="cashier">0</SecondaryReportPeriod>
+                        <BeginDate>2025-01-24</BeginDate>
+                        <BeginTime>00:05:23-05:00</BeginTime>
+                        <EndDate>2100-01-01</EndDate>
+                        <EndTime>00:00:00-05:00</EndTime>
+                </BusinessPeriod>
+        </ToPeriod>
+</EndPeriodRequest>
+
+[2025-11-17 18:17:04] → Sent to POS:
+<?xml version="1.0" ?>
+<EndPeriodResponse>
+
+
+        <ResponseHeader>
+                <POSLoyaltyInterfaceVersion>1.0</POSLoyaltyInterfaceVersion>
+                <VendorName>DemoLoyalty</VendorName>
+                <VendorModelVersion>1.0</VendorModelVersion>
+                <POSSequenceID>99-0^2974010^</POSSequenceID>
+                <LoyaltySequenceID>LOY-2FF3A6698AF5</LoyaltySequenceID>
+        </ResponseHeader>
+
+
+        <Result value="success"/>
+
+
+</EndPeriodResponse>
+
+[2025-11-17 18:17:16] ← Received from POS:
+<?xml version="1.0" ?>
+<GetRewardsRequest>
+        <RequestHeader>
+                <POSLoyaltyInterfaceVersion>1.0</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>02-7416^3399312^</POSSequenceID>
+                <LoyaltySequenceID/>
+                <StoreLocationID>24379</StoreLocationID>
+                <LoyaltyOfflineFlag value="no"/>
+        </RequestHeader>
+        <LoyaltyID entryMethod="manual">5551234567</LoyaltyID>
+        <TransactionData>
+                <TransactionHeader>
+                        <TrainingModeFlag value="no"/>
+                        <OutsideSalesFlag value="no"/>
+                        <RegisterID>2</RegisterID>
+                        <CashierID>8989</CashierID>
+                        <TillID>000000023235</TillID>
+                        <POSTransactionID>7416</POSTransactionID>
+                        <BusinessPeriod>
+                                <BusinessDate>2025-11-17</BusinessDate>
+                                <PrimaryReportPeriod interval="day">1496</PrimaryReportPeriod>
+                                <SecondaryReportPeriod interval="cashier">1496</SecondaryReportPeriod>
+                                <BeginDate>2025-11-17</BeginDate>
+                                <BeginTime>00:05:09</BeginTime>
+                                <EndDate>2100-01-01</EndDate>
+                                <EndTime>00:00:00</EndTime>
+                        </BusinessPeriod>
+                        <EventStartDate>2025-11-17</EventStartDate>
+                        <EventStartTime>18:17:29</EventStartTime>
+                </TransactionHeader>
+                <TransactionDetailGroup>
+                        <TransactionLine status="normal">
+                                <LineNumber>1</LineNumber>
+                                <ItemLine discountable="yes">
+                                        <ItemCode>
+                                                <POSCodeFormat>upcA</POSCodeFormat>
+                                                <POSCode>810030518082</POSCode>
+                                                <POSCodeModifier name="pc">0</POSCodeModifier>
+                                        </ItemCode>
+                                        <MerchandiseCode>7</MerchandiseCode>
+                                        <Description>12oz ALANI Cherry Twist</Description>
+                                        <EntryMethod>scan</EntryMethod>
+                                        <ActualSalesPrice>3.69</ActualSalesPrice>
+                                        <RegularSellPrice>3.69</RegularSellPrice>
+                                        <SellingUnits>1</SellingUnits>
+                                        <SalesQuantity>1</SalesQuantity>
+                                        <SalesAmount>3.69</SalesAmount>
+                                        <ItemTax>
+                                                <TaxLevelID>101</TaxLevelID>
+                                                <TaxCollectedAmount>.22</TaxCollectedAmount>
+                                        </ItemTax>
+                                </ItemLine>
+                        </TransactionLine>
+                        <TransactionLine status="normal">
+                                <LineNumber>2</LineNumber>
+                                <TransactionTax>
+                                        <TaxLevelID>101</TaxLevelID>
+                                        <TaxableSalesAmount>7.38</TaxableSalesAmount>
+                                        <TaxCollectedAmount>.44</TaxCollectedAmount>
+                                        <TaxableSalesRefundedAmount>0</TaxableSalesRefundedAmount>
+                                        <TaxRefundedAmount>0</TaxRefundedAmount>
+                                </TransactionTax>
+                        </TransactionLine>
+                        <TransactionLine status="normal">
+                                <LineNumber>3</LineNumber>
+                                <ItemLine discountable="yes">
+                                        <ItemCode>
+                                                <POSCodeFormat>upcA</POSCodeFormat>
+                                                <POSCode>810030518082</POSCode>
+                                                <POSCodeModifier name="pc">0</POSCodeModifier>
+                                        </ItemCode>
+                                        <MerchandiseCode>7</MerchandiseCode>
+                                        <Description>12oz ALANI Cherry Twist</Description>
+                                        <EntryMethod>scan</EntryMethod>
+                                        <ActualSalesPrice>3.69</ActualSalesPrice>
+                                        <RegularSellPrice>3.69</RegularSellPrice>
+                                        <SellingUnits>1</SellingUnits>
+                                        <SalesQuantity>1</SalesQuantity>
+                                        <SalesAmount>3.69</SalesAmount>
+                                        <ItemTax>
+                                                <TaxLevelID>101</TaxLevelID>
+                                                <TaxCollectedAmount>.22</TaxCollectedAmount>
+                                        </ItemTax>
+                                </ItemLine>
+                        </TransactionLine>
+                </TransactionDetailGroup>
+        </TransactionData>
+</GetRewardsRequest>
+
+[2025-11-17 18:17:16] ============================================================
+[2025-11-17 18:17:16] 🛒 TRANSACTION ITEMS (2 items):
+[2025-11-17 18:17:16]   1. Line 1: UPC: 810030518082
+[2025-11-17 18:17:16]      Desc: 12oz ALANI Cherry Twist
+[2025-11-17 18:17:16]      Qty: 1.0, Price: $3.69, Amount: $3.69
+[2025-11-17 18:17:16]   2. Line 3: UPC: 810030518082
+[2025-11-17 18:17:16]      Desc: 12oz ALANI Cherry Twist
+[2025-11-17 18:17:16]      Qty: 1.0, Price: $3.69, Amount: $3.69
+[2025-11-17 18:17:16] ============================================================
+[2025-11-17 18:17:16] DEBUG: LoyaltyID='', PhoneNumber='5551234567'
+[2025-11-17 18:17:16] ✓ Customer found: John Doe (86 pts)
+[2025-11-17 18:17:16] 🔍 Evaluating promotions for 2 item(s)...
+[2025-11-17 18:17:16] 📤 Calling promotion API: https://salmanloyalty.replit.app/api/pos/evaluate-promotions
+[2025-11-17 18:17:16]    Payload: {'pdiStoreNumber': '1340', 'items': [{'upc': '810030518082', 'quantity': 2.0, 'price': 3.69}]}
+[2025-11-17 18:17:17] 📥 API Response: Status 200
+[2025-11-17 18:17:17]    Response data: {'promotions': [{'upc': '810030518082', 'promotionId': 5, 'itemGroupName': 'alani', 'discountType': 'multipack', 'quantity': 2, 'bundleCount': 1, 'promoPrice': '1.00', 'regularPrice': '7.38', 'discount': '6.38', 'description': '1 x (2 for $1.00)'}, {'upc': '810030518082', 'promotionId': 20, 'itemGroupName': 'alani', 'discountType': 'amountoff', 'quantity': 1, 'bundleCount': 2, 'promoPrice': '6.38', 'regularPrice': '7.38', 'discount': '1.00', 'description': '2 x ($0.50 off 1)'}]}
+[2025-11-17 18:17:17] ✓ Found 2 active promotion(s)
+[2025-11-17 18:17:17]   • 1 x (2 for $1.00): alani - Discount: $6.38
+[2025-11-17 18:17:17]   • 2 x ($0.50 off 1): alani - Discount: $1.00
+[2025-11-17 18:17:17] 📍 Applying multipack promo: 1 x (2 for $1.00)
+[2025-11-17 18:17:17]    Per-unit new price: $0.5000
+[2025-11-17 18:17:17]    ✓ Applying to line 1: 1 units @ $0.5000 each
+[2025-11-17 18:17:17]    ✓ Applying to line 3: 1 units @ $0.5000 each
+[2025-11-17 18:17:17] 📍 Applying amountoff promo: 2 x ($0.50 off 1)
+[2025-11-17 18:17:17]    Per-unit new price: $3.1900
+[2025-11-17 18:17:17]    ✓ Applying to line 1: 1 units @ $3.1900 each
+[2025-11-17 18:17:17]    ✓ Applying to line 3: 1 units @ $3.1900 each
+[2025-11-17 18:17:17] Eligible subtotal: $7.38
+[2025-11-17 18:17:17] Customer does not have enough points for redemption, or subtotal is $0.00
+[2025-11-17 18:17:17] Sending 4 reward(s) to POS
+[2025-11-17 18:17:17] → Sent to POS:
+<?xml version="1.0" ?>
+<GetRewardsResponse>
+
+
+        <ResponseHeader>
+                <POSLoyaltyInterfaceVersion>1.0</POSLoyaltyInterfaceVersion>
+                <VendorName>DemoLoyalty</VendorName>
+                <VendorModelVersion>1.0</VendorModelVersion>
+                <POSSequenceID>02-7416^3399312^</POSSequenceID>
+                <LoyaltySequenceID>LOY-4601E65E1510</LoyaltySequenceID>
+        </ResponseHeader>
+
+
+        <LoyaltyIDValidFlag value="yes">******4567</LoyaltyIDValidFlag>
+
+
+        <RewardActions>
+
+
+
+                <AddReward>
+
+
+                        <LoyaltyRewardID>PROMO-5</LoyaltyRewardID>
+
+
+                        <InstantRewardFlag value="yes"/>
+
+
+                        <RewardTargetLineNumber>1</RewardTargetLineNumber>
+
+
+                        <RewardDiscountMethod>newPrice</RewardDiscountMethod>
+
+
+                        <RewardValue>0.5000</RewardValue>
+
+
+                        <RewardLimit type="quantity">1</RewardLimit>
+
+
+                        <RewardReceiptDescShort>PROMO</RewardReceiptDescShort>
+
+
+                        <RewardReceiptDescLong>alani</RewardReceiptDescLong>
+
+
+                </AddReward>
+
+
+
+                <AddReward>
+
+
+                        <LoyaltyRewardID>PROMO-5</LoyaltyRewardID>
+
+
+                        <InstantRewardFlag value="yes"/>
+
+
+                        <RewardTargetLineNumber>3</RewardTargetLineNumber>
+
+
+                        <RewardDiscountMethod>newPrice</RewardDiscountMethod>
+
+
+                        <RewardValue>0.5000</RewardValue>
+
+
+                        <RewardLimit type="quantity">1</RewardLimit>
+
+
+                        <RewardReceiptDescShort>PROMO</RewardReceiptDescShort>
+
+
+                        <RewardReceiptDescLong>alani</RewardReceiptDescLong>
+
+
+                </AddReward>
+
+
+
+                <AddReward>
+
+
+                        <LoyaltyRewardID>PROMO-20</LoyaltyRewardID>
+
+
+                        <InstantRewardFlag value="yes"/>
+
+
+                        <RewardTargetLineNumber>1</RewardTargetLineNumber>
+
+
+                        <RewardDiscountMethod>newPrice</RewardDiscountMethod>
+
+
+                        <RewardValue>3.1900</RewardValue>
+
+
+                        <RewardLimit type="quantity">1</RewardLimit>
+
+
+                        <RewardReceiptDescShort>PROMO</RewardReceiptDescShort>
+
+
+                        <RewardReceiptDescLong>alani</RewardReceiptDescLong>
+
+
+                </AddReward>
+
+
+
+                <AddReward>
+
+
+                        <LoyaltyRewardID>PROMO-20</LoyaltyRewardID>
+
+
+                        <InstantRewardFlag value="yes"/>
+
+
+                        <RewardTargetLineNumber>3</RewardTargetLineNumber>
+
+
+                        <RewardDiscountMethod>newPrice</RewardDiscountMethod>
+
+
+                        <RewardValue>3.1900</RewardValue>
+
+
+                        <RewardLimit type="quantity">1</RewardLimit>
+
+
+                        <RewardReceiptDescShort>PROMO</RewardReceiptDescShort>
+
+
+                        <RewardReceiptDescLong>alani</RewardReceiptDescLong>
+
+
+                </AddReward>
+
+
+        </RewardActions>
+
+
+</GetRewardsResponse>
+
+[2025-11-17 18:17:17] ← Received from POS:
+<?xml version="1.0" ?>
+<FinalizeRewardsRequest>
+        <RequestHeader>
+                <POSLoyaltyInterfaceVersion>1.0</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>02-7416^3399313^</POSSequenceID>
+                <LoyaltySequenceID>LOY-4601E65E1510</LoyaltySequenceID>
+                <StoreLocationID>24379</StoreLocationID>
+                <LoyaltyOfflineFlag value="no"/>
+        </RequestHeader>
+        <LoyaltyID entryMethod="manual">******4567</LoyaltyID>
+        <TransactionData>
+                <TransactionHeader>
+                        <TrainingModeFlag value="no"/>
+                        <OutsideSalesFlag value="no"/>
+                        <RegisterID>2</RegisterID>
+                        <CashierID>8989</CashierID>
+                        <TillID>000000023235</TillID>
+                        <POSTransactionID>7416</POSTransactionID>
+                        <BusinessPeriod>
+                                <BusinessDate>2025-11-17</BusinessDate>
+                                <PrimaryReportPeriod interval="day">1496</PrimaryReportPeriod>
+                                <SecondaryReportPeriod interval="cashier">1496</SecondaryReportPeriod>
+                                <BeginDate>2025-11-17</BeginDate>
+                                <BeginTime>00:05:09</BeginTime>
+                                <EndDate>2100-01-01</EndDate>
+                                <EndTime>00:00:00</EndTime>
+                        </BusinessPeriod>
+                        <EventStartDate>2025-11-17</EventStartDate>
+                        <EventStartTime>18:17:29</EventStartTime>
+                        <EventEndDate>2025-11-17</EventEndDate>
+                        <EventEndTime>18:17:29</EventEndTime>
+                </TransactionHeader>
+                <TransactionDetailGroup>
+                        <TransactionLine status="normal">
+                                <LineNumber>1</LineNumber>
+                                <ItemLine discountable="yes">
+                                        <ItemCode>
+                                                <POSCodeFormat>upcA</POSCodeFormat>
+                                                <POSCode>810030518082</POSCode>
+                                                <POSCodeModifier name="pc">0</POSCodeModifier>
+                                        </ItemCode>
+                                        <MerchandiseCode>7</MerchandiseCode>
+                                        <Description>12oz ALANI Cherry Twist</Description>
+                                        <EntryMethod>scan</EntryMethod>
+                                        <ActualSalesPrice>0</ActualSalesPrice>
+                                        <RegularSellPrice>3.69</RegularSellPrice>
+                                        <SellingUnits>1</SellingUnits>
+                                        <SalesQuantity>1</SalesQuantity>
+                                        <SalesAmount>3.69</SalesAmount>
+                                        <Promotion status="normal">
+                                                <PromotionID>10000001</PromotionID>
+                                                <LoyaltyRewardID>PROMO-5</LoyaltyRewardID>
+                                                <PromotionAmount>3.19</PromotionAmount>
+                                                <PromotionReason>loyaltyOffer</PromotionReason>
+                                        </Promotion>
+                                        <Promotion status="normal">
+                                                <PromotionID>10000001</PromotionID>
+                                                <LoyaltyRewardID>PROMO-20</LoyaltyRewardID>
+                                                <PromotionAmount>.5</PromotionAmount>
+                                                <PromotionReason>loyaltyOffer</PromotionReason>
+                                        </Promotion>
+                                        <ItemTax>
+                                                <TaxLevelID>101</TaxLevelID>
+                                                <TaxCollectedAmount>0</TaxCollectedAmount>
+                                        </ItemTax>
+                                </ItemLine>
+                        </TransactionLine>
+                        <TransactionLine status="normal">
+                                <LineNumber>2</LineNumber>
+                                <TransactionTax>
+                                        <TaxLevelID>101</TaxLevelID>
+                                        <TaxableSalesAmount>0</TaxableSalesAmount>
+                                        <TaxCollectedAmount>0</TaxCollectedAmount>
+                                        <TaxableSalesRefundedAmount>0</TaxableSalesRefundedAmount>
+                                        <TaxRefundedAmount>0</TaxRefundedAmount>
+                                </TransactionTax>
+                        </TransactionLine>
+                        <TransactionLine status="normal">
+                                <LineNumber>3</LineNumber>
+                                <ItemLine discountable="yes">
+                                        <ItemCode>
+                                                <POSCodeFormat>upcA</POSCodeFormat>
+                                                <POSCode>810030518082</POSCode>
+                                                <POSCodeModifier name="pc">0</POSCodeModifier>
+                                        </ItemCode>
+                                        <MerchandiseCode>7</MerchandiseCode>
+                                        <Description>12oz ALANI Cherry Twist</Description>
+                                        <EntryMethod>scan</EntryMethod>
+                                        <ActualSalesPrice>0</ActualSalesPrice>
+                                        <RegularSellPrice>3.69</RegularSellPrice>
+                                        <SellingUnits>1</SellingUnits>
+                                        <SalesQuantity>1</SalesQuantity>
+                                        <SalesAmount>3.69</SalesAmount>
+                                        <Promotion status="normal">
+                                                <PromotionID>10000001</PromotionID>
+                                                <LoyaltyRewardID>PROMO-5</LoyaltyRewardID>
+                                                <PromotionAmount>3.19</PromotionAmount>
+                                                <PromotionReason>loyaltyOffer</PromotionReason>
+                                        </Promotion>
+                                        <Promotion status="normal">
+                                                <PromotionID>10000001</PromotionID>
+                                                <LoyaltyRewardID>PROMO-20</LoyaltyRewardID>
+                                                <PromotionAmount>.5</PromotionAmount>
+                                                <PromotionReason>loyaltyOffer</PromotionReason>
+                                        </Promotion>
+                                        <ItemTax>
+                                                <TaxLevelID>101</TaxLevelID>
+                                                <TaxCollectedAmount>0</TaxCollectedAmount>
+                                        </ItemTax>
+                                </ItemLine>
+                        </TransactionLine>
+                </TransactionDetailGroup>
+        </TransactionData>
+</FinalizeRewardsRequest>
+
+[2025-11-17 18:17:17] Finalize: eligible subtotal $7.38
+[2025-11-17 18:17:17] ℹ No loyalty tender detected in finalize
+[2025-11-17 18:17:17] ✓ Transaction finalized: Redeemed 0 pts ($0.00); Earned 36 pts; New balance 122 pts
+[2025-11-17 18:17:17] → Sent to POS:
+<?xml version="1.0" ?>
+<FinalizeRewardsResponse>
+
+
+        <ResponseHeader>
+                <POSLoyaltyInterfaceVersion>1.0</POSLoyaltyInterfaceVersion>
+                <VendorName>DemoLoyalty</VendorName>
+                <VendorModelVersion>1.0</VendorModelVersion>
+                <POSSequenceID>02-7416^3399313^</POSSequenceID>
+                <LoyaltySequenceID>LOY-4601E65E1510</LoyaltySequenceID>
+        </ResponseHeader>
+
+
+        <CustomerMessageData>
+
+
+                <ReceiptData>
+
+
+                        <ReceiptLine>Points Earned: 36 pts</ReceiptLine>
+
+
+                        <ReceiptLine>New Balance: 122 pts</ReceiptLine>
+
+
+                </ReceiptData>
+
+
+        </CustomerMessageData>
+
+
+</FinalizeRewardsResponse>
+
+[2025-11-17 18:17:18] ✓ Heartbeat sent to backend (Store 1340)
+[2025-11-17 18:17:21] ← Received from POS:
+<?xml version="1.0" ?>
+<EndCustomerRequest>
+        <RequestHeader>
+                <POSLoyaltyInterfaceVersion>1.0</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>02-0^3399314^</POSSequenceID>
+                <LoyaltySequenceID>LOY-4601E65E1510</LoyaltySequenceID>
+                <StoreLocationID>24379</StoreLocationID>
+                <LoyaltyOfflineFlag value="no"/>
+        </RequestHeader>
+</EndCustomerRequest>
+
+[2025-11-17 18:17:21] EndCustomerRequest received (no response required)
+[2025-11-17 18:17:26] ← Received from POS:
+<?xml version="1.0" ?>
+<EndCustomerRequest>
+        <RequestHeader>
+                <POSLoyaltyInterfaceVersion>1.0</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>07-3399315</POSSequenceID>
+                <LoyaltySequenceID/>
+                <StoreLocationID>24379</StoreLocationID>
+                <LoyaltyOfflineFlag value="no"/>
+        </RequestHeader>
+</EndCustomerRequest>
+
+[2025-11-17 18:17:26] EndCustomerRequest received (no response required)
+[2025-11-17 18:17:34] ✓ Heartbeat sent to backend (Store 1340)
+[2025-11-17 18:17:37] ← Received from POS:
+<?xml version="1.0" ?>
+<BeginCustomerRequest>
+        <RequestHeader>
+                <POSLoyaltyInterfaceVersion>1.0</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>02-0^3399316^</POSSequenceID>
+                <LoyaltySequenceID/>
+                <StoreLocationID>24379</StoreLocationID>
+                <LoyaltyOfflineFlag value="no"/>
+        </RequestHeader>
+        <OutsideSalesFlag value="no"/>
+        <RegisterID>2</RegisterID>
+</BeginCustomerRequest>
+
+[2025-11-17 18:17:37] BeginCustomerRequest received (no response required)
+[2025-11-17 18:17:49] ✓ Heartbeat sent to backend (Store 1340)
+[2025-11-17 18:17:54] ← Received from POS:
+<?xml version="1.0" ?>
+<EndPeriodRequest>
+        <RequestHeader>
+                <POSLoyaltyInterfaceVersion>1.2</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>99-0^2974010^</POSSequenceID>
+                <LoyaltySequenceID/>
+                <StoreLocationID>24379</StoreLocationID>
+                <LoyaltyOfflineFlag value="yes"/>
+        </RequestHeader>
+        <FromPeriod>
+                <BusinessPeriod>
+                        <BusinessDate>2025-01-23</BusinessDate>
+                        <PrimaryReportPeriod interval="day">1198</PrimaryReportPeriod>
+                        <SecondaryReportPeriod interval="cashier">0</SecondaryReportPeriod>
+                        <BeginDate>2025-01-23</BeginDate>
+                        <BeginTime>00:06:18-05:00</BeginTime>
+                        <EndDate>2025-01-24</EndDate>
+                        <EndTime>00:05:23-05:00</EndTime>
+                </BusinessPeriod>
+        </FromPeriod>
+        <ToPeriod>
+                <BusinessPeriod>
+                        <BusinessDate>2025-01-24</BusinessDate>
+                        <PrimaryReportPeriod interval="day">1199</PrimaryReportPeriod>
+                        <SecondaryReportPeriod interval="cashier">0</SecondaryReportPeriod>
+                        <BeginDate>2025-01-24</BeginDate>
+                        <BeginTime>00:05:23-05:00</BeginTime>
+                        <EndDate>2100-01-01</EndDate>
+                        <EndTime>00:00:00-05:00</EndTime>
+                </BusinessPeriod>
+        </ToPeriod>
+</EndPeriodRequest>
+
+[2025-11-17 18:17:54] → Sent to POS:
+<?xml version="1.0" ?>
+<EndPeriodResponse>
+
+
+        <ResponseHeader>
+                <POSLoyaltyInterfaceVersion>1.0</POSLoyaltyInterfaceVersion>
+                <VendorName>DemoLoyalty</VendorName>
+                <VendorModelVersion>1.0</VendorModelVersion>
+                <POSSequenceID>99-0^2974010^</POSSequenceID>
+                <LoyaltySequenceID>LOY-EAAF417135FA</LoyaltySequenceID>
+        </ResponseHeader>
+
+
+        <Result value="success"/>
+
+
+</EndPeriodResponse>
+
+[2025-11-17 18:17:58] ← Received from POS:
+<?xml version="1.0" ?>
+<EndCustomerRequest>
+        <RequestHeader>
+                <POSLoyaltyInterfaceVersion>1.0</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>01-3399317</POSSequenceID>
+                <LoyaltySequenceID/>
+                <StoreLocationID>24379</StoreLocationID>
+                <LoyaltyOfflineFlag value="no"/>
+        </RequestHeader>
+</EndCustomerRequest>
+
+[2025-11-17 18:17:58] EndCustomerRequest received (no response required)
+[2025-11-17 18:18:04] ← Received from POS:
+<?xml version="1.0" ?>
+<GetLoyaltyOnlineStatusRequest>
+        <RequestHeader>
+                <POSLoyaltyInterfaceVersion>1.0</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>00-0^3399318^</POSSequenceID>
+                <LoyaltySequenceID/>
+                <StoreLocationID>24379</StoreLocationID>
+                <LoyaltyOfflineFlag value="no"/>
+        </RequestHeader>
+</GetLoyaltyOnlineStatusRequest>
+
+[2025-11-17 18:18:04] → Sent to POS:
+<?xml version="1.0" ?>
+<GetLoyaltyOnlineStatusResponse>
+        <ResponseHeader>
+                <POSLoyaltyInterfaceVersion>1.0</POSLoyaltyInterfaceVersion>
+                <VendorName>DemoLoyalty</VendorName>
+                <VendorModelVersion>1.0</VendorModelVersion>
+                <POSSequenceID>00-0^3399318^</POSSequenceID>
+                <LoyaltySequenceID>LOY-488847682393</LoyaltySequenceID>
+        </ResponseHeader>
+        <PromptForLoyaltyFlag value="yes"/>
+</GetLoyaltyOnlineStatusResponse>
+
+[2025-11-17 18:18:04] ✓ Heartbeat sent to backend (Store 1340)
+[2025-11-17 18:18:05] ✓ Heartbeat sent to backend (Store 1340)
+[2025-11-17 18:18:05] ← Received from POS:
+<?xml version="1.0" ?>
+<BeginCustomerRequest>
+        <RequestHeader>
+                <POSLoyaltyInterfaceVersion>1.0</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>06-3399319</POSSequenceID>
+                <LoyaltySequenceID/>
+                <StoreLocationID>24379</StoreLocationID>
+                <LoyaltyOfflineFlag value="no"/>
+        </RequestHeader>
+        <OutsideSalesFlag value="yes"/>
+        <FuelPositionID>6</FuelPositionID>
+</BeginCustomerRequest>
+
+[2025-11-17 18:18:05] BeginCustomerRequest received (no response required)
+[2025-11-17 18:18:16] ← Received from POS:
+<?xml version="1.0" ?>
+<EndCustomerRequest>
+        <RequestHeader>
+                <POSLoyaltyInterfaceVersion>1.0</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>02-0^3399320^</POSSequenceID>
+                <LoyaltySequenceID/>
+                <StoreLocationID>24379</StoreLocationID>
+                <LoyaltyOfflineFlag value="no"/>
+        </RequestHeader>
+</EndCustomerRequest>
+
+[2025-11-17 18:18:16] EndCustomerRequest received (no response required)
+[2025-11-17 18:18:20] ✓ Heartbeat sent to backend (Store 1340)
+[2025-11-17 18:18:31] ← Received from POS:
+<?xml version="1.0" ?>
+<EndCustomerRequest>
+        <RequestHeader>
+                <POSLoyaltyInterfaceVersion>1.0</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>02-3399321</POSSequenceID>
+                <LoyaltySequenceID/>
+                <StoreLocationID>24379</StoreLocationID>
+                <LoyaltyOfflineFlag value="no"/>
+        </RequestHeader>
+</EndCustomerRequest>
+
+[2025-11-17 18:18:31] EndCustomerRequest received (no response required)
+[2025-11-17 18:18:36] ✓ Heartbeat sent to backend (Store 1340)
+[2025-11-17 18:18:44] ← Received from POS:
+<?xml version="1.0" ?>
+<EndPeriodRequest>
+        <RequestHeader>
+                <POSLoyaltyInterfaceVersion>1.2</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>99-0^2974010^</POSSequenceID>
+                <LoyaltySequenceID/>
+                <StoreLocationID>24379</StoreLocationID>
+                <LoyaltyOfflineFlag value="yes"/>
+        </RequestHeader>
+        <FromPeriod>
+                <BusinessPeriod>
+                        <BusinessDate>2025-01-23</BusinessDate>
+                        <PrimaryReportPeriod interval="day">1198</PrimaryReportPeriod>
+                        <SecondaryReportPeriod interval="cashier">0</SecondaryReportPeriod>
+                        <BeginDate>2025-01-23</BeginDate>
+                        <BeginTime>00:06:18-05:00</BeginTime>
+                        <EndDate>2025-01-24</EndDate>
+                        <EndTime>00:05:23-05:00</EndTime>
+                </BusinessPeriod>
+        </FromPeriod>
+        <ToPeriod>
+                <BusinessPeriod>
+                        <BusinessDate>2025-01-24</BusinessDate>
+                        <PrimaryReportPeriod interval="day">1199</PrimaryReportPeriod>
+                        <SecondaryReportPeriod interval="cashier">0</SecondaryReportPeriod>
+                        <BeginDate>2025-01-24</BeginDate>
+                        <BeginTime>00:05:23-05:00</BeginTime>
+                        <EndDate>2100-01-01</EndDate>
+                        <EndTime>00:00:00-05:00</EndTime>
+                </BusinessPeriod>
+        </ToPeriod>
+</EndPeriodRequest>
+
+[2025-11-17 18:18:44] → Sent to POS:
+<?xml version="1.0" ?>
+<EndPeriodResponse>
+
+
+        <ResponseHeader>
+                <POSLoyaltyInterfaceVersion>1.0</POSLoyaltyInterfaceVersion>
+                <VendorName>DemoLoyalty</VendorName>
+                <VendorModelVersion>1.0</VendorModelVersion>
+                <POSSequenceID>99-0^2974010^</POSSequenceID>
+                <LoyaltySequenceID>LOY-A5BFCB2DFEB4</LoyaltySequenceID>
+        </ResponseHeader>
+
+
+        <Result value="success"/>
+
+
+</EndPeriodResponse>
+
+[

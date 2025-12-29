@@ -1,0 +1,81 @@
+Core points rules
+
+Earning rate: 5 points per $1 of eligible merchandise (pre-tax), computed after line-item promos are applied.
+
+Redemption value: 100 points = $1 off (whole-dollar steps).
+
+Per-trip cap: $10 max via points per transaction.
+
+Spend gate: Points redemption is limited by spend:
+max_by_spend = floor(eligible_subtotal_after_item_promos / 20) dollars.
+max_by_points = floor(points_balance / 100) dollars.
+redeem_dollars = min(max_by_spend, max_by_points, 10)
+points_to_use = redeem_dollars * 100
+
+Exclusions (earn/redemption eligibility)
+
+Lottery: ❌ excluded (does not earn; not counted toward points redemption gate).
+
+Tobacco & Alcohol: ✅ included (earns and counts toward redemption gate).
+
+(You can still block specific SKUs later; this is the default.)
+
+Promotions + points (stacking priority)
+
+Yes, customers can use BOTH a promotion and points in the same sale.
+
+Do not double-discount a line that already has a POS-applied promotion:
+
+If the POS marks a line as already discounted or not discountable, do not apply an additional loyalty line promo to that line.
+
+Still allow a basket-level points discount on the post-promo subtotal.
+
+Order of operations:
+
+Apply item-level promos (e.g., Coffee at $0.99, 2-for deals).
+
+Recompute eligible subtotal (excluding lottery).
+
+Offer points redemption as a ticket-level amountOff (optional prompt).
+
+Earn points on the post-promo eligible subtotal (pre-tax).
+
+Rounding & edge cases
+
+Earning: use floor on dollars×5 (e.g., $12.79 → 63 pts).
+
+Redemption: whole dollars only ($1, $2, …); never exceed transaction total.
+
+No negative lines: cap line discounts at line price; cap basket discount at basket total.
+
+Returns/voids:
+
+If items are returned, subtract earned points tied to those items.
+
+If points were redeemed, re-credit points at 100 pts per $1 refunded.
+
+Receipt & UX
+
+Prompt for points by default: “Redeem $X for Y pts?” (site toggle to auto-apply if desired).
+
+Print lines like:
+
+Coffee Club $0.99 -$0.80
+
+Points Redemption -$2.00
+
+Earned 63 pts • New balance: 1,180 pts
+
+Example (quick sanity check)
+
+Cart after item promos (incl. tobacco/alcohol, excl. lottery): $47.18
+
+Balance: 380 pts
+
+max_by_spend = floor(47.18/20) = 2 → $2
+
+max_by_points = floor(380/100) = 3 → $3
+
+Cap = $10 → redeem_dollars = min(2, 3, 10) = 2
+
+Apply $2 ticket-level discount, use 200 pts; earn on $47.18 → 235 pts.

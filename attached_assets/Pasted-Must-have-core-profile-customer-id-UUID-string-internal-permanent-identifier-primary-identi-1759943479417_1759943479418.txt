@@ -1,0 +1,138 @@
+Must-have (core profile)
+
+customer_id (UUID string) – internal, permanent identifier
+
+primary_identifier (string) – what they present at the lane (e.g., phone or barcode)
+
+id_type (enum: phone, barcode, email, external_id)
+
+first_name (string)
+
+last_name (string)
+
+email (string; validated)
+
+phone_e164 (string; e.g., +12025550123)
+
+status (enum: active, blocked, merged)
+
+created_at, updated_at (timestamps)
+
+Loyalty account (current state only)
+
+loyalty_account_id (UUID string)
+
+points_balance (int) – available points
+
+lifetime_points_earned (int)
+
+lifetime_points_redeemed (int)
+
+last_earn_at, last_redeem_at (timestamps)
+
+Identifiers (if you support more than one handle)
+
+identifiers (array of objects) with:
+
+id_type (phone|barcode|email|external_id)
+
+id_value (string, normalized; keep leading zeros)
+
+is_primary (bool)
+
+status (active|revoked)
+
+Consents & comms (keep it simple)
+
+consents:
+
+marketing_email (bool)
+
+marketing_sms (bool)
+
+source (e.g., web_form, pos)
+
+updated_at (timestamp)
+
+Preferences (optional but useful)
+
+language (e.g., en, es)
+
+timezone (IANA string, e.g., America/New_York)
+
+receipt_pref (none|email|sms)
+
+Light demographics (only what you use)
+
+birth_mmdd (string, MM-DD; month/day only for birthday rewards)
+
+zip_code (string; optional for geo promos)
+
+Addresses (optional)
+
+address:
+
+line1, line2, city, state, postal, country
+
+Store/site linkage (optional)
+
+home_site_id (string; your PDI site id)
+
+pos_store_id (string; last seen POS site)
+
+Minimal JSON shape (example)
+{
+  "customer_id": "7a3c3b28-2c39-4b0b-8c21-8d2c5e1a0f92",
+  "primary_identifier": "+12025550123",
+  "id_type": "phone",
+  "first_name": "Amina",
+  "last_name": "Khan",
+  "email": "amina@example.com",
+  "phone_e164": "+12025550123",
+  "status": "active",
+  "created_at": "2025-10-08T22:12:00Z",
+  "updated_at": "2025-10-08T22:12:00Z",
+
+  "loyalty_account": {
+    "loyalty_account_id": "b2c4a9f4-1d7b-4a67-8e6b-6e4d9f47b310",
+    "points_balance": 1180,
+    "lifetime_points_earned": 2180,
+    "lifetime_points_redeemed": 1000,
+    "last_earn_at": "2025-10-07T18:30:00Z",
+    "last_redeem_at": "2025-10-07T18:31:00Z"
+  },
+
+  "identifiers": [
+    { "id_type": "phone", "id_value": "+12025550123", "is_primary": true, "status": "active" },
+    { "id_type": "barcode", "id_value": "000123456789", "is_primary": false, "status": "active" }
+  ],
+
+  "consents": {
+    "marketing_email": true,
+    "marketing_sms": true,
+    "source": "pos",
+    "updated_at": "2025-10-08T22:12:00Z"
+  },
+
+  "preferences": {
+    "language": "en",
+    "timezone": "America/New_York",
+    "receipt_pref": "email"
+  },
+
+  "birth_mmdd": "07-14",
+  "zip_code": "10027",
+  "home_site_id": "01340"
+}
+
+Practical guardrails
+
+Strings for IDs (PDI/pos store ids, barcodes) to preserve leading zeros.
+
+Normalize phone to E.164; also consider storing a hashed_phone for non-PII lookups.
+
+Unique constraint on active identifiers: (id_type, id_value, status='active').
+
+PII hygiene: encrypt email, phone_e164 at rest; mask in logs.
+
+Start lean (core + points). You can add preferences/consents later without breaking anything.

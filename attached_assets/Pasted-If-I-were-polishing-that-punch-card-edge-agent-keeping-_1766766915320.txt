@@ -1,0 +1,115 @@
+If I were polishing that punch-card edge agent (keeping behavior the same but making it more “spec-safe” + production-safe), I’d do it in two layers: spec compliance hardening (tiny diffs) and reliability hardening (thread/state safety).
+
+1) Spec-safety polish (smallest diffs, biggest payoff)
+A) Make “FREE item” spec-compliant (don’t use newPrice + 0.0000)
+
+Right now you do:
+
+<RewardDiscountMethod>newPrice</RewardDiscountMethod>
+<RewardValue>0.0000</RewardValue>
+
+
+I’d change to:
+
+<RewardDiscountMethod>percentOff</RewardDiscountMethod>
+<RewardValue>1.0000</RewardValue>
+
+
+That still makes the item free, but keeps RewardValue > 0 and tends to be more consistent across Passport versions.
+
+B) Enforce receipt text limits
+
+RewardReceiptDescLong must stay within 24 chars (yours can exceed because you put {punch_card_name} FREE ITEM without slicing).
+
+ReceiptLine must stay within 40 chars.
+
+Add helpers:
+
+def receipt24(s: str) -> str:
+    return (s or "").strip()[:24]
+
+def receipt40(s: str) -> str:
+    s = "".join(ch for ch in (s or "") if ch.isprintable())
+    return s[:40]
+
+
+Use them in punch reward:
+
+desc_long = receipt24(f"{punch_card_name} FREE")
+
+
+Use them in finalize receipt XML:
+
+receipt_xml = "\n".join(
+    f"      <ReceiptLine>{receipt40(line)}</ReceiptLine>"
+    for line in receipt_lines
+)
+
+C) Decide “prompt vs instant” for points redemption
+
+You currently set:
+
+<InstantRewardFlag value="no"/>
+
+
+but don’t provide RewardPromptTextShort/Long, so some builds will treat it as instant anyway.
+
+Pick one:
+
+If you want auto-apply: set <InstantRewardFlag value="yes"/>
+
+If you want cashier prompt: keep no and add:
+
+<RewardPromptTextShort>Use points?</RewardPromptTextShort>
+<RewardPromptTextLong>Redeem points for $X.XX off?</RewardPromptTextLong>
+
+2) Reliability polish (prevents weird “only sometimes” bugs)
+A) Fix global state + threading
+
+Your server spawns threads per connection, but uses globals (current_customer, last_punch_cards, etc.). If two connections overlap, state can cross-contaminate.
+
+Two safe options:
+
+Simplest: add a singleton lock (only allow one active connection at a time).
+
+Best long-term: store state per connection (wrap in a SessionState object passed into handlers).
+
+If you go singleton lock, do it non-blocking (reject extra connections) so the second connection doesn’t “hang”:
+
+if not POS_SINGLETON_LOCK.acquire(blocking=False):
+    conn.close()
+    return
+try:
+    ...
+finally:
+    clear_session_state()
+    POS_SINGLETON_LOCK.release()
+
+B) Always clear state on disconnect/error
+
+Even if you don’t restructure, at least do:
+
+clear_session_state() in finally: of handle_client()
+So a crash/disconnect mid-transaction doesn’t poison the next transaction.
+
+C) Use a single “safe transaction id” everywhere
+
+In finalize, generate once:
+
+raw = root.findtext(".//POSTransactionID") or root.findtext(".//TransactionID") or ""
+safe_txn_id = raw.strip() or f"TXN-{uuid.uuid4().hex[:8].upper()}"
+
+
+Then use safe_txn_id for:
+
+finalize-transaction payload
+
+record-purchase
+
+redeem
+
+3) Small correctness polish for punch logic
+
+If an item line has quantity > 1, you already use RewardLimit=1, good.
+
+But if you have multiple punch cards triggered, make sure you don’t “free” the same line twice (you mostly do this by removing the line from eligible_items, which is good—keep that pattern).

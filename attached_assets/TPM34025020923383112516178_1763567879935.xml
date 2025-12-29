@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<NAXML-MovementReport version="3.4">
+<TransmissionHeader>
+<StoreLocationID>1200</StoreLocationID>
+<VendorName>Gilbarco-VeederRoot</VendorName>
+<VendorModelVersion>21.02.23.01A</VendorModelVersion>
+</TransmissionHeader>
+<TankProductMovement>
+<MovementHeader>
+<ReportSequenceNumber>1</ReportSequenceNumber>
+<PrimaryReportPeriod>2</PrimaryReportPeriod>
+<SecondaryReportPeriod>0</SecondaryReportPeriod>
+<BusinessDate>2025-02-08</BusinessDate>
+<BeginDate>2025-02-08</BeginDate>
+<BeginTime>23:58:56</BeginTime>
+<EndDate>2025-02-09</EndDate>
+<EndTime>23:35:35</EndTime>
+</MovementHeader>
+</TankProductMovement>
+</NAXML-MovementReport>

@@ -1,0 +1,254 @@
+Microsoft Windows [Version 10.0.19045.6456]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\store>cd downloads
+
+C:\Users\store\Downloads>python hollywoodedge3.py
+[2025-12-02 10:57:49] Starting Birdies Loyalty Edge Agent (Verifone EPS)
+[2025-12-02 10:57:49] Store: 1310 | POS Type: Verifone-EPS | POS ID: 24379
+[2025-12-02 10:57:49] Backend: https://salmanloyalty.replit.app
+[2025-12-02 10:57:49] Listening on 0.0.0.0:9000
+[2025-12-02 10:57:49] ✓ Heartbeat thread started
+[2025-12-02 10:57:51] ✓ Heartbeat sent to backend (Store 1310)
+[2025-12-02 10:57:56] EPS connected from 192.168.15.135:39174
+[2025-12-02 10:57:56] ✓ TCP keep-alive configured for 192.168.15.135:39174
+[2025-12-02 10:57:56] ✓ Heartbeat sent to backend (Store 1310)
+[2025-12-02 10:57:56] ← Received from EPS:
+<?xml version="1.0" ?>
+<ns2:GetLoyaltyOnlineStatusRequest xmlns:ns2="http://www.pcats.org/schema/naxml/loyalty/v01" xmlns:ns4="http://www.pcats.org/schema/core/v01" xmlns:ns3="http://www.naxml.org/POSBO/Vocabulary/2003-10-16">
+        <ns2:RequestHeader>
+                <ns2:POSLoyaltyInterfaceVersion>1.1</ns2:POSLoyaltyInterfaceVersion>
+                <ns3:VendorName>VIPER</ns3:VendorName>
+                <ns3:VendorModelVersion>9.03.00</ns3:VendorModelVersion>
+                <ns2:POSSequenceID>1-101</ns2:POSSequenceID>
+                <ns2:LoyaltySequenceID/>
+                <ns2:StoreLocationID>24354</ns2:StoreLocationID>
+                <ns2:LoyaltyOfflineFlag value="no"/>
+        </ns2:RequestHeader>
+</ns2:GetLoyaltyOnlineStatusRequest>
+
+[2025-12-02 10:57:56] → Sent to EPS:
+<?xml version="1.0" ?>
+<ns3:GetLoyaltyOnlineStatusResponse xmlns:ns2="http://www.naxml.org/POSBO/Vocabulary/2003-10-16" xmlns:ns4="http://www.pcats.org/schema/core/v01" xmlns:ns3="http://www.pcats.org/schema/naxml/loyalty/v01">
+
+
+        <ns3:ResponseHeader overallResult="success">
+                <ns3:POSLoyaltyInterfaceVersion>1.0</ns3:POSLoyaltyInterfaceVersion>
+                <ns2:VendorName>BirdiesLoyalty</ns2:VendorName>
+                <ns2:VendorModelVersion>1.0</ns2:VendorModelVersion>
+                <ns3:POSSequenceID>1-101</ns3:POSSequenceID>
+                <ns3:LoyaltySequenceID>LOY-CCC072F92B22</ns3:LoyaltySequenceID>
+                <ns4:Result>
+                        <Success/>
+                </ns4:Result>
+        </ns3:ResponseHeader>
+
+
+        <ns3:PromptForLoyaltyFlag value="yes"/>
+
+
+</ns3:GetLoyaltyOnlineStatusResponse>
+
+[2025-12-02 10:57:56] ✓ Heartbeat sent to backend (Store 1310)
+[2025-12-02 10:58:06] ✓ Heartbeat sent to backend (Store 1310)
+[2025-12-02 10:58:22] ✓ Heartbeat sent to backend (Store 1310)
+[2025-12-02 10:58:38] ✓ Heartbeat sent to backend (Store 1310)
+[2025-12-02 10:58:53] ✓ Heartbeat sent to backend (Store 1310)
+[2025-12-02 10:59:09] ✓ Heartbeat sent to backend (Store 1310)
+[2025-12-02 10:59:24] ✓ Heartbeat sent to backend (Store 1310)
+[2025-12-02 10:59:40] ✓ Heartbeat sent to backend (Store 1310)
+[2025-12-02 10:59:55] ✓ Heartbeat sent to backend (Store 1310)
+[2025-12-02 11:00:11] ✓ Heartbeat sent to backend (Store 1310)
+[2025-12-02 11:00:23] ← Received from EPS:
+<?xml version="1.0" ?>
+<ns2:GetRewardsRequest xmlns:ns2="http://www.pcats.org/schema/naxml/loyalty/v01" xmlns:ns4="http://www.pcats.org/schema/core/v01" xmlns:ns3="http://www.naxml.org/POSBO/Vocabulary/2003-10-16">
+        <ns2:RequestHeader>
+                <ns2:POSLoyaltyInterfaceVersion>1.1</ns2:POSLoyaltyInterfaceVersion>
+                <ns3:VendorName>VIPER:ruby2</ns3:VendorName>
+                <ns3:VendorModelVersion>9.03.00:Base 053.40.00</ns3:VendorModelVersion>
+                <ns2:POSSequenceID>1011762641246393</ns2:POSSequenceID>
+                <ns2:StoreLocationID>24354</ns2:StoreLocationID>
+                <ns2:LoyaltyOfflineFlag value="no"/>
+        </ns2:RequestHeader>
+        <ns2:LoyaltyID entryMethod="manual">5551234567</ns2:LoyaltyID>
+        <ns2:FuelPriceData/>
+        <ns2:TransactionData>
+                <ns2:TransactionHeader>
+                        <ns3:OutsideSalesFlag value="no"/>
+                        <ns3:RegisterID>1</ns3:RegisterID>
+                        <ns3:CashierID>8</ns3:CashierID>
+                        <ns2:TillID>001</ns2:TillID>
+                        <ns2:POSTransactionID>0101601358</ns2:POSTransactionID>
+                        <ns2:BusinessPeriod>
+                                <ns3:BusinessDate>2025-12-02</ns3:BusinessDate>
+                                <ns3:PrimaryReportPeriod interval="day">2872</ns3:PrimaryReportPeriod>
+                                <ns3:BeginDate>2025-12-01</ns3:BeginDate>
+                                <ns3:BeginTime>23:03:15-05:00</ns3:BeginTime>
+                                <ns3:EndDate>2100-01-01</ns3:EndDate>
+                                <ns3:EndTime>00:00:00-05:00</ns3:EndTime>
+                        </ns2:BusinessPeriod>
+                        <ns3:EventStartDate>2025-12-02</ns3:EventStartDate>
+                        <ns3:EventStartTime>11:00:20-05:00</ns3:EventStartTime>
+[2025-12-02 11:00:23] ============================================================
+[2025-12-02 11:00:23] 🛒 TRANSACTION ITEMS (3 items):
+[2025-12-02 11:00:23]   1. Line 1: UPC: 81003051808 | Qty 1.0 | Price $3.69 | Amount $3.69
+[2025-12-02 11:00:23]   2. Line 2: UPC: 81003051808 | Qty 1.0 | Price $3.69 | Amount $3.69
+[2025-12-02 11:00:23]   3. Line 3: UPC: 950 | Qty 1.0 | Price $0.44 | Amount $0.44
+[2025-12-02 11:00:23] ============================================================
+[2025-12-02 11:00:24] 📤 Calling promotion API: https://salmanloyalty.replit.app/api/pos/evaluate-promotions
+[2025-12-02 11:00:24]    Payload: {'pdiStoreNumber': '1310', 'items': [{'upc': '81003051808', 'quantity': 2.0, 'price': 3.69}, {'upc': '950', 'quantity': 1.0, 'price': 0.44}]}
+[2025-12-02 11:00:24] 📥 API Response: Status 200
+[2025-12-02 11:00:24]    Response data: {'promotions': [{'upc': '81003051808', 'promotionId': 5, 'itemGroupName': 'alani', 'discountType': 'multipack', 'quantity': 2, 'bundleCount': 1, 'promoPrice': '2.00', 'regularPrice': '7.38', 'discount': '5.38', 'description': '1 x (2 for $2.00)'}, {'upc': '81003051808', 'promotionId': 20, 'itemGroupName': 'alani', 'discountType': 'amountoff', 'quantity': 1, 'bundleCount': 2, 'promoPrice': '1.38', 'regularPrice': '7.38', 'discount': '6.00', 'description': '2 x ($3.00 off 1)'}]}
+[2025-12-02 11:00:24] → Sent to EPS:
+<?xml version="1.0" ?>
+<ns3:GetRewardsResponse xmlns:ns2="http://www.naxml.org/POSBO/Vocabulary/2003-10-16" xmlns:ns4="http://www.pcats.org/schema/core/v01" xmlns:ns3="http://www.pcats.org/schema/naxml/loyalty/v01">
+
+
+        <ns3:ResponseHeader overallResult="success">
+                <ns3:POSLoyaltyInterfaceVersion>1.0</ns3:POSLoyaltyInterfaceVersion>
+                <ns2:VendorName>BirdiesLoyalty</ns2:VendorName>
+                <ns2:VendorModelVersion>1.0</ns2:VendorModelVersion>
+                <ns3:POSSequenceID>1011762641246393</ns3:POSSequenceID>
+                <ns3:LoyaltySequenceID>LOY-81D856CA6B8F</ns3:LoyaltySequenceID>
+                <ns4:Result>
+                        <Success/>
+                </ns4:Result>
+        </ns3:ResponseHeader>
+
+
+        <ns3:LoyaltyIDValidFlag value="yes">******4567</ns3:LoyaltyIDValidFlag>
+
+
+        <ns3:RewardActions>
+
+
+
+                <ns3:AddReward>
+
+
+                        <ns3:LoyaltyRewardID>PROMO-5</ns3:LoyaltyRewardID>
+
+
+                        <ns3:InstantRewardFlag value="yes"/>
+
+
+                        <ns3:RewardTargetLineNumber>0</ns3:RewardTargetLineNumber>
+
+
+                        <ns3:RewardDiscountMethod>amountOff</ns3:RewardDiscountMethod>
+
+
+                        <ns3:RewardValue>5.38</ns3:RewardValue>
+
+
+                        <ns3:RewardReceiptDescShort>PROMO</ns3:RewardReceiptDescShort>
+
+
+                        <ns3:RewardReceiptDescLong>alani</ns3:RewardReceiptDescLong>
+
+
+                </ns3:AddReward>
+
+
+        </ns3:RewardActions>
+
+
+</ns3:GetRewardsResponse>
+
+[2025-12-02 11:00:26] ✓ Heartbeat sent to backend (Store 1310)
+[2025-12-02 11:00:42] ← Received from EPS:
+<?xml version="1.0" ?>
+<ns2:FinalizeRewardsRequest xmlns:ns2="http://www.pcats.org/schema/naxml/loyalty/v01" xmlns:ns4="http://www.pcats.org/schema/core/v01" xmlns:ns3="http://www.naxml.org/POSBO/Vocabulary/2003-10-16">
+        <ns2:RequestHeader>
+                <ns2:POSLoyaltyInterfaceVersion>1.1</ns2:POSLoyaltyInterfaceVersion>
+                <ns3:VendorName>VIPER:ruby2</ns3:VendorName>
+                <ns3:VendorModelVersion>9.03.00:Base 053.40.00</ns3:VendorModelVersion>
+                <ns2:POSSequenceID>1011762641246396</ns2:POSSequenceID>
+                <ns2:LoyaltySequenceID>LOY-81D856CA6B8F</ns2:LoyaltySequenceID>
+                <ns2:StoreLocationID>24354</ns2:StoreLocationID>
+                <ns2:LoyaltyOfflineFlag value="no"/>
+        </ns2:RequestHeader>
+        <ns2:LoyaltyID entryMethod="manual">5551234567</ns2:LoyaltyID>
+        <ns2:TransactionData>
+                <ns2:TransactionHeader>
+                        <ns3:OutsideSalesFlag value="no"/>
+                        <ns3:RegisterID>1</ns3:RegisterID>
+                        <ns3:CashierID>8</ns3:CashierID>
+                        <ns2:TillID>001</ns2:TillID>
+                        <ns2:POSTransactionID>0101601358</ns2:POSTransactionID>
+                        <ns2:BusinessPeriod>
+                                <ns3:BusinessDate>2025-12-02</ns3:BusinessDate>
+                                <ns3:PrimaryReportPeriod interval="day">2872</ns3:PrimaryReportPeriod>
+                                <ns3:BeginDate>2025-12-01</ns3:BeginDate>
+                                <ns3:BeginTime>23:03:15-05:00</ns3:BeginTime>
+                                <ns3:EndDate>2100-01-01</ns3:EndDate>
+                                <ns3:EndTime>00:00:00-05:00</ns3:EndTime>
+                        </ns2:BusinessPeriod>
+                        <ns3:EventStartDate>2025-12-02</ns3:EventStartDate>
+                        <ns3:EventStartTime>11:00:39-05:00</ns3:EventStartTime>
+                                <ns2:TenderInfo entryMethod="other">
+                                        <ns3:TenderCode>cash</ns3:TenderCode>
+                                        <ns2:TenderSubCode>Other</ns2:TenderSubCode>
+                                        <ns3:TenderAmount currency="USD">2.44</ns3:TenderAmount>
+                                        <ns3:ChangeFlag value="no"/>
+                                </ns2:TenderInfo>
+                        </ns2:TransactionLine>
+                </ns2:TransactionDetailGroup>
+        </ns2:TransactionData>
+</ns2:FinalizeRewardsRequest>
+
+[2025-12-02 11:00:42] 📤 Finalizing transaction: store=1310, subtotal=$7.82, promoDiscount=$11.38
+[2025-12-02 11:00:42] ✓ Heartbeat sent to backend (Store 1310)
+[2025-12-02 11:00:43] → Sent to EPS:
+<?xml version="1.0" ?>
+<ns3:FinalizeRewardsResponse xmlns:ns2="http://www.naxml.org/POSBO/Vocabulary/2003-10-16" xmlns:ns4="http://www.pcats.org/schema/core/v01" xmlns:ns3="http://www.pcats.org/schema/naxml/loyalty/v01">
+
+
+        <ns3:ResponseHeader overallResult="success">
+                <ns3:POSLoyaltyInterfaceVersion>1.0</ns3:POSLoyaltyInterfaceVersion>
+                <ns2:VendorName>BirdiesLoyalty</ns2:VendorName>
+                <ns2:VendorModelVersion>1.0</ns2:VendorModelVersion>
+                <ns3:POSSequenceID>1011762641246396</ns3:POSSequenceID>
+                <ns3:LoyaltySequenceID>LOY-81D856CA6B8F</ns3:LoyaltySequenceID>
+                <ns4:Result>
+                        <Success/>
+                </ns4:Result>
+        </ns3:ResponseHeader>
+
+
+        <ns3:CustomerMessageData>
+
+
+                <ns3:ReceiptData>
+
+
+                        <ns3:ReceiptLine>Points Earned: 39 pts</ns3:ReceiptLine>
+
+
+                        <ns3:ReceiptLine>New Balance: 97 pts</ns3:ReceiptLine>
+
+
+                </ns3:ReceiptData>
+
+
+        </ns3:CustomerMessageData>
+
+
+</ns3:FinalizeRewardsResponse>
+
+[2025-12-02 11:00:57] ✓ Heartbeat sent to backend (Store 1310)
+[2025-12-02 11:01:13] ✓ Heartbeat sent to backend (Store 1310)
+[2025-12-02 11:01:28] ✓ Heartbeat sent to backend (Store 1310)
+[2025-12-02 11:01:44] ✓ Heartbeat sent to backend (Store 1310)
+[2025-12-02 11:02:00] ✓ Heartbeat sent to backend (Store 1310)
+[2025-12-02 11:02:15] ✓ Heartbeat sent to backend (Store 1310)
+[2025-12-02 11:02:31] ✓ Heartbeat sent to backend (Store 1310)
+[2025-12-02 11:02:46] ✓ Heartbeat sent to backend (Store 1310)
+[2025-12-02 11:03:02] ✓ Heartbeat sent to backend (Store 1310)
+[2025-12-02 11:03:17] ✓ Heartbeat sent to backend (Store 1310)
+[2025-12-02 11:03:33] ✓ Heartbeat sent to backend (Store 1310)
+[2025-12-02 11:03:43] EPS timeout: 192.168.15.135:39174
+[2025-12-02 11:03:43] Connection closed: 192.168.15.135:39174
+[2025-12-02 11:03:49] ✓ Heartbeat sent to backend (Store 1310)
+[2025-12-02 11:04:04] ✓ Heartbeat sent to backend (Store 1310)
+[2025-12-02 11:04:20] ✓ Heartbeat sent to backend (Store 1310)

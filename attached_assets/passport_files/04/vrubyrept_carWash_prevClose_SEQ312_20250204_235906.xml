@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VFI:Response xmlns:VFI="urn:vfi-sapphire:np.domain.2001-07-01"><VFI:Fault><faultCode>CGIPortal.InternalError</faultCode><faultString>CGIPortal Error</faultString><detail><e:vfiFault xmlns:e="urn:vfi-sapphire:np.domain.2001-07-01"><e:message>CarWashTotals 1738713548 not found</e:message></e:vfiFault></detail></VFI:Fault></VFI:Response>

@@ -1,0 +1,118 @@
+=========================================================
+BIRDIES SALES SYNC - BUILD INSTRUCTIONS
+=========================================================
+
+STEP 1: PREREQUISITES
+---------------------
+Install Python 3.8+ on your Windows PC
+Download from: https://www.python.org/downloads/
+
+During installation:
+☑ Check "Add Python to PATH"
+☑ Check "Install pip"
+
+
+STEP 2: EXTRACT FILES
+---------------------
+Extract this ZIP to a folder, e.g.:
+C:\BirdiesBuild\
+
+
+STEP 3: INSTALL DEPENDENCIES
+-----------------------------
+Open Command Prompt in the extracted folder:
+
+cd C:\BirdiesBuild\store_deployment
+pip install -r requirements.txt
+
+This installs:
+- requests (for HTTP communication)
+- cryptography (for password encryption)
+- pyinstaller (for building EXE)
+
+
+STEP 4: BUILD THE EXE
+----------------------
+Option A - Build EXE + Create Deployment Package (RECOMMENDED):
+  python build_exe.py --package
+
+Option B - Just Build EXE:
+  python build_exe.py
+
+Build takes 1-2 minutes...
+
+
+STEP 5: FIND YOUR DEPLOYMENT PACKAGE
+-------------------------------------
+After successful build:
+
+dist/BirdiesSalesSync.exe
+  → The standalone EXE (15-20 MB)
+
+deployment_packages/BirdiesSync_Universal_YYYYMMDD.zip
+  → Complete deployment package with EXE + NSSM + scripts
+  → This is what you deploy to stores!
+
+
+STEP 6: TEST LOCALLY
+---------------------
+cd dist
+BirdiesSalesSync.exe --setup
+
+Follow the setup wizard to configure a test store.
+
+
+STEP 7: DEPLOY TO STORES
+-------------------------
+1. Copy the deployment ZIP to store PC
+2. Extract to C:\BirdiesSync\
+3. Right-click INSTALL.bat → Run as Administrator
+4. Follow setup prompts
+5. Service installs and starts automatically!
+
+
+TROUBLESHOOTING
+---------------
+Build fails:
+  → Make sure Python 3.8+ is installed
+  → Run: pip install -r requirements.txt again
+  → Check for error messages
+
+PyInstaller not found:
+  → pip install pyinstaller
+
+Import errors:
+  → pip install requests cryptography
+
+File not found:
+  → Make sure you're in the store_deployment folder
+  → Check all .py files are present
+
+
+WHAT GETS BUILT
+---------------
+BirdiesSalesSync.exe
+  • Standalone Windows executable
+  • No Python installation needed on target PCs
+  • Includes all dependencies
+  • Works on Windows 10/11 and Server 2016+
+
+Deployment Package ZIP:
+  • BirdiesSalesSync.exe
+  • nssm.exe (auto-downloaded)
+  • INSTALL.bat
+  • UNINSTALL.bat
+  • download_nssm.py (backup)
+  • README.txt
+
+
+SUPPORT
+-------
+If you get errors during build, check:
+1. Python version: python --version (should be 3.8+)
+2. Pip version: pip --version
+3. All dependencies: pip list
+
+=========================================================
+Ready to build? Run: python build_exe.py --package
+=========================================================

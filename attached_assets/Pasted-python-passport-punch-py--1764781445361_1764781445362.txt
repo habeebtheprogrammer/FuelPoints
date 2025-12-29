@@ -1,0 +1,605 @@
+python passport_punch.py
+==============================
+==============================
+==============================
+GetLoyaltyOnlineStatusRequest>
+        <RequestHeader>
+                <POSLoyaltyInterfaceVersion>1.0</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>00-0^3417977^</POSSequenceID>
+                <LoyaltySequenceID/>
+                <StoreLocationID>24379</StoreLocationID>
+GetLoyaltyOnlineStatusRequest>
+GetLoyaltyOnlineStatusResponse>
+        <ResponseHeader>
+                <POSLoyaltyInterfaceVersion>1.0</POSLoyaltyInterfaceVersion>
+                <VendorName>DemoLoyalty</VendorName>
+                <VendorModelVersion>1.0</VendorModelVersion>
+                <POSSequenceID>00-0^3417977^</POSSequenceID>
+                <LoyaltySequenceID>LOY-B306BCEFA8FC</LoyaltySequenceID>
+GetLoyaltyOnlineStatusResponse>
+2</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>99-0^2974010^</POSSequenceID>
+                <LoyaltySequenceID/>
+                <StoreLocationID>24379</StoreLocationID>
+BusinessDate>
+PrimaryReportPeriod>
+SecondaryReportPeriod>
+                        <BeginDate>2025-01-23</BeginDate>
+BeginTime>
+EndTime>
+BusinessDate>
+PrimaryReportPeriod>
+SecondaryReportPeriod>
+                        <BeginDate>2025-01-24</BeginDate>
+BeginTime>
+EndTime>
+0</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>03-3417978</POSSequenceID>
+                <LoyaltySequenceID/>
+                <StoreLocationID>24379</StoreLocationID>
+FuelPositionID>
+0</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>07-3417979</POSSequenceID>
+                <LoyaltySequenceID/>
+                <StoreLocationID>24379</StoreLocationID>
+FuelPositionID>
+2</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>99-0^2974010^</POSSequenceID>
+                <LoyaltySequenceID/>
+                <StoreLocationID>24379</StoreLocationID>
+BusinessDate>
+PrimaryReportPeriod>
+SecondaryReportPeriod>
+                        <BeginDate>2025-01-23</BeginDate>
+BeginTime>
+EndTime>
+BusinessDate>
+PrimaryReportPeriod>
+SecondaryReportPeriod>
+                        <BeginDate>2025-01-24</BeginDate>
+BeginTime>
+EndTime>
+0</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>02-3417980</POSSequenceID>
+                <LoyaltySequenceID/>
+                <StoreLocationID>24379</StoreLocationID>
+FuelPositionID>
+0</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>02-0^3417981^</POSSequenceID>
+                <LoyaltySequenceID/>
+                <StoreLocationID>24379</StoreLocationID>
+GetLoyaltyOnlineStatusRequest>
+        <RequestHeader>
+                <POSLoyaltyInterfaceVersion>1.0</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>00-0^3417982^</POSSequenceID>
+                <LoyaltySequenceID/>
+                <StoreLocationID>24379</StoreLocationID>
+GetLoyaltyOnlineStatusRequest>
+GetLoyaltyOnlineStatusResponse>
+        <ResponseHeader>
+                <POSLoyaltyInterfaceVersion>1.0</POSLoyaltyInterfaceVersion>
+                <VendorName>DemoLoyalty</VendorName>
+                <VendorModelVersion>1.0</VendorModelVersion>
+                <POSSequenceID>00-0^3417982^</POSSequenceID>
+                <LoyaltySequenceID>LOY-CFDA3E241E5F</LoyaltySequenceID>
+GetLoyaltyOnlineStatusResponse>
+0</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>02-0^3417983^</POSSequenceID>
+                <LoyaltySequenceID/>
+                <StoreLocationID>24379</StoreLocationID>
+0</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>02-625^3417984^</POSSequenceID>
+                <LoyaltySequenceID/>
+                <StoreLocationID>24379</StoreLocationID>
+5551234567</LoyaltyID>
+POSTransactionID>
+                        <BusinessPeriod>
+                                <BusinessDate>2025-12-03</BusinessDate>
+PrimaryReportPeriod>
+SecondaryReportPeriod>
+                                <BeginDate>2025-12-03</BeginDate>
+BeginTime>
+EventStartDate>
+EventStartTime>
+POSCodeFormat>
+                                                <POSCode>810030518082</POSCode>
+MerchandiseCode>
+EntryMethod>
+                                        <ActualSalesPrice>3.69</ActualSalesPrice>
+                                        <RegularSellPrice>3.69</RegularSellPrice>
+SalesQuantity>
+                                        <SalesAmount>3.69</SalesAmount>
+TaxCollectedAmount>
+TaxableSalesAmount>
+                                        <TaxCollectedAmount>.22</TaxCollectedAmount>
+                                        <TaxableSalesRefundedAmount>0</TaxableSalesRefundedAmount>
+                                        <TaxRefundedAmount>0</TaxRefundedAmount>
+==============================
+==============================
+0</POSLoyaltyInterfaceVersion>
+                <VendorName>DemoLoyalty</VendorName>
+                <VendorModelVersion>1.0</VendorModelVersion>
+                <POSSequenceID>02-625^3417984^</POSSequenceID>
+                <LoyaltySequenceID>LOY-559ABF6C3591</LoyaltySequenceID>
+LoyaltyMemberID>
+
+
+        <PointsBalance>240</PointsBalance>
+2</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>99-0^2974010^</POSSequenceID>
+                <LoyaltySequenceID/>
+                <StoreLocationID>24379</StoreLocationID>
+BusinessDate>
+PrimaryReportPeriod>
+SecondaryReportPeriod>
+                        <BeginDate>2025-01-23</BeginDate>
+BeginTime>
+EndTime>
+BusinessDate>
+PrimaryReportPeriod>
+SecondaryReportPeriod>
+                        <BeginDate>2025-01-24</BeginDate>
+BeginTime>
+EndTime>
+0</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>04-3417985</POSSequenceID>
+                <LoyaltySequenceID/>
+                <StoreLocationID>24379</StoreLocationID>
+FuelPositionID>
+GetLoyaltyOnlineStatusRequest>
+        <RequestHeader>
+                <POSLoyaltyInterfaceVersion>1.0</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>00-0^3417986^</POSSequenceID>
+                <LoyaltySequenceID/>
+                <StoreLocationID>24379</StoreLocationID>
+GetLoyaltyOnlineStatusRequest>
+GetLoyaltyOnlineStatusResponse>
+        <ResponseHeader>
+                <POSLoyaltyInterfaceVersion>1.0</POSLoyaltyInterfaceVersion>
+                <VendorName>DemoLoyalty</VendorName>
+                <VendorModelVersion>1.0</VendorModelVersion>
+                <POSSequenceID>00-0^3417986^</POSSequenceID>
+                <LoyaltySequenceID>LOY-0B224D4F64FF</LoyaltySequenceID>
+GetLoyaltyOnlineStatusResponse>
+0</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>03-3417987</POSSequenceID>
+                <LoyaltySequenceID/>
+                <StoreLocationID>24379</StoreLocationID>
+0</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>02-625^3417988^</POSSequenceID>
+                <LoyaltySequenceID/>
+                <StoreLocationID>24379</StoreLocationID>
+5551234567</LoyaltyID>
+POSTransactionID>
+                        <BusinessPeriod>
+                                <BusinessDate>2025-12-03</BusinessDate>
+PrimaryReportPeriod>
+SecondaryReportPeriod>
+                                <BeginDate>2025-12-03</BeginDate>
+BeginTime>
+EventStartDate>
+EventStartTime>
+POSCodeFormat>
+                                                <POSCode>810030518082</POSCode>
+MerchandiseCode>
+EntryMethod>
+                                        <ActualSalesPrice>3.69</ActualSalesPrice>
+                                        <RegularSellPrice>3.69</RegularSellPrice>
+SalesQuantity>
+                                        <SalesAmount>3.69</SalesAmount>
+TaxCollectedAmount>
+TaxableSalesAmount>
+                                        <TaxCollectedAmount>.22</TaxCollectedAmount>
+                                        <TaxableSalesRefundedAmount>0</TaxableSalesRefundedAmount>
+                                        <TaxRefundedAmount>0</TaxRefundedAmount>
+==============================
+==============================
+0</POSLoyaltyInterfaceVersion>
+                <VendorName>DemoLoyalty</VendorName>
+                <VendorModelVersion>1.0</VendorModelVersion>
+                <POSSequenceID>02-625^3417988^</POSSequenceID>
+                <LoyaltySequenceID>LOY-F42E93EAFA3E</LoyaltySequenceID>
+LoyaltyMemberID>
+
+
+        <PointsBalance>240</PointsBalance>
+2</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>99-0^2974010^</POSSequenceID>
+                <LoyaltySequenceID/>
+                <StoreLocationID>24379</StoreLocationID>
+BusinessDate>
+PrimaryReportPeriod>
+SecondaryReportPeriod>
+                        <BeginDate>2025-01-23</BeginDate>
+BeginTime>
+EndTime>
+BusinessDate>
+PrimaryReportPeriod>
+SecondaryReportPeriod>
+                        <BeginDate>2025-01-24</BeginDate>
+BeginTime>
+EndTime>
+0</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>07-3417989</POSSequenceID>
+                <LoyaltySequenceID/>
+                <StoreLocationID>24379</StoreLocationID>
+0</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>02-625^3417990^</POSSequenceID>
+                <LoyaltySequenceID/>
+                <StoreLocationID>24379</StoreLocationID>
+5551234567</LoyaltyID>
+POSTransactionID>
+                        <BusinessPeriod>
+                                <BusinessDate>2025-12-03</BusinessDate>
+PrimaryReportPeriod>
+SecondaryReportPeriod>
+                                <BeginDate>2025-12-03</BeginDate>
+BeginTime>
+EventStartDate>
+EventStartTime>
+                        <EventEndDate>2025-12-03</EventEndDate>
+EventEndTime>
+POSCodeFormat>
+                                                <POSCode>810030518082</POSCode>
+MerchandiseCode>
+EntryMethod>
+                                        <ActualSalesPrice>3.69</ActualSalesPrice>
+                                        <RegularSellPrice>3.69</RegularSellPrice>
+SalesQuantity>
+                                        <SalesAmount>3.69</SalesAmount>
+TaxCollectedAmount>
+TaxableSalesAmount>
+                                        <TaxCollectedAmount>.22</TaxCollectedAmount>
+                                        <TaxableSalesRefundedAmount>0</TaxableSalesRefundedAmount>
+                                        <TaxRefundedAmount>0</TaxRefundedAmount>
+TenderSubCode>
+TenderAmount>
+0</POSLoyaltyInterfaceVersion>
+                <VendorName>DemoLoyalty</VendorName>
+                <VendorModelVersion>1.0</VendorModelVersion>
+                <POSSequenceID>02-625^3417990^</POSSequenceID>
+                <LoyaltySequenceID>LOY-F47C118F3508</LoyaltySequenceID>
+0</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>02-0^3417991^</POSSequenceID>
+                <LoyaltySequenceID>LOY-F47C118F3508</LoyaltySequenceID>
+                <StoreLocationID>24379</StoreLocationID>
+GetLoyaltyOnlineStatusRequest>
+        <RequestHeader>
+                <POSLoyaltyInterfaceVersion>1.0</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>00-0^3417992^</POSSequenceID>
+                <LoyaltySequenceID/>
+                <StoreLocationID>24379</StoreLocationID>
+GetLoyaltyOnlineStatusRequest>
+GetLoyaltyOnlineStatusResponse>
+        <ResponseHeader>
+                <POSLoyaltyInterfaceVersion>1.0</POSLoyaltyInterfaceVersion>
+                <VendorName>DemoLoyalty</VendorName>
+                <VendorModelVersion>1.0</VendorModelVersion>
+                <POSSequenceID>00-0^3417992^</POSSequenceID>
+                <LoyaltySequenceID>LOY-01302F64EA89</LoyaltySequenceID>
+GetLoyaltyOnlineStatusResponse>
+0</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>02-0^3417993^</POSSequenceID>
+                <LoyaltySequenceID/>
+                <StoreLocationID>24379</StoreLocationID>
+0</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>01-3417994</POSSequenceID>
+                <LoyaltySequenceID/>
+                <StoreLocationID>24379</StoreLocationID>
+FuelPositionID>
+2</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>99-0^2974010^</POSSequenceID>
+                <LoyaltySequenceID/>
+                <StoreLocationID>24379</StoreLocationID>
+BusinessDate>
+PrimaryReportPeriod>
+SecondaryReportPeriod>
+                        <BeginDate>2025-01-23</BeginDate>
+BeginTime>
+EndTime>
+BusinessDate>
+PrimaryReportPeriod>
+SecondaryReportPeriod>
+                        <BeginDate>2025-01-24</BeginDate>
+BeginTime>
+EndTime>
+0</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>03-0^3417995^</POSSequenceID>
+                <LoyaltySequenceID/>
+                <StoreLocationID>24379</StoreLocationID>
+0</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>03-6220^3417996^</POSSequenceID>
+                <LoyaltySequenceID/>
+                <StoreLocationID>24379</StoreLocationID>
+5551234567</LoyaltyID>
+POSTransactionID>
+                        <BusinessPeriod>
+                                <BusinessDate>2025-12-03</BusinessDate>
+PrimaryReportPeriod>
+SecondaryReportPeriod>
+                                <BeginDate>2025-12-03</BeginDate>
+BeginTime>
+EventStartDate>
+EventStartTime>
+POSCodeFormat>
+                                                <POSCode>810030518082</POSCode>
+MerchandiseCode>
+EntryMethod>
+                                        <ActualSalesPrice>3.69</ActualSalesPrice>
+                                        <RegularSellPrice>3.69</RegularSellPrice>
+SalesQuantity>
+                                        <SalesAmount>7.38</SalesAmount>
+TaxCollectedAmount>
+TaxableSalesAmount>
+                                        <TaxCollectedAmount>.44</TaxCollectedAmount>
+                                        <TaxableSalesRefundedAmount>0</TaxableSalesRefundedAmount>
+                                        <TaxRefundedAmount>0</TaxRefundedAmount>
+==============================
+==============================
+0</POSLoyaltyInterfaceVersion>
+                <VendorName>DemoLoyalty</VendorName>
+                <VendorModelVersion>1.0</VendorModelVersion>
+                <POSSequenceID>03-6220^3417996^</POSSequenceID>
+                <LoyaltySequenceID>LOY-B402EA37CFC0</LoyaltySequenceID>
+LoyaltyMemberID>
+
+
+        <PointsBalance>258</PointsBalance>
+GetLoyaltyOnlineStatusRequest>
+        <RequestHeader>
+                <POSLoyaltyInterfaceVersion>1.0</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>00-0^3417997^</POSSequenceID>
+                <LoyaltySequenceID/>
+                <StoreLocationID>24379</StoreLocationID>
+GetLoyaltyOnlineStatusRequest>
+GetLoyaltyOnlineStatusResponse>
+        <ResponseHeader>
+                <POSLoyaltyInterfaceVersion>1.0</POSLoyaltyInterfaceVersion>
+                <VendorName>DemoLoyalty</VendorName>
+                <VendorModelVersion>1.0</VendorModelVersion>
+                <POSSequenceID>00-0^3417997^</POSSequenceID>
+                <LoyaltySequenceID>LOY-4AFBD118D23D</LoyaltySequenceID>
+GetLoyaltyOnlineStatusResponse>
+0</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>02-0^3417998^</POSSequenceID>
+                <LoyaltySequenceID/>
+                <StoreLocationID>24379</StoreLocationID>
+2</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>99-0^2974010^</POSSequenceID>
+                <LoyaltySequenceID/>
+                <StoreLocationID>24379</StoreLocationID>
+BusinessDate>
+PrimaryReportPeriod>
+SecondaryReportPeriod>
+                        <BeginDate>2025-01-23</BeginDate>
+BeginTime>
+EndTime>
+BusinessDate>
+PrimaryReportPeriod>
+SecondaryReportPeriod>
+                        <BeginDate>2025-01-24</BeginDate>
+BeginTime>
+EndTime>
+0</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>02-0^3417999^</POSSequenceID>
+                <LoyaltySequenceID/>
+                <StoreLocationID>24379</StoreLocationID>
+0</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>03-6220^3418000^</POSSequenceID>
+                <LoyaltySequenceID/>
+                <StoreLocationID>24379</StoreLocationID>
+5551234567</LoyaltyID>
+POSTransactionID>
+                        <BusinessPeriod>
+                                <BusinessDate>2025-12-03</BusinessDate>
+PrimaryReportPeriod>
+SecondaryReportPeriod>
+                                <BeginDate>2025-12-03</BeginDate>
+BeginTime>
+EventStartDate>
+EventStartTime>
+                        <EventEndDate>2025-12-03</EventEndDate>
+EventEndTime>
+POSCodeFormat>
+                                                <POSCode>810030518082</POSCode>
+MerchandiseCode>
+EntryMethod>
+                                        <ActualSalesPrice>3.69</ActualSalesPrice>
+                                        <RegularSellPrice>3.69</RegularSellPrice>
+SalesQuantity>
+                                        <SalesAmount>7.38</SalesAmount>
+TaxCollectedAmount>
+TaxableSalesAmount>
+                                        <TaxCollectedAmount>.44</TaxCollectedAmount>
+                                        <TaxableSalesRefundedAmount>0</TaxableSalesRefundedAmount>
+                                        <TaxRefundedAmount>0</TaxRefundedAmount>
+TenderSubCode>
+TenderAmount>
+0</POSLoyaltyInterfaceVersion>
+                <VendorName>DemoLoyalty</VendorName>
+                <VendorModelVersion>1.0</VendorModelVersion>
+                <POSSequenceID>03-6220^3418000^</POSSequenceID>
+                <LoyaltySequenceID>LOY-B44275D1EC32</LoyaltySequenceID>
+0</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>03-0^3418001^</POSSequenceID>
+                <LoyaltySequenceID>LOY-B44275D1EC32</LoyaltySequenceID>
+                <StoreLocationID>24379</StoreLocationID>
+[2025-12-03 12:05:27] ← Received from POS:
+<?xml version="1.0" ?>
+<EndCustomerRequest>
+        <RequestHeader>
+                <POSLoyaltyInterfaceVersion>1.0</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>02-0^3418002^</POSSequenceID>
+                <LoyaltySequenceID/>
+                <StoreLocationID>24379</StoreLocationID>
+                <LoyaltyOfflineFlag value="no"/>
+        </RequestHeader>
+</EndCustomerRequest>
+
+[2025-12-03 12:05:27] ✓ Heartbeat sent to backend (Store 1340)
+[2025-12-03 12:05:28] ⚠ Unknown request type: EndCustomerRequest
+[2025-12-03 12:05:29] ← Received from POS:
+<?xml version="1.0" ?>
+<BeginCustomerRequest>
+        <RequestHeader>
+                <POSLoyaltyInterfaceVersion>1.0</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>02-0^3418003^</POSSequenceID>
+                <LoyaltySequenceID/>
+                <StoreLocationID>24379</StoreLocationID>
+                <LoyaltyOfflineFlag value="no"/>
+        </RequestHeader>
+        <OutsideSalesFlag value="no"/>
+        <RegisterID>2</RegisterID>
+</BeginCustomerRequest>
+
+[2025-12-03 12:05:29] ⚠ Unknown request type: BeginCustomerRequest
+[2025-12-03 12:05:29] ← Received from POS:
+2</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>99-0^2974010^</POSSequenceID>
+                <LoyaltySequenceID/>
+                <StoreLocationID>24379</StoreLocationID>
+BusinessDate>
+PrimaryReportPeriod>
+SecondaryReportPeriod>
+                        <BeginDate>2025-01-23</BeginDate>
+BeginTime>
+EndTime>
+BusinessDate>
+PrimaryReportPeriod>
+SecondaryReportPeriod>
+                        <BeginDate>2025-01-24</BeginDate>
+BeginTime>
+EndTime>
+                </BusinessPeriod>
+        </ToPeriod>
+</EndPeriodRequest>
+
+[2025-12-03 12:05:29] ⚠ Unknown request type: EndPeriodRequest
+[2025-12-03 12:05:30] ← Received from POS:
+<?xml version="1.0" ?>
+<GetLoyaltyOnlineStatusRequest>
+        <RequestHeader>
+                <POSLoyaltyInterfaceVersion>1.0</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>00-0^3418004^</POSSequenceID>
+                <LoyaltySequenceID/>
+                <StoreLocationID>24379</StoreLocationID>
+                <LoyaltyOfflineFlag value="no"/>
+        </RequestHeader>
+</GetLoyaltyOnlineStatusRequest>
+
+[2025-12-03 12:05:30] ✓ Responding to GetLoyaltyOnlineStatus - Loyalty is ONLINE
+[2025-12-03 12:05:30] → Sent to POS:
+<?xml version="1.0" ?>
+<GetLoyaltyOnlineStatusResponse>
+        <ResponseHeader>
+                <POSLoyaltyInterfaceVersion>1.0</POSLoyaltyInterfaceVersion>
+                <VendorName>DemoLoyalty</VendorName>
+                <VendorModelVersion>1.0</VendorModelVersion>
+                <POSSequenceID>00-0^3418004^</POSSequenceID>
+                <LoyaltySequenceID>LOY-9F842B314039</LoyaltySequenceID>
+        </ResponseHeader>
+        <PromptForLoyaltyFlag value="yes"/>
+</GetLoyaltyOnlineStatusResponse>
+
+[2025-12-03 12:05:39] ← Received from POS:
+<?xml version="1.0" ?>
+<EndCustomerRequest>
+        <RequestHeader>
+                <POSLoyaltyInterfaceVersion>1.0</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>02-3418005</POSSequenceID>
+                <LoyaltySequenceID/>
+                <StoreLocationID>24379</StoreLocationID>
+                <LoyaltyOfflineFlag value="no"/>
+        </RequestHeader>
+</EndCustomerRequest>
+
+[2025-12-03 12:05:39] ⚠ Unknown request type: EndCustomerRequest
+[2025-12-03 12:05:43] ✓ Heartbeat sent to backend (Store 1340)
+[2025-12-03 12:05:59] ✓ Heartbeat sent to backend (Store 1340)
+[2025-12-03 12:06:07] ← Received from POS:
+<?xml version="1.0" ?>
+<EndCustomerRequest>
+        <RequestHeader>
+                <POSLoyaltyInterfaceVersion>1.0</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>02-0^3418006^</POSSequenceID>
+                <LoyaltySequenceID/>
+                <StoreLocationID>24379</StoreLocationID>
+                <LoyaltyOfflineFlag value="no"/>
+        </RequestHeader>
+</EndCustomerRequest>
+
+[2025-12-03 12:06:07] ⚠ Unknown request type: EndCustomerRequest

@@ -1,0 +1,882 @@
+// salesReportsParser.ts
+// ---------------------------------------------
+// Typed parsing helpers for Sales Analytics JSON
+// ---------------------------------------------
+//
+// This module takes the raw JSON returned from your
+// REST endpoints and converts it into strongly-typed
+// structures that are easy to bind to tables / metric
+// cards in a front-end UI.
+
+// ---------- Shared Types ----------
+
+export type ReportId =
+  | 'dailyTotalSales'
+  | 'dailyFuelSales'
+  | 'fuelByGrade'
+  | 'departmentSales'
+  | 'aggregatedItems'
+  | 'unknownItems'
+  | 'storeSummary'
+  | 'fuelDispensers'
+  | 'transactionsOverview'
+  | 'transactionLineItems'
+  | 'loyaltyDetails'
+  | 'loyaltyOverview';
+
+export type DataType = 'string' | 'number' | 'currency' | 'date' | 'datetime';
+
+export interface ColumnDef<K extends string = string> {
+  /** Stable key used by the row objects */
+  id: K;
+  /** Human‑readable column title */
+  label: string;
+  /** Hint for rendering / formatting */
+  dataType?: DataType;
+}
+
+export interface TableReport<
+  Row extends Record<string, any> = Record<string, any>,
+  K extends keyof Row & string = keyof Row & string
+> {
+  kind: 'table';
+  reportId: ReportId;
+  columns: ColumnDef<K>[];
+  rows: Row[];
+}
+
+export interface MetricCard {
+  id: string;
+  label: string;
+  value: number;
+  dataType?: Exclude<DataType, 'date' | 'datetime'>;
+}
+
+export interface MetricsReport {
+  kind: 'metrics';
+  reportId: ReportId;
+  cards: MetricCard[];
+}
+
+export type ParsedReport = TableReport<any> | MetricsReport;
+
+// ---------- Row Shapes per Report ----------
+
+export interface DailyTotalSalesRow {
+  date: string;
+  fuelSales: number;
+  merchSales: number;
+  totalSales: number;
+}
+
+export interface DailyFuelSalesRow {
+  date: string;
+  volumeGallons: number;
+  amount: number;
+  discount: number;
+  netAmount: number;
+}
+
+export interface FuelByGradeRow {
+  /** Nullable because "Date" only appears in daily breakdown mode */
+  date: string | null;
+  gradeId: string;
+  gradeName: string;
+  volumeGallons: number;
+  amount: number;
+  discount: number;
+}
+
+export interface DepartmentSalesRow {
+  date: string;
+  deptCode: string;
+  departmentName: string;
+  quantity: number;
+  salesAmount: number;
+  transactions: number;
+}
+
+export interface AggregatedItemsRow {
+  date: string;
+  upc: string;
+  description: string;
+  quantity: number;
+  salesAmount: number;
+}
+
+export interface UnknownItemsRow {
+  store: string;
+  upc: string;
+  description: string;
+  timesSold: number;
+  totalQty: number;
+  totalRevenue: number;
+}
+
+export interface FuelDispenserRow {
+  pumpNumber: string;
+  count: number;
+  volumeGallons: number;
+  amount: number;
+}
+
+export interface TransactionsOverviewRow {
+  transactionId: string;
+  dateTime: string;
+  fuel: number;
+  merch: number;
+  total: number;
+}
+
+export interface TransactionLineItemRow {
+  transactionId: string;
+  type: 'fuel' | 'merchandise' | string;
+  upcOrPump: string;
+  description: string;
+  quantity: number;
+  amount: number;
+}
+
+export interface LoyaltyDetailsRow {
+  transactionId: string;
+  promotionId: string;
+  promotionAmount: number;
+}
+
+// ---------- Internal Helpers ----------
+
+type AnyRecord = Record<string, any>;
+type NumericLike = string | number | null | undefined;
+
+/**
+ * Normalize the common API response shapes to an array of records.
+ * You can adjust this if your API uses a different envelope.
+ */
+function asArray(raw: unknown): AnyRecord[] {
+  if (Array.isArray(raw)) {
+    return raw as AnyRecord[];
+  }
+
+  if (raw && typeof raw === 'object') {
+    const container = raw as any;
+    const candidate =
+      container.data ??
+      container.items ??
+      container.rows ??
+      container.result ??
+      container.results;
+
+    if (Array.isArray(candidate)) {
+      return candidate as AnyRecord[];
+    }
+  }
+
+  throw new Error(
+    'Expected an array of rows or an object with a data/items/rows/result/results array'
+  );
+}
+
+/** Best‑effort numeric coercion that accepts numbers or numeric strings (optionally with $ or commas). */
+function toNumber(value: NumericLike): number {
+  if (value === null || value === undefined || value === '') {
+    return 0;
+  }
+  if (typeof value === 'number') {
+    return value;
+  }
+  const cleaned = String(value).replace(/[^0-9.\-]/g, '');
+  const n = parseFloat(cleaned);
+  return Number.isNaN(n) ? 0 : n;
+}
+
+function getField(obj: AnyRecord, ...keys: string[]): unknown {
+  for (const key of keys) {
+    if (key in obj) {
+      return (obj as any)[key];
+    }
+  }
+  return undefined;
+}
+
+function getStringField(obj: AnyRecord, ...keys: string[]): string {
+  const raw = getField(obj, ...keys);
+  if (raw === null || raw === undefined) {
+    return '';
+  }
+  return String(raw);
+}
+
+function getNumberField(obj: AnyRecord, ...keys: string[]): number {
+  const raw = getField(obj, ...keys) as NumericLike;
+  return toNumber(raw);
+}
+
+/** For metric‑style endpoints that may return either an object or a single‑row array. */
+function asObject(raw: unknown): AnyRecord {
+  if (raw && typeof raw === 'object' && !Array.isArray(raw)) {
+    return raw as AnyRecord;
+  }
+  if (Array.isArray(raw) && raw.length > 0) {
+    const first = raw[0];
+    if (first && typeof first === 'object') {
+      return first as AnyRecord;
+    }
+  }
+  return {};
+}
+
+// ---------- Column Configs ----------
+
+const dailyTotalSalesColumns: ColumnDef<keyof DailyTotalSalesRow & string>[] = [
+  { id: 'date', label: 'Date', dataType: 'date' },
+  { id: 'fuelSales', label: 'Fuel Sales', dataType: 'currency' },
+  { id: 'merchSales', label: 'Merch Sales', dataType: 'currency' },
+  { id: 'totalSales', label: 'Total Sales', dataType: 'currency' },
+];
+
+const dailyFuelSalesColumns: ColumnDef<keyof DailyFuelSalesRow & string>[] = [
+  { id: 'date', label: 'Date', dataType: 'date' },
+  { id: 'volumeGallons', label: 'Volume (gal)', dataType: 'number' },
+  { id: 'amount', label: 'Amount', dataType: 'currency' },
+  { id: 'discount', label: 'Discount', dataType: 'currency' },
+  { id: 'netAmount', label: 'Net Amount', dataType: 'currency' },
+];
+
+const fuelByGradeBaseColumns: ColumnDef<Exclude<keyof FuelByGradeRow, 'date'> & string>[] = [
+  { id: 'gradeId', label: 'Grade ID', dataType: 'string' },
+  { id: 'gradeName', label: 'Grade Name', dataType: 'string' },
+  { id: 'volumeGallons', label: 'Volume (gal)', dataType: 'number' },
+  { id: 'amount', label: 'Amount', dataType: 'currency' },
+  { id: 'discount', label: 'Discount', dataType: 'currency' },
+];
+
+const departmentSalesColumns: ColumnDef<keyof DepartmentSalesRow & string>[] = [
+  { id: 'date', label: 'Date', dataType: 'date' },
+  { id: 'deptCode', label: 'Dept Code', dataType: 'string' },
+  { id: 'departmentName', label: 'Department Name', dataType: 'string' },
+  { id: 'quantity', label: 'Quantity', dataType: 'number' },
+  { id: 'salesAmount', label: 'Sales Amount', dataType: 'currency' },
+  { id: 'transactions', label: 'Transactions', dataType: 'number' },
+];
+
+const aggregatedItemsColumns: ColumnDef<keyof AggregatedItemsRow & string>[] = [
+  { id: 'date', label: 'Date', dataType: 'date' },
+  { id: 'upc', label: 'UPC', dataType: 'string' },
+  { id: 'description', label: 'Description', dataType: 'string' },
+  { id: 'quantity', label: 'Quantity', dataType: 'number' },
+  { id: 'salesAmount', label: 'Sales Amount', dataType: 'currency' },
+];
+
+const unknownItemsColumns: ColumnDef<keyof UnknownItemsRow & string>[] = [
+  { id: 'store', label: 'Store', dataType: 'string' },
+  { id: 'upc', label: 'UPC', dataType: 'string' },
+  { id: 'description', label: 'Description', dataType: 'string' },
+  { id: 'timesSold', label: 'Times Sold', dataType: 'number' },
+  { id: 'totalQty', label: 'Total Qty', dataType: 'number' },
+  { id: 'totalRevenue', label: 'Total Revenue', dataType: 'currency' },
+];
+
+const fuelDispenserColumns: ColumnDef<keyof FuelDispenserRow & string>[] = [
+  { id: 'pumpNumber', label: 'Pump #', dataType: 'string' },
+  { id: 'count', label: 'Count', dataType: 'number' },
+  { id: 'volumeGallons', label: 'Volume (gal)', dataType: 'number' },
+  { id: 'amount', label: 'Amount', dataType: 'currency' },
+];
+
+const transactionsOverviewColumns: ColumnDef<keyof TransactionsOverviewRow & string>[] = [
+  { id: 'transactionId', label: 'Transaction ID', dataType: 'string' },
+  { id: 'dateTime', label: 'Date/Time', dataType: 'datetime' },
+  { id: 'fuel', label: 'Fuel', dataType: 'currency' },
+  { id: 'merch', label: 'Merch', dataType: 'currency' },
+  { id: 'total', label: 'Total', dataType: 'currency' },
+];
+
+const transactionLineItemsColumns: ColumnDef<keyof TransactionLineItemRow & string>[] = [
+  { id: 'transactionId', label: 'Transaction ID', dataType: 'string' },
+  { id: 'type', label: 'Type', dataType: 'string' },
+  { id: 'upcOrPump', label: 'UPC/Pump', dataType: 'string' },
+  { id: 'description', label: 'Description', dataType: 'string' },
+  { id: 'quantity', label: 'Quantity', dataType: 'number' },
+  { id: 'amount', label: 'Amount', dataType: 'currency' },
+];
+
+const loyaltyDetailsColumns: ColumnDef<keyof LoyaltyDetailsRow & string>[] = [
+  { id: 'transactionId', label: 'Transaction ID', dataType: 'string' },
+  { id: 'promotionId', label: 'Promotion ID', dataType: 'string' },
+  { id: 'promotionAmount', label: 'Promotion Amount', dataType: 'currency' },
+];
+
+// ---------- Row Mapping Functions ----------
+
+function mapDailyTotalSalesRow(row: AnyRecord): DailyTotalSalesRow {
+  return {
+    date: getStringField(row, 'date', 'Date', 'businessDate'),
+    fuelSales: getNumberField(
+      row,
+      'fuelSales',
+      'fuel_sales',
+      'FuelSales',
+      'Fuel Sales'
+    ),
+    merchSales: getNumberField(
+      row,
+      'merchSales',
+      'merch_sales',
+      'MerchSales',
+      'Merch Sales',
+      'merchandiseSales'
+    ),
+    totalSales: getNumberField(
+      row,
+      'totalSales',
+      'total_sales',
+      'TotalSales',
+      'Total Sales'
+    ),
+  };
+}
+
+function mapDailyFuelSalesRow(row: AnyRecord): DailyFuelSalesRow {
+  return {
+    date: getStringField(row, 'date', 'Date', 'businessDate'),
+    volumeGallons: getNumberField(
+      row,
+      'volumeGallons',
+      'volume_gal',
+      'volume',
+      'Volume',
+      'Volume (gal)'
+    ),
+    amount: getNumberField(row, 'amount', 'Amount', 'grossAmount', 'gross_amount'),
+    discount: getNumberField(row, 'discount', 'Discount'),
+    netAmount: getNumberField(
+      row,
+      'netAmount',
+      'net_amount',
+      'NetAmount',
+      'Net Amount'
+    ),
+  };
+}
+
+function mapFuelByGradeRow(row: AnyRecord): FuelByGradeRow {
+  const dateStr = getStringField(row, 'date', 'Date', 'businessDate');
+  return {
+    date: dateStr || null,
+    gradeId: getStringField(
+      row,
+      'gradeId',
+      'grade_id',
+      'gradeID',
+      'GradeID',
+      'Grade Id'
+    ),
+    gradeName: getStringField(
+      row,
+      'gradeName',
+      'grade_name',
+      'GradeName',
+      'Grade Name'
+    ),
+    volumeGallons: getNumberField(
+      row,
+      'volumeGallons',
+      'volume_gal',
+      'volume',
+      'Volume',
+      'Volume (gal)'
+    ),
+    amount: getNumberField(row, 'amount', 'Amount'),
+    discount: getNumberField(row, 'discount', 'Discount'),
+  };
+}
+
+function mapDepartmentSalesRow(row: AnyRecord): DepartmentSalesRow {
+  return {
+    date: getStringField(row, 'date', 'Date', 'businessDate'),
+    deptCode: getStringField(row, 'deptCode', 'DeptCode', 'Dept Code', 'dept_code'),
+    departmentName: getStringField(
+      row,
+      'departmentName',
+      'DepartmentName',
+      'Department Name'
+    ),
+    quantity: getNumberField(row, 'quantity', 'Quantity', 'qty', 'Qty'),
+    salesAmount: getNumberField(
+      row,
+      'salesAmount',
+      'sales_amount',
+      'SalesAmount',
+      'Sales Amount'
+    ),
+    transactions: getNumberField(
+      row,
+      'transactions',
+      'Transactions',
+      'txnCount',
+      'TxnCount'
+    ),
+  };
+}
+
+function mapAggregatedItemsRow(row: AnyRecord): AggregatedItemsRow {
+  return {
+    date: getStringField(row, 'date', 'Date', 'businessDate'),
+    upc: getStringField(row, 'upc', 'UPC'),
+    description: getStringField(row, 'description', 'Description', 'desc'),
+    quantity: getNumberField(row, 'quantity', 'Quantity', 'qty', 'Qty'),
+    salesAmount: getNumberField(
+      row,
+      'salesAmount',
+      'sales_amount',
+      'SalesAmount',
+      'Sales Amount'
+    ),
+  };
+}
+
+function mapUnknownItemsRow(row: AnyRecord): UnknownItemsRow {
+  return {
+    store: getStringField(row, 'store', 'Store', 'storeId', 'store_id'),
+    upc: getStringField(row, 'upc', 'UPC'),
+    description: getStringField(row, 'description', 'Description', 'desc'),
+    timesSold: getNumberField(row, 'timesSold', 'TimesSold', 'Times Sold'),
+    totalQty: getNumberField(
+      row,
+      'totalQty',
+      'TotalQty',
+      'Total Qty',
+      'total_quantity',
+      'TotalQuantity'
+    ),
+    totalRevenue: getNumberField(
+      row,
+      'totalRevenue',
+      'TotalRevenue',
+      'Total Revenue'
+    ),
+  };
+}
+
+function mapFuelDispenserRow(row: AnyRecord): FuelDispenserRow {
+  return {
+    pumpNumber: getStringField(
+      row,
+      'pumpNumber',
+      'pumpNo',
+      'PumpNo',
+      'Pump #',
+      'pump',
+      'pump_id',
+      'fuelingPositionId'
+    ),
+    count: getNumberField(row, 'count', 'Count'),
+    volumeGallons: getNumberField(
+      row,
+      'volumeGallons',
+      'volume_gal',
+      'volume',
+      'Volume',
+      'Volume (gal)'
+    ),
+    amount: getNumberField(row, 'amount', 'Amount'),
+  };
+}
+
+function mapTransactionsOverviewRow(row: AnyRecord): TransactionsOverviewRow {
+  return {
+    transactionId: getStringField(
+      row,
+      'transactionId',
+      'TransactionId',
+      'Transaction ID',
+      'txnId',
+      'TxnId'
+    ),
+    dateTime: getStringField(
+      row,
+      'dateTime',
+      'DateTime',
+      'date_time',
+      'Date/Time',
+      'timestamp'
+    ),
+    fuel: getNumberField(row, 'fuel', 'Fuel'),
+    merch: getNumberField(row, 'merch', 'Merch', 'merchandise'),
+    total: getNumberField(row, 'total', 'Total', 'ticketTotal', 'ticket_total'),
+  };
+}
+
+function mapTransactionLineItemRow(row: AnyRecord): TransactionLineItemRow {
+  return {
+    transactionId: getStringField(
+      row,
+      'transactionId',
+      'TransactionId',
+      'Transaction ID',
+      'txnId',
+      'TxnId'
+    ),
+    type: (getStringField(row, 'type', 'Type') as
+      | 'fuel'
+      | 'merchandise'
+      | string) || '',
+    upcOrPump: getStringField(
+      row,
+      'upc',
+      'UPC',
+      'pumpNumber',
+      'Pump #',
+      'pump',
+      'pump_id',
+      'fuelingPositionId'
+    ),
+    description: getStringField(row, 'description', 'Description', 'desc'),
+    quantity: getNumberField(row, 'quantity', 'Quantity', 'qty', 'Qty'),
+    amount: getNumberField(row, 'amount', 'Amount'),
+  };
+}
+
+function mapLoyaltyDetailsRow(row: AnyRecord): LoyaltyDetailsRow {
+  return {
+    transactionId: getStringField(
+      row,
+      'transactionId',
+      'TransactionId',
+      'Transaction ID',
+      'txnId',
+      'TxnId'
+    ),
+    promotionId: getStringField(
+      row,
+      'promotionId',
+      'PromotionId',
+      'Promotion ID'
+    ),
+    promotionAmount: getNumberField(
+      row,
+      'promotionAmount',
+      'PromotionAmount',
+      'Promotion Amount'
+    ),
+  };
+}
+
+// ---------- Per‑Endpoint Public Parsers ----------
+
+export function parseDailyTotalSales(
+  raw: unknown
+): TableReport<DailyTotalSalesRow> {
+  const rows = asArray(raw).map(mapDailyTotalSalesRow);
+  return {
+    kind: 'table',
+    reportId: 'dailyTotalSales',
+    columns: dailyTotalSalesColumns,
+    rows,
+  };
+}
+
+export function parseDailyFuelSales(
+  raw: unknown
+): TableReport<DailyFuelSalesRow> {
+  const rows = asArray(raw).map(mapDailyFuelSalesRow);
+  return {
+    kind: 'table',
+    reportId: 'dailyFuelSales',
+    columns: dailyFuelSalesColumns,
+    rows,
+  };
+}
+
+export function parseFuelByGrade(
+  raw: unknown
+): TableReport<FuelByGradeRow> {
+  const rows = asArray(raw).map(mapFuelByGradeRow);
+
+  // Include Date column only when at least one row has a non‑empty date
+  const includeDate = rows.some((r) => !!r.date);
+
+  const dateColumn: ColumnDef<'date'> = {
+    id: 'date',
+    label: 'Date',
+    dataType: 'date',
+  };
+
+  const columns: ColumnDef<string>[] = includeDate
+    ? [dateColumn, ...fuelByGradeBaseColumns]
+    : [...fuelByGradeBaseColumns];
+
+  return {
+    kind: 'table',
+    reportId: 'fuelByGrade',
+    columns: columns as ColumnDef<keyof FuelByGradeRow & string>[],
+    rows,
+  };
+}
+
+export function parseDepartmentSales(
+  raw: unknown
+): TableReport<DepartmentSalesRow> {
+  const rows = asArray(raw).map(mapDepartmentSalesRow);
+  return {
+    kind: 'table',
+    reportId: 'departmentSales',
+    columns: departmentSalesColumns,
+    rows,
+  };
+}
+
+export function parseAggregatedItems(
+  raw: unknown
+): TableReport<AggregatedItemsRow> {
+  const rows = asArray(raw).map(mapAggregatedItemsRow);
+  return {
+    kind: 'table',
+    reportId: 'aggregatedItems',
+    columns: aggregatedItemsColumns,
+    rows,
+  };
+}
+
+export function parseUnknownItems(
+  raw: unknown
+): TableReport<UnknownItemsRow> {
+  const rows = asArray(raw).map(mapUnknownItemsRow);
+  return {
+    kind: 'table',
+    reportId: 'unknownItems',
+    columns: unknownItemsColumns,
+    rows,
+  };
+}
+
+export function parseFuelDispensers(
+  raw: unknown
+): TableReport<FuelDispenserRow> {
+  const rows = asArray(raw).map(mapFuelDispenserRow);
+  return {
+    kind: 'table',
+    reportId: 'fuelDispensers',
+    columns: fuelDispenserColumns,
+    rows,
+  };
+}
+
+export function parseTransactionsOverview(
+  raw: unknown
+): TableReport<TransactionsOverviewRow> {
+  const rows = asArray(raw).map(mapTransactionsOverviewRow);
+  return {
+    kind: 'table',
+    reportId: 'transactionsOverview',
+    columns: transactionsOverviewColumns,
+    rows,
+  };
+}
+
+export function parseTransactionLineItems(
+  raw: unknown
+): TableReport<TransactionLineItemRow> {
+  const rows = asArray(raw).map(mapTransactionLineItemRow);
+  return {
+    kind: 'table',
+    reportId: 'transactionLineItems',
+    columns: transactionLineItemsColumns,
+    rows,
+  };
+}
+
+export function parseLoyaltyDetails(
+  raw: unknown
+): TableReport<LoyaltyDetailsRow> {
+  const rows = asArray(raw).map(mapLoyaltyDetailsRow);
+  return {
+    kind: 'table',
+    reportId: 'loyaltyDetails',
+    columns: loyaltyDetailsColumns,
+    rows,
+  };
+}
+
+// ----- Metric‑Style Reports (cards instead of tables) -----
+
+export function parseStoreSummary(raw: unknown): MetricsReport {
+  const obj = asObject(raw);
+
+  const cards: MetricCard[] = [
+    {
+      id: 'voidsCount',
+      label: 'Voids (Count)',
+      value: getNumberField(
+        obj,
+        'voidsCount',
+        'VoidsCount',
+        'voids_count',
+        'voidCount',
+        'VoidCount'
+      ),
+      dataType: 'number',
+    },
+    {
+      id: 'voidsAmount',
+      label: 'Voids (Amount)',
+      value: getNumberField(
+        obj,
+        'voidsAmount',
+        'VoidsAmount',
+        'voids_amount',
+        'voidAmount',
+        'VoidAmount'
+      ),
+      dataType: 'currency',
+    },
+    {
+      id: 'noSalesCount',
+      label: 'No Sales (Count)',
+      value: getNumberField(
+        obj,
+        'noSalesCount',
+        'NoSalesCount',
+        'no_sales_count',
+        'noSales',
+        'NoSales'
+      ),
+      dataType: 'number',
+    },
+    {
+      id: 'errorCorrectsCount',
+      label: 'Error Corrects (Count)',
+      value: getNumberField(
+        obj,
+        'errorCorrectsCount',
+        'ErrorCorrectsCount',
+        'error_corrects_count'
+      ),
+      dataType: 'number',
+    },
+    {
+      id: 'errorCorrectsAmount',
+      label: 'Error Corrects (Amount)',
+      value: getNumberField(
+        obj,
+        'errorCorrectsAmount',
+        'ErrorCorrectsAmount',
+        'error_corrects_amount'
+      ),
+      dataType: 'currency',
+    },
+  ];
+
+  return {
+    kind: 'metrics',
+    reportId: 'storeSummary',
+    cards,
+  };
+}
+
+export function parseLoyaltyOverview(raw: unknown): MetricsReport {
+  const obj = asObject(raw);
+
+  const cards: MetricCard[] = [
+    {
+      id: 'totalPromotions',
+      label: 'Total Promotions',
+      value: getNumberField(
+        obj,
+        'totalPromotions',
+        'TotalPromotions',
+        'total_promotions'
+      ),
+      dataType: 'number',
+    },
+    {
+      id: 'totalPromoAmount',
+      label: 'Total Promo Amount',
+      value: getNumberField(
+        obj,
+        'totalPromoAmount',
+        'TotalPromoAmount',
+        'total_promo_amount'
+      ),
+      dataType: 'currency',
+    },
+    {
+      id: 'averagePromoAmount',
+      label: 'Average Promo Amount',
+      value: getNumberField(
+        obj,
+        'averagePromoAmount',
+        'AveragePromoAmount',
+        'avgPromoAmount',
+        'avg_promo_amount'
+      ),
+      dataType: 'currency',
+    },
+  ];
+
+  return {
+    kind: 'metrics',
+    reportId: 'loyaltyOverview',
+    cards,
+  };
+}
+
+// ---------- Dispatcher Helper ----------
+
+/**
+ * Convenience function that picks the correct parser based on endpoint path.
+ *
+ * Example usage:
+ *
+ *   const res = await fetch('/api/sales/reports/daily-total-sales');
+ *   const json = await res.json();
+ *   const parsed = parseReportFromEndpoint(res.url, json);
+ */
+export function parseReportFromEndpoint(
+  endpoint: string,
+  raw: unknown
+): ParsedReport {
+  // Strip query string and host so we can match on the path only
+  const path = endpoint.split('?')[0];
+
+  if (path.endsWith('/daily-total-sales')) {
+    return parseDailyTotalSales(raw);
+  }
+  if (path.endsWith('/daily-fuel-sales')) {
+    return parseDailyFuelSales(raw);
+  }
+  if (path.endsWith('/fuel-by-grade')) {
+    return parseFuelByGrade(raw);
+  }
+  if (path.endsWith('/department-sales')) {
+    return parseDepartmentSales(raw);
+  }
+  if (path.endsWith('/aggregated-items')) {
+    return parseAggregatedItems(raw);
+  }
+  if (path.endsWith('/unknown-items')) {
+    return parseUnknownItems(raw);
+  }
+  if (path.endsWith('/store-summary')) {
+    return parseStoreSummary(raw);
+  }
+  if (path.endsWith('/fuel-dispensers')) {
+    return parseFuelDispensers(raw);
+  }
+  if (path.endsWith('/transactions')) {
+    return parseTransactionsOverview(raw);
+  }
+  if (path.endsWith('/transaction-line-items')) {
+    return parseTransactionLineItems(raw);
+  }
+  if (path.endsWith('/loyalty-details')) {
+    return parseLoyaltyDetails(raw);
+  }
+  if (path.endsWith('/loyalty-overview')) {
+    return parseLoyaltyOverview(raw);
+  }
+
+  throw new Error(`No parser configured for endpoint: ${endpoint}`);
+}
+
+// ---------- End of file ----------

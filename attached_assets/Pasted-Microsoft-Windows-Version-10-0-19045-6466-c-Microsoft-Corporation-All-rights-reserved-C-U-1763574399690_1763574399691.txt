@@ -1,0 +1,228 @@
+Microsoft Windows [Version 10.0.19045.6466]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\Landover Sunoco>cd downloads
+
+C:\Users\Landover Sunoco\Downloads>cd store_deployment
+
+C:\Users\Landover Sunoco\Downloads\store_deployment>cd store_deployment
+
+C:\Users\Landover Sunoco\Downloads\store_deployment\store_deployment>python main.py
+12:41:53 - INFO - ================================================================================
+12:41:53 - INFO - Birdies Sales Data Collection - Starting
+12:41:53 - INFO - Store: 1200
+12:41:53 - INFO - Timestamp: 2025-11-19 12:41:53
+12:41:53 - INFO - ================================================================================
+12:41:53 - INFO - Testing API connection...
+12:41:53 - ERROR - API connection test failed: HTTPSConnectionPool(host='salmanloyalty.replit.app.com', port=443): Max retries exceeded with url: /api/summary (Caused by SSLError(SSLCertVerificationError(1, "[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid for 'salmanloyalty.replit.app.com'. (_ssl.c:1000)")))
+12:41:53 - ERROR - Cannot connect to API - aborting
+
+C:\Users\Landover Sunoco\Downloads\store_deployment\store_deployment>python main.py
+12:42:48 - INFO - ================================================================================
+12:42:48 - INFO - Birdies Sales Data Collection - Starting
+12:42:48 - INFO - Store: 1200
+12:42:48 - INFO - Timestamp: 2025-11-19 12:42:48
+12:42:48 - INFO - ================================================================================
+12:42:48 - INFO - Testing API connection...
+12:42:48 - INFO - API connection test successful
+12:42:48 - INFO - Step 1: Scanning network folders for XML files...
+12:42:48 - INFO - Starting folder scan...
+12:42:48 - INFO - Scanned main folder: found 30 XML files
+12:42:48 - INFO - Scanned PJR folder: found 6 CPJR files
+12:42:48 - INFO - Total files found: 36
+12:42:48 - INFO - Found 36 XML files in network folders
+12:42:48 - INFO - Step 2: Organizing files into date folders...
+12:42:48 - INFO - Copied FGM34025111323580013472179.xml to 2025-11-13 folder
+12:42:48 - INFO - Copied FGM34025111323580113472180.xml to 2025-11-13 folder
+12:42:49 - INFO - Copied FGM34025111323580313472181.xml to 2025-11-13 folder
+12:42:49 - INFO - Copied FGM34025111423555813476253.xml to 2025-11-14 folder
+12:42:49 - INFO - Copied FGM34025111423555913476254.xml to 2025-11-14 folder
+12:42:49 - INFO - Copied FGM34025111423560113476255.xml to 2025-11-14 folder
+12:42:49 - INFO - Copied FGM34025111523482113479850.xml to 2025-11-15 folder
+12:42:49 - INFO - Copied FGM34025111523482213479851.xml to 2025-11-15 folder
+12:42:49 - INFO - Copied FGM34025111523482513479852.xml to 2025-11-15 folder
+12:42:49 - INFO - Copied FGM34025111623344113482943.xml to 2025-11-16 folder
+12:42:49 - INFO - Copied FGM34025111623344213482944.xml to 2025-11-16 folder
+12:42:49 - INFO - Copied FGM34025111623344413482945.xml to 2025-11-16 folder
+12:42:49 - INFO - Copied FGM34025111723595613486504.xml to 2025-11-17 folder
+12:42:49 - INFO - Copied FGM34025111723595713486505.xml to 2025-11-17 folder
+12:42:49 - INFO - Copied FGM34025111723595913486506.xml to 2025-11-17 folder
+12:42:49 - INFO - Copied FGM34025111823434613489780.xml to 2025-11-18 folder
+12:42:49 - INFO - Copied FGM34025111823434713489781.xml to 2025-11-18 folder
+12:42:50 - INFO - Copied FGM34025111823434913489782.xml to 2025-11-18 folder
+12:42:50 - INFO - Copied ISM34025111323580513472183.xml to 2025-11-13 folder
+12:42:50 - INFO - Copied ISM34025111423560313476257.xml to 2025-11-14 folder
+12:42:50 - INFO - Copied ISM34025111523482713479854.xml to 2025-11-15 folder
+12:42:50 - INFO - Copied ISM34025111623344613482947.xml to 2025-11-16 folder
+12:42:50 - INFO - Copied ISM34025111800000313486508.xml to 2025-11-17 folder
+12:42:50 - INFO - Copied ISM34025111823435113489784.xml to 2025-11-18 folder
+12:42:51 - INFO - Copied MCM34025111323580713472184.xml to 2025-11-13 folder
+12:42:51 - INFO - Copied MCM34025111423560513476258.xml to 2025-11-14 folder
+12:42:51 - INFO - Copied MCM34025111523482913479855.xml to 2025-11-15 folder
+12:42:51 - INFO - Copied MCM34025111623344813482948.xml to 2025-11-16 folder
+12:42:51 - INFO - Copied MCM34025111800000513486509.xml to 2025-11-17 folder
+12:42:51 - INFO - Copied MCM34025111823435313489785.xml to 2025-11-18 folder
+12:42:52 - INFO - Copied CPJR12112025235513.xml to 2100-01-01 folder
+12:42:52 - INFO - Copied CPJR13112025235558.xml to 2100-01-01 folder
+12:42:53 - INFO - Copied CPJR14112025235354.xml to 2100-01-01 folder
+12:42:54 - INFO - Copied CPJR15112025234608.xml to 2100-01-01 folder
+12:42:54 - INFO - Copied CPJR16112025233237.xml to 2100-01-01 folder
+12:42:55 - INFO - Copied CPJR17112025235757.xml to 2100-01-01 folder
+12:42:55 - INFO - Organized 36 files into 7 date folders
+12:42:55 - INFO - Organized into 7 date folders
+12:42:55 - INFO - Step 3: Finding unprocessed days (looking back 7 days)...
+12:42:55 - INFO - Found 6 unprocessed days in last 7 days
+12:42:55 - INFO - Found 6 unprocessed days
+12:42:55 - INFO - Processing date: 2025-11-18
+12:42:55 - INFO - Processing XML files for 2025-11-18
+12:42:55 - INFO - Found 10 XML files to process
+12:42:55 - INFO - Uploading FGM34025111823434613489780.xml (12710 bytes)
+12:42:55 - INFO - Uploading raw XML: FGM34025111823434613489780.xml (12710 bytes)
+12:42:55 - INFO - API call successful: raw-xml/upload
+12:42:55 - INFO - Successfully uploaded FGM34025111823434613489780.xml
+12:42:55 - INFO - Uploading FGM34025111823434713489781.xml (28595 bytes)
+12:42:55 - INFO - Uploading raw XML: FGM34025111823434713489781.xml (28595 bytes)
+12:42:56 - INFO - API call successful: raw-xml/upload
+12:42:56 - INFO - Successfully uploaded FGM34025111823434713489781.xml
+12:42:56 - INFO - Uploading FGM34025111823434913489782.xml (4409 bytes)
+12:42:56 - INFO - Uploading raw XML: FGM34025111823434913489782.xml (4409 bytes)
+12:43:05 - INFO - API call successful: raw-xml/upload
+12:43:05 - INFO - Successfully uploaded FGM34025111823434913489782.xml
+12:43:05 - INFO - Uploading ISM34025111823435113489784.xml (118148 bytes)
+12:43:05 - INFO - Uploading raw XML: ISM34025111823435113489784.xml (118148 bytes)
+12:43:05 - INFO - API call successful: raw-xml/upload
+12:43:05 - INFO - Successfully uploaded ISM34025111823435113489784.xml
+12:43:06 - INFO - Uploading MCM34025111823435313489785.xml (10948 bytes)
+12:43:06 - INFO - Uploading raw XML: MCM34025111823435313489785.xml (10948 bytes)
+12:43:06 - INFO - API call successful: raw-xml/upload
+12:43:06 - INFO - Successfully uploaded MCM34025111823435313489785.xml
+12:43:06 - INFO - Completed processing for 2025-11-18: 5 files uploaded
+12:43:06 - INFO - Processing date: 2025-11-17
+12:43:06 - INFO - Processing XML files for 2025-11-17
+12:43:06 - INFO - Found 10 XML files to process
+12:43:06 - INFO - Uploading FGM34025111723595613486504.xml (13834 bytes)
+12:43:06 - INFO - Uploading raw XML: FGM34025111723595613486504.xml (13834 bytes)
+12:43:06 - INFO - API call successful: raw-xml/upload
+12:43:06 - INFO - Successfully uploaded FGM34025111723595613486504.xml
+12:43:06 - INFO - Uploading FGM34025111723595713486505.xml (28570 bytes)
+12:43:06 - INFO - Uploading raw XML: FGM34025111723595713486505.xml (28570 bytes)
+12:43:06 - INFO - API call successful: raw-xml/upload
+12:43:06 - INFO - Successfully uploaded FGM34025111723595713486505.xml
+12:43:06 - INFO - Uploading FGM34025111723595913486506.xml (4411 bytes)
+12:43:06 - INFO - Uploading raw XML: FGM34025111723595913486506.xml (4411 bytes)
+12:43:07 - INFO - API call successful: raw-xml/upload
+12:43:07 - INFO - Successfully uploaded FGM34025111723595913486506.xml
+12:43:07 - INFO - Uploading ISM34025111800000313486508.xml (132480 bytes)
+12:43:07 - INFO - Uploading raw XML: ISM34025111800000313486508.xml (132480 bytes)
+12:43:07 - INFO - API call successful: raw-xml/upload
+12:43:07 - INFO - Successfully uploaded ISM34025111800000313486508.xml
+12:43:07 - INFO - Uploading MCM34025111800000513486509.xml (12142 bytes)
+12:43:07 - INFO - Uploading raw XML: MCM34025111800000513486509.xml (12142 bytes)
+12:43:07 - INFO - API call successful: raw-xml/upload
+12:43:07 - INFO - Successfully uploaded MCM34025111800000513486509.xml
+12:43:07 - INFO - Completed processing for 2025-11-17: 5 files uploaded
+12:43:07 - INFO - Processing date: 2025-11-16
+12:43:07 - INFO - Processing XML files for 2025-11-16
+12:43:07 - INFO - Found 10 XML files to process
+12:43:07 - INFO - Uploading FGM34025111623344113482943.xml (13845 bytes)
+12:43:07 - INFO - Uploading raw XML: FGM34025111623344113482943.xml (13845 bytes)
+12:43:07 - INFO - API call successful: raw-xml/upload
+12:43:07 - INFO - Successfully uploaded FGM34025111623344113482943.xml
+12:43:07 - INFO - Uploading FGM34025111623344213482944.xml (28576 bytes)
+12:43:07 - INFO - Uploading raw XML: FGM34025111623344213482944.xml (28576 bytes)
+12:43:08 - INFO - API call successful: raw-xml/upload
+12:43:08 - INFO - Successfully uploaded FGM34025111623344213482944.xml
+12:43:08 - INFO - Uploading FGM34025111623344413482945.xml (4408 bytes)
+12:43:08 - INFO - Uploading raw XML: FGM34025111623344413482945.xml (4408 bytes)
+12:43:08 - INFO - API call successful: raw-xml/upload
+12:43:08 - INFO - Successfully uploaded FGM34025111623344413482945.xml
+12:43:08 - INFO - Uploading ISM34025111623344613482947.xml (110159 bytes)
+12:43:08 - INFO - Uploading raw XML: ISM34025111623344613482947.xml (110159 bytes)
+12:43:08 - INFO - API call successful: raw-xml/upload
+12:43:08 - INFO - Successfully uploaded ISM34025111623344613482947.xml
+12:43:08 - INFO - Uploading MCM34025111623344813482948.xml (10955 bytes)
+12:43:08 - INFO - Uploading raw XML: MCM34025111623344813482948.xml (10955 bytes)
+12:43:09 - INFO - API call successful: raw-xml/upload
+12:43:09 - INFO - Successfully uploaded MCM34025111623344813482948.xml
+12:43:09 - INFO - Completed processing for 2025-11-16: 5 files uploaded
+12:43:09 - INFO - Processing date: 2025-11-15
+12:43:09 - INFO - Processing XML files for 2025-11-15
+12:43:09 - INFO - Found 10 XML files to process
+12:43:09 - INFO - Uploading FGM34025111523482113479850.xml (13276 bytes)
+12:43:09 - INFO - Uploading raw XML: FGM34025111523482113479850.xml (13276 bytes)
+12:43:09 - INFO - API call successful: raw-xml/upload
+12:43:09 - INFO - Successfully uploaded FGM34025111523482113479850.xml
+12:43:09 - INFO - Uploading FGM34025111523482213479851.xml (28561 bytes)
+12:43:09 - INFO - Uploading raw XML: FGM34025111523482213479851.xml (28561 bytes)
+12:43:09 - INFO - API call successful: raw-xml/upload
+12:43:09 - INFO - Successfully uploaded FGM34025111523482213479851.xml
+12:43:09 - INFO - Uploading FGM34025111523482513479852.xml (4408 bytes)
+12:43:09 - INFO - Uploading raw XML: FGM34025111523482513479852.xml (4408 bytes)
+12:43:09 - INFO - API call successful: raw-xml/upload
+12:43:09 - INFO - Successfully uploaded FGM34025111523482513479852.xml
+12:43:09 - INFO - Uploading ISM34025111523482713479854.xml (122395 bytes)
+12:43:09 - INFO - Uploading raw XML: ISM34025111523482713479854.xml (122395 bytes)
+12:43:10 - INFO - API call successful: raw-xml/upload
+12:43:10 - INFO - Successfully uploaded ISM34025111523482713479854.xml
+12:43:10 - INFO - Uploading MCM34025111523482913479855.xml (11556 bytes)
+12:43:10 - INFO - Uploading raw XML: MCM34025111523482913479855.xml (11556 bytes)
+12:43:10 - INFO - API call successful: raw-xml/upload
+12:43:10 - INFO - Successfully uploaded MCM34025111523482913479855.xml
+12:43:10 - INFO - Completed processing for 2025-11-15: 5 files uploaded
+12:43:10 - INFO - Processing date: 2025-11-14
+12:43:10 - INFO - Processing XML files for 2025-11-14
+12:43:10 - INFO - Found 10 XML files to process
+12:43:10 - INFO - Uploading FGM34025111423555813476253.xml (13278 bytes)
+12:43:10 - INFO - Uploading raw XML: FGM34025111423555813476253.xml (13278 bytes)
+12:43:10 - INFO - API call successful: raw-xml/upload
+12:43:10 - INFO - Successfully uploaded FGM34025111423555813476253.xml
+12:43:10 - INFO - Uploading FGM34025111423555913476254.xml (28586 bytes)
+12:43:10 - INFO - Uploading raw XML: FGM34025111423555913476254.xml (28586 bytes)
+12:43:10 - INFO - API call successful: raw-xml/upload
+12:43:10 - INFO - Successfully uploaded FGM34025111423555913476254.xml
+12:43:10 - INFO - Uploading FGM34025111423560113476255.xml (4410 bytes)
+12:43:10 - INFO - Uploading raw XML: FGM34025111423560113476255.xml (4410 bytes)
+12:43:11 - INFO - API call successful: raw-xml/upload
+12:43:11 - INFO - Successfully uploaded FGM34025111423560113476255.xml
+12:43:11 - INFO - Uploading ISM34025111423560313476257.xml (136097 bytes)
+12:43:11 - INFO - Uploading raw XML: ISM34025111423560313476257.xml (136097 bytes)
+12:43:11 - INFO - API call successful: raw-xml/upload
+12:43:11 - INFO - Successfully uploaded ISM34025111423560313476257.xml
+12:43:11 - INFO - Uploading MCM34025111423560513476258.xml (12766 bytes)
+12:43:11 - INFO - Uploading raw XML: MCM34025111423560513476258.xml (12766 bytes)
+12:43:11 - INFO - API call successful: raw-xml/upload
+12:43:11 - INFO - Successfully uploaded MCM34025111423560513476258.xml
+12:43:11 - INFO - Completed processing for 2025-11-14: 5 files uploaded
+12:43:11 - INFO - Processing date: 2025-11-13
+12:43:11 - INFO - Processing XML files for 2025-11-13
+12:43:11 - INFO - Found 10 XML files to process
+12:43:11 - INFO - Uploading FGM34025111323580013472179.xml (13289 bytes)
+12:43:11 - INFO - Uploading raw XML: FGM34025111323580013472179.xml (13289 bytes)
+12:43:11 - INFO - API call successful: raw-xml/upload
+12:43:11 - INFO - Successfully uploaded FGM34025111323580013472179.xml
+12:43:11 - INFO - Uploading FGM34025111323580113472180.xml (28604 bytes)
+12:43:11 - INFO - Uploading raw XML: FGM34025111323580113472180.xml (28604 bytes)
+12:43:12 - INFO - API call successful: raw-xml/upload
+12:43:12 - INFO - Successfully uploaded FGM34025111323580113472180.xml
+12:43:12 - INFO - Uploading FGM34025111323580313472181.xml (4411 bytes)
+12:43:12 - INFO - Uploading raw XML: FGM34025111323580313472181.xml (4411 bytes)
+12:43:12 - INFO - API call successful: raw-xml/upload
+12:43:12 - INFO - Successfully uploaded FGM34025111323580313472181.xml
+12:43:12 - INFO - Uploading ISM34025111323580513472183.xml (127450 bytes)
+12:43:12 - INFO - Uploading raw XML: ISM34025111323580513472183.xml (127450 bytes)
+12:43:12 - INFO - API call successful: raw-xml/upload
+12:43:12 - INFO - Successfully uploaded ISM34025111323580513472183.xml
+12:43:12 - INFO - Uploading MCM34025111323580713472184.xml (13362 bytes)
+12:43:12 - INFO - Uploading raw XML: MCM34025111323580713472184.xml (13362 bytes)
+12:43:12 - INFO - API call successful: raw-xml/upload
+12:43:12 - INFO - Successfully uploaded MCM34025111323580713472184.xml
+12:43:12 - INFO - Completed processing for 2025-11-13: 5 files uploaded
+12:43:12 - INFO - ================================================================================
+12:43:12 - INFO - Processing Summary:
+12:43:12 - INFO -   Successfully processed: 6 days
+12:43:12 - INFO -   Failed or partial:     0 days
+12:43:12 - INFO - ================================================================================
+12:43:12 - INFO - Birdies Sales Data Collection - Complete
+12:43:12 - INFO - ================================================================================
+
+C:\Users\Landover Sunoco\Downloads\store_deployment\store_deployment>

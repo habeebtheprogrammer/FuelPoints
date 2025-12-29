@@ -1,0 +1,74 @@
+The Passport rule to trigger a prompt
+
+Set InstantRewardFlag value="no" on each reward you return.
+
+Include RewardPromptTextShort (and/or RewardPromptTextLong). If you omit the prompt text, Passport may treat it as instant—so always send it. (Spec: optional rewards use InstantRewardFlag="no" with prompt text; GetLoyaltyOnlineStatus is separate. See pages 16 and 28–29. )
+
+What the POS does after you ask
+
+If the shopper declines, Passport sends a CancelRedemptionRequest to tell you which reward(s) they said no to (contains the LoyaltyRewardID). (Page 13 & flows on pp. 31–36.)
+
+If they accept, the discount is applied and you’ll see it reflected and later finalized. (Add/Finalize messages & tender behavior are in pp. 11–15, 27.)
+
+Don’t double-discount lines already on promo
+
+Each ItemLine can be flagged discountable="no" by the POS—don’t return a line reward for those. (Page 21.)
+
+If a line already has a loyalty promo and you send another with the same LoyaltyRewardID, Passport replaces it; a different ID will stack. Use this to prevent double promos from your side. (Page 12.)
+
+Minimal XML patterns you should send (with prompts)
+1) Basket (points) — ask to redeem
+<ns3:AddReward>
+  <ns3:LoyaltyRewardID>POINTS_BASKET_OFF</ns3:LoyaltyRewardID>
+  <ns3:InstantRewardFlag value="no"/>
+  <ns3:RewardPromptTextShort>Redeem $2.00 for 200 pts?</ns3:RewardPromptTextShort>
+  <ns3:RewardTargetLineNumber>0</ns3:RewardTargetLineNumber>
+  <ns3:RewardDiscountMethod>amountOff</ns3:RewardDiscountMethod>
+  <ns3:RewardValue>2.00</ns3:RewardValue>
+  <ns3:RewardReceiptDescShort>Loyalty</ns3:RewardReceiptDescShort>
+</ns3:AddReward>
+
+
+RewardTargetLineNumber=0 means “whole basket” (transaction-level). (Page 12.)
+
+2) Line item (e.g., Coffee → $0.99) — ask to apply per line
+<ns3:AddReward>
+  <ns3:LoyaltyRewardID>COFFEE_1_FOR_0_99</ns3:LoyaltyRewardID>
+  <ns3:InstantRewardFlag value="no"/>
+  <ns3:RewardPromptTextShort>Make coffee $0.99?</ns3:RewardPromptTextShort>
+  <ns3:RewardTargetLineNumber>3</ns3:RewardTargetLineNumber>
+  <ns3:RewardDiscountMethod>amountOff</ns3:RewardDiscountMethod>
+  <ns3:RewardValue>0.80</ns3:RewardValue>
+  <ns3:RewardReceiptDescShort>Coffee</ns3:RewardReceiptDescShort>
+</ns3:AddReward>
+
+
+For Passport you could send newPrice, but using amountOff keeps parity with Verifone. (Pages 28–29.)
+
+Server/edge wiring (how to enforce “always ask”)
+
+In your server decision JSON, include {"type":"ticket_amount_off", "value":2.00, "points_to_use":200, "prompt": true} and similarly for line actions.
+
+In the edge XML builder, map prompt:true to InstantRewardFlag="no" and always set RewardPromptTextShort. (Per spec, the short prompt is ≤32 chars; long is ≤80—use short for pinpads. Page 29.)
+
+Handle CancelRedemptionRequest by recording the decline and not re-offering that LoyaltyRewardID in the same transaction. (Page 13 & message flow.)
+
+OnlineStatus is separate from the prompt to redeem
+
+Keep answering GetLoyaltyOnlineStatusResponse locally with PromptForLoyaltyFlag yes/no based on health. (Page 16.)
+
+That flag tells the POS whether to prompt for a loyalty ID, not whether to auto-apply rewards. The redeem prompt is controlled by InstantRewardFlag="no" + prompt text in your GetRewardsResponse. (Pages 16, 28–29.)
+
+Quick checklist to “ask, never auto-apply”
+
+ For every AddReward you send, set InstantRewardFlag="no".
+
+ Always include RewardPromptTextShort; keep it concise (≤32 chars).
+
+ Respect discountable="no" and skip those lines.
+
+ Use same LoyaltyRewardID if you ever need to replace an earlier offer; use a new ID to stack (only when allowed).
+
+ Listen for CancelRedemptionRequest and honor declines.
+
+If you want, I can drop a tiny patch to your edge/server code so all generated rewards default to optional with short prompts, and add a handler that logs CancelRedemptionRequest per LoyaltyRewardID.

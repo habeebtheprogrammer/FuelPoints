@@ -1,0 +1,624 @@
+Microsoft Windows [Version 10.0.19045.6332]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\store>cd downloads
+
+C:\Users\store\Downloads>python mechanicsvilleautoapplyloyalty.py
+[2025-10-10 15:35:19] Starting Loyalty server on 10.96.10.175:9000
+[2025-10-10 15:35:20] Connection from 10.5.50.2:59791
+[2025-10-10 15:35:20] ← Recv XML:
+<?xml version="1.0" ?>
+<GetLoyaltyOnlineStatusRequest>
+        <RequestHeader>
+                <POSLoyaltyInterfaceVersion>1.1</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>00-0^3338655^</POSSequenceID>
+                <LoyaltySequenceID/>
+                <StoreLocationID>24379</StoreLocationID>
+                <LoyaltyOfflineFlag value="no"/>
+        </RequestHeader>
+</GetLoyaltyOnlineStatusRequest>
+
+[2025-10-10 15:35:20] → Sent XML:
+<?xml version="1.0" ?>
+<GetLoyaltyOnlineStatusResponse>
+        <ResponseHeader>
+                <POSLoyaltyInterfaceVersion>1.0</POSLoyaltyInterfaceVersion>
+                <VendorName>DemoLoyalty</VendorName>
+                <VendorModelVersion>1.0</VendorModelVersion>
+                <POSSequenceID>00-0^3338655^</POSSequenceID>
+                <LoyaltySequenceID>LOY-723A1F24B7D2</LoyaltySequenceID>
+        </ResponseHeader>
+        <PromptForLoyaltyFlag value="yes"/>
+</GetLoyaltyOnlineStatusResponse>
+
+[2025-10-10 15:35:20] ← Recv XML:
+<?xml version="1.0" ?>
+<EndPeriodRequest>
+        <RequestHeader>
+                <POSLoyaltyInterfaceVersion>1.2</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>99-0^2974010^</POSSequenceID>
+                <LoyaltySequenceID/>
+                <StoreLocationID>24379</StoreLocationID>
+                <LoyaltyOfflineFlag value="yes"/>
+        </RequestHeader>
+        <FromPeriod>
+                <BusinessPeriod>
+                        <BusinessDate>2025-01-23</BusinessDate>
+                        <PrimaryReportPeriod interval="day">1198</PrimaryReportPeriod>
+                        <SecondaryReportPeriod interval="cashier">0</SecondaryReportPeriod>
+                        <BeginDate>2025-01-23</BeginDate>
+                        <BeginTime>00:06:18-05:00</BeginTime>
+                        <EndDate>2025-01-24</EndDate>
+                        <EndTime>00:05:23-05:00</EndTime>
+                </BusinessPeriod>
+        </FromPeriod>
+        <ToPeriod>
+                <BusinessPeriod>
+                        <BusinessDate>2025-01-24</BusinessDate>
+                        <PrimaryReportPeriod interval="day">1199</PrimaryReportPeriod>
+                        <SecondaryReportPeriod interval="cashier">0</SecondaryReportPeriod>
+                        <BeginDate>2025-01-24</BeginDate>
+                        <BeginTime>00:05:23-05:00</BeginTime>
+                        <EndDate>2100-01-01</EndDate>
+                        <EndTime>00:00:00-05:00</EndTime>
+                </BusinessPeriod>
+        </ToPeriod>
+</EndPeriodRequest>
+
+[2025-10-10 15:35:20] → Sent XML:
+<?xml version="1.0" ?>
+<EndPeriodResponse>
+
+
+        <ResponseHeader>
+                <POSLoyaltyInterfaceVersion>1.0</POSLoyaltyInterfaceVersion>
+                <VendorName>DemoLoyalty</VendorName>
+                <VendorModelVersion>1.0</VendorModelVersion>
+                <POSSequenceID>99-0^2974010^</POSSequenceID>
+                <LoyaltySequenceID>LOY-C6CDD5852F32</LoyaltySequenceID>
+        </ResponseHeader>
+
+
+        <Result value="success"/>
+
+
+</EndPeriodResponse>
+
+[2025-10-10 15:35:43] ← Recv XML:
+<?xml version="1.0" ?>
+<BeginCustomerRequest>
+        <RequestHeader>
+                <POSLoyaltyInterfaceVersion>1.1</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>02-0^3338656^</POSSequenceID>
+                <LoyaltySequenceID/>
+                <StoreLocationID>24379</StoreLocationID>
+                <LoyaltyOfflineFlag value="no"/>
+        </RequestHeader>
+        <OutsideSalesFlag value="no"/>
+        <RegisterID>2</RegisterID>
+</BeginCustomerRequest>
+
+[2025-10-10 15:35:43] 10.5.50.2:59791 BeginCustomerRequest received (no response required).
+[2025-10-10 15:35:59] ← Recv XML:
+<?xml version="1.0" ?>
+<GetRewardsRequest>
+        <RequestHeader>
+                <POSLoyaltyInterfaceVersion>1.1</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>02-7861^3338657^</POSSequenceID>
+                <LoyaltySequenceID/>
+                <StoreLocationID>24379</StoreLocationID>
+                <LoyaltyOfflineFlag value="no"/>
+        </RequestHeader>
+        <LoyaltyID entryMethod="manual">2404635262</LoyaltyID>
+        <TransactionData>
+                <TransactionHeader>
+                        <TrainingModeFlag value="no"/>
+                        <OutsideSalesFlag value="no"/>
+                        <RegisterID>2</RegisterID>
+                        <CashierID>9566</CashierID>
+                        <TillID>000000022969</TillID>
+                        <POSTransactionID>7861</POSTransactionID>
+                        <BusinessPeriod>
+                                <BusinessDate>2025-10-10</BusinessDate>
+                                <PrimaryReportPeriod interval="day">1458</PrimaryReportPeriod>
+                                <SecondaryReportPeriod interval="cashier">1458</SecondaryReportPeriod>
+                                <BeginDate>2025-10-10</BeginDate>
+                                <BeginTime>00:04:56-04:00</BeginTime>
+                                <EndDate>2100-01-01</EndDate>
+                                <EndTime>00:00:00-04:00</EndTime>
+                        </BusinessPeriod>
+                        <EventStartDate>2025-10-10</EventStartDate>
+                        <EventStartTime>15:36:56-04:00</EventStartTime>
+                </TransactionHeader>
+                <TransactionDetailGroup>
+                        <TransactionLine status="normal">
+                                <LineNumber>1</LineNumber>
+                                <ItemLine discountable="yes">
+                                        <ItemCode>
+                                                <POSCodeFormat>upcA</POSCodeFormat>
+                                                <POSCode>075460020691</POSCode>
+                                                <POSCodeModifier name="pc">0</POSCodeModifier>
+                                        </ItemCode>
+                                        <MerchandiseCode>7</MerchandiseCode>
+                                        <Description>20oz SPRINGTIME WATER</Description>
+                                        <EntryMethod>scan</EntryMethod>
+                                        <ActualSalesPrice>1.03</ActualSalesPrice>
+                                        <RegularSellPrice>1.15</RegularSellPrice>
+                                        <SellingUnits>1</SellingUnits>
+                                        <SalesQuantity>1</SalesQuantity>
+                                        <SalesAmount>1.15</SalesAmount>
+                                        <Discount status="normal">
+                                                <DiscountID>17</DiscountID>
+                                                <DiscountAmount>.12</DiscountAmount>
+                                                <DiscountReason>regPriceChange</DiscountReason>
+                                        </Discount>
+                                        <ItemTax>
+                                                <TaxLevelID>101</TaxLevelID>
+                                                <TaxCollectedAmount>.06</TaxCollectedAmount>
+                                        </ItemTax>
+                                        <PaymentSystemsProductCode>420</PaymentSystemsProductCode>
+                                </ItemLine>
+                        </TransactionLine>
+                        <TransactionLine status="normal">
+                                <LineNumber>2</LineNumber>
+                                <TransactionTax>
+                                        <TaxLevelID>101</TaxLevelID>
+                                        <TaxableSalesAmount>1.03</TaxableSalesAmount>
+                                        <TaxCollectedAmount>.06</TaxCollectedAmount>
+                                        <TaxableSalesRefundedAmount>0</TaxableSalesRefundedAmount>
+                                        <TaxRefundedAmount>0</TaxRefundedAmount>
+                                </TransactionTax>
+                        </TransactionLine>
+                </TransactionDetailGroup>
+        </TransactionData>
+</GetRewardsRequest>
+
+[2025-10-10 15:35:59] → Sent XML:
+<?xml version="1.0" ?>
+<GetRewardsResponse>
+
+
+        <ResponseHeader>
+                <POSLoyaltyInterfaceVersion>1.0</POSLoyaltyInterfaceVersion>
+                <VendorName>DemoLoyalty</VendorName>
+                <VendorModelVersion>1.0</VendorModelVersion>
+                <POSSequenceID>02-7861^3338657^</POSSequenceID>
+                <LoyaltySequenceID>LOY-BA35AD02C384</LoyaltySequenceID>
+        </ResponseHeader>
+
+
+        <LoyaltyIDValidFlag value="yes">******5262</LoyaltyIDValidFlag>
+
+
+        <RewardActions>
+
+
+                <AddReward>
+
+
+                        <LoyaltyRewardID>DEMO-1OFF</LoyaltyRewardID>
+
+
+                        <InstantRewardFlag value="no"/>
+
+                        <!-- ASK, do not auto-apply -->
+
+
+                        <RewardPromptTextShort>Redeem $1.00?</RewardPromptTextShort>
+
+
+                        <RewardTargetLineNumber>0</RewardTargetLineNumber>
+
+                        <!-- basket -->
+
+
+                        <RewardDiscountMethod>amountOff</RewardDiscountMethod>
+
+
+                        <RewardValue>1.00</RewardValue>
+
+
+                        <RewardReceiptDescShort>$1OFF</RewardReceiptDescShort>
+
+
+                        <RewardReceiptDescLong>Loyalty $1 Off</RewardReceiptDescLong>
+
+
+                </AddReward>
+
+
+        </RewardActions>
+
+
+</GetRewardsResponse>
+
+[2025-10-10 15:36:08] ← Recv XML:
+<?xml version="1.0" ?>
+<EndCustomerRequest>
+        <RequestHeader>
+                <POSLoyaltyInterfaceVersion>1.1</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>08-3338658</POSSequenceID>
+                <LoyaltySequenceID/>
+                <StoreLocationID>24379</StoreLocationID>
+                <LoyaltyOfflineFlag value="no"/>
+        </RequestHeader>
+</EndCustomerRequest>
+
+[2025-10-10 15:36:08] 10.5.50.2:59791 EndCustomerRequest received (no response required).
+[2025-10-10 15:36:10] ← Recv XML:
+<?xml version="1.0" ?>
+<EndPeriodRequest>
+        <RequestHeader>
+                <POSLoyaltyInterfaceVersion>1.2</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>99-0^2974010^</POSSequenceID>
+                <LoyaltySequenceID/>
+                <StoreLocationID>24379</StoreLocationID>
+                <LoyaltyOfflineFlag value="yes"/>
+        </RequestHeader>
+        <FromPeriod>
+                <BusinessPeriod>
+                        <BusinessDate>2025-01-23</BusinessDate>
+                        <PrimaryReportPeriod interval="day">1198</PrimaryReportPeriod>
+                        <SecondaryReportPeriod interval="cashier">0</SecondaryReportPeriod>
+                        <BeginDate>2025-01-23</BeginDate>
+                        <BeginTime>00:06:18-05:00</BeginTime>
+                        <EndDate>2025-01-24</EndDate>
+                        <EndTime>00:05:23-05:00</EndTime>
+                </BusinessPeriod>
+        </FromPeriod>
+        <ToPeriod>
+                <BusinessPeriod>
+                        <BusinessDate>2025-01-24</BusinessDate>
+                        <PrimaryReportPeriod interval="day">1199</PrimaryReportPeriod>
+                        <SecondaryReportPeriod interval="cashier">0</SecondaryReportPeriod>
+                        <BeginDate>2025-01-24</BeginDate>
+                        <BeginTime>00:05:23-05:00</BeginTime>
+                        <EndDate>2100-01-01</EndDate>
+                        <EndTime>00:00:00-05:00</EndTime>
+                </BusinessPeriod>
+        </ToPeriod>
+</EndPeriodRequest>
+
+[2025-10-10 15:36:10] → Sent XML:
+<?xml version="1.0" ?>
+<EndPeriodResponse>
+
+
+        <ResponseHeader>
+                <POSLoyaltyInterfaceVersion>1.0</POSLoyaltyInterfaceVersion>
+                <VendorName>DemoLoyalty</VendorName>
+                <VendorModelVersion>1.0</VendorModelVersion>
+                <POSSequenceID>99-0^2974010^</POSSequenceID>
+                <LoyaltySequenceID>LOY-4C1CBE92B5FE</LoyaltySequenceID>
+        </ResponseHeader>
+
+
+        <Result value="success"/>
+
+
+</EndPeriodResponse>
+
+[2025-10-10 15:36:14] ← Recv XML:
+<?xml version="1.0" ?>
+<EndCustomerRequest>
+        <RequestHeader>
+                <POSLoyaltyInterfaceVersion>1.1</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>02-3338659</POSSequenceID>
+                <LoyaltySequenceID/>
+                <StoreLocationID>24379</StoreLocationID>
+                <LoyaltyOfflineFlag value="no"/>
+        </RequestHeader>
+</EndCustomerRequest>
+
+[2025-10-10 15:36:14] 10.5.50.2:59791 EndCustomerRequest received (no response required).
+[2025-10-10 15:36:20] ← Recv XML:
+<?xml version="1.0" ?>
+<GetLoyaltyOnlineStatusRequest>
+        <RequestHeader>
+                <POSLoyaltyInterfaceVersion>1.1</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>00-0^3338660^</POSSequenceID>
+                <LoyaltySequenceID/>
+                <StoreLocationID>24379</StoreLocationID>
+                <LoyaltyOfflineFlag value="no"/>
+        </RequestHeader>
+</GetLoyaltyOnlineStatusRequest>
+
+[2025-10-10 15:36:20] → Sent XML:
+<?xml version="1.0" ?>
+<GetLoyaltyOnlineStatusResponse>
+        <ResponseHeader>
+                <POSLoyaltyInterfaceVersion>1.0</POSLoyaltyInterfaceVersion>
+                <VendorName>DemoLoyalty</VendorName>
+                <VendorModelVersion>1.0</VendorModelVersion>
+                <POSSequenceID>00-0^3338660^</POSSequenceID>
+                <LoyaltySequenceID>LOY-B88B6F4B6AFA</LoyaltySequenceID>
+        </ResponseHeader>
+        <PromptForLoyaltyFlag value="yes"/>
+</GetLoyaltyOnlineStatusResponse>
+
+[2025-10-10 15:36:24] ← Recv XML:
+<?xml version="1.0" ?>
+<CancelTransactionRequest>
+        <RequestHeader>
+                <POSLoyaltyInterfaceVersion>1.1</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>02-7861^3338661^</POSSequenceID>
+                <LoyaltySequenceID>LOY-BA35AD02C384</LoyaltySequenceID>
+                <StoreLocationID>24379</StoreLocationID>
+                <LoyaltyOfflineFlag value="no"/>
+        </RequestHeader>
+</CancelTransactionRequest>
+
+[2025-10-10 15:36:24] → Sent XML:
+<?xml version="1.0" ?>
+<CancelTransactionResponse>
+        <ResponseHeader>
+                <POSLoyaltyInterfaceVersion>1.0</POSLoyaltyInterfaceVersion>
+                <VendorName>DemoLoyalty</VendorName>
+                <VendorModelVersion>1.0</VendorModelVersion>
+                <POSSequenceID>02-7861^3338661^</POSSequenceID>
+                <LoyaltySequenceID>LOY-BA35AD02C384</LoyaltySequenceID>
+        </ResponseHeader>
+</CancelTransactionResponse>
+
+[2025-10-10 15:36:32] ← Recv XML:
+<?xml version="1.0" ?>
+<BeginCustomerRequest>
+        <RequestHeader>
+                <POSLoyaltyInterfaceVersion>1.1</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>02-0^3338662^</POSSequenceID>
+                <LoyaltySequenceID/>
+                <StoreLocationID>24379</StoreLocationID>
+                <LoyaltyOfflineFlag value="no"/>
+        </RequestHeader>
+        <OutsideSalesFlag value="no"/>
+        <RegisterID>2</RegisterID>
+</BeginCustomerRequest>
+
+[2025-10-10 15:36:32] 10.5.50.2:59791 BeginCustomerRequest received (no response required).
+[2025-10-10 15:36:52] ← Recv XML:
+<?xml version="1.0" ?>
+<GetRewardsRequest>
+        <RequestHeader>
+                <POSLoyaltyInterfaceVersion>1.1</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>02-7862^3338663^</POSSequenceID>
+                <LoyaltySequenceID/>
+                <StoreLocationID>24379</StoreLocationID>
+                <LoyaltyOfflineFlag value="no"/>
+        </RequestHeader>
+        <LoyaltyID entryMethod="manual">2404635262</LoyaltyID>
+        <TransactionData>
+                <TransactionHeader>
+                        <TrainingModeFlag value="no"/>
+                        <OutsideSalesFlag value="no"/>
+                        <RegisterID>2</RegisterID>
+                        <CashierID>9566</CashierID>
+                        <TillID>000000022969</TillID>
+                        <POSTransactionID>7862</POSTransactionID>
+                        <BusinessPeriod>
+                                <BusinessDate>2025-10-10</BusinessDate>
+                                <PrimaryReportPeriod interval="day">1458</PrimaryReportPeriod>
+                                <SecondaryReportPeriod interval="cashier">1458</SecondaryReportPeriod>
+                                <BeginDate>2025-10-10</BeginDate>
+                                <BeginTime>00:04:56-04:00</BeginTime>
+                                <EndDate>2100-01-01</EndDate>
+                                <EndTime>00:00:00-04:00</EndTime>
+                        </BusinessPeriod>
+                        <EventStartDate>2025-10-10</EventStartDate>
+                        <EventStartTime>15:37:49-04:00</EventStartTime>
+                </TransactionHeader>
+                <TransactionDetailGroup>
+                        <TransactionLine status="normal">
+                                <LineNumber>1</LineNumber>
+                                <ItemLine discountable="yes">
+                                        <ItemCode>
+                                                <POSCodeFormat>upcA</POSCodeFormat>
+                                                <POSCode>075460020691</POSCode>
+                                                <POSCodeModifier name="pc">0</POSCodeModifier>
+                                        </ItemCode>
+                                        <MerchandiseCode>7</MerchandiseCode>
+                                        <Description>20oz SPRINGTIME WATER</Description>
+                                        <EntryMethod>scan</EntryMethod>
+                                        <ActualSalesPrice>1.15</ActualSalesPrice>
+                                        <RegularSellPrice>1.15</RegularSellPrice>
+                                        <SellingUnits>1</SellingUnits>
+                                        <SalesQuantity>1</SalesQuantity>
+                                        <SalesAmount>1.15</SalesAmount>
+                                        <ItemTax>
+                                                <TaxLevelID>101</TaxLevelID>
+                                                <TaxCollectedAmount>.07</TaxCollectedAmount>
+                                        </ItemTax>
+                                        <PaymentSystemsProductCode>420</PaymentSystemsProductCode>
+                                </ItemLine>
+                        </TransactionLine>
+                        <TransactionLine status="normal">
+                                <LineNumber>2</LineNumber>
+                                <TransactionTax>
+                                        <TaxLevelID>101</TaxLevelID>
+                                        <TaxableSalesAmount>1.15</TaxableSalesAmount>
+                                        <TaxCollectedAmount>.07</TaxCollectedAmount>
+                                        <TaxableSalesRefundedAmount>0</TaxableSalesRefundedAmount>
+                                        <TaxRefundedAmount>0</TaxRefundedAmount>
+                                </TransactionTax>
+                        </TransactionLine>
+                </TransactionDetailGroup>
+        </TransactionData>
+</GetRewardsRequest>
+
+[2025-10-10 15:36:52] → Sent XML:
+<?xml version="1.0" ?>
+<GetRewardsResponse>
+
+
+        <ResponseHeader>
+                <POSLoyaltyInterfaceVersion>1.0</POSLoyaltyInterfaceVersion>
+                <VendorName>DemoLoyalty</VendorName>
+                <VendorModelVersion>1.0</VendorModelVersion>
+                <POSSequenceID>02-7862^3338663^</POSSequenceID>
+                <LoyaltySequenceID>LOY-BAF40A443261</LoyaltySequenceID>
+        </ResponseHeader>
+
+
+        <LoyaltyIDValidFlag value="yes">******5262</LoyaltyIDValidFlag>
+
+
+        <RewardActions>
+
+
+                <AddReward>
+
+
+                        <LoyaltyRewardID>DEMO-1OFF</LoyaltyRewardID>
+
+
+                        <InstantRewardFlag value="no"/>
+
+                        <!-- ASK, do not auto-apply -->
+
+
+                        <RewardPromptTextShort>Redeem $1.00?</RewardPromptTextShort>
+
+
+                        <RewardTargetLineNumber>0</RewardTargetLineNumber>
+
+                        <!-- basket -->
+
+
+                        <RewardDiscountMethod>amountOff</RewardDiscountMethod>
+
+
+                        <RewardValue>1.00</RewardValue>
+
+
+                        <RewardReceiptDescShort>$1OFF</RewardReceiptDescShort>
+
+
+                        <RewardReceiptDescLong>Loyalty $1 Off</RewardReceiptDescLong>
+
+
+                </AddReward>
+
+
+        </RewardActions>
+
+
+</GetRewardsResponse>
+
+[2025-10-10 15:36:55] ← Recv XML:
+<?xml version="1.0" ?>
+<CancelRedemptionRequest>
+        <RequestHeader>
+                <POSLoyaltyInterfaceVersion>1.1</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>02-7862^3338664^</POSSequenceID>
+                <LoyaltySequenceID>LOY-BAF40A443261</LoyaltySequenceID>
+                <StoreLocationID>24379</StoreLocationID>
+                <LoyaltyOfflineFlag value="no"/>
+        </RequestHeader>
+        <LoyaltyRewardID>DEMO-1OFF</LoyaltyRewardID>
+</CancelRedemptionRequest>
+
+[2025-10-10 15:36:55] 10.5.50.2:59791 CancelRedemptionRequest received (no response required).
+[2025-10-10 15:37:00] ← Recv XML:
+<?xml version="1.0" ?>
+<EndPeriodRequest>
+        <RequestHeader>
+                <POSLoyaltyInterfaceVersion>1.2</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>99-0^2974010^</POSSequenceID>
+                <LoyaltySequenceID/>
+                <StoreLocationID>24379</StoreLocationID>
+                <LoyaltyOfflineFlag value="yes"/>
+        </RequestHeader>
+        <FromPeriod>
+                <BusinessPeriod>
+                        <BusinessDate>2025-01-23</BusinessDate>
+                        <PrimaryReportPeriod interval="day">1198</PrimaryReportPeriod>
+                        <SecondaryReportPeriod interval="cashier">0</SecondaryReportPeriod>
+                        <BeginDate>2025-01-23</BeginDate>
+                        <BeginTime>00:06:18-05:00</BeginTime>
+                        <EndDate>2025-01-24</EndDate>
+                        <EndTime>00:05:23-05:00</EndTime>
+                </BusinessPeriod>
+        </FromPeriod>
+        <ToPeriod>
+                <BusinessPeriod>
+                        <BusinessDate>2025-01-24</BusinessDate>
+                        <PrimaryReportPeriod interval="day">1199</PrimaryReportPeriod>
+                        <SecondaryReportPeriod interval="cashier">0</SecondaryReportPeriod>
+                        <BeginDate>2025-01-24</BeginDate>
+                        <BeginTime>00:05:23-05:00</BeginTime>
+                        <EndDate>2100-01-01</EndDate>
+                        <EndTime>00:00:00-05:00</EndTime>
+                </BusinessPeriod>
+        </ToPeriod>
+</EndPeriodRequest>
+
+[2025-10-10 15:37:00] → Sent XML:
+<?xml version="1.0" ?>
+<EndPeriodResponse>
+
+
+        <ResponseHeader>
+                <POSLoyaltyInterfaceVersion>1.0</POSLoyaltyInterfaceVersion>
+                <VendorName>DemoLoyalty</VendorName>
+                <VendorModelVersion>1.0</VendorModelVersion>
+                <POSSequenceID>99-0^2974010^</POSSequenceID>
+                <LoyaltySequenceID>LOY-06DEA88638BB</LoyaltySequenceID>
+        </ResponseHeader>
+
+
+        <Result value="success"/>
+
+
+</EndPeriodResponse>
+
+[2025-10-10 15:37:05] ← Recv XML:
+<?xml version="1.0" ?>
+<CancelTransactionRequest>
+        <RequestHeader>
+                <POSLoyaltyInterfaceVersion>1.1</POSLoyaltyInterfaceVersion>
+                <VendorName>Gilbarco</VendorName>
+                <VendorModelVersion>12.27.02.01</VendorModelVersion>
+                <POSSequenceID>02-7862^3338665^</POSSequenceID>
+                <LoyaltySequenceID>LOY-BAF40A443261</LoyaltySequenceID>
+                <StoreLocationID>24379</StoreLocationID>
+                <LoyaltyOfflineFlag value="no"/>
+        </RequestHeader>
+</CancelTransactionRequest>
+
+[2025-10-10 15:37:05] → Sent XML:
+<?xml version="1.0" ?>
+<CancelTransactionResponse>
+        <ResponseHeader>
+                <POSLoyaltyInterfaceVersion>1.0</POSLoyaltyInterfaceVersion>
+                <VendorName>DemoLoyalty</VendorName>
+                <VendorModelVersion>1.0</VendorModelVersion>
+                <POSSequenceID>02-7862^3338665^</POSSequenceID>
+                <LoyaltySequenceID>LOY-BAF40A443261</LoyaltySequenceID>
+        </ResponseHeader>
+</CancelTransactionResponse>
+

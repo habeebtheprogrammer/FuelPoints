@@ -1,0 +1,55 @@
+Microsoft Windows [Version 10.0.19045.6456]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\store>cd documents
+
+C:\Users\store\Documents>python verifone_file_uploader.py
+2025-11-21 10:22:39 [INFO] ============================================================
+2025-11-21 10:22:39 [INFO] 🚀 Birdies Loyalty - Verifone XML File Uploader
+2025-11-21 10:22:39 [INFO] ============================================================
+2025-11-21 10:22:39 [INFO] Store Number: 1330
+2025-11-21 10:22:39 [INFO] POS Type: Verifone-Ruby
+2025-11-21 10:22:39 [INFO] Commander: 192.168.45.95
+2025-11-21 10:22:39 [INFO] Backend: https://7f314759-0357-435a-ba76-315eef65a311-00-1c8qk8ujlqk2q.picard.replit.dev
+2025-11-21 10:22:39 [INFO] Fetch Interval: 3600s (60 minutes)
+2025-11-21 10:22:39 [INFO] ============================================================
+2025-11-21 10:22:39 [INFO] ✅ File uploader started - will fetch from Commander API...
+2025-11-21 10:22:39 [INFO]
+2025-11-21 10:22:39 [INFO] ============================================================
+2025-11-21 10:22:39 [INFO] 🚀 Starting Verifone data collection...
+2025-11-21 10:22:39 [INFO] ============================================================
+2025-11-21 10:22:39 [INFO] ✅ Authenticated with Commander (cookie: 4d6497b3...)
+2025-11-21 10:22:39 [INFO] 📥 Fetching vposjournal (transaction journal)...
+2025-11-21 10:22:46 [INFO] ✅ Fetched vposjournal (2907059 bytes)
+2025-11-21 10:22:46 [INFO] 📅 Business date: 2025-11-20
+2025-11-21 10:22:46 [INFO] ⏭️  vposjournal already uploaded
+2025-11-21 10:22:46 [INFO] 📥 Fetching transaction reports...
+2025-11-21 10:22:47 [INFO] ✅ Fetched vtransset (4702011 bytes)
+2025-11-21 10:22:47 [INFO] ⏭️  vtransset already uploaded
+2025-11-21 10:22:47 [INFO] ✅ Fetched vtranssetz (4702011 bytes)
+2025-11-21 10:22:47 [INFO] ⏭️  vtranssetz already uploaded
+2025-11-21 10:22:47 [INFO] 📥 Fetching fuel reports...
+2025-11-21 10:22:47 [INFO] ✅ Fetched vfueltotals (6881 bytes)
+2025-11-21 10:22:47 [INFO] ⏭️  vfueltotals already uploaded
+2025-11-21 10:22:47 [INFO] ✅ Fetched vfueltotalsz (6881 bytes)
+2025-11-21 10:22:47 [INFO] ⏭️  vfueltotalsz already uploaded
+2025-11-21 10:22:47 [INFO] 📥 Fetching Ruby reports...
+2025-11-21 10:22:48 [INFO] ✅ Fetched vrubyrept (60035 bytes)
+2025-11-21 10:22:48 [INFO] ⏭️  vrubyrept_summary already uploaded
+2025-11-21 10:22:48 [INFO] ✅ Fetched vrubyrept (123759 bytes)
+2025-11-21 10:22:48 [INFO] ⏭️  vrubyrept_department already uploaded
+2025-11-21 10:22:48 [INFO] ✅ Fetched vrubyrept (6191 bytes)
+2025-11-21 10:22:48 [INFO] ⏭️  vrubyrept_category already uploaded
+2025-11-21 10:22:51 [INFO] ✅ Fetched vrubyrept (417567 bytes)
+2025-11-21 10:22:51 [INFO] ⏭️  vrubyrept_plu already uploaded
+2025-11-21 10:22:51 [INFO] ✅ Fetched vrubyrept (12393 bytes)
+2025-11-21 10:22:51 [INFO] ⏭️  vrubyrept_loyalty already uploaded
+2025-11-21 10:22:51 [INFO] ✅ Fetched vrubyrept (9421 bytes)
+2025-11-21 10:22:51 [INFO] ⏭️  vrubyrept_fpDispenser already uploaded
+2025-11-21 10:22:51 [INFO] ✅ Fetched vrubyrept (7571 bytes)
+2025-11-21 10:22:51 [INFO] ⏭️  vrubyrept_dcrStat already uploaded
+2025-11-21 10:22:51 [INFO] ============================================================
+2025-11-21 10:22:51 [INFO] ✨ Collection complete! Uploaded 0 new file(s)
+2025-11-21 10:22:51 [INFO] ============================================================
+2025-11-21 10:22:51 [INFO] ✅ Session cookie released
+2025-11-21 10:22:51 [INFO] ⏰ Next fetch in 60 minutes...

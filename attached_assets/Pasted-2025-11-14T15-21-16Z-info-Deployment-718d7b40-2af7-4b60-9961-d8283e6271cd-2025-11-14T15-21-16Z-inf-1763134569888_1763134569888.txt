@@ -1,0 +1,70 @@
+2025-11-14T15:21:16Z info: Deployment: 718d7b40-2af7-4b60-9961-d8283e6271cd
+2025-11-14T15:21:16Z info: Build: 91daf631-4f85-405f-9a21-ee71441b7888
+2025-11-14T15:21:16Z info: Connecting to builder
+2025-11-14T15:21:16Z info: Builder connected
+2025-11-14T15:21:16Z info: Installing packages
+--> npm install
+
+
+added 1 package, and audited 859 packages in 9s
+
+91 packages are looking for funding
+
+  run `npm fund` for details
+
+
+20 moderate severity vulnerabilities
+
+To address issues that do not require attention, run:
+  npm audit fix
+
+To address all issues (including breaking changes), run:
+  npm audit fix --force
+
+Run `npm audit` for details.
+
+npm notice
+npm notice New major version of npm available! 10.9.2 -> 11.6.2
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.6.2
+npm notice To update run: npm install -g npm@11.6.2
+npm notice
+
+2025-11-14T15:21:26Z info: Starting Build
+
+> gas-station-loyalty-app@1.0.0 build
+> vite build
+
+
+vite v7.1.9 building for production...
+
+transforming...
+
+✓ 38 modules transformed.
+
+rendering chunks...
+
+computing gzip size...
+
+dist/index.html                   0.41 kB │ gzip:  0.28 kB
+
+dist/assets/index-DQSae_vK.css    8.71 kB │ gzip:  2.30 kB
+
+dist/assets/index-BRPbhK6O.js   219.39 kB │ gzip: 65.32 kB
+
+✓ built in 1.26s
+
+2025-11-14T15:21:28Z info: Pushing pid1 binary layer...
+2025-11-14T15:21:30Z info: Pushing Repl layer...
+2025-11-14T15:21:30Z info: Pushing hosting layer...
+2025-11-14T15:21:30Z info: Created pid1 binary layer
+2025-11-14T15:21:30Z info: Created hosting layer
+2025-11-14T15:22:05Z info: Created Repl layer
+2025-11-14T15:22:07Z info: Pushed image manifest
+2025-11-14T15:22:07Z info: Pushed soci index manifest
+2025-11-14T15:22:12Z info: Creating virtual machine
+2025-11-14T15:22:24Z info: Virtual machine created
+2025-11-14T15:22:24Z info: Waiting for deployment to be ready
+starting up user application
+forwarding local port 5000 to external port 80 (mapped as 1104)
+metasidecar: loaded enterprise status from environment is_enterprise=false
+2025-11-14T15:22:54Z info: Deployment successful

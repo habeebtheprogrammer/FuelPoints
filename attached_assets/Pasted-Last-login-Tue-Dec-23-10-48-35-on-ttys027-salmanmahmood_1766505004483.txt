@@ -1,0 +1,76 @@
+Last login: Tue Dec 23 10:48:35 on ttys027
+salmanmahmood@Salmans-MacBook-Pro ~ % node --version
+v18.20.6
+salmanmahmood@Salmans-MacBook-Pro ~ % echo 'export PATH="/opt/homebrew/opt/node@20/bin:$PATH"' >> ~/.zshrc
+source ~/.zshrc
+node --version
+v20.19.6
+salmanmahmood@Salmans-MacBook-Pro ~ % which node
+/opt/homebrew/opt/node@20/bin/node
+salmanmahmood@Salmans-MacBook-Pro ~ % cd /Users/salmanmahmood/Downloads/birdiesloyalty1/mobile
+rm -rf node_modules
+/opt/homebrew/opt/node@20/bin/npm install
+/opt/homebrew/opt/node@20/bin/npx expo start
+npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+npm warn deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported
+npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
+npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
+
+added 749 packages, and audited 750 packages in 4s
+
+70 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+Starting project at /Users/salmanmahmood/Downloads/birdiesloyalty1/mobile
+Starting Metro Bundler
+TypeScript: The tsconfig.json#include property has been updated
+The following packages should be updated for best compatibility with the installed expo version:
+  expo-asset@11.1.7 - expected version: ~12.0.12
+  expo-router@5.0.7 - expected version: ~6.0.21
+  expo-status-bar@2.2.3 - expected version: ~3.0.9
+  expo-linear-gradient@14.1.5 - expected version: ~15.0.8
+  react@19.0.0 - expected version: 19.1.0
+  react-native@0.79.1 - expected version: 0.81.5
+  react-native-safe-area-context@5.4.0 - expected version: ~5.6.0
+  react-native-screens@4.11.1 - expected version: ~4.16.0
+  @react-native-async-storage/async-storage@2.1.2 - expected version: 2.2.0
+  @types/react@19.0.14 - expected version: ~19.1.10
+  babel-preset-expo@13.0.0 - expected version: ~54.0.9
+  typescript@5.8.3 - expected version: ~5.9.2
+Your project may not work correctly until you install the expected versions of the packages.
+▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+█ ▄▄▄▄▄ █▀▄█▀ ██  █ ▄▄▄▄▄ █
+█ █   █ █▄   ▄█▄▄██ █   █ █
+█ █▄▄▄█ █ ▀█▀█▀▀ ▀█ █▄▄▄█ █
+█▄▄▄▄▄▄▄█ ▀▄█ █ █ █▄▄▄▄▄▄▄█
+█ ▄█ ▀█▄▄██ ▀█ ▀██▀  ▄▀▄▄▀█
+██▄▄ ▀▀▄ ▀▄▄██ ▄█ ▄▀ ▀▀█▄▄█
+██▄ ▀▀▄▄▀▀▀▀▀   █▀█ ▄█ ██▀█
+█▄▀▀ █▀▄ █▀██  ██ ▄▄ ▀▀██▄█
+█▄▄▄█▄█▄▄ █ ▄▄█▄  ▄▄▄ █ ▄ █
+█ ▄▄▄▄▄ █▄ ▄▀██▄  █▄█  ▀▄▄█
+█ █   █ █▀█▄▄█ ▀▀▄ ▄▄ █▀▄██
+█ █▄▄▄█ █▀▀▄█▄  █  █▄  ▄█▄█
+█▄▄▄▄▄▄▄█▄▄█▄█▄▄█▄███▄▄█▄▄█
+
+› Metro waiting on exp://192.168.73.191:8081
+› Scan the QR code above with Expo Go (Android) or the Camera app (iOS)
+
+› Using Expo Go
+› Press s │ switch to development build
+
+› Press a │ open Android
+› Press i │ open iOS simulator
+› Press w │ open web
+
+› Press j │ open debugger
+› Press r │ reload app
+› Press m │ toggle menu
+› shift+m │ more tools
+› Press o │ open project code in your editor
+
+› Press ? │ show all commands
+
+Logs for your project will appear below. Press Ctrl+C to exit.
+

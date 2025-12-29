@@ -1,0 +1,43 @@
+Primary	2	Product Category	2	02 Cigarettes	101	101 Cigarettes
+Primary	2	Product Category	3	03 Other Tobacco	102	102 Other Tobacco
+Primary	2	Product Category	4	04 Beer	103	103 Alcoholic Beverages
+Primary	2	Product Category	5	05 Wine	103	103 Alcoholic Beverages
+Primary	2	Product Category	6	06 Liquor	103	103 Alcoholic Beverages
+Primary	2	Product Category	7	07 Package Bev (non Alch)	104	104 Packaged Beverages
+Primary	2	Product Category	8	08 Candy	105	105 Candy
+Primary	2	Product Category	9	09 Fluid Milk Products	106	106 Dairy
+Primary	2	Product Category	10	10 Other Dairy And Deli	106	106 Dairy
+Primary	2	Product Category	11	11 Commissary & Oth Pkg Prods	107	107 Packaged Commissary
+Primary	2	Product Category	12	12 Pkg Ice Cream/novelities	108	108 Ice Cream
+Primary	2	Product Category	13	13 Frozen Foods	110	110 Grocery
+Primary	2	Product Category	14	14 Packaged Bread	110	110 Grocery
+Primary	2	Product Category	15	15 Salty Snacks	109	109 Snacks
+Primary	2	Product Category	16	16 Packaged Sweet Snacks	109	109 Snacks
+Primary	2	Product Category	17	17 Alternative Snacks	109	109 Snacks
+Primary	2	Product Category	18	18 Perishable Grocery	107	107 Packaged Commissary
+Primary	2	Product Category	19	19 Edible Grocery	110	110 Grocery
+Primary	2	Product Category	20	20 Non Edible Grocery	110	110 Grocery
+Primary	2	Product Category	21	21 Health & Beauty Care	112	112 General Merchandise
+Primary	2	Product Category	22	22 General Merchandise	112	112 General Merchandise
+Primary	2	Product Category	23	23 Publications	112	112 General Merchandise
+Primary	2	Product Category	24	24 Automotive Products	112	112 General Merchandise
+Primary	2	Product Category	25	25 Automotive Services	900	900 Expense
+Primary	2	Product Category	26	26 Store Services (fee-based)	900	900 Expense
+Primary	2	Product Category	27	27 Scratch Lottery	114	114  Scratch Lottery
+Primary	2	Product Category	28	28 Ice	110	110 Grocery
+Primary	2	Product Category	29	29 Foodservice Prep On-site	201	201 Foodservice
+Primary	2	Product Category	30	30 Hot Dispensed Beverages	202	202 Hot Dispensed Beverages
+Primary	2	Product Category	31	31 Cold Dispensed Beverages	203	203 Cold Dispensed Beverages
+Primary	2	Product Category	32	32 Frozen Dispensed Beverages	203	203 Cold Dispensed Beverages
+Primary	2	Product Category	33	33 Pre-paid Cards	112	112 General Merchandise
+Primary	2	Product Category	90	90 Online Lotto	900	900 Expense
+Primary	2	Product Category	98	98 Invoice Fees	900	900 Expense
+Primary	2	Product Category	99	99 Expense	900	900 Expense
+Primary	2	Product Category	61	61 JUUL Pods	102	102 Other Tobacco
+Primary	2	Product Category	60	60 JUUL Devices	102	102 Other Tobacco
+Primary	2	Product Category	94	94 Mobile Coupons	900	900 Expense
+Primary	2	Product Category	93	93 Scratch Payout	900	900 Expense
+Primary	2	Product Category	92	92 Lotto Payouts	900	900 Expense
+Primary	2	Product Category	91	91 Lottery Vending	900	900 Expense
+Primary	2	Product Category	97	97 Tax Charges	900	900 Expense
+Primary	2	Product Category	501	501 General Merch SBT	500	500 Scan Based Trading

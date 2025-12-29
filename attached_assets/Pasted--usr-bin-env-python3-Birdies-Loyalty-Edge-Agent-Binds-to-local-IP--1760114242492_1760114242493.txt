@@ -1,0 +1,615 @@
+#!/usr/bin/env python3
+"""
+Birdies Loyalty Edge Agent
+-------------------------
+• Binds to local IP on port 9000 to handle Passport POS protocol
+• Keeps loyalty ONLINE at the register
+• Sends heartbeat pings to Birdies backend server
+• Tracks online status for store location
+"""
+
+import socket
+import threading
+import datetime
+import binascii
+import struct
+import uuid
+import time
+import requests
+import xml.etree.ElementTree as ET
+from xml.dom import minidom
+
+# =========================
+# Configuration
+# =========================
+# Local POS connection settings
+HOST = "10.96.10.175"   # Your PC's Passport NIC IP
+PORT = 9000             # Loyalty port configured on Passport MWS
+EXPECTED_POS_IP = "10.5.50.2"   # Optional: reject any other source. Set to None to allow all.
+
+# Store identification
+PDI_STORE_NUMBER = "1340"  # Your PDI store number (without leading zeros)
+POS_ID = "24379"           # Your POS ID from location settings
+POS_TYPE = "Passport"      # Passport or Verifone
+
+# Backend server settings
+BACKEND_URL = "https://7f314759-0357-435a-ba76-315eef65a311-00-1c8qk8ujlqk2q.picard.replit.dev"  # Your Replit backend URL
+HEARTBEAT_INTERVAL = 15  # Send heartbeat every 15 seconds
+
+# Edge agent info
+EDGE_VERSION = "birdies-edge-1.0"
+VENDOR_NAME = "BirdiesLoyalty"
+VENDOR_VER  = "1.0"
+IFACE_VER   = "1.0"
+
+# Session state
+current_customer = None
+declined_rewards = set()  # Track declined reward IDs for current transaction
+
+# POSLOYALTY framing
+SIGNATURE = b"POSLOYALTY\x00\x00"
+ACTION_MESSAGE   = 1
+ACTION_HEARTBEAT = 2
+
+# =========================
+# Utilities
+# =========================
+def log(msg: str):
+    ts = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    print(f"[{ts}] {msg}", flush=True)
+
+def crc32(b: bytes) -> int:
+    return binascii.crc32(b) & 0xFFFFFFFF
+
+def pack_header(xml_bytes: bytes, action: int = ACTION_MESSAGE) -> bytes:
+    data_len = len(xml_bytes)
+    chk_data = crc32(xml_bytes)
+    head_wo_hdr_crc = SIGNATURE + struct.pack("<III", action, data_len, chk_data)
+    chk_hdr = crc32(head_wo_hdr_crc)
+    return head_wo_hdr_crc + struct.pack("<I", chk_hdr)
+
+def send_xml(conn: socket.socket, xml_str: str, action: int = ACTION_MESSAGE):
+    xml_bytes = xml_str.encode("utf-8")
+    hdr = pack_header(xml_bytes, action)
+    conn.sendall(hdr + xml_bytes)
+    try:
+        pretty = minidom.parseString(xml_bytes).toprettyxml()
+    except Exception:
+        pretty = xml_str
+    log("→ Sent to POS:\n" + pretty)
+
+def recv_exact(conn: socket.socket, n: int) -> bytes:
+    buf = b""
+    while len(buf) < n:
+        chunk = conn.recv(n - len(buf))
+        if not chunk:
+            return b""
+        buf += chunk
+    return buf
+
+def parse_header(hdr: bytes):
+    if len(hdr) != 28:
+        raise ValueError("short header")
+    if hdr[:12] != SIGNATURE:
+        raise ValueError("bad signature")
+    action, data_len, chk_data, chk_hdr = struct.unpack("<IIII", hdr[12:28])
+    if crc32(hdr[:24]) != chk_hdr:
+        raise ValueError("header CRC mismatch")
+    return action, data_len, chk_data
+
+def parse_xml(xml_bytes: bytes):
+    raw = xml_bytes.decode("utf-8", errors="replace")
+    try:
+        pretty = minidom.parseString(xml_bytes).toprettyxml()
+    except Exception:
+        pretty = raw
+    log("← Received from POS:\n" + pretty)
+    root = ET.fromstring(raw)
+    return root, raw
+
+def get_req_ids(root: ET.Element):
+    pos_seq = root.findtext(".//POSSequenceID") or "POSSEQ"
+    loy_seq = root.findtext(".//LoyaltySequenceID")
+    if not loy_seq or not loy_seq.strip():
+        loy_seq = "LOY-" + uuid.uuid4().hex[:12].upper()
+    return pos_seq, loy_seq
+
+def resp_header(pos_seq: str, loy_seq: str) -> str:
+    return (
+        f"<ResponseHeader>"
+        f"<POSLoyaltyInterfaceVersion>{IFACE_VER}</POSLoyaltyInterfaceVersion>"
+        f"<VendorName>{VENDOR_NAME}</VendorName>"
+        f"<VendorModelVersion>{VENDOR_VER}</VendorModelVersion>"
+        f"<POSSequenceID>{pos_seq}</POSSequenceID>"
+        f"<LoyaltySequenceID>{loy_seq}</LoyaltySequenceID>"
+        f"</ResponseHeader>"
+    )
+
+# =========================
+# Backend Heartbeat
+# =========================
+def send_heartbeat(pos_ip: str = None):
+    """Send heartbeat to backend server"""
+    try:
+        payload = {
+            "pdiStoreNumber": PDI_STORE_NUMBER,
+            "posId": POS_ID,
+            "posType": POS_TYPE,
+            "posIpAddress": pos_ip or EXPECTED_POS_IP,
+            "edgeIpAddress": HOST,
+            "edgeVersion": EDGE_VERSION
+        }
+        
+        response = requests.post(
+            f"{BACKEND_URL}/api/pos/heartbeat",
+            json=payload,
+            timeout=5
+        )
+        
+        if response.status_code == 200:
+            log(f"✓ Heartbeat sent to backend (Store {PDI_STORE_NUMBER})")
+        else:
+            log(f"⚠ Heartbeat failed: {response.status_code}")
+            
+    except Exception as e:
+        log(f"⚠ Heartbeat error: {e}")
+
+def heartbeat_loop():
+    """Background thread that sends periodic heartbeats"""
+    while True:
+        send_heartbeat()
+        time.sleep(HEARTBEAT_INTERVAL)
+
+# =========================
+# Response Builders
+# =========================
+def build_online_status_response(root: ET.Element) -> str:
+    pos_seq, loy_seq = get_req_ids(root)
+    return (
+        "<GetLoyaltyOnlineStatusResponse>"
+        f"{resp_header(pos_seq, loy_seq)}"
+        '<PromptForLoyaltyFlag value="yes"/>'
+        "</GetLoyaltyOnlineStatusResponse>"
+    )
+
+def build_get_rewards_response(root: ET.Element) -> str:
+    pos_seq, loy_seq = get_req_ids(root)
+    loyalty_id = root.findtext(".//LoyaltyID") or ""
+    phone = root.findtext(".//PhoneNumber") or ""
+    
+    # DEBUG: Log what we received
+    log(f"DEBUG: LoyaltyID='{loyalty_id}', PhoneNumber='{phone}'")
+    
+    # Smart detection: If LoyaltyID looks like a phone number (10 digits), treat it as phone
+    if loyalty_id and len(loyalty_id.replace("-", "").replace(" ", "")) == 10 and loyalty_id.replace("-", "").replace(" ", "").isdigit():
+        log(f"Detected phone number in LoyaltyID field: {loyalty_id}")
+        phone = loyalty_id
+        loyalty_id = ""
+    
+    # Call backend to lookup customer
+    try:
+        payload = {}
+        if loyalty_id:
+            log(f"Using loyalty ID for lookup: {loyalty_id}")
+            payload["loyaltyId"] = loyalty_id
+        elif phone:
+            log(f"Using phone number for lookup: {phone}")
+            payload["phone"] = phone
+        else:
+            # No identifier provided
+            log("⚠ No loyalty ID or phone number provided by POS")
+            return f"""
+<GetRewardsResponse>
+  {resp_header(pos_seq, loy_seq)}
+  <LoyaltyIDValidFlag value="no">Customer ID Required</LoyaltyIDValidFlag>
+  <RewardActions>
+  </RewardActions>
+</GetRewardsResponse>""".strip()
+        
+        response = requests.post(
+            f"{BACKEND_URL}/api/pos/customer-lookup",
+            json=payload,
+            timeout=5
+        )
+        
+        if response.status_code == 404:
+            # Customer not found
+            identifier = loyalty_id if loyalty_id else phone
+            log(f"⚠ Customer not found: {identifier}")
+            return f"""
+<GetRewardsResponse>
+  {resp_header(pos_seq, loy_seq)}
+  <LoyaltyIDValidFlag value="no">Customer not found. Please sign up at birdies.com</LoyaltyIDValidFlag>
+  <RewardActions>
+  </RewardActions>
+</GetRewardsResponse>""".strip()
+        
+        if response.status_code != 200:
+            log(f"⚠ Customer lookup failed: {response.status_code}")
+            return f"""
+<GetRewardsResponse>
+  {resp_header(pos_seq, loy_seq)}
+  <LoyaltyIDValidFlag value="no">System Error</LoyaltyIDValidFlag>
+  <RewardActions>
+  </RewardActions>
+</GetRewardsResponse>""".strip()
+        
+        customer = response.json()
+        customer_id = customer.get("customerId")
+        points_balance = customer.get("pointsBalance", 0)
+        first_name = customer.get("firstName", "")
+        last_name = customer.get("lastName", "")
+        
+        log(f"✓ Customer found: {first_name} {last_name} ({points_balance} pts)")
+        
+        # Store customer info for later use in finalize
+        global current_customer
+        current_customer = customer
+        
+        # Masked ID for display
+        display_id = loyalty_id if loyalty_id else phone
+        masked = (display_id[-4:].rjust(10, "*")) if display_id else "****"
+        
+        # Calculate subtotal from transaction items
+        subtotal = 0.0
+        items = root.findall(".//ItemLine")
+        for item in items:
+            # Get the sales amount for each item
+            amount_elem = item.find(".//SalesAmount")
+            if amount_elem is not None and amount_elem.text:
+                try:
+                    subtotal += float(amount_elem.text)
+                except:
+                    pass
+        
+        log(f"Calculated subtotal: ${subtotal:.2f}")
+        
+        # Build reward actions - ask customer if they want to redeem points
+        reward_actions = ""
+        global declined_rewards
+        reward_id = "BIRDIES_POINTS_REDEMPTION"
+        
+        # Only offer redemption if not already declined and customer has enough points
+        if reward_id not in declined_rewards and subtotal > 0 and points_balance >= 100:
+            # Calculate recommended redemption
+            try:
+                redemption_response = requests.post(
+                    f"{BACKEND_URL}/api/pos/calculate-redemption",
+                    json={
+                        "customerId": customer_id,
+                        "eligibleSubtotal": subtotal
+                    },
+                    timeout=5
+                )
+                
+                if redemption_response.status_code == 200:
+                    redemption_data = redemption_response.json()
+                    recommended_amount = redemption_data.get("recommendedRedemption", 0)
+                    points_to_use = recommended_amount * 100  # $1 = 100 points
+                    
+                    if recommended_amount > 0:
+                        log(f"Recommending ${recommended_amount} redemption ({points_to_use} pts)")
+                        # Add optional reward with prompt - customer must accept
+                        reward_actions = f"""
+    <AddReward>
+      <LoyaltyRewardID>{reward_id}</LoyaltyRewardID>
+      <InstantRewardFlag value="no"/>
+      <RewardPromptTextShort>Redeem ${recommended_amount:.2f} for {int(points_to_use)} pts?</RewardPromptTextShort>
+      <RewardTargetLineNumber>0</RewardTargetLineNumber>
+      <RewardDiscountMethod>amountOff</RewardDiscountMethod>
+      <RewardValue>{recommended_amount:.2f}</RewardValue>
+      <RewardReceiptDescShort>Loyalty</RewardReceiptDescShort>
+      <RewardReceiptDescLong>Birdies Loyalty Redemption</RewardReceiptDescLong>
+    </AddReward>"""
+            except Exception as e:
+                log(f"⚠ Redemption calculation failed: {e}")
+        elif reward_id in declined_rewards:
+            log(f"Skipping redemption offer - customer already declined")
+        
+        return f"""
+<GetRewardsResponse>
+  {resp_header(pos_seq, loy_seq)}
+  <LoyaltyIDValidFlag value="yes">{masked}</LoyaltyIDValidFlag>
+  <CustomerMessageData>
+    <DisplayData>
+      <DisplayCommand device="POS-Cashier" sequence="WhenReceived">
+        <DisplayLine>Welcome {first_name}!</DisplayLine>
+        <DisplayLine>Points Balance: {points_balance}</DisplayLine>
+      </DisplayCommand>
+    </DisplayData>
+  </CustomerMessageData>
+  <RewardActions>{reward_actions}
+  </RewardActions>
+</GetRewardsResponse>""".strip()
+        
+    except Exception as e:
+        log(f"⚠ Customer lookup error: {e}")
+        return f"""
+<GetRewardsResponse>
+  {resp_header(pos_seq, loy_seq)}
+  <LoyaltyIDValidFlag value="no">System Error</LoyaltyIDValidFlag>
+  <RewardActions>
+  </RewardActions>
+</GetRewardsResponse>""".strip()
+
+def build_finalize_response(root: ET.Element) -> str:
+    pos_seq, loy_seq = get_req_ids(root)
+    global current_customer
+    
+    # Extract transaction details
+    transaction_id = root.findtext(".//TransactionID") or root.findtext(".//POSTransactionID") or "N/A"
+    
+    # Calculate eligible subtotal (exclude lottery)
+    eligible_subtotal = 0.0
+    items = root.findall(".//Item") or root.findall(".//LineItem")
+    
+    for item in items:
+        price_str = item.findtext(".//ExtendedPrice") or item.findtext(".//Price") or "0"
+        category = item.findtext(".//Category") or ""
+        
+        # Exclude lottery from eligible subtotal
+        if "lottery" not in category.lower():
+            try:
+                eligible_subtotal += float(price_str)
+            except:
+                pass
+    
+    if not current_customer:
+        log("⚠ No customer in session, skipping loyalty finalization")
+        declined_rewards.clear()  # Clear for safety
+        return f"""
+<FinalizeRewardsResponse>
+  {resp_header(pos_seq, loy_seq)}
+  <CustomerMessageData>
+    <ReceiptData>
+      <ReceiptLine>Thank you for shopping at Birdies!</ReceiptLine>
+    </ReceiptData>
+  </CustomerMessageData>
+</FinalizeRewardsResponse>""".strip()
+    
+    try:
+        customer_id = current_customer.get("customerId")
+        
+        # Check if points were redeemed (look for redemption in transaction)
+        points_redeemed = 0
+        redemption_elements = root.findall(".//Redemption") or root.findall(".//PointsRedeemed")
+        for elem in redemption_elements:
+            try:
+                points_redeemed += int(elem.text or "0")
+            except:
+                pass
+        
+        # Call backend to finalize transaction
+        payload = {
+            "customerId": customer_id,
+            "eligibleSubtotal": eligible_subtotal,
+            "pointsRedeemed": points_redeemed,
+            "transactionId": transaction_id
+        }
+        
+        response = requests.post(
+            f"{BACKEND_URL}/api/pos/finalize-transaction",
+            json=payload,
+            timeout=5
+        )
+        
+        if response.status_code == 200:
+            result = response.json()
+            points_earned = result.get("pointsEarned", 0)
+            new_balance = result.get("newBalance", 0)
+            
+            log(f"✓ Transaction finalized: Earned {points_earned} pts, New balance: {new_balance} pts")
+            
+            # Build receipt lines
+            receipt_lines = []
+            if points_redeemed > 0:
+                receipt_lines.append(f"Points Redeemed: {points_redeemed} pts (${points_redeemed // 100})")
+            receipt_lines.append(f"Points Earned: {points_earned} pts")
+            receipt_lines.append(f"New Balance: {new_balance} pts")
+            receipt_lines.append("Thank you for shopping at Birdies!")
+            
+            receipt_xml = "\n".join([f"      <ReceiptLine>{line}</ReceiptLine>" for line in receipt_lines])
+            
+            # Clear customer session and declined rewards
+            current_customer = None
+            declined_rewards.clear()
+            
+            return f"""
+<FinalizeRewardsResponse>
+  {resp_header(pos_seq, loy_seq)}
+  <CustomerMessageData>
+    <ReceiptData>
+{receipt_xml}
+    </ReceiptData>
+  </CustomerMessageData>
+</FinalizeRewardsResponse>""".strip()
+        else:
+            log(f"⚠ Finalize transaction failed: {response.status_code}")
+            current_customer = None
+            declined_rewards.clear()
+            return f"""
+<FinalizeRewardsResponse>
+  {resp_header(pos_seq, loy_seq)}
+  <CustomerMessageData>
+    <ReceiptData>
+      <ReceiptLine>Thank you for shopping at Birdies!</ReceiptLine>
+    </ReceiptData>
+  </CustomerMessageData>
+</FinalizeRewardsResponse>""".strip()
+            
+    except Exception as e:
+        log(f"⚠ Finalize error: {e}")
+        current_customer = None
+        declined_rewards.clear()
+        return f"""
+<FinalizeRewardsResponse>
+  {resp_header(pos_seq, loy_seq)}
+  <CustomerMessageData>
+    <ReceiptData>
+      <ReceiptLine>Thank you for shopping at Birdies!</ReceiptLine>
+    </ReceiptData>
+  </CustomerMessageData>
+</FinalizeRewardsResponse>""".strip()
+
+def build_cancel_redemption_response(root: ET.Element) -> str:
+    """Handle customer declining a redemption offer"""
+    pos_seq, loy_seq = get_req_ids(root)
+    loyalty_reward_id = root.findtext(".//LoyaltyRewardID") or "UNKNOWN"
+    
+    global declined_rewards
+    declined_rewards.add(loyalty_reward_id)
+    
+    log(f"✗ Customer declined redemption: {loyalty_reward_id}")
+    # Return empty response - no action needed
+    return f"<CancelRedemptionResponse>{resp_header(pos_seq, loy_seq)}</CancelRedemptionResponse>"
+
+def build_cancel_txn_response(root: ET.Element) -> str:
+    pos_seq, loy_seq = get_req_ids(root)
+    global current_customer, declined_rewards
+    current_customer = None  # Clear customer session on cancel
+    declined_rewards.clear()  # Clear declined rewards for next transaction
+    log("Transaction cancelled, customer session cleared")
+    return f"<CancelTransactionResponse>{resp_header(pos_seq, loy_seq)}</CancelTransactionResponse>"
+
+def build_get_customer_msg_response(root: ET.Element) -> str:
+    pos_seq, loy_seq = get_req_ids(root)
+    return f"""
+<GetCustomerMessagingResponse>
+  {resp_header(pos_seq, loy_seq)}
+  <CustomerMessageData>
+    <DisplayData>
+      <DisplayCommand device="POS-Cashier" sequence="WhenReceived">
+        <DisplayLine>Welcome to Birdies Loyalty!</DisplayLine>
+      </DisplayCommand>
+    </DisplayData>
+  </CustomerMessageData>
+</GetCustomerMessagingResponse>""".strip()
+
+def build_end_period_response(root: ET.Element) -> str:
+    pos_seq, loy_seq = get_req_ids(root)
+    return f"""
+<EndPeriodResponse>
+  {resp_header(pos_seq, loy_seq)}
+  <Result value="success"/>
+</EndPeriodResponse>""".strip()
+
+# =========================
+# Connection Handler
+# =========================
+def handle_client(conn: socket.socket, addr):
+    peer = f"{addr[0]}:{addr[1]}"
+    log(f"POS connected from {peer}")
+
+    if EXPECTED_POS_IP and addr[0] != EXPECTED_POS_IP:
+        log(f"⚠ Rejecting unexpected POS IP: {addr[0]}")
+        try: conn.close()
+        except: pass
+        return
+
+    # Send heartbeat when POS connects
+    send_heartbeat(addr[0])
+
+    try:
+        conn.settimeout(180)
+        while True:
+            hdr = recv_exact(conn, 28)
+            if not hdr:
+                log(f"POS disconnected: {peer}")
+                break
+
+            try:
+                action, data_len, chk_data = parse_header(hdr)
+            except Exception as e:
+                log(f"Bad header from {peer}: {e}")
+                break
+
+            if action == ACTION_HEARTBEAT:
+                if data_len:
+                    _ = recv_exact(conn, data_len)
+                log(f"POS heartbeat from {peer}")
+                continue
+
+            data = recv_exact(conn, data_len)
+            if len(data) != data_len or crc32(data) != chk_data:
+                log(f"Payload CRC/length mismatch from {peer}")
+                break
+
+            try:
+                root, _raw = parse_xml(data)
+            except Exception as e:
+                log(f"XML parse error from {peer}: {e}")
+                break
+
+            tag = root.tag.strip()
+
+            # Handle POS messages
+            if tag == "GetLoyaltyOnlineStatusRequest":
+                send_xml(conn, build_online_status_response(root))
+                send_heartbeat(addr[0])  # Update backend when POS checks status
+
+            elif tag == "GetRewardsRequest":
+                send_xml(conn, build_get_rewards_response(root))
+
+            elif tag == "FinalizeRewardsRequest":
+                send_xml(conn, build_finalize_response(root))
+
+            elif tag == "CancelRedemptionRequest":
+                send_xml(conn, build_cancel_redemption_response(root))
+
+            elif tag == "CancelTransactionRequest":
+                send_xml(conn, build_cancel_txn_response(root))
+
+            elif tag == "GetCustomerMessagingRequest":
+                send_xml(conn, build_get_customer_msg_response(root))
+
+            elif tag == "EndPeriodRequest":
+                send_xml(conn, build_end_period_response(root))
+
+            elif tag in ("BeginCustomerRequest", "EndCustomerRequest", "CancelRedemptionRequest"):
+                log(f"{tag} received (no response required)")
+
+            else:
+                log(f"⚠ Unhandled message: {tag}")
+
+    except socket.timeout:
+        log(f"POS timeout: {peer}")
+    except Exception as e:
+        log(f"POS error: {peer} - {e}")
+    finally:
+        try:
+            conn.close()
+        except:
+            pass
+        log(f"Connection closed: {peer}")
+
+# =========================
+# Server
+# =========================
+def serve():
+    log(f"Starting Birdies Loyalty Edge Agent")
+    log(f"Store: {PDI_STORE_NUMBER} | POS Type: {POS_TYPE} | POS ID: {POS_ID}")
+    log(f"Backend: {BACKEND_URL}")
+    log(f"Listening on {HOST}:{PORT}")
+    
+    # Start heartbeat thread
+    heartbeat_thread = threading.Thread(target=heartbeat_loop, daemon=True)
+    heartbeat_thread.start()
+    log("✓ Heartbeat thread started")
+    
+    # Start POS listener
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+    s.bind((HOST, PORT))
+    s.listen(64)
+    
+    try:
+        while True:
+            conn, addr = s.accept()
+            threading.Thread(target=handle_client, args=(conn, addr), daemon=True).start()
+    except KeyboardInterrupt:
+        log("\nShutting down...")
+    finally:
+        s.close()
+
+if __name__ == "__main__":
+    serve()

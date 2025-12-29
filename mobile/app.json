@@ -1,0 +1,33 @@
+{
+  "expo": {
+    "name": "Birdies Rewards",
+    "slug": "birdies-rewards",
+    "version": "1.0.0",
+    "sdkVersion": "54.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "automatic",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#1E3A8A"
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.birdies.rewards"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#1E3A8A"
+      },
+      "package": "com.birdies.rewards"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "scheme": "birdies",
+    "plugins": ["expo-router", "expo-secure-store"]
+  }
+}

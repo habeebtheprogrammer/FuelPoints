@@ -1,0 +1,145 @@
+2025-11-14 11:25:59.53
+df91cb2d
+System
+command finished with error [npm start]: exit status 1
+2025-11-14 11:26:00.76
+df91cb2d
+User
+> gas-station-loyalty-app@1.0.0 start
+2025-11-14 11:26:00.76
+df91cb2d
+User
+> NODE_ENV=production npx tsx server/index.ts
+2025-11-14 11:26:04.73
+df91cb2d
+System
+a port configuration was specified but the required port was never opened
+2025-11-14 11:26:14.13
+df91cb2d
+System
+starting up user application
+2025-11-14 11:26:14.14
+df91cb2d
+System
+metasidecar: loaded enterprise status from environment is_enterprise=false
+2025-11-14 11:26:14.14
+df91cb2d
+System
+forwarding local port 5000 to external port 80 (mapped as 1104)
+2025-11-14 11:26:15.24
+df91cb2d
+User
+> gas-station-loyalty-app@1.0.0 start
+2025-11-14 11:26:15.24
+df91cb2d
+User
+> NODE_ENV=production npx tsx server/index.ts
+2025-11-14 11:26:37.19
+df91cb2d
+User
+/home/runner/workspace/node_modules/path-to-regexp/src/index.ts:225
+2025-11-14 11:26:37.19
+df91cb2d
+User
+throw new PathError(`Missing parameter name at index ${index}`, str);
+2025-11-14 11:26:37.19
+df91cb2d
+User
+^
+2025-11-14 11:26:37.19
+df91cb2d
+User
+2025-11-14 11:26:37.19
+df91cb2d
+User
+2025-11-14 11:26:37.19
+df91cb2d
+User
+PathError [TypeError]: Missing parameter name at index 2: /*; visit https://git.new/pathToRegexpError for info
+2025-11-14 11:26:37.19
+df91cb2d
+User
+at name (/home/runner/workspace/node_modules/path-to-regexp/src/index.ts:225:13)
+2025-11-14 11:26:37.19
+df91cb2d
+User
+at parse (/home/runner/workspace/node_modules/path-to-regexp/src/index.ts:242:62)
+2025-11-14 11:26:37.19
+df91cb2d
+User
+at pathToRegexp (/home/runner/workspace/node_modules/path-to-regexp/src/index.ts:480:54)
+2025-11-14 11:26:37.19
+df91cb2d
+User
+at Object.match (/home/runner/workspace/node_modules/path-to-regexp/src/index.ts:438:28)
+2025-11-14 11:26:37.19
+df91cb2d
+User
+at matcher (/home/runner/workspace/node_modules/router/lib/layer.js:86:23)
+2025-11-14 11:26:37.19
+df91cb2d
+User
+at new Layer (/home/runner/workspace/node_modules/router/lib/layer.js:93:62)
+2025-11-14 11:26:37.19
+df91cb2d
+User
+at Function.route (/home/runner/workspace/node_modules/router/index.js:428:17)
+2025-11-14 11:26:37.19
+df91cb2d
+User
+at Function.route (/home/runner/workspace/node_modules/express/lib/application.js:257:22)
+2025-11-14 11:26:37.19
+df91cb2d
+User
+at app. [as get] (/home/runner/workspace/node_modules/express/lib/application.js:478:22)
+2025-11-14 11:26:37.19
+df91cb2d
+User
+at (/home/runner/workspace/server/index.ts:901:7) {
+2025-11-14 11:26:37.19
+df91cb2d
+User
+originalPath: '/*'
+2025-11-14 11:26:37.19
+df91cb2d
+User
+}
+2025-11-14 11:26:37.19
+df91cb2d
+User
+2025-11-14 11:26:37.19
+df91cb2d
+User
+Node.js v22.17.0
+2025-11-14 11:26:37.67
+df91cb2d
+User
+npm notice
+2025-11-14 11:26:37.67
+df91cb2d
+User
+npm notice New major version of npm available! 10.9.2 -> 11.6.2
+2025-11-14 11:26:37.67
+df91cb2d
+User
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.6.2
+2025-11-14 11:26:37.67
+df91cb2d
+User
+npm notice To update run: npm install -g npm@11.6.2
+2025-11-14 11:26:37.67
+df91cb2d
+User
+npm notice
+2025-11-14 11:26:37.92
+df91cb2d
+System
+command finished with error [npm start]: exit status 1
+2025-11-14 11:26:38.94
+df91cb2d
+User
+> gas-station-loyalty-app@1.0.0 start
+2025-11-14 11:26:38.94
+df91cb2d
+User
+> NODE_ENV=production npx tsx server/index.ts

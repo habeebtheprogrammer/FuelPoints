@@ -1,0 +1,315 @@
+What to put into Replit (server)
+
+Create a new Replit (Python), add this as server.py, and click “Run”.
+
+# server.py — Replit-ready loyalty backend + presence tracker
+from flask import Flask, request, jsonify, render_template_string
+from datetime import datetime, timezone, timedelta
+import time, math, os
+
+app = Flask(__name__)
+
+API_KEY = os.getenv("API_KEY", "demo-edge-key")
+
+# ---------- Demo data you can swap to DB later ----------
+LOCATIONS = [
+    {"pdi_site_id": "01340", "pos_ids": {"passport": "24379"}, "active": True, "name": "Test Store A"},
+    # add more...
+]
+
+CUSTOMERS = {
+    "cust-001": {
+        "first_name": "Test",
+        "last_name":  "User",
+        "phone_e164": "+15551234567",                     # normalized phone
+        "loyalty_ids": ["8018759849564122826551"],        # barcode
+        "points_balance": 380
+    }
+}
+
+GROUPS = {                      # item groups by UPC (strings, leading zeros kept)
+    "COFFEE_12OZ": set(["000000000111", "000000000112"])
+}
+
+PROMOS = [                      # example: Coffee new price $0.99 (we convert to amountOff)
+    {"id":"COFFEE_1_FOR_0_99", "type":"NEW_PRICE", "group":"COFFEE_12OZ",
+     "new_price":0.99, "site_scope":["01340"], "max_items_per_txn": 10}
+]
+
+POINTS_CFG = {                  # $1 off / $20 rule with 100 pts = $1; $10 cap
+    "earn_per_dollar": 5,
+    "redeem_pts_per_dollar": 100,
+    "trip_cap_dollars": 10
+}
+
+# ---------- Presence tracker (who's online) ----------
+# last presence ping per site_id/pos_type/pos_store_id
+PRESENCE = {}  # key: (site_id, pos_type, pos_store_id) -> dict{last_seen, edge_version, prompt_flag, latency_ms}
+
+def auth_ok():
+    return request.headers.get("X-API-Key") == API_KEY
+
+def site_record(pdi_site_id: str):
+    for rec in LOCATIONS:
+        if rec["pdi_site_id"] == (pdi_site_id or "").strip() and rec["active"]:
+            return rec
+    return None
+
+def pos_matches(rec, pos_type: str, pos_store_id: str):
+    expected = rec["pos_ids"].get(pos_type)
+    return (expected is None) or (expected == (pos_store_id or "").strip())
+
+def resolve_customer(handle: str):
+    h = (handle or "").strip()
+    if not h: return None, None
+    # naive phone normalize for demo
+    digits = "".join(c for c in h if c.isdigit())
+    h_norm = "+1" + digits[-10:] if len(digits) >= 10 else h
+    for cid, rec in CUSTOMERS.items():
+        if rec.get("phone_e164") == h_norm: return cid, rec
+        if h in rec.get("loyalty_ids", []): return cid, rec
+    return None, None
+
+# ---------- Endpoints ----------
+@app.get("/health")
+def health():
+    if not auth_ok(): return ("Unauthorized", 401)
+    return jsonify({"ok": True, "ts": time.time(), "version": "replit-demo-1"})
+
+@app.post("/presence")
+def presence():
+    # Called by edge whenever it answers OnlineStatus or on a short interval
+    if not auth_ok(): return ("Unauthorized", 401)
+    data = request.get_json(force=True)
+    site_id     = (data.get("site_id") or "").strip()          # PDI (string)
+    pos_type    = (data.get("pos_type") or "").strip()          # passport|verifone
+    pos_store   = (data.get("pos_store_id") or "").strip()      # StoreLocationID (string)
+    prompt_flag = bool(data.get("prompt_for_loyalty", True))    # what edge is returning to POS
+    edge_ver    = (data.get("edge_version") or "").strip()
+    latency_ms  = int(data.get("evaluate_latency_ms") or 0)     # optional
+
+    rec = site_record(site_id)
+    if not rec or not pos_matches(rec, pos_type, pos_store):
+        # still record it for debugging, but mark as bad
+        PRESENCE[(site_id, pos_type, pos_store)] = {
+            "last_seen": datetime.now(timezone.utc),
+            "edge_version": edge_ver,
+            "prompt_flag": prompt_flag,
+            "latency_ms": latency_ms,
+            "status": "mismatch"
+        }
+        return jsonify({"ok": True, "note": "site-mismatch-recorded"})
+
+    PRESENCE[(site_id, pos_type, pos_store)] = {
+        "last_seen": datetime.now(timezone.utc),
+        "edge_version": edge_ver,
+        "prompt_flag": prompt_flag,
+        "latency_ms": latency_ms,
+        "status": "ok"
+    }
+    return jsonify({"ok": True})
+
+@app.get("/presence")
+def presence_dashboard():
+    # tiny HTML view
+    now = datetime.now(timezone.utc)
+    rows = []
+    for key, val in sorted(PRESENCE.items()):
+        age = (now - val["last_seen"]).total_seconds()
+        status = val["status"]
+        color = "#2ecc71" if (status == "ok" and age < 20) else ("#f1c40f" if age < 60 else "#e74c3c")
+        rows.append(f"""
+          <tr>
+            <td>{key[0]}</td><td>{key[1]}</td><td>{key[2]}</td>
+            <td>{val.get('edge_version','')}</td>
+            <td style="color:{color}">{'%.0f s ago' % age}</td>
+            <td>{'yes' if val.get('prompt_flag',True) else 'no'}</td>
+            <td>{val.get('latency_ms','')}</td>
+            <td>{status}</td>
+          </tr>""")
+    html = f"""
+      <html><head><title>Loyalty Presence</title>
+      <style>
+        body {{ font-family: Inter, system-ui, sans-serif; padding: 20px }}
+        table {{ border-collapse: collapse; width: 100% }}
+        th, td {{ padding: 8px 10px; border-bottom: 1px solid #eee; text-align: left }}
+        th {{ background: #fafafa }}
+      </style></head>
+      <body>
+        <h2>Loyalty Presence (online sites)</h2>
+        <table>
+          <thead><tr>
+            <th>PDI Site</th><th>POS Type</th><th>POS Store ID</th>
+            <th>Edge Version</th><th>Last Seen</th><th>Prompt?</th>
+            <th>Eval p95 (ms)</th><th>Status</th>
+          </tr></thead>
+          <tbody>{"".join(rows) or "<tr><td colspan=8>No pings yet</td></tr>"}</tbody>
+        </table>
+      </body></html>"""
+    return html
+
+@app.post("/rewards/evaluate")
+def evaluate():
+    if not auth_ok(): return ("Unauthorized", 401)
+    data = request.get_json(force=True)
+
+    pdi_site   = (data.get("site_id") or "").strip()
+    pos_type   = (data.get("pos_type") or "").strip()
+    pos_store  = (data.get("pos_store_id") or "").strip()
+    lines      = data.get("lines", [])
+    exclusions = set(data.get("exclusions", []))
+    handle     = (data.get("customer_handle") or "").strip()
+
+    rec = site_record(pdi_site)
+    if not rec or not pos_matches(rec, pos_type, pos_store):
+        return jsonify({"overall":"success","actions":[]})
+
+    # resolve customer (phone or loyalty id)
+    cust_id, cust = resolve_customer(handle)
+    balance = int(cust.get("points_balance", 0)) if cust else 0
+
+    # eligible subtotal (pre-tax), pre-points, before we add item promos
+    eligible_lines = [ln for ln in lines if ln.get("dept") not in exclusions]
+    pre_subtotal   = sum(float(ln.get("line_total", 0.0)) for ln in eligible_lines)
+
+    actions = []
+    # item promos first — convert to amountOff so it works for both POS types
+    for promo in PROMOS:
+        if pdi_site not in promo.get("site_scope", []): 
+            continue
+        if promo["type"] == "NEW_PRICE":
+            group = GROUPS.get(promo["group"], set())
+            new_price = float(promo["new_price"])
+            max_items = int(promo.get("max_items_per_txn", 999))
+            applied = 0
+            for ln in eligible_lines:
+                if ln.get("code") in group and applied < max_items:
+                    qty = int(ln.get("qty", 1))
+                    for _ in range(qty):
+                        if applied >= max_items: break
+                        unit_price = float(ln.get("unit_price", 0.0))
+                        off = round(max(unit_price - new_price, 0.0), 2)
+                        if off > 0:
+                            actions.append({
+                                "type":"line_amount_off","line_no": ln["line_no"], "value": off,
+                                "desc":"Coffee Club $0.99","rule_id":promo["id"]
+                            })
+                        applied += 1
+
+    total_item_off = sum(a["value"] for a in actions if a["type"] == "line_amount_off")
+    post_item_subtotal = max(pre_subtotal - total_item_off, 0.0)
+
+    # points redemption: $1 per $20; 100 pts = $1; $10 cap
+    max_by_spend  = int(post_item_subtotal // 20)
+    max_by_points = int(balance // POINTS_CFG["redeem_pts_per_dollar"])
+    redeem_dollars = min(max_by_spend, max_by_points, POINTS_CFG["trip_cap_dollars"])
+    if redeem_dollars >= 1:
+        actions.append({
+            "type":"ticket_amount_off",
+            "value": float(redeem_dollars),
+            "points_to_use": int(redeem_dollars * POINTS_CFG["redeem_pts_per_dollar"]),
+            "desc":"Points Redemption",
+            "prompt": True
+        })
+
+    # earn points (post item promos, pre tax)
+    earned = int(math.floor(post_item_subtotal * POINTS_CFG["earn_per_dollar"]))
+
+    return jsonify({"overall":"success","actions":actions,
+                    "earned_preview": earned, "balance_preview": balance})
+
+@app.post("/rewards/finalize")
+def finalize():
+    if not auth_ok(): return ("Unauthorized", 401)
+    data = request.get_json(force=True)
+    handle = (data.get("customer_handle") or "").strip()
+    points_used = int(data.get("points_used") or 0)
+    earned      = int(data.get("earned") or 0)
+
+    cust_id, cust = resolve_customer(handle)
+    if not cust:
+        return jsonify({"ok": True, "note":"unknown customer; no ledger"})
+
+    new_bal = max(0, cust["points_balance"] + earned - points_used)
+    cust["points_balance"] = new_bal
+    return jsonify({"ok": True, "new_balance": new_bal})
+
+if __name__ == "__main__":
+    # Replit binds to $PORT automatically if present:
+    port = int(os.getenv("PORT", "5000"))
+    app.run(host="0.0.0.0", port=port)
+
+Replit env
+
+Set a Secret named API_KEY to the same value your edge agent will use (e.g., demo-edge-key).
+
+You’ll get:
+
+GET /presence → simple dashboard of which sites are online + last seen + whether they’re prompting
+
+GET /health → agent heartbeat
+
+POST /rewards/evaluate / POST /rewards/finalize → loyalty decisions & commit
+
+POST /presence → edge pings here whenever it answers OnlineStatus (and periodically)
+
+Edge change (so the server knows which sites are online)
+
+Add this tiny presence ping to your back-office Passport agent:
+
+# in edge_agent.py (top)
+EDGE_VERSION = "edge-1.0"
+
+def ping_presence(pos_store_id:str, prompt_yes:bool, eval_latency_ms:int=0):
+    try:
+        requests.post(
+            f"{SERVER_BASE}/presence",
+            headers={"X-API-Key": API_KEY, "Content-Type":"application/json"},
+            json={
+                "site_id": PDI_SITE_ID,              # PDI (string, preserve leading zeros)
+                "pos_type": POS_TYPE,                # "passport"
+                "pos_store_id": pos_store_id or "",  # e.g., "24379"
+                "prompt_for_loyalty": bool(prompt_yes),
+                "edge_version": EDGE_VERSION,
+                "evaluate_latency_ms": eval_latency_ms
+            },
+            timeout=1.0
+        )
+    except Exception:
+        pass
+
+
+Call it in two spots:
+
+Right after you answer OnlineStatus:
+
+if tag == "GetLoyaltyOnlineStatusRequest":
+    pos_seq = get_text(root,"POSSequenceID")
+    pos_store_id = get_text(root,"StoreLocationID")
+    fresh = HEALTH_CACHE["ok"] and (int(time.time()) - HEALTH_CACHE["ts"] <= HEALTH_TTL)
+    frame_send(conn, build_online_status_response(pos_seq, fresh))
+    ping_presence(pos_store_id, prompt_yes=fresh)
+
+
+Optionally, after each /rewards/evaluate (so you can record decision latency):
+
+t0 = time.time()
+r = requests.post(... evaluate ...)
+lat_ms = int((time.time()-t0)*1000)
+# after sending GetRewardsResponse:
+ping_presence(get_text(root,"StoreLocationID"), prompt_yes=True, eval_latency_ms=lat_ms)
+
+
+Now your server’s /presence dashboard shows which PDI site / POS type / POS store id is online, when it last pinged, whether the lane is prompting, and typical evaluate latency—independent of the fact that OnlineStatus is answered locally.
+
+Quick sanity checklist
+
+IDs as strings everywhere (PDI site_id, pos_store_id, UPCs), so leading zeros are safe.
+
+Edge keeps answering OnlineStatus locally for speed, but reports presence to the server.
+
+All discounts you return are amountOff (line or ticket) so your logic runs the same on Passport and Verifone later.
+
+Points rule is locked: 5 pts/$ earn, 100 pts = $1, $1 off per $20, $10 cap (you can tweak in POINTS_CFG).
+
+If you want, I can fold the presence ping + evaluate-latency into the full edge file you’re already using so you can just copy/paste.

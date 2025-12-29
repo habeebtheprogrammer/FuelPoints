@@ -1,0 +1,90 @@
+That said, there are a few real issues—mostly around concurrency + state, not the promo/punch math itself. Here’s the honest breakdown with “will this break my POS build?” in mind.
+
+What’s good (and why it’s unlikely to break Passport)
+
+POSLOYALTY framing + CRC logic looks consistent (signature/length/checksums).
+
+UPC handling as strings is correct (preserves leading zeros).
+
+Price fallback is sensible (unit_price → actual_price → regular_price).
+
+Option A gating is done by line number (promo_line_numbers) which matches how Passport applies rewards (RewardTargetLineNumber). That’s the safest way.
+
+You’re not changing tag names or adding weird XML—still standard <AddReward> blocks.
+
+Real issues to watch
+1) “Per connection state” is not actually per connection (REAL)
+
+You commented:
+
+SESSION STATE (per connection - reset between transactions)
+
+…but current_customer, last_promotions_applied, etc. are global variables shared across threads.
+
+Because you do:
+
+threading.Thread(target=handle_client, ...).start()
+
+
+…you can have two connections at once, and they will overwrite each other’s globals mid-transaction.
+
+If you truly only ever have one lane/connection at a time, you’ll probably never notice.
+If you ever have two lanes, or a reconnect overlap, it can absolutely cause “wrong customer / wrong punches” issues.
+
+✅ Lowest-risk fix that won’t touch promo/punch logic: add a global lock so only one handle_client runs at a time. That avoids rewriting everything into objects.
+
+Example:
+
+POS_SINGLETON_LOCK = threading.Lock()
+
+def handle_client(conn, addr):
+    with POS_SINGLETON_LOCK:
+        # existing handle_client body unchanged
+        ...
+        # also: in finally, clear globals to avoid leak
+
+2) No guaranteed cleanup if the connection dies mid-transaction (REAL)
+
+You clear state in FinalizeRewardsRequest and CancelTransactionRequest, but if the POS disconnects or XML parse fails in the middle, the globals can remain “dirty” and affect the next connection.
+
+✅ Minimal fix: in finally: of handle_client, clear the globals the same way you do on cancel.
+
+3) requests.Session() shared across threads (MILD)
+
+Usually fine, but with multiple threads it’s not ideal. If you implement the single-connection lock, this becomes basically a non-issue.
+
+4) Transaction ID inconsistency (REAL-ish, but easy)
+
+You compute:
+
+safe_txn_id = transaction_id or f"TXN-..."
+
+
+…but you send transactionId: transaction_id (possibly empty) to /finalize-transaction, while punches use safe_txn_id.
+
+That can break backend idempotency/dedupe if your backend expects a stable transaction id.
+
+✅ Minimal fix: send safe_txn_id everywhere:
+
+payload["transactionId"] = safe_txn_id
+
+5) Quantity handling uses int() in promos (CONDITIONAL)
+
+In build_promotion_rewards_xml:
+
+take_qty = min(int(item["quantity"]), remaining_units)
+
+
+If you ever have fractional quantities (rare for normal UPC items, more common for fuel/weighted items), truncation could be wrong. If all punch/promo items are normal packaged goods, you’re fine.
+
+Your specific worry: “POS builds are sensitive”
+
+The biggest thing that can “mess something up” in the field is not the reward math—it’s the global state crossing transactions.
+
+So if you do only one change, do this one:
+
+force single active POS connection (lock), and
+
+reset state in finally:.
+
+Those changes are tiny and don’t touch any of the working promo/punch logic.

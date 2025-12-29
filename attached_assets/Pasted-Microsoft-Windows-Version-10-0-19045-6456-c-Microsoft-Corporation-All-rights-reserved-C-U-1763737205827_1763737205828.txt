@@ -1,0 +1,55 @@
+Microsoft Windows [Version 10.0.19045.6456]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\store>cd documents
+
+C:\Users\store\Documents>python verifone_file_uploader.py
+2025-11-21 09:53:56 [INFO] ============================================================
+2025-11-21 09:53:56 [INFO] 🚀 Birdies Loyalty - Verifone XML File Uploader
+2025-11-21 09:53:56 [INFO] ============================================================
+2025-11-21 09:53:56 [INFO] Store Number: 1310
+2025-11-21 09:53:56 [INFO] POS Type: Verifone-Ruby
+2025-11-21 09:53:56 [INFO] Commander: 192.168.45.95
+2025-11-21 09:53:56 [INFO] Backend: https://salmanloyalty.replit.app
+2025-11-21 09:53:56 [INFO] Fetch Interval: 3600s (60 minutes)
+2025-11-21 09:53:56 [INFO] ============================================================
+2025-11-21 09:53:56 [INFO] ✅ File uploader started - will fetch from Commander API...
+2025-11-21 09:53:56 [INFO]
+2025-11-21 09:53:56 [INFO] ============================================================
+2025-11-21 09:53:56 [INFO] 🚀 Starting Verifone data collection...
+2025-11-21 09:53:56 [INFO] ============================================================
+2025-11-21 09:53:56 [INFO] ✅ Authenticated with Commander (cookie: ec6ed723...)
+2025-11-21 09:53:56 [INFO] 📥 Fetching vposjournal (transaction journal)...
+2025-11-21 09:54:05 [INFO] ✅ Fetched vposjournal (2907059 bytes)
+2025-11-21 09:54:05 [INFO] 📅 Business date: 2025-11-20
+2025-11-21 09:54:10 [ERROR] ❌ Upload failed (201): {"success":true,"id":2,"message":"Raw XML stored successfully"}
+2025-11-21 09:54:10 [INFO] 📥 Fetching transaction reports...
+2025-11-21 09:54:11 [INFO] ✅ Fetched vtransset (4702011 bytes)
+2025-11-21 09:54:14 [ERROR] ❌ Upload failed (201): {"success":true,"id":3,"message":"Raw XML stored successfully"}
+2025-11-21 09:54:15 [INFO] ✅ Fetched vtranssetz (4702011 bytes)
+2025-11-21 09:54:18 [ERROR] ❌ Upload failed (201): {"success":true,"id":4,"message":"Raw XML stored successfully"}
+2025-11-21 09:54:18 [INFO] 📥 Fetching fuel reports...
+2025-11-21 09:54:18 [INFO] ✅ Fetched vfueltotals (6881 bytes)
+2025-11-21 09:54:19 [ERROR] ❌ Upload failed (201): {"success":true,"id":5,"message":"Raw XML stored successfully"}
+2025-11-21 09:54:19 [INFO] ✅ Fetched vfueltotalsz (6881 bytes)
+2025-11-21 09:54:19 [ERROR] ❌ Upload failed (201): {"success":true,"id":6,"message":"Raw XML stored successfully"}
+2025-11-21 09:54:19 [INFO] 📥 Fetching Ruby reports...
+2025-11-21 09:54:19 [INFO] ✅ Fetched vrubyrept (60035 bytes)
+2025-11-21 09:54:20 [ERROR] ❌ Upload failed (201): {"success":true,"id":7,"message":"Raw XML stored successfully"}
+2025-11-21 09:54:20 [INFO] ✅ Fetched vrubyrept (123759 bytes)
+2025-11-21 09:54:21 [ERROR] ❌ Upload failed (201): {"success":true,"id":8,"message":"Raw XML stored successfully"}
+2025-11-21 09:54:21 [INFO] ✅ Fetched vrubyrept (6191 bytes)
+2025-11-21 09:54:22 [ERROR] ❌ Upload failed (201): {"success":true,"id":9,"message":"Raw XML stored successfully"}
+2025-11-21 09:54:24 [INFO] ✅ Fetched vrubyrept (417567 bytes)
+2025-11-21 09:54:25 [ERROR] ❌ Upload failed (201): {"success":true,"id":10,"message":"Raw XML stored successfully"}
+2025-11-21 09:54:26 [INFO] ✅ Fetched vrubyrept (12393 bytes)
+2025-11-21 09:54:26 [ERROR] ❌ Upload failed (201): {"success":true,"id":11,"message":"Raw XML stored successfully"}
+2025-11-21 09:54:26 [INFO] ✅ Fetched vrubyrept (9421 bytes)
+2025-11-21 09:54:27 [ERROR] ❌ Upload failed (201): {"success":true,"id":12,"message":"Raw XML stored successfully"}
+2025-11-21 09:54:27 [INFO] ✅ Fetched vrubyrept (7571 bytes)
+2025-11-21 09:54:27 [ERROR] ❌ Upload failed (201): {"success":true,"id":13,"message":"Raw XML stored successfully"}
+2025-11-21 09:54:27 [INFO] ============================================================
+2025-11-21 09:54:27 [INFO] ✨ Collection complete! Uploaded 0 new file(s)
+2025-11-21 09:54:27 [INFO] ============================================================
+2025-11-21 09:54:27 [INFO] ✅ Session cookie released
+2025-11-21 09:54:27 [INFO] ⏰ Next fetch in 60 minutes...

@@ -1,0 +1,308 @@
+#!/usr/bin/env python3
+"""
+Gilbarco Passport Loyalty Demo Server (Prompted)
+-----------------------------------------------
+• Binds to 10.96.10.175:9000
+• Implements POSLOYALTY 28-byte header + XML framing
+• Prints every inbound/outbound XML in the terminal
+• Keeps loyalty ONLINE (OnlineStatus)
+• Offers $1.00 OFF any transaction when ANY LoyaltyID (e.g., phone #) is entered
+• DOES NOT AUTO-APPLY: prompts the consumer (InstantRewardFlag="no")
+• Handles common messages: OnlineStatus, GetRewards, FinalizeRewards, CancelTransaction,
+  GetCustomerMessaging, Begin/EndCustomer (info only), EndPeriod (ack so POS stops retrying)
+"""
+
+import socket
+import threading
+import datetime
+import binascii
+import struct
+import uuid
+import xml.etree.ElementTree as ET
+from xml.dom import minidom
+
+# =========================
+# Configuration
+# =========================
+HOST = "10.96.10.175"   # your PC's Passport NIC IP
+PORT = 9000             # Loyalty port configured on Passport MWS
+EXPECTED_POS_IP = "10.5.50.2"   # Optional safety: reject any other source. Set to None to allow all.
+
+VENDOR_NAME = "DemoLoyalty"
+VENDOR_VER  = "1.0"
+IFACE_VER   = "1.0"
+
+# Reward: $1.00 off transaction total (line 0) — now OPTIONAL with a prompt
+DISCOUNT_VALUE = 1.00
+REWARD_ID      = "DEMO-1OFF"
+RECEIPT_SHORT  = "$1OFF"            # <= 8 chars
+RECEIPT_LONG   = "Loyalty $1 Off"   # <= 24 chars
+PROMPT_TEXT    = "Redeem $1.00?"    # keep concise (Passport short prompt is typically limited)
+
+# POSLOYALTY framing
+SIGNATURE = b"POSLOYALTY\x00\x00"
+ACTION_MESSAGE   = 1
+ACTION_HEARTBEAT = 2
+
+# =========================
+# Utilities
+# =========================
+def log(msg: str):
+    ts = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    print(f"[{ts}] {msg}", flush=True)
+
+def crc32(b: bytes) -> int:
+    return binascii.crc32(b) & 0xFFFFFFFF
+
+def pack_header(xml_bytes: bytes, action: int = ACTION_MESSAGE) -> bytes:
+    data_len = len(xml_bytes)
+    chk_data = crc32(xml_bytes)
+    head_wo_hdr_crc = SIGNATURE + struct.pack("<III", action, data_len, chk_data)
+    chk_hdr = crc32(head_wo_hdr_crc)
+    return head_wo_hdr_crc + struct.pack("<I", chk_hdr)
+
+def send_xml(conn: socket.socket, xml_str: str, action: int = ACTION_MESSAGE):
+    xml_bytes = xml_str.encode("utf-8")
+    hdr = pack_header(xml_bytes, action)
+    conn.sendall(hdr + xml_bytes)
+    # pretty print outbound
+    try:
+        pretty = minidom.parseString(xml_bytes).toprettyxml()
+    except Exception:
+        pretty = xml_str
+    log("→ Sent XML:\n" + pretty)
+
+def recv_exact(conn: socket.socket, n: int) -> bytes:
+    buf = b""
+    while len(buf) < n:
+        chunk = conn.recv(n - len(buf))
+        if not chunk:
+            return b""
+        buf += chunk
+    return buf
+
+def parse_header(hdr: bytes):
+    if len(hdr) != 28:
+        raise ValueError("short header")
+    if hdr[:12] != SIGNATURE:
+        raise ValueError("bad signature")
+    action, data_len, chk_data, chk_hdr = struct.unpack("<IIII", hdr[12:28])
+    if crc32(hdr[:24]) != chk_hdr:
+        raise ValueError("header CRC mismatch")
+    return action, data_len, chk_data
+
+def parse_xml(xml_bytes: bytes):
+    raw = xml_bytes.decode("utf-8", errors="replace")
+    # pretty print inbound
+    try:
+        pretty = minidom.parseString(xml_bytes).toprettyxml()
+    except Exception:
+        pretty = raw
+    log("← Recv XML:\n" + pretty)
+    root = ET.fromstring(raw)
+    return root, raw
+
+def get_req_ids(root: ET.Element):
+    pos_seq = root.findtext(".//POSSequenceID") or "POSSEQ"
+    loy_seq = root.findtext(".//LoyaltySequenceID")
+    if not loy_seq or not loy_seq.strip():
+        loy_seq = "LOY-" + uuid.uuid4().hex[:12].upper()
+    return pos_seq, loy_seq
+
+def resp_header(pos_seq: str, loy_seq: str) -> str:
+    return (
+        f"<ResponseHeader>"
+        f"<POSLoyaltyInterfaceVersion>{IFACE_VER}</POSLoyaltyInterfaceVersion>"
+        f"<VendorName>{VENDOR_NAME}</VendorName>"
+        f"<VendorModelVersion>{VENDOR_VER}</VendorModelVersion>"
+        f"<POSSequenceID>{pos_seq}</POSSequenceID>"
+        f"<LoyaltySequenceID>{loy_seq}</LoyaltySequenceID>"
+        f"</ResponseHeader>"
+    )
+
+# =========================
+# Response Builders
+# =========================
+def build_online_status_response(root: ET.Element) -> str:
+    pos_seq, loy_seq = get_req_ids(root)
+    return (
+        "<GetLoyaltyOnlineStatusResponse>"
+        f"{resp_header(pos_seq, loy_seq)}"
+        '<PromptForLoyaltyFlag value="yes"/>'
+        "</GetLoyaltyOnlineStatusResponse>"
+    )
+
+def build_get_rewards_response(root: ET.Element) -> str:
+    """
+    Return an OPTIONAL transaction-level reward (ask first).
+    Key changes from your original:
+      - InstantRewardFlag = "no" (optional)
+      - RewardPromptTextShort included
+    """
+    pos_seq, loy_seq = get_req_ids(root)
+    loyalty_id = root.findtext(".//LoyaltyID") or ""
+    masked = (loyalty_id[-4:].rjust(10, "*")) if loyalty_id else ""
+    return f"""
+<GetRewardsResponse>
+  {resp_header(pos_seq, loy_seq)}
+  <LoyaltyIDValidFlag value="yes">{masked}</LoyaltyIDValidFlag>
+  <RewardActions>
+    <AddReward>
+      <LoyaltyRewardID>{REWARD_ID}</LoyaltyRewardID>
+      <InstantRewardFlag value="no"/>  <!-- ASK, do not auto-apply -->
+      <RewardPromptTextShort>{PROMPT_TEXT}</RewardPromptTextShort>
+      <RewardTargetLineNumber>0</RewardTargetLineNumber> <!-- basket -->
+      <RewardDiscountMethod>amountOff</RewardDiscountMethod>
+      <RewardValue>{DISCOUNT_VALUE:.2f}</RewardValue>
+      <RewardReceiptDescShort>{RECEIPT_SHORT}</RewardReceiptDescShort>
+      <RewardReceiptDescLong>{RECEIPT_LONG}</RewardReceiptDescLong>
+    </AddReward>
+  </RewardActions>
+</GetRewardsResponse>""".strip()
+
+def build_finalize_response(root: ET.Element) -> str:
+    pos_seq, loy_seq = get_req_ids(root)
+    return f"""
+<FinalizeRewardsResponse>
+  {resp_header(pos_seq, loy_seq)}
+  <CustomerMessageData>
+    <ReceiptData>
+      <ReceiptLine>LOYALTY $1 OFF APPLIED</ReceiptLine>
+    </ReceiptData>
+  </CustomerMessageData>
+</FinalizeRewardsResponse>""".strip()
+
+def build_cancel_txn_response(root: ET.Element) -> str:
+    pos_seq, loy_seq = get_req_ids(root)
+    return f"<CancelTransactionResponse>{resp_header(pos_seq, loy_seq)}</CancelTransactionResponse>"
+
+def build_get_customer_msg_response(root: ET.Element) -> str:
+    pos_seq, loy_seq = get_req_ids(root)
+    return f"""
+<GetCustomerMessagingResponse>
+  {resp_header(pos_seq, loy_seq)}
+  <CustomerMessageData>
+    <DisplayData>
+      <DisplayCommand device="POS-Cashier" sequence="WhenReceived">
+        <DisplayLine>$1 Loyalty discount available</DisplayLine>
+      </DisplayCommand>
+    </DisplayData>
+  </CustomerMessageData>
+</GetCustomerMessagingResponse>""".strip()
+
+def build_end_period_response(root: ET.Element) -> str:
+    pos_seq, loy_seq = get_req_ids(root)
+    return f"""
+<EndPeriodResponse>
+  {resp_header(pos_seq, loy_seq)}
+  <Result value="success"/>
+</EndPeriodResponse>""".strip()
+
+# =========================
+# Connection Handler
+# =========================
+def handle_client(conn: socket.socket, addr):
+    peer = f"{addr[0]}:{addr[1]}"
+    log(f"Connection from {peer}")
+
+    # Optional safety: only accept the Passport IP you observed
+    if EXPECTED_POS_IP and addr[0] != EXPECTED_POS_IP:
+        log(f"Rejecting unexpected host {addr[0]}")
+        try: conn.close()
+        except: pass
+        return
+
+    try:
+        conn.settimeout(180)
+        while True:
+            hdr = recv_exact(conn, 28)
+            if not hdr:
+                log(f"{peer} closed connection.")
+                break
+
+            try:
+                action, data_len, chk_data = parse_header(hdr)
+            except Exception as e:
+                log(f"{peer} bad header: {e}")
+                break
+
+            if action == ACTION_HEARTBEAT:
+                # Consume optional heartbeat payload if present
+                if data_len:
+                    _ = recv_exact(conn, data_len)
+                log(f"{peer} heartbeat")
+                continue
+
+            data = recv_exact(conn, data_len)
+            if len(data) != data_len or crc32(data) != chk_data:
+                log(f"{peer} payload CRC/length mismatch")
+                break
+
+            try:
+                root, _raw = parse_xml(data)
+            except Exception as e:
+                log(f"{peer} XML parse error: {e}")
+                break
+
+            tag = root.tag.strip()
+
+            # ---- Message routing ----
+            if tag == "GetLoyaltyOnlineStatusRequest":
+                send_xml(conn, build_online_status_response(root))
+
+            elif tag == "GetRewardsRequest":
+                # Any LoyaltyID is treated as valid; OFFER (prompt), do not auto-apply
+                send_xml(conn, build_get_rewards_response(root))
+
+            elif tag == "FinalizeRewardsRequest":
+                # This arrives only if cashier/shopper accepted the prompt
+                send_xml(conn, build_finalize_response(root))
+
+            elif tag == "CancelTransactionRequest":
+                send_xml(conn, build_cancel_txn_response(root))
+
+            elif tag == "GetCustomerMessagingRequest":
+                send_xml(conn, build_get_customer_msg_response(root))
+
+            elif tag == "EndPeriodRequest":
+                # Acknowledge so POS stops resending
+                send_xml(conn, build_end_period_response(root))
+
+            elif tag in ("BeginCustomerRequest", "EndCustomerRequest", "CancelRedemptionRequest"):
+                # Informational only — no response required
+                log(f"{peer} {tag} received (no response required).")
+
+            else:
+                log(f"{peer} Unhandled message type: {tag} (no response sent).")
+
+    except socket.timeout:
+        log(f"{peer} timed out.")
+    except Exception as e:
+        log(f"{peer} error: {e}")
+    finally:
+        try:
+            conn.close()
+        except:
+            pass
+        log(f"Connection closed: {peer}")
+
+# =========================
+# Server
+# =========================
+def serve():
+    log(f"Starting Loyalty server on {HOST}:{PORT}")
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+    s.bind((HOST, PORT))
+    s.listen(64)
+    try:
+        while True:
+            conn, addr = s.accept()
+            threading.Thread(target=handle_client, args=(conn, addr), daemon=True).start()
+    except KeyboardInterrupt:
+        log("Shutting down.")
+    finally:
+        s.close()
+
+if __name__ == "__main__":
+    serve()

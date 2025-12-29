@@ -1,0 +1,264 @@
+Microsoft Windows [Version 10.0.19045.6456]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\store>cd documents
+
+C:\Users\store\Documents>cd loyalty
+
+C:\Users\store\Documents\loyalty>python hollywood5.py
+Loaded customers data: {'customers': [{'id': 1, 'name': 'John Doe', 'email': 'johndoe@example.com', 'phone': '5551234567', 'available_points': 2500}, {'id': 2, 'name': 'Jane Smith', 'email': 'janesmith@example.com', 'phone': '5559876543', 'available_points': 4000}, {'id': 3, 'name': 'Alice Johnson', 'email': 'alice.johnson@example.com', 'phone': '5551112222', 'available_points': 1500}]}
+2025-11-20 14:19:09,485 [DEBUG] Loaded customers data: {'customers': [{'id': 1, 'name': 'John Doe', 'email': 'johndoe@example.com', 'phone': '5551234567', 'available_points': 2500}, {'id': 2, 'name': 'Jane Smith', 'email': 'janesmith@example.com', 'phone': '5559876543', 'available_points': 4000}, {'id': 3, 'name': 'Alice Johnson', 'email': 'alice.johnson@example.com', 'phone': '5551112222', 'available_points': 1500}]}
+Loaded loyalty program data: {'inside_purchases': {'points_per_dollar': 100, 'redemption': {'points_required': 2000, 'dollar_off': 1.0, 'example_spend': 20.0}}, 'fuel_purchases': {'points_per_dollar': 50, 'base_discount_per_gallon': 0.05, 'additional_discount_per_2000_points': 0.05, 'max_discount_per_gallon': 0.5, 'max_applicable_gallons': 20}, 'overview': 'Earn points on every purchase and enjoy rewards both inside the store and on fuel. Use inside points for immediate discounts and fuel points to boost your per-gallon discount.'}
+2025-11-20 14:19:09,486 [DEBUG] Loaded loyalty program data: {'inside_purchases': {'points_per_dollar': 100, 'redemption': {'points_required': 2000, 'dollar_off': 1.0, 'example_spend': 20.0}}, 'fuel_purchases': {'points_per_dollar': 50, 'base_discount_per_gallon': 0.05, 'additional_discount_per_2000_points': 0.05, 'max_discount_per_gallon': 0.5, 'max_applicable_gallons': 20}, 'overview': 'Earn points on every purchase and enjoy rewards both inside the store and on fuel. Use inside points for immediate discounts and fuel points to boost your per-gallon discount.'}
+Server listening on 0.0.0.0:9000
+2025-11-20 14:19:09,487 [INFO] Server listening on 0.0.0.0:9000
+Connection established with ('192.168.15.135', 60146)
+2025-11-20 14:19:09,793 [INFO] Connection established with ('192.168.15.135', 60146)
+Received message (670 bytes):
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?><ns2:GetLoyaltyOnlineStatusRequest xmlns:ns2="http://www.pcats.org/schema/naxml/loyalty/v01" xmlns:ns4="http://www.pcats.org/schema/core/v01" xmlns:ns3="http://www.naxml.org/POSBO/Vocabulary/2003-10-16"><ns2:RequestHeader><ns2:POSLoyaltyInterfaceVersion>1.1</ns2:POSLoyaltyInterfaceVersion><ns3:VendorName>VIPER</ns3:VendorName><ns3:VendorModelVersion>9.03.00</ns3:VendorModelVersion><ns2:POSSequenceID>1-101</ns2:POSSequenceID><ns2:LoyaltySequenceID></ns2:LoyaltySequenceID><ns2:StoreLocationID>24354</ns2:StoreLocationID><ns2:LoyaltyOfflineFlag value="no"/></ns2:RequestHeader></ns2:GetLoyaltyOnlineStatusRequest>
+2025-11-20 14:19:09,801 [DEBUG] Received message (670 bytes):
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?><ns2:GetLoyaltyOnlineStatusRequest xmlns:ns2="http://www.pcats.org/schema/naxml/loyalty/v01" xmlns:ns4="http://www.pcats.org/schema/core/v01" xmlns:ns3="http://www.naxml.org/POSBO/Vocabulary/2003-10-16"><ns2:RequestHeader><ns2:POSLoyaltyInterfaceVersion>1.1</ns2:POSLoyaltyInterfaceVersion><ns3:VendorName>VIPER</ns3:VendorName><ns3:VendorModelVersion>9.03.00</ns3:VendorModelVersion><ns2:POSSequenceID>1-101</ns2:POSSequenceID><ns2:LoyaltySequenceID></ns2:LoyaltySequenceID><ns2:StoreLocationID>24354</ns2:StoreLocationID><ns2:LoyaltyOfflineFlag value="no"/></ns2:RequestHeader></ns2:GetLoyaltyOnlineStatusRequest>
+C:\Users\store\Documents\loyalty\hollywood5.py:483: DeprecationWarning: Testing an element's truth value will always return True in future versions.  Use specific 'len(elem)' or 'elem is not None' test instead.
+  if not root:
+Request Type: GetLoyaltyOnlineStatusRequest, POSSequenceID: 1-101, LoyaltySequenceID: , POSTransactionID: , Phone:
+2025-11-20 14:19:09,814 [INFO] Request Type: GetLoyaltyOnlineStatusRequest, POSSequenceID: 1-101, LoyaltySequenceID: , POSTransactionID: , Phone:
+Loyalty sequence file found: {'1330': 4305}
+2025-11-20 14:19:09,831 [DEBUG] Loyalty sequence file found: {'1330': 4305}
+Updated sequence file: {'1330': 4306}
+2025-11-20 14:19:09,833 [DEBUG] Updated sequence file: {'1330': 4306}
+Response XML: <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:GetLoyaltyOnlineStatusResponse
+    xmlns:ns2="http://www.pcats.org/schema/naxml/loyalty/v01"
+    xmlns:ns3="http://www.naxml.org/POSBO/Vocabulary/2003-10-16"
+    xmlns:ns4="http://www.pcats.org/schema/core/v01">
+    <ns2:ResponseHeader overallResult="success">
+        <ns2:POSLoyaltyInterfaceVersion>1.1</ns2:POSLoyaltyInterfaceVersion>
+        <ns3:VendorName>VIPER</ns3:VendorName>
+        <ns3:VendorModelVersion>9.03.00</ns3:VendorModelVersion>
+        <ns2:POSSequenceID>1-101</ns2:POSSequenceID>
+        <ns2:LoyaltySequenceID>DT-1330-4305</ns2:LoyaltySequenceID>
+        <ns4:Result>
+            <Success/>
+        </ns4:Result>
+    </ns2:ResponseHeader>
+    <ns2:PromptForLoyaltyFlag value="yes"/>
+</ns2:GetLoyaltyOnlineStatusResponse>
+
+2025-11-20 14:19:09,835 [DEBUG] Response XML: <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:GetLoyaltyOnlineStatusResponse
+    xmlns:ns2="http://www.pcats.org/schema/naxml/loyalty/v01"
+    xmlns:ns3="http://www.naxml.org/POSBO/Vocabulary/2003-10-16"
+    xmlns:ns4="http://www.pcats.org/schema/core/v01">
+    <ns2:ResponseHeader overallResult="success">
+        <ns2:POSLoyaltyInterfaceVersion>1.1</ns2:POSLoyaltyInterfaceVersion>
+        <ns3:VendorName>VIPER</ns3:VendorName>
+        <ns3:VendorModelVersion>9.03.00</ns3:VendorModelVersion>
+        <ns2:POSSequenceID>1-101</ns2:POSSequenceID>
+        <ns2:LoyaltySequenceID>DT-1330-4305</ns2:LoyaltySequenceID>
+        <ns4:Result>
+            <Success/>
+        </ns4:Result>
+    </ns2:ResponseHeader>
+    <ns2:PromptForLoyaltyFlag value="yes"/>
+</ns2:GetLoyaltyOnlineStatusResponse>
+
+Sent message (807 bytes):
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:GetLoyaltyOnlineStatusResponse
+    xmlns:ns2="http://www.pcats.org/schema/naxml/loyalty/v01"
+    xmlns:ns3="http://www.naxml.org/POSBO/Vocabulary/2003-10-16"
+    xmlns:ns4="http://www.pcats.org/schema/core/v01">
+    <ns2:ResponseHeader overallResult="success">
+        <ns2:POSLoyaltyInterfaceVersion>1.1</ns2:POSLoyaltyInterfaceVersion>
+        <ns3:VendorName>VIPER</ns3:VendorName>
+        <ns3:VendorModelVersion>9.03.00</ns3:VendorModelVersion>
+        <ns2:POSSequenceID>1-101</ns2:POSSequenceID>
+        <ns2:LoyaltySequenceID>DT-1330-4305</ns2:LoyaltySequenceID>
+        <ns4:Result>
+            <Success/>
+        </ns4:Result>
+    </ns2:ResponseHeader>
+    <ns2:PromptForLoyaltyFlag value="yes"/>
+</ns2:GetLoyaltyOnlineStatusResponse>
+
+2025-11-20 14:19:09,837 [DEBUG] Sent message (807 bytes):
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:GetLoyaltyOnlineStatusResponse
+    xmlns:ns2="http://www.pcats.org/schema/naxml/loyalty/v01"
+    xmlns:ns3="http://www.naxml.org/POSBO/Vocabulary/2003-10-16"
+    xmlns:ns4="http://www.pcats.org/schema/core/v01">
+    <ns2:ResponseHeader overallResult="success">
+        <ns2:POSLoyaltyInterfaceVersion>1.1</ns2:POSLoyaltyInterfaceVersion>
+        <ns3:VendorName>VIPER</ns3:VendorName>
+        <ns3:VendorModelVersion>9.03.00</ns3:VendorModelVersion>
+        <ns2:POSSequenceID>1-101</ns2:POSSequenceID>
+        <ns2:LoyaltySequenceID>DT-1330-4305</ns2:LoyaltySequenceID>
+        <ns4:Result>
+            <Success/>
+        </ns4:Result>
+    </ns2:ResponseHeader>
+    <ns2:PromptForLoyaltyFlag value="yes"/>
+</ns2:GetLoyaltyOnlineStatusResponse>
+
+Response sent to ('192.168.15.135', 60146)
+2025-11-20 14:19:09,837 [INFO] Response sent to ('192.168.15.135', 60146)
+Received message (2393 bytes):
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?><ns2:GetRewardsRequest xmlns:ns2="http://www.pcats.org/schema/naxml/loyalty/v01" xmlns:ns4="http://www.pcats.org/schema/core/v01" xmlns:ns3="http://www.naxml.org/POSBO/Vocabulary/2003-10-16"><ns2:RequestHeader><ns2:POSLoyaltyInterfaceVersion>1.1</ns2:POSLoyaltyInterfaceVersion><ns3:VendorName>VIPER:ruby2</ns3:VendorName><ns3:VendorModelVersion>9.03.00:Base 053.40.00</ns3:VendorModelVersion><ns2:POSSequenceID>1021760608694067</ns2:POSSequenceID><ns2:StoreLocationID>24354</ns2:StoreLocationID><ns2:LoyaltyOfflineFlag value="no"/></ns2:RequestHeader><ns2:LoyaltyID entryMethod="manual">5551234567</ns2:LoyaltyID><ns2:FuelPriceData/><ns2:TransactionData><ns2:TransactionHeader><ns3:OutsideSalesFlag value="no"/><ns3:RegisterID>2</ns3:RegisterID><ns3:CashierID>2</ns3:CashierID><ns2:TillID>002</ns2:TillID><ns2:POSTransactionID>0102855523</ns2:POSTransactionID><ns2:BusinessPeriod><ns3:BusinessDate>2025-11-20</ns3:BusinessDate><ns3:PrimaryReportPeriod interval="day">2860</ns3:PrimaryReportPeriod><ns3:BeginDate>2025-11-19</ns3:BeginDate><ns3:BeginTime>22:59:38-05:00</ns3:BeginTime><ns3:EndDate>2100-01-01</ns3:EndDate><ns3:EndTime>00:00:00-05:00</ns3:EndTime></ns2:BusinessPeriod><ns3:EventStartDate>2025-11-20</ns3:EventStartDate><ns3:EventStartTime>14:19:39-05:00</ns3:EventStartTime></ns2:TransactionHeader><ns2:TransactionDetailGroup><ns2:TransactionLine status="normal"><ns2:LineNumber>1</ns2:LineNumber><ns2:MerchandiseCodeLine discountable="yes"><ns3:MerchandiseCode>18</ns3:MerchandiseCode><ns3:Description>18 Perishable Grocery</ns3:Description><ns3:ActualSalesPrice>5.00</ns3:ActualSalesPrice><ns3:SalesQuantity>1</ns3:SalesQuantity><ns3:SalesAmount>5.00</ns3:SalesAmount><ns2:SalesUOM>EA</ns2:SalesUOM><ns3:PaymentSystemsProductCode>470</ns3:PaymentSystemsProductCode></ns2:MerchandiseCodeLine></ns2:TransactionLine><ns2:TransactionLine status="normal"><ns2:LineNumber>2</ns2:LineNumber><ns2:MerchandiseCodeLine discountable="no"><ns3:MerchandiseCode>n/a</ns3:MerchandiseCode><ns3:ActualSalesPrice>0.30</ns3:ActualSalesPrice><ns3:SalesQuantity>1</ns3:SalesQuantity><ns3:SalesAmount>0.30</ns3:SalesAmount><ns2:SalesUOM>EA</ns2:SalesUOM><ns3:PaymentSystemsProductCode>950</ns3:PaymentSystemsProductCode></ns2:MerchandiseCodeLine></ns2:TransactionLine></ns2:TransactionDetailGroup></ns2:TransactionData></ns2:GetRewardsRequest>
+2025-11-20 14:19:42,286 [DEBUG] Received message (2393 bytes):
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?><ns2:GetRewardsRequest xmlns:ns2="http://www.pcats.org/schema/naxml/loyalty/v01" xmlns:ns4="http://www.pcats.org/schema/core/v01" xmlns:ns3="http://www.naxml.org/POSBO/Vocabulary/2003-10-16"><ns2:RequestHeader><ns2:POSLoyaltyInterfaceVersion>1.1</ns2:POSLoyaltyInterfaceVersion><ns3:VendorName>VIPER:ruby2</ns3:VendorName><ns3:VendorModelVersion>9.03.00:Base 053.40.00</ns3:VendorModelVersion><ns2:POSSequenceID>1021760608694067</ns2:POSSequenceID><ns2:StoreLocationID>24354</ns2:StoreLocationID><ns2:LoyaltyOfflineFlag value="no"/></ns2:RequestHeader><ns2:LoyaltyID entryMethod="manual">5551234567</ns2:LoyaltyID><ns2:FuelPriceData/><ns2:TransactionData><ns2:TransactionHeader><ns3:OutsideSalesFlag value="no"/><ns3:RegisterID>2</ns3:RegisterID><ns3:CashierID>2</ns3:CashierID><ns2:TillID>002</ns2:TillID><ns2:POSTransactionID>0102855523</ns2:POSTransactionID><ns2:BusinessPeriod><ns3:BusinessDate>2025-11-20</ns3:BusinessDate><ns3:PrimaryReportPeriod interval="day">2860</ns3:PrimaryReportPeriod><ns3:BeginDate>2025-11-19</ns3:BeginDate><ns3:BeginTime>22:59:38-05:00</ns3:BeginTime><ns3:EndDate>2100-01-01</ns3:EndDate><ns3:EndTime>00:00:00-05:00</ns3:EndTime></ns2:BusinessPeriod><ns3:EventStartDate>2025-11-20</ns3:EventStartDate><ns3:EventStartTime>14:19:39-05:00</ns3:EventStartTime></ns2:TransactionHeader><ns2:TransactionDetailGroup><ns2:TransactionLine status="normal"><ns2:LineNumber>1</ns2:LineNumber><ns2:MerchandiseCodeLine discountable="yes"><ns3:MerchandiseCode>18</ns3:MerchandiseCode><ns3:Description>18 Perishable Grocery</ns3:Description><ns3:ActualSalesPrice>5.00</ns3:ActualSalesPrice><ns3:SalesQuantity>1</ns3:SalesQuantity><ns3:SalesAmount>5.00</ns3:SalesAmount><ns2:SalesUOM>EA</ns2:SalesUOM><ns3:PaymentSystemsProductCode>470</ns3:PaymentSystemsProductCode></ns2:MerchandiseCodeLine></ns2:TransactionLine><ns2:TransactionLine status="normal"><ns2:LineNumber>2</ns2:LineNumber><ns2:MerchandiseCodeLine discountable="no"><ns3:MerchandiseCode>n/a</ns3:MerchandiseCode><ns3:ActualSalesPrice>0.30</ns3:ActualSalesPrice><ns3:SalesQuantity>1</ns3:SalesQuantity><ns3:SalesAmount>0.30</ns3:SalesAmount><ns2:SalesUOM>EA</ns2:SalesUOM><ns3:PaymentSystemsProductCode>950</ns3:PaymentSystemsProductCode></ns2:MerchandiseCodeLine></ns2:TransactionLine></ns2:TransactionDetailGroup></ns2:TransactionData></ns2:GetRewardsRequest>
+Request Type: GetRewardsRequest, POSSequenceID: 1021760608694067, LoyaltySequenceID: , POSTransactionID: 0102855523, Phone: 5551234567
+2025-11-20 14:19:42,288 [INFO] Request Type: GetRewardsRequest, POSSequenceID: 1021760608694067, LoyaltySequenceID: , POSTransactionID: 0102855523, Phone: 5551234567
+C:\Users\store\Documents\loyalty\hollywood5.py:498: DeprecationWarning: Testing an element's truth value will always return True in future versions.  Use specific 'len(elem)' or 'elem is not None' test instead.
+  if not root:
+Loyalty sequence file found: {'1330': 4306}
+2025-11-20 14:19:42,299 [DEBUG] Loyalty sequence file found: {'1330': 4306}
+Updated sequence file: {'1330': 4307}
+2025-11-20 14:19:42,301 [DEBUG] Updated sequence file: {'1330': 4307}
+Response XML: <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns3:GetRewardsResponse
+    xmlns:ns2="http://www.naxml.org/POSBO/Vocabulary/2003-10-16"
+    xmlns:ns4="http://www.pcats.org/schema/core/v01"
+    xmlns:ns3="http://www.pcats.org/schema/naxml/loyalty/v01">
+    <ns3:ResponseHeader overallResult="success">
+        <ns3:POSLoyaltyInterfaceVersion>1.1</ns3:POSLoyaltyInterfaceVersion>
+        <ns2:VendorName>VIPER</ns2:VendorName>
+        <ns2:VendorModelVersion>9.03.00</ns2:VendorModelVersion>
+        <ns3:POSSequenceID>1021760608694067</ns3:POSSequenceID>
+        <ns3:LoyaltySequenceID>DT-1330-4306</ns3:LoyaltySequenceID>
+        <ns4:Result>
+            <Success/>
+        </ns4:Result>
+    </ns3:ResponseHeader>
+    <ns3:LoyaltyIDValidFlag value="yes">5551234567</ns3:LoyaltyIDValidFlag>
+    <ns3:RewardActions>
+        <ns3:AddReward>
+            <ns3:LoyaltyRewardID>InsideReward</ns3:LoyaltyRewardID>
+            <ns3:InstantRewardFlag value="yes"/>
+            <ns3:RewardTargetLineNumber>1</ns3:RewardTargetLineNumber>
+            <ns3:RewardDiscountMethod>amountOff</ns3:RewardDiscountMethod>
+            <ns3:RewardValue>1.00</ns3:RewardValue>
+            <ns3:RewardLimit>99</ns3:RewardLimit>
+            <ns3:RewardReceiptDescShort>Loyalty Discount</ns3:RewardReceiptDescShort>
+        </ns3:AddReward>
+    </ns3:RewardActions>
+    <ns3:CustomerMessageData>
+        <ns3:DisplayData>
+            <ns3:DisplayCommand duration="3" sequence="WhenReceived" device="OPT">
+                <ns3:DisplayLine>Your loyalty discount!</ns3:DisplayLine>
+            </ns3:DisplayCommand>
+        </ns3:DisplayData>
+    </ns3:CustomerMessageData>
+</ns3:GetRewardsResponse>
+
+2025-11-20 14:19:42,304 [DEBUG] Response XML: <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns3:GetRewardsResponse
+    xmlns:ns2="http://www.naxml.org/POSBO/Vocabulary/2003-10-16"
+    xmlns:ns4="http://www.pcats.org/schema/core/v01"
+    xmlns:ns3="http://www.pcats.org/schema/naxml/loyalty/v01">
+    <ns3:ResponseHeader overallResult="success">
+        <ns3:POSLoyaltyInterfaceVersion>1.1</ns3:POSLoyaltyInterfaceVersion>
+        <ns2:VendorName>VIPER</ns2:VendorName>
+        <ns2:VendorModelVersion>9.03.00</ns2:VendorModelVersion>
+        <ns3:POSSequenceID>1021760608694067</ns3:POSSequenceID>
+        <ns3:LoyaltySequenceID>DT-1330-4306</ns3:LoyaltySequenceID>
+        <ns4:Result>
+            <Success/>
+        </ns4:Result>
+    </ns3:ResponseHeader>
+    <ns3:LoyaltyIDValidFlag value="yes">5551234567</ns3:LoyaltyIDValidFlag>
+    <ns3:RewardActions>
+        <ns3:AddReward>
+            <ns3:LoyaltyRewardID>InsideReward</ns3:LoyaltyRewardID>
+            <ns3:InstantRewardFlag value="yes"/>
+            <ns3:RewardTargetLineNumber>1</ns3:RewardTargetLineNumber>
+            <ns3:RewardDiscountMethod>amountOff</ns3:RewardDiscountMethod>
+            <ns3:RewardValue>1.00</ns3:RewardValue>
+            <ns3:RewardLimit>99</ns3:RewardLimit>
+            <ns3:RewardReceiptDescShort>Loyalty Discount</ns3:RewardReceiptDescShort>
+        </ns3:AddReward>
+    </ns3:RewardActions>
+    <ns3:CustomerMessageData>
+        <ns3:DisplayData>
+            <ns3:DisplayCommand duration="3" sequence="WhenReceived" device="OPT">
+                <ns3:DisplayLine>Your loyalty discount!</ns3:DisplayLine>
+            </ns3:DisplayCommand>
+        </ns3:DisplayData>
+    </ns3:CustomerMessageData>
+</ns3:GetRewardsResponse>
+
+Sent message (1680 bytes):
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns3:GetRewardsResponse
+    xmlns:ns2="http://www.naxml.org/POSBO/Vocabulary/2003-10-16"
+    xmlns:ns4="http://www.pcats.org/schema/core/v01"
+    xmlns:ns3="http://www.pcats.org/schema/naxml/loyalty/v01">
+    <ns3:ResponseHeader overallResult="success">
+        <ns3:POSLoyaltyInterfaceVersion>1.1</ns3:POSLoyaltyInterfaceVersion>
+        <ns2:VendorName>VIPER</ns2:VendorName>
+        <ns2:VendorModelVersion>9.03.00</ns2:VendorModelVersion>
+        <ns3:POSSequenceID>1021760608694067</ns3:POSSequenceID>
+        <ns3:LoyaltySequenceID>DT-1330-4306</ns3:LoyaltySequenceID>
+        <ns4:Result>
+            <Success/>
+        </ns4:Result>
+    </ns3:ResponseHeader>
+    <ns3:LoyaltyIDValidFlag value="yes">5551234567</ns3:LoyaltyIDValidFlag>
+    <ns3:RewardActions>
+        <ns3:AddReward>
+            <ns3:LoyaltyRewardID>InsideReward</ns3:LoyaltyRewardID>
+            <ns3:InstantRewardFlag value="yes"/>
+            <ns3:RewardTargetLineNumber>1</ns3:RewardTargetLineNumber>
+            <ns3:RewardDiscountMethod>amountOff</ns3:RewardDiscountMethod>
+            <ns3:RewardValue>1.00</ns3:RewardValue>
+            <ns3:RewardLimit>99</ns3:RewardLimit>
+            <ns3:RewardReceiptDescShort>Loyalty Discount</ns3:RewardReceiptDescShort>
+        </ns3:AddReward>
+    </ns3:RewardActions>
+    <ns3:CustomerMessageData>
+        <ns3:DisplayData>
+            <ns3:DisplayCommand duration="3" sequence="WhenReceived" device="OPT">
+                <ns3:DisplayLine>Your loyalty discount!</ns3:DisplayLine>
+            </ns3:DisplayCommand>
+        </ns3:DisplayData>
+    </ns3:CustomerMessageData>
+</ns3:GetRewardsResponse>
+
+2025-11-20 14:19:42,305 [DEBUG] Sent message (1680 bytes):
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns3:GetRewardsResponse
+    xmlns:ns2="http://www.naxml.org/POSBO/Vocabulary/2003-10-16"
+    xmlns:ns4="http://www.pcats.org/schema/core/v01"
+    xmlns:ns3="http://www.pcats.org/schema/naxml/loyalty/v01">
+    <ns3:ResponseHeader overallResult="success">
+        <ns3:POSLoyaltyInterfaceVersion>1.1</ns3:POSLoyaltyInterfaceVersion>
+        <ns2:VendorName>VIPER</ns2:VendorName>
+        <ns2:VendorModelVersion>9.03.00</ns2:VendorModelVersion>
+        <ns3:POSSequenceID>1021760608694067</ns3:POSSequenceID>
+        <ns3:LoyaltySequenceID>DT-1330-4306</ns3:LoyaltySequenceID>
+        <ns4:Result>
+            <Success/>
+        </ns4:Result>
+    </ns3:ResponseHeader>
+    <ns3:LoyaltyIDValidFlag value="yes">5551234567</ns3:LoyaltyIDValidFlag>
+    <ns3:RewardActions>
+        <ns3:AddReward>
+            <ns3:LoyaltyRewardID>InsideReward</ns3:LoyaltyRewardID>
+            <ns3:InstantRewardFlag value="yes"/>
+            <ns3:RewardTargetLineNumber>1</ns3:RewardTargetLineNumber>
+            <ns3:RewardDiscountMethod>amountOff</ns3:RewardDiscountMethod>
+            <ns3:RewardValue>1.00</ns3:RewardValue>
+            <ns3:RewardLimit>99</ns3:RewardLimit>
+            <ns3:RewardReceiptDescShort>Loyalty Discount</ns3:RewardReceiptDescShort>
+        </ns3:AddReward>
+    </ns3:RewardActions>
+    <ns3:CustomerMessageData>
+        <ns3:DisplayData>
+            <ns3:DisplayCommand duration="3" sequence="WhenReceived" device="OPT">
+                <ns3:DisplayLine>Your loyalty discount!</ns3:DisplayLine>
+            </ns3:DisplayCommand>
+        </ns3:DisplayData>
+    </ns3:CustomerMessageData>
+</ns3:GetRewardsResponse>
+
+Response sent to ('192.168.15.135', 60146)
+2025-11-20 14:19:42,306 [INFO] Response sent to ('192.168.15.135', 60146)

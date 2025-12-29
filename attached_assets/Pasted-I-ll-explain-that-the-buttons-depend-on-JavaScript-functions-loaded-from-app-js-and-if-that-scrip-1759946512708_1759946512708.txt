@@ -1,0 +1,48 @@
+I'll explain that the buttons depend on JavaScript functions loaded from
+  app.js, and if that script fails to load—commonly due to incorrect server
+  port or accessing static files directly—the event listeners never attach,
+  making the buttons unresponsive. I'll highlight how checking the dev console
+  for 404 errors on app.js or related JS errors can reveal this, and suggest
+  confirming the admin interface is accessed via the correct backend server port
+  or adjusting script paths accordingly.
+
+─ Worked for 1m 42s ────────────────────────────────────────────────────────────
+
+• All three of those buttons call functions that live in web/app.js:
+
+  - “Add Item Group” → showAddItemGroupModal() (web/index.html:69, web/
+    app.js:395)
+  - “Manage Items” → manageUpcs(...) (wired up inside loadItemGroups() at web/
+    app.js:138-166)
+  - “Edit” → editItemGroup(...) (same block, web/app.js:168-172)
+
+  If /app.js doesn’t load (404, wrong host, served from file://, etc.) or it
+  stops running because of a script error, those functions never attach and the
+  buttons feel dead. Check the browser console—you’ll typically see either:
+
+  - GET <origin>/app.js 404 followed by Uncaught ReferenceError:
+    showAddItemGroupModal is not defined, or
+  - another error logged before the functions above are reached.
+
+  Most often this happens when the page is opened from the Expo dev server
+  (http://localhost:5000/admin) or straight off the filesystem. In that case
+  every fetch in the admin points to the wrong origin, /app.js never loads, and
+  none of the handlers get registered.
+
+  Fix options:
+
+  1. Serve the admin console from the Express backend (run npm run server or
+     PORT=3000 npx tsx server/index.ts) and open it at that origin, e.g. http://
+     localhost:3000/admin.
+  2. If you need to hit it through another host/port, make sure that host
+     proxies /app.js, /styles.css, and the /api/admin/* endpoints back to the
+     Express server.
+
+  Once /app.js is loading cleanly (no console errors), those buttons will work—
+  the code behind them is already in place.
+
+ 
+› Write tests for @filename
+ 
+  ? for shortcuts
+
