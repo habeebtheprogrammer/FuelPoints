@@ -59,7 +59,7 @@ function SalesAnalytics() {
       const data = await response.json();
       setLocations(data);
     } catch (error) {
-      console.error('Error loading locations:', error);
+      console.log('Error loading locations:', error);
     } finally {
       setLoading(false);
     }
@@ -177,7 +177,7 @@ function SalesAnalytics() {
           break;
       }
     } catch (error) {
-      console.error('Error loading report:', error);
+      console.log('Error loading report:', error);
     } finally {
       setDataLoading(false);
     }
@@ -201,7 +201,7 @@ function SalesAnalytics() {
         setTransactionDetails(data);
       }
     } catch (error) {
-      console.error('Error loading transaction details:', error);
+      console.log('Error loading transaction details:', error);
     } finally {
       setDetailsLoading(false);
     }

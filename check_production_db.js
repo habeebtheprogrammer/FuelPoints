@@ -110,7 +110,7 @@ async function checkProduction() {
     });
     
   } catch (error) {
-    console.error('Error querying production database:', error);
+    console.log('Error querying production database:', error);
   } finally {
     await productionPool.end();
   }

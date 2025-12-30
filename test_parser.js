@@ -106,7 +106,7 @@ async function testParser() {
       console.log(`  ✅ Marked ${file.fileName} as processed\n`);
       
     } catch (error) {
-      console.error(`  ❌ Error processing ${file.fileName}:`, error.message);
+      console.log(`  ❌ Error processing ${file.fileName}:`, error.message);
       await storage.updateRawXmlStatus(file.id, 'error', error.message);
     }
   }
@@ -116,4 +116,4 @@ async function testParser() {
   console.log('============================================================');
 }
 
-testParser().catch(console.error).finally(() => process.exit());
+testParser().catch(console.log).finally(() => process.exit());

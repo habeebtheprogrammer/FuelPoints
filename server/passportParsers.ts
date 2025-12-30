@@ -84,7 +84,7 @@ export async function parseFGM(xmlContent: string, businessDate: string): Promis
 
     return Array.from(gradeMap.values());
   } catch (error) {
-    console.error('Error parsing FGM XML:', error);
+    console.log('Error parsing FGM XML:', error);
     throw new Error(`Failed to parse FGM XML: ${error instanceof Error ? error.message : 'Unknown error'}`);
   }
 }
@@ -151,7 +151,7 @@ export async function parseISM(xmlContent: string, businessDate: string): Promis
       departments: Array.from(departmentMap.values()),
     };
   } catch (error) {
-    console.error('Error parsing ISM XML:', error);
+    console.log('Error parsing ISM XML:', error);
     throw new Error(`Failed to parse ISM XML: ${error instanceof Error ? error.message : 'Unknown error'}`);
   }
 }
@@ -196,7 +196,7 @@ export async function parseMCM(xmlContent: string, businessDate: string): Promis
 
     return departments;
   } catch (error) {
-    console.error('Error parsing MCM XML:', error);
+    console.log('Error parsing MCM XML:', error);
     throw new Error(`Failed to parse MCM XML: ${error instanceof Error ? error.message : 'Unknown error'}`);
   }
 }
@@ -428,7 +428,7 @@ export async function parseCPJR(xmlContent: string, businessDate: string): Promi
       dispensers: Array.from(dispenserMap.values()),
     };
   } catch (error) {
-    console.error('Error parsing CPJR XML:', error);
+    console.log('Error parsing CPJR XML:', error);
     throw new Error(`Failed to parse CPJR XML: ${error instanceof Error ? error.message : 'Unknown error'}`);
   }
 }

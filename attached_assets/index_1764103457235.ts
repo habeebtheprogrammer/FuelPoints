@@ -56,7 +56,7 @@ app.post('/api/register', async (req, res) => {
     const { password: _, ...userWithoutPassword } = user;
     res.status(201).json(userWithoutPassword);
   } catch (error) {
-    console.error('Registration error:', error);
+    console.log('Registration error:', error);
     res.status(500).json({ error: 'Failed to register user' });
   }
 });
@@ -82,7 +82,7 @@ app.post('/api/login', async (req, res) => {
     const { password: _, ...userWithoutPassword } = user;
     res.json(userWithoutPassword);
   } catch (error) {
-    console.error('Login error:', error);
+    console.log('Login error:', error);
     res.status(500).json({ error: 'Failed to login' });
   }
 });
@@ -99,7 +99,7 @@ app.get('/api/user/:id', async (req, res) => {
     const { password: _, ...userWithoutPassword } = user;
     res.json(userWithoutPassword);
   } catch (error) {
-    console.error('Get user error:', error);
+    console.log('Get user error:', error);
     res.status(500).json({ error: 'Failed to get user' });
   }
 });
@@ -120,7 +120,7 @@ app.get('/api/rewards/:userId', async (req, res) => {
       })),
     });
   } catch (error) {
-    console.error('Get rewards error:', error);
+    console.log('Get rewards error:', error);
     res.status(500).json({ error: 'Failed to get rewards' });
   }
 });
@@ -148,7 +148,7 @@ app.post('/api/rewards/add', async (req, res) => {
       })),
     });
   } catch (error) {
-    console.error('Add rewards error:', error);
+    console.log('Add rewards error:', error);
     res.status(500).json({ error: 'Failed to add rewards' });
   }
 });
@@ -169,7 +169,7 @@ app.get('/api/admin/customers', async (req, res) => {
     );
     res.json(customersWithRewards);
   } catch (error) {
-    console.error('Get all customers error:', error);
+    console.log('Get all customers error:', error);
     res.status(500).json({ error: 'Failed to get customers' });
   }
 });
@@ -190,7 +190,7 @@ app.get('/api/admin/customers/:id/transactions', async (req, res) => {
     const transactions = await storage.getUserTransactions(customerId);
     res.json(transactions);
   } catch (error) {
-    console.error('Get customer transactions error:', error);
+    console.log('Get customer transactions error:', error);
     res.status(500).json({ error: 'Failed to get customer transactions' });
   }
 });
@@ -202,7 +202,7 @@ app.get('/api/admin/users', async (req, res) => {
     const adminsWithoutPasswords = adminUsers.map(({ password, ...admin }) => admin);
     res.json(adminsWithoutPasswords);
   } catch (error) {
-    console.error('Get all admin users error:', error);
+    console.log('Get all admin users error:', error);
     res.status(500).json({ error: 'Failed to get admin users' });
   }
 });
@@ -233,7 +233,7 @@ app.post('/api/admin/users', async (req, res) => {
     const { password: _, ...adminWithoutPassword } = admin;
     res.status(201).json(adminWithoutPassword);
   } catch (error) {
-    console.error('Create admin user error:', error);
+    console.log('Create admin user error:', error);
     res.status(500).json({ error: 'Failed to create admin user' });
   }
 });
@@ -261,7 +261,7 @@ app.put('/api/admin/users/:id', async (req, res) => {
     const { password: _, ...adminWithoutPassword } = updatedAdmin;
     res.json(adminWithoutPassword);
   } catch (error) {
-    console.error('Update admin user error:', error);
+    console.log('Update admin user error:', error);
     res.status(500).json({ error: 'Failed to update admin user' });
   }
 });
@@ -272,7 +272,7 @@ app.get('/api/admin/locations', async (req, res) => {
     const locations = await storage.getAllLocations();
     res.json(locations);
   } catch (error) {
-    console.error('Get all locations error:', error);
+    console.log('Get all locations error:', error);
     res.status(500).json({ error: 'Failed to get locations' });
   }
 });
@@ -299,7 +299,7 @@ app.post('/api/admin/locations', async (req, res) => {
 
     res.status(201).json(location);
   } catch (error) {
-    console.error('Create location error:', error);
+    console.log('Create location error:', error);
     res.status(500).json({ error: 'Failed to create location' });
   }
 });
@@ -328,7 +328,7 @@ app.put('/api/admin/locations/:id', async (req, res) => {
 
     res.json(updatedLocation);
   } catch (error) {
-    console.error('Update location error:', error);
+    console.log('Update location error:', error);
     res.status(500).json({ error: 'Failed to update location' });
   }
 });
@@ -339,7 +339,7 @@ app.delete('/api/admin/locations/:id', async (req, res) => {
     await storage.deleteLocation(locationId);
     res.status(204).send();
   } catch (error) {
-    console.error('Delete location error:', error);
+    console.log('Delete location error:', error);
     res.status(500).json({ error: 'Failed to delete location' });
   }
 });
@@ -350,7 +350,7 @@ app.get('/api/admin/item-groups', async (req, res) => {
     const itemGroups = await storage.getAllItemGroups();
     res.json(itemGroups);
   } catch (error) {
-    console.error('Get all item groups error:', error);
+    console.log('Get all item groups error:', error);
     res.status(500).json({ error: 'Failed to get item groups' });
   }
 });
@@ -366,7 +366,7 @@ app.get('/api/admin/item-groups/:id', async (req, res) => {
 
     res.json(itemGroup);
   } catch (error) {
-    console.error('Get item group error:', error);
+    console.log('Get item group error:', error);
     res.status(500).json({ error: 'Failed to get item group' });
   }
 });
@@ -386,7 +386,7 @@ app.post('/api/admin/item-groups', async (req, res) => {
 
     res.status(201).json(itemGroup);
   } catch (error: any) {
-    console.error('Create item group error:', error);
+    console.log('Create item group error:', error);
     if (error.message?.includes('already exists')) {
       return res.status(400).json({ error: 'Item group with this name already exists' });
     }
@@ -411,7 +411,7 @@ app.put('/api/admin/item-groups/:id', async (req, res) => {
 
     res.json(updatedItemGroup);
   } catch (error: any) {
-    console.error('Update item group error:', error);
+    console.log('Update item group error:', error);
     if (error.message?.includes('already exists')) {
       return res.status(400).json({ error: 'Item group with this name already exists' });
     }
@@ -436,7 +436,7 @@ app.delete('/api/admin/item-groups/:id', async (req, res) => {
     await storage.deleteItemGroup(itemGroupId);
     res.status(204).send();
   } catch (error) {
-    console.error('Delete item group error:', error);
+    console.log('Delete item group error:', error);
     res.status(500).json({ error: 'Failed to delete item group' });
   }
 });
@@ -448,7 +448,7 @@ app.get('/api/admin/item-groups/:id/upcs', async (req, res) => {
     const upcs = await storage.getItemGroupUpcs(itemGroupId);
     res.json(upcs);
   } catch (error) {
-    console.error('Get item group UPCs error:', error);
+    console.log('Get item group UPCs error:', error);
     res.status(500).json({ error: 'Failed to get item group UPCs' });
   }
 });
@@ -469,7 +469,7 @@ app.post('/api/admin/item-groups/:id/upcs', async (req, res) => {
 
     res.status(201).json(newUpc);
   } catch (error: any) {
-    console.error('Add UPC to item group error:', error);
+    console.log('Add UPC to item group error:', error);
     if (error.message?.includes('already exists')) {
       return res.status(400).json({ error: 'This item is already in the group' });
     }
@@ -485,7 +485,7 @@ app.delete('/api/admin/item-groups/:groupId/upcs/:upc', async (req, res) => {
     await storage.deleteItemGroupUpcByCode(itemGroupId, upc);
     res.status(204).send();
   } catch (error) {
-    console.error('Delete item group UPC by code error:', error);
+    console.log('Delete item group UPC by code error:', error);
     res.status(500).json({ error: 'Failed to delete item from group' });
   }
 });
@@ -496,7 +496,7 @@ app.delete('/api/admin/item-group-upcs/:id', async (req, res) => {
     await storage.deleteItemGroupUpc(upcId);
     res.status(204).send();
   } catch (error) {
-    console.error('Delete item group UPC error:', error);
+    console.log('Delete item group UPC error:', error);
     res.status(500).json({ error: 'Failed to delete item group UPC' });
   }
 });
@@ -516,7 +516,7 @@ app.get('/api/admin/promotions', async (req, res) => {
     );
     res.json(promotionsWithLocations);
   } catch (error) {
-    console.error('Get all promotions error:', error);
+    console.log('Get all promotions error:', error);
     res.status(500).json({ error: 'Failed to get promotions' });
   }
 });
@@ -533,7 +533,7 @@ app.get('/api/admin/promotions/:id', async (req, res) => {
     const locations = await storage.getPromotionLocations(promotionId);
     res.json({ ...promotion, locations });
   } catch (error) {
-    console.error('Get promotion error:', error);
+    console.log('Get promotion error:', error);
     res.status(500).json({ error: 'Failed to get promotion' });
   }
 });
@@ -579,7 +579,7 @@ app.post('/api/admin/promotions', async (req, res) => {
 
     res.status(201).json(promotion);
   } catch (error) {
-    console.error('Create promotion error:', error);
+    console.log('Create promotion error:', error);
     res.status(500).json({ error: 'Failed to create promotion' });
   }
 });
@@ -620,7 +620,7 @@ app.put('/api/admin/promotions/:id', async (req, res) => {
 
     res.json(updatedPromotion);
   } catch (error) {
-    console.error('Update promotion error:', error);
+    console.log('Update promotion error:', error);
     res.status(500).json({ error: 'Failed to update promotion' });
   }
 });
@@ -631,7 +631,7 @@ app.delete('/api/admin/promotions/:id', async (req, res) => {
     await storage.deletePromotion(promotionId);
     res.status(204).send();
   } catch (error) {
-    console.error('Delete promotion error:', error);
+    console.log('Delete promotion error:', error);
     res.status(500).json({ error: 'Failed to delete promotion' });
   }
 });
@@ -647,7 +647,7 @@ app.get('/api/admin/pricebook/search', async (req, res) => {
     const results = await storage.searchPricebook(query);
     res.json(results);
   } catch (error) {
-    console.error('Search pricebook error:', error);
+    console.log('Search pricebook error:', error);
     res.status(500).json({ error: 'Failed to search pricebook' });
   }
 });
@@ -668,7 +668,7 @@ app.post('/api/admin/pricebook', async (req, res) => {
     const newItem = await storage.createPricebookItem({ upc: upc.trim(), description });
     res.status(201).json(newItem);
   } catch (error: any) {
-    console.error('Create pricebook item error:', error);
+    console.log('Create pricebook item error:', error);
     if (error.message?.includes('duplicate') || error.message?.includes('unique')) {
       return res.status(400).json({ error: 'UPC already exists' });
     }
@@ -699,7 +699,7 @@ app.post('/api/pos/heartbeat', async (req, res) => {
 
     res.json({ success: true, message: 'Heartbeat received' });
   } catch (error) {
-    console.error('POS heartbeat error:', error);
+    console.log('POS heartbeat error:', error);
     res.status(500).json({ error: 'Failed to process heartbeat' });
   }
 });
@@ -709,7 +709,7 @@ app.get('/api/pos/presence', async (req, res) => {
     const presenceRecords = await storage.getAllPosPresence();
     res.json(presenceRecords);
   } catch (error) {
-    console.error('Get POS presence error:', error);
+    console.log('Get POS presence error:', error);
     res.status(500).json({ error: 'Failed to get POS presence' });
   }
 });
@@ -755,7 +755,7 @@ app.post('/api/pos/customer-lookup', async (req, res) => {
     console.log(`  ✅ Customer found: ${user.firstName} ${user.lastName} (${rewards?.points || 0} pts)`);
     res.json(response);
   } catch (error) {
-    console.error('  ❌ Customer lookup error:', error);
+    console.log('  ❌ Customer lookup error:', error);
     res.status(500).json({ error: 'Failed to lookup customer' });
   }
 });
@@ -836,7 +836,7 @@ app.post('/api/pos/evaluate-promotions', async (req, res) => {
 
     res.json({ promotions: itemPromotions });
   } catch (error) {
-    console.error('Evaluate promotions error:', error);
+    console.log('Evaluate promotions error:', error);
     res.status(500).json({ error: 'Failed to evaluate promotions' });
   }
 });
@@ -887,7 +887,7 @@ app.post('/api/pos/calculate-redemption', async (req, res) => {
       newBalance: pointsBalance - pointsToUse,
     });
   } catch (error) {
-    console.error('Calculate redemption error:', error);
+    console.log('Calculate redemption error:', error);
     res.status(500).json({ error: 'Failed to calculate redemption' });
   }
 });
@@ -931,7 +931,7 @@ app.post('/api/pos/finalize-transaction', async (req, res) => {
       message: `Transaction complete. Earned ${pointsEarned} points, redeemed ${pointsUsed} points.`,
     });
   } catch (error) {
-    console.error('Finalize transaction error:', error);
+    console.log('Finalize transaction error:', error);
     res.status(500).json({ error: 'Failed to finalize transaction' });
   }
 });

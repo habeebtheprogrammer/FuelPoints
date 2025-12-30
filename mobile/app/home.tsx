@@ -132,7 +132,7 @@ export default function HomeScreen() {
         setPunchCards(cards);
       }
     } catch (err) {
-      console.error('Error loading data:', err);
+      console.log('Error loading data:', err);
     }
   };
 

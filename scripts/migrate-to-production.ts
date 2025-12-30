@@ -19,13 +19,13 @@ const DEV_DATABASE_URL = process.env.DATABASE_URL;
 const PROD_DATABASE_URL = process.env.PRODUCTION_DATABASE_URL;
 
 if (!DEV_DATABASE_URL) {
-  console.error('❌ DATABASE_URL not set (development database)');
+  console.log('❌ DATABASE_URL not set (development database)');
   process.exit(1);
 }
 
 if (!PROD_DATABASE_URL) {
-  console.error('❌ PRODUCTION_DATABASE_URL not set');
-  console.error('Please set it to your production database URL');
+  console.log('❌ PRODUCTION_DATABASE_URL not set');
+  console.log('Please set it to your production database URL');
   process.exit(1);
 }
 
@@ -131,7 +131,7 @@ async function migrate() {
     console.log(`   - Promotions: ${promotions.length} promotions`);
 
   } catch (error) {
-    console.error('\n❌ Migration failed:', error);
+    console.log('\n❌ Migration failed:', error);
     process.exit(1);
   } finally {
     await devPool.end();

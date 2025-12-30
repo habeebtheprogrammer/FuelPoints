@@ -17,7 +17,7 @@ function Pricebook() {
       const data = await response.json();
       setPricebookItems(data.slice(0, 50)); // Show first 50 items by default
     } catch (error) {
-      console.error('Error loading pricebook:', error);
+      console.log('Error loading pricebook:', error);
     } finally {
       setLoading(false);
     }
@@ -35,7 +35,7 @@ function Pricebook() {
       const data = await response.json();
       setPricebookItems(data);
     } catch (error) {
-      console.error('Error searching pricebook:', error);
+      console.log('Error searching pricebook:', error);
     } finally {
       setLoading(false);
     }

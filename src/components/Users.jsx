@@ -25,7 +25,7 @@ function Users() {
       const data = await response.json();
       setUsers(data);
     } catch (error) {
-      console.error('Error loading users:', error);
+      console.log('Error loading users:', error);
     } finally {
       setLoading(false);
     }
@@ -59,7 +59,7 @@ function Users() {
       });
       setShowModal(true);
     } catch (error) {
-      console.error('Error loading user:', error);
+      console.log('Error loading user:', error);
       alert('Error loading user');
     }
   };
@@ -90,7 +90,7 @@ function Users() {
         alert('Error saving user');
       }
     } catch (error) {
-      console.error('Error saving user:', error);
+      console.log('Error saving user:', error);
       alert('Error saving user');
     }
   };

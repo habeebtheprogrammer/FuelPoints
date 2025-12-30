@@ -25,7 +25,7 @@ function ItemGroups() {
       const data = await response.json();
       setItemGroups(data);
     } catch (error) {
-      console.error('Error loading item groups:', error);
+      console.log('Error loading item groups:', error);
     } finally {
       setLoading(false);
     }
@@ -43,7 +43,7 @@ function ItemGroups() {
       setFormData(group);
       setShowGroupModal(true);
     } catch (error) {
-      console.error('Error loading item group:', error);
+      console.log('Error loading item group:', error);
       alert('Error loading item group');
     }
   };
@@ -64,7 +64,7 @@ function ItemGroups() {
         alert(data.error || 'Error deleting item group');
       }
     } catch (error) {
-      console.error('Error deleting item group:', error);
+      console.log('Error deleting item group:', error);
       alert('Error deleting item group');
     }
   };
@@ -89,7 +89,7 @@ function ItemGroups() {
         alert('Error saving item group');
       }
     } catch (error) {
-      console.error('Error saving item group:', error);
+      console.log('Error saving item group:', error);
       alert('Error saving item group');
     }
   };
@@ -104,7 +104,7 @@ function ItemGroups() {
       setSelectedItems(items);
       setSelectedUpcs(new Set(items.map(item => item.upc)));
     } catch (error) {
-      console.error('Error loading UPCs:', error);
+      console.log('Error loading UPCs:', error);
     }
     
     setShowUpcModal(true);
@@ -121,7 +121,7 @@ function ItemGroups() {
       const data = await response.json();
       setSearchResults(data);
     } catch (error) {
-      console.error('Error searching pricebook:', error);
+      console.log('Error searching pricebook:', error);
     }
   };
 
@@ -157,7 +157,7 @@ function ItemGroups() {
         alert(result.error || 'Error adding UPC');
       }
     } catch (error) {
-      console.error('Error adding UPC:', error);
+      console.log('Error adding UPC:', error);
       alert('Error adding UPC');
     }
   };
@@ -192,7 +192,7 @@ function ItemGroups() {
         loadItemGroups();
       }
     } catch (error) {
-      console.error('Error removing UPC:', error);
+      console.log('Error removing UPC:', error);
     }
   };
 

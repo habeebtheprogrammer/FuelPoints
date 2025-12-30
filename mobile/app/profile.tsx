@@ -66,7 +66,7 @@ export default function ProfileScreen() {
         await AsyncStorage.setItem('customer', JSON.stringify(updatedCustomer));
       }
     } catch (err) {
-      console.error('Error loading customer:', err);
+      console.log('Error loading customer:', err);
     }
   };
 

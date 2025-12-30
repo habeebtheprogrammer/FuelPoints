@@ -36,7 +36,7 @@ export async function detectPOSFormat(xmlContent: string): Promise<POSFormat> {
     console.warn('Unknown POS format, defaulting to passport');
     return 'passport';
   } catch (error) {
-    console.error('Error detecting POS format:', error);
+    console.log('Error detecting POS format:', error);
     return 'passport';
   }
 }

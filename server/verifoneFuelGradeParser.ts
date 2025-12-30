@@ -174,7 +174,7 @@ export async function parseVerifoneFuelGradesFromCPJR(
 
     return { fuelGrades, summary };
   } catch (error) {
-    console.error('[Verifone Fuel Parser] Parse error:', error);
+    console.log('[Verifone Fuel Parser] Parse error:', error);
     throw new Error(`Failed to parse Verifone fuel grade data: ${error instanceof Error ? error.message : 'Unknown error'}`);
   }
 }

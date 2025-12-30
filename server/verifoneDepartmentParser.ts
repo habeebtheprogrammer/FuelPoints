@@ -206,7 +206,7 @@ export async function parseVerifoneDepartmentsFromCPJR(
 
     return { departments, summary };
   } catch (error) {
-    console.error('[Verifone Dept Parser] Parse error:', error);
+    console.log('[Verifone Dept Parser] Parse error:', error);
     throw new Error(`Failed to parse Verifone department data: ${error instanceof Error ? error.message : 'Unknown error'}`);
   }
 }

@@ -23,7 +23,7 @@ function CustomerPunches() {
       const data = await response.json();
       setCustomerPunches(data);
     } catch (error) {
-      console.error('Error loading customer punches:', error);
+      console.log('Error loading customer punches:', error);
     } finally {
       setLoading(false);
     }
@@ -35,7 +35,7 @@ function CustomerPunches() {
       const data = await response.json();
       setPunchCards(data);
     } catch (error) {
-      console.error('Error loading punch cards:', error);
+      console.log('Error loading punch cards:', error);
     }
   };
 

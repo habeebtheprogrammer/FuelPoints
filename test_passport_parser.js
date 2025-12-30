@@ -41,7 +41,7 @@ async function uploadFile(fileInfo) {
       console.log(`❌ Failed to upload ${fileName}: ${result.error}`);
     }
   } catch (error) {
-    console.error(`❌ Error uploading ${fileInfo.file}:`, error.message);
+    console.log(`❌ Error uploading ${fileInfo.file}:`, error.message);
   }
 }
 
@@ -74,4 +74,4 @@ async function main() {
   console.log('\n✅ Passport parser test complete!');
 }
 
-main().catch(console.error);
+main().catch(console.log);

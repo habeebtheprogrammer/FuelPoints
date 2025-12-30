@@ -171,7 +171,7 @@ export default function BarcodeScreen() {
         setCustomer(JSON.parse(stored));
       }
     } catch (err) {
-      console.error('Error loading customer:', err);
+      console.log('Error loading customer:', err);
     }
   };
 

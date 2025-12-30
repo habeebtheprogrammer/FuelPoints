@@ -29,7 +29,7 @@ function PosStatus() {
       setAllLocations(locationsData);
       setLastUpdate(new Date());
     } catch (error) {
-      console.error('Error loading POS status:', error);
+      console.log('Error loading POS status:', error);
     } finally {
       setLoading(false);
     }

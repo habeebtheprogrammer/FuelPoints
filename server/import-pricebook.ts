@@ -55,7 +55,7 @@ async function importPricebook() {
     
     console.log('Pricebook import completed successfully!');
   } catch (error) {
-    console.error('Error importing pricebook:', error);
+    console.log('Error importing pricebook:', error);
     process.exit(1);
   }
   

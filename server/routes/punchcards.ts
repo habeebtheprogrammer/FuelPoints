@@ -38,7 +38,7 @@ router.get('/promotions', async (req: Request, res: Response) => {
 
     res.json(promotions);
   } catch (error) {
-    console.error('Get punch card promotions error:', error);
+    console.log('Get punch card promotions error:', error);
     res.status(500).json({ error: 'Failed to get punch card promotions' });
   }
 });
@@ -70,7 +70,7 @@ router.get('/promotions/:id', async (req: Request, res: Response) => {
 
     res.json(promotion);
   } catch (error) {
-    console.error('Get punch card promotion error:', error);
+    console.log('Get punch card promotion error:', error);
     res.status(500).json({ error: 'Failed to get punch card promotion' });
   }
 });
@@ -96,7 +96,7 @@ router.post('/promotions', async (req: Request, res: Response) => {
 
     res.status(201).json(promotion);
   } catch (error) {
-    console.error('Create punch card promotion error:', error);
+    console.log('Create punch card promotion error:', error);
     res.status(500).json({ error: 'Failed to create punch card promotion' });
   }
 });
@@ -128,7 +128,7 @@ router.put('/promotions/:id', async (req: Request, res: Response) => {
 
     res.json(updated);
   } catch (error) {
-    console.error('Update punch card promotion error:', error);
+    console.log('Update punch card promotion error:', error);
     res.status(500).json({ error: 'Failed to update punch card promotion' });
   }
 });
@@ -139,7 +139,7 @@ router.delete('/promotions/:id', async (req: Request, res: Response) => {
     await db.delete(punchCardPromotions).where(eq(punchCardPromotions.id, id));
     res.status(204).send();
   } catch (error) {
-    console.error('Delete punch card promotion error:', error);
+    console.log('Delete punch card promotion error:', error);
     res.status(500).json({ error: 'Failed to delete punch card promotion' });
   }
 });
@@ -265,7 +265,7 @@ router.post('/record-purchase', async (req: Request, res: Response) => {
         : 'No qualifying items for punch cards',
     });
   } catch (error) {
-    console.error('Record punch error:', error);
+    console.log('Record punch error:', error);
     res.status(500).json({ error: 'Failed to record punch' });
   }
 });
@@ -329,7 +329,7 @@ router.get('/customer/:customerId', async (req: Request, res: Response) => {
 
     res.json(punchCards);
   } catch (error) {
-    console.error('Get customer punches error:', error);
+    console.log('Get customer punches error:', error);
     res.status(500).json({ error: 'Failed to get customer punches' });
   }
 });
@@ -405,7 +405,7 @@ router.post('/redeem', async (req: Request, res: Response) => {
       message: `Reward redeemed! ${punchesAfter} punches remaining.`,
     });
   } catch (error) {
-    console.error('Redeem reward error:', error);
+    console.log('Redeem reward error:', error);
     res.status(500).json({ error: 'Failed to redeem reward' });
   }
 });
@@ -455,7 +455,7 @@ router.get('/reports/activity', async (req: Request, res: Response) => {
 
     res.json(history);
   } catch (error) {
-    console.error('Get punch card activity error:', error);
+    console.log('Get punch card activity error:', error);
     res.status(500).json({ error: 'Failed to get punch card activity' });
   }
 });
@@ -498,7 +498,7 @@ router.get('/reports/summary', async (req: Request, res: Response) => {
       customersCloseToReward: closeToReward[0]?.count || 0,
     });
   } catch (error) {
-    console.error('Get punch card summary error:', error);
+    console.log('Get punch card summary error:', error);
     res.status(500).json({ error: 'Failed to get punch card summary' });
   }
 });
@@ -562,7 +562,7 @@ router.get('/reports/customers', async (req: Request, res: Response) => {
 
     res.json(enriched);
   } catch (error) {
-    console.error('Get customer punches report error:', error);
+    console.log('Get customer punches report error:', error);
     res.status(500).json({ error: 'Failed to get customer punches report' });
   }
 });
@@ -677,7 +677,7 @@ router.post('/evaluate', async (req: Request, res: Response) => {
       rewardsReady: projectedPunches.filter(p => p.rewardReady),
     });
   } catch (error) {
-    console.error('Evaluate punch status error:', error);
+    console.log('Evaluate punch status error:', error);
     res.status(500).json({ error: 'Failed to evaluate punch status' });
   }
 });

@@ -31,7 +31,7 @@ function PunchCardPromotions() {
       const data = await response.json();
       setPunchCards(data);
     } catch (error) {
-      console.error('Error loading punch cards:', error);
+      console.log('Error loading punch cards:', error);
     } finally {
       setLoading(false);
     }
@@ -43,7 +43,7 @@ function PunchCardPromotions() {
       const data = await response.json();
       setItemGroups(data);
     } catch (error) {
-      console.error('Error loading item groups:', error);
+      console.log('Error loading item groups:', error);
     }
   };
 
@@ -53,7 +53,7 @@ function PunchCardPromotions() {
       const data = await response.json();
       setSummary(data);
     } catch (error) {
-      console.error('Error loading summary:', error);
+      console.log('Error loading summary:', error);
     }
   };
 
@@ -89,7 +89,7 @@ function PunchCardPromotions() {
       });
       setShowModal(true);
     } catch (error) {
-      console.error('Error loading punch card:', error);
+      console.log('Error loading punch card:', error);
       alert('Error loading punch card');
     }
   };
@@ -109,7 +109,7 @@ function PunchCardPromotions() {
         alert('Error deleting punch card');
       }
     } catch (error) {
-      console.error('Error deleting punch card:', error);
+      console.log('Error deleting punch card:', error);
       alert('Error deleting punch card');
     }
   };
@@ -151,7 +151,7 @@ function PunchCardPromotions() {
         alert('Error saving punch card');
       }
     } catch (error) {
-      console.error('Error saving punch card:', error);
+      console.log('Error saving punch card:', error);
       alert('Error saving punch card');
     }
   };

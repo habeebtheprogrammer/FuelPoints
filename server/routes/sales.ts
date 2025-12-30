@@ -113,7 +113,7 @@ router.post('/raw-xml/upload', async (req: Request, res: Response) => {
       message: 'Raw XML stored successfully' 
     });
   } catch (error) {
-    console.error('Raw XML upload error:', error);
+    console.log('Raw XML upload error:', error);
     res.status(500).json({ error: 'Failed to store raw XML' });
   }
 });
@@ -132,7 +132,7 @@ router.get('/raw-xml', async (req: Request, res: Response) => {
 
     res.json(records);
   } catch (error) {
-    console.error('Get raw XML error:', error);
+    console.log('Get raw XML error:', error);
     res.status(500).json({ error: 'Failed to retrieve raw XML' });
   }
 });
@@ -304,7 +304,7 @@ router.post('/process-xml', async (req: Request, res: Response) => {
         await storage.updateRawXmlStatus(record.id, 'processed', null);
         processedCount++;
       } catch (error) {
-        console.error(`Error processing ${record.fileName}:`, error);
+        console.log(`Error processing ${record.fileName}:`, error);
         const errorMessage = error instanceof Error ? error.message : 'Unknown error';
         await storage.updateRawXmlStatus(record.id, 'error', errorMessage);
         errorCount++;
@@ -320,7 +320,7 @@ router.post('/process-xml', async (req: Request, res: Response) => {
       message: `Processed ${processedCount} files successfully${errorCount > 0 ? `, ${errorCount} files had errors` : ''}`,
     });
   } catch (error) {
-    console.error('Process XML error:', error);
+    console.log('Process XML error:', error);
     res.status(500).json({ error: 'Failed to process XML files' });
   }
 });
@@ -364,7 +364,7 @@ router.post('/transactions/batch', async (req: Request, res: Response) => {
       message: 'Transactions inserted successfully' 
     });
   } catch (error) {
-    console.error('Batch transaction insert error:', error);
+    console.log('Batch transaction insert error:', error);
     res.status(500).json({ error: 'Failed to insert transactions' });
   }
 });
@@ -401,7 +401,7 @@ router.post('/fuel-grades/batch', async (req: Request, res: Response) => {
       message: 'Fuel grades inserted successfully' 
     });
   } catch (error) {
-    console.error('Batch fuel grade insert error:', error);
+    console.log('Batch fuel grade insert error:', error);
     res.status(500).json({ error: 'Failed to insert fuel grades' });
   }
 });
@@ -437,7 +437,7 @@ router.post('/items/batch', async (req: Request, res: Response) => {
       message: 'Items inserted successfully' 
     });
   } catch (error) {
-    console.error('Batch item insert error:', error);
+    console.log('Batch item insert error:', error);
     res.status(500).json({ error: 'Failed to insert items' });
   }
 });
@@ -474,7 +474,7 @@ router.post('/departments/batch', async (req: Request, res: Response) => {
       message: 'Departments inserted successfully' 
     });
   } catch (error) {
-    console.error('Batch department insert error:', error);
+    console.log('Batch department insert error:', error);
     res.status(500).json({ error: 'Failed to insert departments' });
   }
 });
@@ -498,7 +498,7 @@ router.get('/transactions', async (req: Request, res: Response) => {
 
     res.json(transactions);
   } catch (error) {
-    console.error('Get transactions error:', error);
+    console.log('Get transactions error:', error);
     res.status(500).json({ error: 'Failed to retrieve transactions' });
   }
 });
@@ -522,7 +522,7 @@ router.get('/transaction-details', async (req: Request, res: Response) => {
       lineItems
     });
   } catch (error) {
-    console.error('Get transaction details error:', error);
+    console.log('Get transaction details error:', error);
     res.status(500).json({ error: 'Failed to retrieve transaction details' });
   }
 });
@@ -540,7 +540,7 @@ router.get('/fuel-grades', async (req: Request, res: Response) => {
 
     res.json(fuelGrades);
   } catch (error) {
-    console.error('Get fuel grades error:', error);
+    console.log('Get fuel grades error:', error);
     res.status(500).json({ error: 'Failed to retrieve fuel grades' });
   }
 });
@@ -559,7 +559,7 @@ router.get('/items', async (req: Request, res: Response) => {
 
     res.json(items);
   } catch (error) {
-    console.error('Get items error:', error);
+    console.log('Get items error:', error);
     res.status(500).json({ error: 'Failed to retrieve items' });
   }
 });
@@ -577,7 +577,7 @@ router.get('/departments', async (req: Request, res: Response) => {
 
     res.json(departments);
   } catch (error) {
-    console.error('Get departments error:', error);
+    console.log('Get departments error:', error);
     res.status(500).json({ error: 'Failed to retrieve departments' });
   }
 });
@@ -595,7 +595,7 @@ router.get('/summary', async (req: Request, res: Response) => {
 
     res.json(summary);
   } catch (error) {
-    console.error('Get sales summary error:', error);
+    console.log('Get sales summary error:', error);
     res.status(500).json({ error: 'Failed to retrieve sales summary' });
   }
 });
@@ -642,7 +642,7 @@ router.get('/reports/store-summary', async (req: Request, res: Response) => {
       errorCorrectAmount: 0,
     });
   } catch (error) {
-    console.error('Store summary report error:', error);
+    console.log('Store summary report error:', error);
     res.status(500).json({ error: 'Failed to generate store summary report' });
   }
 });
@@ -676,7 +676,7 @@ router.get('/reports/fuel-dispensers', async (req: Request, res: Response) => {
 
     res.json(dispensers);
   } catch (error) {
-    console.error('Fuel dispensers report error:', error);
+    console.log('Fuel dispensers report error:', error);
     res.status(500).json({ error: 'Failed to generate fuel dispensers report' });
   }
 });
@@ -696,7 +696,7 @@ router.get('/reports/loyalty-details', async (req: Request, res: Response) => {
 
     res.json(loyaltyUsage);
   } catch (error) {
-    console.error('Loyalty details report error:', error);
+    console.log('Loyalty details report error:', error);
     res.status(500).json({ error: 'Failed to generate loyalty details report' });
   }
 });
@@ -723,7 +723,7 @@ router.get('/reports/loyalty-overview', async (req: Request, res: Response) => {
       averagePromotionAmount: totalPromotions > 0 ? totalPromotionAmount / totalPromotions : 0,
     });
   } catch (error) {
-    console.error('Loyalty overview report error:', error);
+    console.log('Loyalty overview report error:', error);
     res.status(500).json({ error: 'Failed to generate loyalty overview report' });
   }
 });
@@ -743,7 +743,7 @@ router.get('/reports/transaction-line-items', async (req: Request, res: Response
 
     res.json(lineItems);
   } catch (error) {
-    console.error('Transaction line items report error:', error);
+    console.log('Transaction line items report error:', error);
     res.status(500).json({ error: 'Failed to generate transaction line items report' });
   }
 });
@@ -796,7 +796,7 @@ router.get('/reports/fuel-by-grade', async (req: Request, res: Response) => {
 
     res.json(fuelGrades);
   } catch (error) {
-    console.error('Fuel by grade report error:', error);
+    console.log('Fuel by grade report error:', error);
     res.status(500).json({ error: 'Failed to generate fuel by grade report' });
   }
 });
@@ -902,7 +902,7 @@ router.get('/reports/aggregated-items', async (req: Request, res: Response) => {
 
     res.json(aggregatedItems);
   } catch (error) {
-    console.error('Aggregated items report error:', error);
+    console.log('Aggregated items report error:', error);
     res.status(500).json({ error: 'Failed to generate aggregated items report' });
   }
 });
@@ -1004,7 +1004,7 @@ router.get('/reports/daily-fuel-sales', async (req: Request, res: Response) => {
       netAmount: totalAmount - totalDiscount,
     });
   } catch (error) {
-    console.error('Daily fuel sales report error:', error);
+    console.log('Daily fuel sales report error:', error);
     res.status(500).json({ error: 'Failed to generate daily fuel sales report' });
   }
 });
@@ -1106,7 +1106,7 @@ router.get('/reports/daily-total-sales', async (req: Request, res: Response) => 
       totalAmount: fuelAmount + merchAmount,
     });
   } catch (error) {
-    console.error('Daily total sales report error:', error);
+    console.log('Daily total sales report error:', error);
     res.status(500).json({ error: 'Failed to generate daily total sales report' });
   }
 });
@@ -1221,7 +1221,7 @@ router.get('/reports/department-sales', async (req: Request, res: Response) => {
 
     res.json(departmentSales);
   } catch (error) {
-    console.error('Department sales report error:', error);
+    console.log('Department sales report error:', error);
     res.status(500).json({ error: 'Failed to generate department sales report' });
   }
 });
@@ -1320,7 +1320,7 @@ router.get('/reports/unknown-items', async (req: Request, res: Response) => {
 
     res.json(unknownItems);
   } catch (error) {
-    console.error('Unknown items report error:', error);
+    console.log('Unknown items report error:', error);
     res.status(500).json({ error: 'Failed to generate unknown items report' });
   }
 });
@@ -1397,7 +1397,7 @@ router.get('/reports/verifone-fuel-grades', async (req: Request, res: Response) 
     
     res.json({ fuelGrades, summary });
   } catch (error) {
-    console.error('Verifone fuel grade report error:', error);
+    console.log('Verifone fuel grade report error:', error);
     res.status(500).json({ error: 'Failed to generate Verifone fuel grade report' });
   }
 });
@@ -1465,7 +1465,7 @@ router.get('/reports/verifone-departments', async (req: Request, res: Response) 
     
     res.json({ departments: allDepartments, summary });
   } catch (error) {
-    console.error('Verifone department report error:', error);
+    console.log('Verifone department report error:', error);
     res.status(500).json({ error: 'Failed to generate Verifone department report' });
   }
 });
@@ -1508,7 +1508,7 @@ router.get('/reports/verifone-full-day', async (req: Request, res: Response) => 
     
     res.json(report);
   } catch (error) {
-    console.error('Verifone full day report error:', error);
+    console.log('Verifone full day report error:', error);
     res.status(500).json({ error: 'Failed to generate Verifone full day report' });
   }
 });
@@ -1554,7 +1554,7 @@ router.get('/reports/verifone-transactions', async (req: Request, res: Response)
       }
     });
   } catch (error) {
-    console.error('Verifone transactions report error:', error);
+    console.log('Verifone transactions report error:', error);
     res.status(500).json({ error: 'Failed to generate Verifone transactions report' });
   }
 });
@@ -1595,7 +1595,7 @@ router.get('/reports/verifone-fgm-cumulative', async (req: Request, res: Respons
       note: 'These are cumulative lifetime readings. Use /verifone-fgm-daily to calculate daily sales by differencing.'
     });
   } catch (error) {
-    console.error('Verifone FGM cumulative report error:', error);
+    console.log('Verifone FGM cumulative report error:', error);
     res.status(500).json({ error: 'Failed to parse Verifone FGM cumulative data' });
   }
 });
@@ -1672,7 +1672,7 @@ router.get('/reports/verifone-fgm-daily', async (req: Request, res: Response) =>
     
     res.json(dailyCalculation);
   } catch (error) {
-    console.error('Verifone FGM daily report error:', error);
+    console.log('Verifone FGM daily report error:', error);
     res.status(500).json({ error: 'Failed to calculate Verifone daily fuel sales' });
   }
 });

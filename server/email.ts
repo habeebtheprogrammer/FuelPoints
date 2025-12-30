@@ -135,7 +135,7 @@ export async function sendWelcomeEmail(email: string, firstName: string, loyalty
     console.log(`Welcome email sent to ${email}`);
     return true;
   } catch (error) {
-    console.error('Failed to send welcome email:', error);
+    console.log('Failed to send welcome email:', error);
     return false;
   }
 }
@@ -216,7 +216,7 @@ export async function sendPasswordResetEmail(email: string, firstName: string, r
     console.log(`Password reset email sent to ${email}`);
     return true;
   } catch (error) {
-    console.error('Failed to send password reset email:', error);
+    console.log('Failed to send password reset email:', error);
     return false;
   }
 }

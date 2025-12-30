@@ -127,7 +127,7 @@ export async function parseVerifoneFGMCumulative(
     console.log(`[Verifone FGM Parser] Parsed ${readings.length} cumulative readings for store ${pdiStoreNumber}`);
     return readings;
   } catch (error) {
-    console.error('[Verifone FGM Parser] Parse error:', error);
+    console.log('[Verifone FGM Parser] Parse error:', error);
     throw new Error(`Failed to parse Verifone FGM data: ${error instanceof Error ? error.message : 'Unknown error'}`);
   }
 }

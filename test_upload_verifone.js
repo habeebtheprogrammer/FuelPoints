@@ -62,7 +62,7 @@ async function uploadFile(fileInfo) {
     
     return result;
   } catch (error) {
-    console.error(`❌ Error uploading ${fileInfo.file}:`, error.message);
+    console.log(`❌ Error uploading ${fileInfo.file}:`, error.message);
   }
 }
 
@@ -88,4 +88,4 @@ async function main() {
   console.log('============================================================');
 }
 
-main().catch(console.error);
+main().catch(console.log);

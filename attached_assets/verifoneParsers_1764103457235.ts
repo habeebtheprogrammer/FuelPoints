@@ -58,7 +58,7 @@ export async function parseVerifoneFGM(xmlContent: string, businessDate: string)
 
     return Array.from(gradeMap.values());
   } catch (error) {
-    console.error('Error parsing Verifone FGM XML:', error);
+    console.log('Error parsing Verifone FGM XML:', error);
     throw new Error(`Failed to parse Verifone FGM XML: ${error instanceof Error ? error.message : 'Unknown error'}`);
   }
 }
@@ -115,7 +115,7 @@ export async function parseVerifoneISM(xmlContent: string, businessDate: string)
 
     return { items, departments: Array.from(departmentMap.values()) };
   } catch (error) {
-    console.error('Error parsing Verifone ISM XML:', error);
+    console.log('Error parsing Verifone ISM XML:', error);
     throw new Error(`Failed to parse Verifone ISM XML: ${error instanceof Error ? error.message : 'Unknown error'}`);
   }
 }
@@ -153,7 +153,7 @@ export async function parseVerifoneMCM(xmlContent: string, businessDate: string)
 
     return departments;
   } catch (error) {
-    console.error('Error parsing Verifone MCM XML:', error);
+    console.log('Error parsing Verifone MCM XML:', error);
     throw new Error(`Failed to parse Verifone MCM XML: ${error instanceof Error ? error.message : 'Unknown error'}`);
   }
 }
@@ -341,7 +341,7 @@ export async function parseVerifoneCPJR(xmlContent: string, businessDate: string
       dispensers: [],
     };
   } catch (error) {
-    console.error('Error parsing Verifone CPJR XML:', error);
+    console.log('Error parsing Verifone CPJR XML:', error);
     throw new Error(`Failed to parse Verifone CPJR XML: ${error instanceof Error ? error.message : 'Unknown error'}`);
   }
 }

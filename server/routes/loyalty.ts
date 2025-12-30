@@ -37,7 +37,7 @@ router.get('/reports/transactions', async (req: Request, res: Response) => {
 
     res.json(transactions);
   } catch (error) {
-    console.error('Error fetching loyalty transactions:', error);
+    console.log('Error fetching loyalty transactions:', error);
     res.status(500).json({ error: 'Failed to fetch transactions' });
   }
 });
@@ -74,7 +74,7 @@ router.get('/reports/failed-lookups', async (req: Request, res: Response) => {
 
     res.json(lookups);
   } catch (error) {
-    console.error('Error fetching failed lookups:', error);
+    console.log('Error fetching failed lookups:', error);
     res.status(500).json({ error: 'Failed to fetch failed lookups' });
   }
 });
@@ -152,7 +152,7 @@ router.get('/reports/promotion-usage', async (req: Request, res: Response) => {
 
     res.json(result);
   } catch (error) {
-    console.error('Error fetching promotion usage:', error);
+    console.log('Error fetching promotion usage:', error);
     res.status(500).json({ error: 'Failed to fetch promotion usage' });
   }
 });
@@ -194,7 +194,7 @@ router.get('/reports/points-activity', async (req: Request, res: Response) => {
 
     res.json(result.rows);
   } catch (error) {
-    console.error('Error fetching points activity:', error);
+    console.log('Error fetching points activity:', error);
     res.status(500).json({ error: 'Failed to fetch points activity' });
   }
 });
@@ -233,7 +233,7 @@ router.get('/reports/customer-activity', async (req: Request, res: Response) => 
 
     res.json(result.rows);
   } catch (error) {
-    console.error('Error fetching customer activity:', error);
+    console.log('Error fetching customer activity:', error);
     res.status(500).json({ error: 'Failed to fetch customer activity' });
   }
 });
@@ -299,7 +299,7 @@ router.get('/reports/anomaly-alerts', async (req: Request, res: Response) => {
 
     res.json(allAlerts);
   } catch (error) {
-    console.error('Error fetching anomaly alerts:', error);
+    console.log('Error fetching anomaly alerts:', error);
     res.status(500).json({ error: 'Failed to fetch anomaly alerts' });
   }
 });
@@ -343,7 +343,7 @@ router.get('/customer/:customerId/transactions', async (req: Request, res: Respo
 
     res.json(formattedTransactions);
   } catch (error) {
-    console.error('Error fetching customer loyalty transactions:', error);
+    console.log('Error fetching customer loyalty transactions:', error);
     res.status(500).json({ error: 'Failed to fetch customer transactions' });
   }
 });

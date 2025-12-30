@@ -38,7 +38,7 @@ function Promotions() {
       const data = await response.json();
       setPromotions(data);
     } catch (error) {
-      console.error('Error loading promotions:', error);
+      console.log('Error loading promotions:', error);
     } finally {
       setLoading(false);
     }
@@ -50,7 +50,7 @@ function Promotions() {
       const data = await response.json();
       setItemGroups(data);
     } catch (error) {
-      console.error('Error loading item groups:', error);
+      console.log('Error loading item groups:', error);
     }
   };
 
@@ -60,7 +60,7 @@ function Promotions() {
       const data = await response.json();
       setLocations(data);
     } catch (error) {
-      console.error('Error loading locations:', error);
+      console.log('Error loading locations:', error);
     }
   };
 
@@ -104,7 +104,7 @@ function Promotions() {
       });
       setShowModal(true);
     } catch (error) {
-      console.error('Error loading promotion:', error);
+      console.log('Error loading promotion:', error);
       alert('Error loading promotion');
     }
   };
@@ -123,7 +123,7 @@ function Promotions() {
         alert('Error deleting promotion');
       }
     } catch (error) {
-      console.error('Error deleting promotion:', error);
+      console.log('Error deleting promotion:', error);
       alert('Error deleting promotion');
     }
   };
@@ -186,7 +186,7 @@ function Promotions() {
         alert('Error saving promotion');
       }
     } catch (error) {
-      console.error('Error saving promotion:', error);
+      console.log('Error saving promotion:', error);
       alert('Error saving promotion');
     }
   };

@@ -28,7 +28,7 @@ function Customers() {
       setCustomers(data);
       setError(null);
     } catch (err) {
-      console.error('Error loading customers:', err);
+      console.log('Error loading customers:', err);
       setError('Failed to load customers. Please try again.');
     } finally {
       setLoading(false);
@@ -59,7 +59,7 @@ function Customers() {
       
       setTransactionError(null);
     } catch (error) {
-      console.error('Error loading transactions:', error);
+      console.log('Error loading transactions:', error);
       setTransactionError('Failed to load purchase history. Please try again.');
     } finally {
       setLoadingTransactions(false);

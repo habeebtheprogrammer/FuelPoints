@@ -28,7 +28,7 @@ function Locations() {
       const data = await response.json();
       setLocations(data);
     } catch (error) {
-      console.error('Error loading locations:', error);
+      console.log('Error loading locations:', error);
     } finally {
       setLoading(false);
     }
@@ -57,7 +57,7 @@ function Locations() {
       setFormData(location);
       setShowModal(true);
     } catch (error) {
-      console.error('Error loading location:', error);
+      console.log('Error loading location:', error);
       alert('Error loading location');
     }
   };
@@ -76,7 +76,7 @@ function Locations() {
         alert('Error deleting location');
       }
     } catch (error) {
-      console.error('Error deleting location:', error);
+      console.log('Error deleting location:', error);
       alert('Error deleting location');
     }
   };
@@ -104,7 +104,7 @@ function Locations() {
         alert('Error saving location');
       }
     } catch (error) {
-      console.error('Error saving location:', error);
+      console.log('Error saving location:', error);
       alert('Error saving location');
     }
   };

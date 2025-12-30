@@ -128,7 +128,7 @@ export async function parseVerifoneFGMv2(xmlContent: string, businessDate: strin
     console.log(`[V2 FGM] Parsed ${results.length} fuel grades from ${dispenserData.length} dispensers`);
     return results;
   } catch (error) {
-    console.error('[V2 FGM] Parse error:', error);
+    console.log('[V2 FGM] Parse error:', error);
     throw new Error(`Failed to parse Verifone FGM XML: ${error instanceof Error ? error.message : 'Unknown error'}`);
   }
 }
@@ -185,7 +185,7 @@ export async function parseVerifoneISMv2(xmlContent: string, businessDate: strin
     console.log(`[V2 ISM] Parsed ${items.length} items, ${departmentMap.size} departments`);
     return { items, departments: Array.from(departmentMap.values()) };
   } catch (error) {
-    console.error('[V2 ISM] Parse error:', error);
+    console.log('[V2 ISM] Parse error:', error);
     throw new Error(`Failed to parse Verifone ISM XML: ${error instanceof Error ? error.message : 'Unknown error'}`);
   }
 }
@@ -223,7 +223,7 @@ export async function parseVerifoneMCMv2(xmlContent: string, businessDate: strin
     console.log(`[V2 MCM] Parsed ${departments.length} departments`);
     return departments;
   } catch (error) {
-    console.error('[V2 MCM] Parse error:', error);
+    console.log('[V2 MCM] Parse error:', error);
     throw new Error(`Failed to parse Verifone MCM XML: ${error instanceof Error ? error.message : 'Unknown error'}`);
   }
 }
@@ -382,7 +382,7 @@ export async function parseVerifoneCPJRv2(xmlContent: string, businessDate: stri
       dispensers: [],
     };
   } catch (error) {
-    console.error('[V2 CPJR] Parse error:', error);
+    console.log('[V2 CPJR] Parse error:', error);
     throw new Error(`Failed to parse Verifone CPJR XML: ${error instanceof Error ? error.message : 'Unknown error'}`);
   }
 }
