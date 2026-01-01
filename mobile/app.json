@@ -9,7 +9,7 @@
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#1E3A8A"
+      "backgroundColor": "#FFFFFF"
     },
     "assetBundlePatterns": [
       "**/*"
@@ -24,7 +24,7 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#1E3A8A"
+        "backgroundColor": "#FFFFFF"
       },
       "package": "com.birdies.rewards"
     },
@@ -34,12 +34,16 @@
     "scheme": "birdies",
     "plugins": [
       "expo-router",
-      ["expo-build-properties", {
-        "ios": {
-          "useFrameworks": "static"
+      [
+        "expo-build-properties",
+        {
+          "ios": {
+            "useFrameworks": "static"
+          }
         }
-      }],
-      "expo-secure-store"
+      ],
+      "expo-secure-store",
+      "expo-font"
     ],
     "extra": {
       "eas": {
