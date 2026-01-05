@@ -320,10 +320,13 @@ class EdgeAgentWorker(QThread):
                 continue
 
             il = tline.find("./ItemLine")
+            is_item_line = il is not None
             if il is None:
                 il = tline.find("./MerchandiseCodeLine")
             if il is None:
                 continue
+
+            discountable = (il.get("discountable") or "yes").strip().lower() == "yes"
 
             try:
                 line_no = int(tline.findtext("./LineNumber", "0"))
@@ -334,7 +337,6 @@ class EdgeAgentWorker(QThread):
                 il.findtext("./ItemCode/POSCode")
                 or il.findtext(".//POSCode")
                 or il.findtext(".//UPC")
-                or il.findtext(".//PaymentSystemsProductCode")
                 or ""
             ).strip()
 
@@ -374,6 +376,8 @@ class EdgeAgentWorker(QThread):
                 "quantity": qty,
                 "amount": amount,
                 "price": price,
+                "is_item_line": is_item_line,
+                "discountable": discountable,
             })
         return items
 
@@ -645,7 +649,11 @@ class EdgeAgentWorker(QThread):
 
             reward_eligible = [
                 it for it in items
-                if (it.get("upc") or "").strip() and float(it.get("amount", 0) or 0) > 0 and float(it.get("price", 0) or 0) > 0
+                if it.get("is_item_line", False)
+                and it.get("discountable", False)
+                and (it.get("upc") or "").strip()
+                and float(it.get("amount", 0) or 0) > 0
+                and float(it.get("price", 0) or 0) > 0
             ]
             if triggered and reward_eligible:
                 punch_rewards, punch_discount = self.build_punch_rewards_xml(triggered, reward_eligible, remaining_subtotal)

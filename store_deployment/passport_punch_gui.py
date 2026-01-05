@@ -311,6 +311,8 @@ class EdgeAgentWorker(QThread):
             if il is None:
                 continue
 
+            discountable = (il.get("discountable") or "yes").strip().lower() == "yes"
+
             try:
                 line_no = int(tline.findtext("./LineNumber", "0"))
             except Exception:
@@ -364,6 +366,7 @@ class EdgeAgentWorker(QThread):
                 "unit_price": unit_price,
                 "actual_price": actual_price,
                 "regular_price": regular_price,
+                "discountable": discountable,
             })
         return items
 
@@ -548,7 +551,10 @@ class EdgeAgentWorker(QThread):
                 if self.last_punch_cards:
                     eligible_items = [
                         it for it in items
-                        if it.get("upc") and it.get("amount", 0) > 0 and it.get("price", 0) > 0
+                        if it.get("discountable", False)
+                        and (it.get("upc") or "").strip()
+                        and float(it.get("amount", 0) or 0) > 0
+                        and float(it.get("price", 0) or 0) > 0
                     ]
 
                     for pc in self.last_punch_cards:

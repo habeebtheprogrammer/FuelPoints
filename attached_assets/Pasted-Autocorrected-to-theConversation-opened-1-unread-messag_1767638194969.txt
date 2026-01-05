@@ -1,0 +1,838 @@
+Autocorrected to theConversation opened. 1 unread message.
+
+Skip to content
+Using NSR Petro Service Mail with screen readers
+
+4 of 43,672
+(no subject)
+External
+Inbox
+Summarize this email
+
+Hollywood Shell
+Attachments
+1:27 PM (8 minutes ago)
+to me
+
+[2026-01-05 13:06:40] Listening on 0.0.0.0:9000
+
+[2026-01-05 13:06:40] Store: 1310
+
+[2026-01-05 13:06:40] Mode: PUNCH CARDS ONLY (No Promotions)
+
+[2026-01-05 13:06:40] Protocol: Verifone EPS (4-byte BE framing)
+
+[2026-01-05 13:08:17] EPS connected from 192.168.15.135:49427
+
+[2026-01-05 13:08:17] Request: GetLoyaltyOnlineStatusRequest
+
+[2026-01-05 13:08:17] -> Sent to EPS
+
+[2026-01-05 13:08:17] Request: EndPeriodRequest
+
+[2026-01-05 13:08:17] End period acknowledged
+
+[2026-01-05 13:08:17] -> Sent to EPS
+
+[2026-01-05 13:11:17] EPS timeout: 192.168.15.135:49427
+
+[2026-01-05 13:11:17] EPS session ended: 192.168.15.135:49427
+
+[2026-01-05 13:13:47] EPS connected from 192.168.15.135:50030
+
+[2026-01-05 13:13:47] Request: GetLoyaltyOnlineStatusRequest
+
+[2026-01-05 13:13:48] -> Sent to EPS
+
+[2026-01-05 13:16:48] EPS timeout: 192.168.15.135:50030
+
+[2026-01-05 13:16:48] EPS session ended: 192.168.15.135:50030
+
+[2026-01-05 13:19:18] EPS connected from 192.168.15.135:50586
+
+[2026-01-05 13:19:18] Request: GetLoyaltyOnlineStatusRequest
+
+[2026-01-05 13:19:18] -> Sent to EPS
+
+[2026-01-05 13:22:01] Request: GetRewardsRequest
+
+[2026-01-05 13:22:01] Transaction: 2 items, subtotal $2.64
+
+[2026-01-05 13:22:01] Customer: Brandy King (66 pts)
+
+[2026-01-05 13:22:02] PUNCH CARD STATUS:
+
+[2026-01-05 13:22:02] Coffee Club: 1/5 (+1 from basket) (need 4 more)
+
+[2026-01-05 13:22:02] -> Sent to EPS
+
+[2026-01-05 13:22:09] Request: FinalizeRewardsRequest
+
+[2026-01-05 13:22:09] Finalize: subtotal $2.64
+
+[2026-01-05 13:22:10] Finalized: Earned 13 pts, Balance 79
+
+[2026-01-05 13:22:10] -> Sent to EPS
+
+[2026-01-05 13:23:31] Request: GetRewardsRequest
+
+[2026-01-05 13:23:31] Transaction: 5 items, subtotal $10.56
+
+[2026-01-05 13:23:31] Customer lookup error: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+
+[2026-01-05 13:23:31] -> Sent to EPS
+
+[2026-01-05 13:23:50] Request: GetRewardsRequest
+
+[2026-01-05 13:23:50] Transaction: 5 items, subtotal $10.56
+
+[2026-01-05 13:23:50] Customer: Brandy King (79 pts)
+
+[2026-01-05 13:23:51] PUNCH CARD STATUS:
+
+[2026-01-05 13:23:51] Coffee Club: 2/5 (+4 from basket) - REWARD TRIGGERED!
+
+[2026-01-05 13:23:51] Punch discount: $0.60
+
+[2026-01-05 13:23:51] Sending 1 reward(s) to EPS
+
+[2026-01-05 13:23:51] -> Sent to EPS
+
+ One attachment
+  •  Scanned by Gmail
+
+
+
+winsor 7eleven@nsrpetro.com
+================================================================================
+[2026-01-05 13:08:17.409] RECEIVED FROM EPS
+================================================================================
+<?xml version="1.0" ?>
+<ns2:GetLoyaltyOnlineStatusRequest xmlns:ns2="http://www.pcats.org/schema/naxml/loyalty/v01" xmlns:ns4="http://www.pcats.org/schema/core/v01" xmlns:ns3="http://www.naxml.org/POSBO/Vocabulary/2003-10-16">
+	<ns2:RequestHeader>
+		<ns2:POSLoyaltyInterfaceVersion>1.1</ns2:POSLoyaltyInterfaceVersion>
+		<ns3:VendorName>VIPER</ns3:VendorName>
+		<ns3:VendorModelVersion>9.03.00</ns3:VendorModelVersion>
+		<ns2:POSSequenceID>1-101</ns2:POSSequenceID>
+		<ns2:LoyaltySequenceID/>
+		<ns2:StoreLocationID>24354</ns2:StoreLocationID>
+		<ns2:LoyaltyOfflineFlag value="no"/>
+	</ns2:RequestHeader>
+</ns2:GetLoyaltyOnlineStatusRequest>
+
+
+================================================================================
+[2026-01-05 13:08:17.835] SENT TO EPS
+================================================================================
+<?xml version="1.0" ?>
+<ns3:GetLoyaltyOnlineStatusResponse xmlns:ns2="http://www.naxml.org/POSBO/Vocabulary/2003-10-16" xmlns:ns4="http://www.pcats.org/schema/core/v01" xmlns:ns3="http://www.pcats.org/schema/naxml/loyalty/v01">
+	
+  
+	<ns3:ResponseHeader overallResult="success">
+		<ns3:POSLoyaltyInterfaceVersion>1.0</ns3:POSLoyaltyInterfaceVersion>
+		<ns2:VendorName>BirdiesLoyalty</ns2:VendorName>
+		<ns2:VendorModelVersion>1.0</ns2:VendorModelVersion>
+		<ns3:POSSequenceID>1-101</ns3:POSSequenceID>
+		<ns3:LoyaltySequenceID>LOY-F81702C67CFA</ns3:LoyaltySequenceID>
+		<ns4:Result>
+			<Success/>
+		</ns4:Result>
+	</ns3:ResponseHeader>
+	
+  
+	<ns3:PromptForLoyaltyFlag value="yes"/>
+	
+
+</ns3:GetLoyaltyOnlineStatusResponse>
+
+
+================================================================================
+[2026-01-05 13:08:17.848] RECEIVED FROM EPS
+================================================================================
+<?xml version="1.0" ?>
+<ns2:EndPeriodRequest xmlns:ns2="http://www.pcats.org/schema/naxml/loyalty/v01" xmlns:ns4="http://www.pcats.org/schema/core/v01" xmlns:ns3="http://www.naxml.org/POSBO/Vocabulary/2003-10-16">
+	<ns2:RequestHeader>
+		<ns2:POSLoyaltyInterfaceVersion>1.1</ns2:POSLoyaltyInterfaceVersion>
+		<ns3:VendorName>VIPER:VIPER</ns3:VendorName>
+		<ns3:VendorModelVersion>9.03.00:9.03.00</ns3:VendorModelVersion>
+		<ns2:POSSequenceID>1-011</ns2:POSSequenceID>
+		<ns2:StoreLocationID>24354</ns2:StoreLocationID>
+		<ns2:LoyaltyOfflineFlag value="yes"/>
+	</ns2:RequestHeader>
+	<ns2:BusinessPeriod>
+		<ns3:BusinessDate>2026-01-05</ns3:BusinessDate>
+		<ns3:PrimaryReportPeriod interval="day">2905</ns3:PrimaryReportPeriod>
+		<ns3:BeginDate>2026-01-03</ns3:BeginDate>
+		<ns3:BeginTime>23:02:45-05:00</ns3:BeginTime>
+		<ns3:EndDate>2026-01-04</ns3:EndDate>
+		<ns3:EndTime>23:00:48-05:00</ns3:EndTime>
+	</ns2:BusinessPeriod>
+</ns2:EndPeriodRequest>
+
+
+================================================================================
+[2026-01-05 13:08:17.852] SENT TO EPS
+================================================================================
+<?xml version="1.0" ?>
+<ns3:EndPeriodResponse xmlns:ns2="http://www.naxml.org/POSBO/Vocabulary/2003-10-16" xmlns:ns4="http://www.pcats.org/schema/core/v01" xmlns:ns3="http://www.pcats.org/schema/naxml/loyalty/v01">
+	
+  
+	<ns3:ResponseHeader overallResult="success">
+		<ns3:POSLoyaltyInterfaceVersion>1.0</ns3:POSLoyaltyInterfaceVersion>
+		<ns2:VendorName>BirdiesLoyalty</ns2:VendorName>
+		<ns2:VendorModelVersion>1.0</ns2:VendorModelVersion>
+		<ns3:POSSequenceID>1-011</ns3:POSSequenceID>
+		<ns3:LoyaltySequenceID>LOY-CBA2E124D969</ns3:LoyaltySequenceID>
+		<ns4:Result>
+			<Success/>
+		</ns4:Result>
+	</ns3:ResponseHeader>
+	
+  
+	<ns4:Result>
+		<Success/>
+	</ns4:Result>
+	
+
+</ns3:EndPeriodResponse>
+
+
+================================================================================
+[2026-01-05 13:13:47.860] RECEIVED FROM EPS
+================================================================================
+<?xml version="1.0" ?>
+<ns2:GetLoyaltyOnlineStatusRequest xmlns:ns2="http://www.pcats.org/schema/naxml/loyalty/v01" xmlns:ns4="http://www.pcats.org/schema/core/v01" xmlns:ns3="http://www.naxml.org/POSBO/Vocabulary/2003-10-16">
+	<ns2:RequestHeader>
+		<ns2:POSLoyaltyInterfaceVersion>1.1</ns2:POSLoyaltyInterfaceVersion>
+		<ns3:VendorName>VIPER</ns3:VendorName>
+		<ns3:VendorModelVersion>9.03.00</ns3:VendorModelVersion>
+		<ns2:POSSequenceID>1-101</ns2:POSSequenceID>
+		<ns2:LoyaltySequenceID/>
+		<ns2:StoreLocationID>24354</ns2:StoreLocationID>
+		<ns2:LoyaltyOfflineFlag value="no"/>
+	</ns2:RequestHeader>
+</ns2:GetLoyaltyOnlineStatusRequest>
+
+
+================================================================================
+[2026-01-05 13:13:48.208] SENT TO EPS
+================================================================================
+<?xml version="1.0" ?>
+<ns3:GetLoyaltyOnlineStatusResponse xmlns:ns2="http://www.naxml.org/POSBO/Vocabulary/2003-10-16" xmlns:ns4="http://www.pcats.org/schema/core/v01" xmlns:ns3="http://www.pcats.org/schema/naxml/loyalty/v01">
+	
+  
+	<ns3:ResponseHeader overallResult="success">
+		<ns3:POSLoyaltyInterfaceVersion>1.0</ns3:POSLoyaltyInterfaceVersion>
+		<ns2:VendorName>BirdiesLoyalty</ns2:VendorName>
+		<ns2:VendorModelVersion>1.0</ns2:VendorModelVersion>
+		<ns3:POSSequenceID>1-101</ns3:POSSequenceID>
+		<ns3:LoyaltySequenceID>LOY-01B8FAEDFF0A</ns3:LoyaltySequenceID>
+		<ns4:Result>
+			<Success/>
+		</ns4:Result>
+	</ns3:ResponseHeader>
+	
+  
+	<ns3:PromptForLoyaltyFlag value="yes"/>
+	
+
+</ns3:GetLoyaltyOnlineStatusResponse>
+
+
+================================================================================
+[2026-01-05 13:19:18.216] RECEIVED FROM EPS
+================================================================================
+<?xml version="1.0" ?>
+<ns2:GetLoyaltyOnlineStatusRequest xmlns:ns2="http://www.pcats.org/schema/naxml/loyalty/v01" xmlns:ns4="http://www.pcats.org/schema/core/v01" xmlns:ns3="http://www.naxml.org/POSBO/Vocabulary/2003-10-16">
+	<ns2:RequestHeader>
+		<ns2:POSLoyaltyInterfaceVersion>1.1</ns2:POSLoyaltyInterfaceVersion>
+		<ns3:VendorName>VIPER</ns3:VendorName>
+		<ns3:VendorModelVersion>9.03.00</ns3:VendorModelVersion>
+		<ns2:POSSequenceID>1-101</ns2:POSSequenceID>
+		<ns2:LoyaltySequenceID/>
+		<ns2:StoreLocationID>24354</ns2:StoreLocationID>
+		<ns2:LoyaltyOfflineFlag value="no"/>
+	</ns2:RequestHeader>
+</ns2:GetLoyaltyOnlineStatusRequest>
+
+
+================================================================================
+[2026-01-05 13:19:18.789] SENT TO EPS
+================================================================================
+<?xml version="1.0" ?>
+<ns3:GetLoyaltyOnlineStatusResponse xmlns:ns2="http://www.naxml.org/POSBO/Vocabulary/2003-10-16" xmlns:ns4="http://www.pcats.org/schema/core/v01" xmlns:ns3="http://www.pcats.org/schema/naxml/loyalty/v01">
+	
+  
+	<ns3:ResponseHeader overallResult="success">
+		<ns3:POSLoyaltyInterfaceVersion>1.0</ns3:POSLoyaltyInterfaceVersion>
+		<ns2:VendorName>BirdiesLoyalty</ns2:VendorName>
+		<ns2:VendorModelVersion>1.0</ns2:VendorModelVersion>
+		<ns3:POSSequenceID>1-101</ns3:POSSequenceID>
+		<ns3:LoyaltySequenceID>LOY-2476CA79174F</ns3:LoyaltySequenceID>
+		<ns4:Result>
+			<Success/>
+		</ns4:Result>
+	</ns3:ResponseHeader>
+	
+  
+	<ns3:PromptForLoyaltyFlag value="yes"/>
+	
+
+</ns3:GetLoyaltyOnlineStatusResponse>
+
+
+================================================================================
+[2026-01-05 13:22:01.542] RECEIVED FROM EPS
+================================================================================
+<?xml version="1.0" ?>
+<ns2:GetRewardsRequest xmlns:ns2="http://www.pcats.org/schema/naxml/loyalty/v01" xmlns:ns4="http://www.pcats.org/schema/core/v01" xmlns:ns3="http://www.naxml.org/POSBO/Vocabulary/2003-10-16">
+	<ns2:RequestHeader>
+		<ns2:POSLoyaltyInterfaceVersion>1.1</ns2:POSLoyaltyInterfaceVersion>
+		<ns3:VendorName>VIPER:ruby2</ns3:VendorName>
+		<ns3:VendorModelVersion>9.03.00:Base 053.40.00</ns3:VendorModelVersion>
+		<ns2:POSSequenceID>1021764877544416</ns2:POSSequenceID>
+		<ns2:StoreLocationID>24354</ns2:StoreLocationID>
+		<ns2:LoyaltyOfflineFlag value="no"/>
+	</ns2:RequestHeader>
+	<ns2:LoyaltyID entryMethod="manual">2405851628</ns2:LoyaltyID>
+	<ns2:FuelPriceData/>
+	<ns2:TransactionData>
+		<ns2:TransactionHeader>
+			<ns3:OutsideSalesFlag value="no"/>
+			<ns3:RegisterID>2</ns3:RegisterID>
+			<ns3:CashierID>15</ns3:CashierID>
+			<ns2:TillID>002</ns2:TillID>
+			<ns2:POSTransactionID>0102446739</ns2:POSTransactionID>
+			<ns2:BusinessPeriod>
+				<ns3:BusinessDate>2026-01-05</ns3:BusinessDate>
+				<ns3:PrimaryReportPeriod interval="day">2906</ns3:PrimaryReportPeriod>
+				<ns3:BeginDate>2026-01-04</ns3:BeginDate>
+				<ns3:BeginTime>23:00:48-05:00</ns3:BeginTime>
+				<ns3:EndDate>2100-01-01</ns3:EndDate>
+				<ns3:EndTime>00:00:00-05:00</ns3:EndTime>
+			</ns2:BusinessPeriod>
+			<ns3:EventStartDate>2026-01-05</ns3:EventStartDate>
+			<ns3:EventStartTime>13:22:01-05:00</ns3:EventStartTime>
+		</ns2:TransactionHeader>
+		<ns2:TransactionDetailGroup>
+			<ns2:TransactionLine status="normal">
+				<ns2:LineNumber>1</ns2:LineNumber>
+				<ns2:ItemLine discountable="yes">
+					<ns3:ItemCode>
+						<ns3:POSCodeFormat format="plu"/>
+						<ns3:POSCode>90003</ns3:POSCode>
+						<ns3:POSCodeModifier>0</ns3:POSCodeModifier>
+					</ns3:ItemCode>
+					<ns3:MerchandiseCode>30</ns3:MerchandiseCode>
+					<ns3:Description>20OZ COFFEE</ns3:Description>
+					<ns3:ActualSalesPrice>2.49</ns3:ActualSalesPrice>
+					<ns3:RegularSellPrice>2.49</ns3:RegularSellPrice>
+					<ns3:SellingUnits>1.000</ns3:SellingUnits>
+					<ns3:SalesQuantity>1</ns3:SalesQuantity>
+					<ns3:SalesAmount>2.49</ns3:SalesAmount>
+					<ns2:SalesUOM>EA</ns2:SalesUOM>
+					<ns3:PaymentSystemsProductCode>430</ns3:PaymentSystemsProductCode>
+				</ns2:ItemLine>
+			</ns2:TransactionLine>
+			<ns2:TransactionLine status="normal">
+				<ns2:LineNumber>2</ns2:LineNumber>
+				<ns2:MerchandiseCodeLine discountable="no">
+					<ns3:MerchandiseCode>n/a</ns3:MerchandiseCode>
+					<ns3:ActualSalesPrice>0.15</ns3:ActualSalesPrice>
+					<ns3:SalesQuantity>1</ns3:SalesQuantity>
+					<ns3:SalesAmount>0.15</ns3:SalesAmount>
+					<ns2:SalesUOM>EA</ns2:SalesUOM>
+					<ns3:PaymentSystemsProductCode>950</ns3:PaymentSystemsProductCode>
+				</ns2:MerchandiseCodeLine>
+			</ns2:TransactionLine>
+		</ns2:TransactionDetailGroup>
+	</ns2:TransactionData>
+</ns2:GetRewardsRequest>
+
+
+================================================================================
+[2026-01-05 13:22:02.111] SENT TO EPS
+================================================================================
+<?xml version="1.0" ?>
+<ns3:GetRewardsResponse xmlns:ns2="http://www.naxml.org/POSBO/Vocabulary/2003-10-16" xmlns:ns4="http://www.pcats.org/schema/core/v01" xmlns:ns3="http://www.pcats.org/schema/naxml/loyalty/v01">
+	
+  
+	<ns3:ResponseHeader overallResult="success">
+		<ns3:POSLoyaltyInterfaceVersion>1.0</ns3:POSLoyaltyInterfaceVersion>
+		<ns2:VendorName>BirdiesLoyalty</ns2:VendorName>
+		<ns2:VendorModelVersion>1.0</ns2:VendorModelVersion>
+		<ns3:POSSequenceID>1021764877544416</ns3:POSSequenceID>
+		<ns3:LoyaltySequenceID>LOY-665306BE56C2</ns3:LoyaltySequenceID>
+		<ns4:Result>
+			<Success/>
+		</ns4:Result>
+	</ns3:ResponseHeader>
+	
+  
+	<ns3:LoyaltyIDValidFlag value="yes">******1628</ns3:LoyaltyIDValidFlag>
+	
+  
+	<ns3:RewardActions/>
+	
+
+</ns3:GetRewardsResponse>
+
+
+================================================================================
+[2026-01-05 13:22:09.755] RECEIVED FROM EPS
+================================================================================
+<?xml version="1.0" ?>
+<ns2:FinalizeRewardsRequest xmlns:ns2="http://www.pcats.org/schema/naxml/loyalty/v01" xmlns:ns4="http://www.pcats.org/schema/core/v01" xmlns:ns3="http://www.naxml.org/POSBO/Vocabulary/2003-10-16">
+	<ns2:RequestHeader>
+		<ns2:POSLoyaltyInterfaceVersion>1.1</ns2:POSLoyaltyInterfaceVersion>
+		<ns3:VendorName>VIPER:ruby2</ns3:VendorName>
+		<ns3:VendorModelVersion>9.03.00:Base 053.40.00</ns3:VendorModelVersion>
+		<ns2:POSSequenceID>1021764877544419</ns2:POSSequenceID>
+		<ns2:LoyaltySequenceID>LOY-665306BE56C2</ns2:LoyaltySequenceID>
+		<ns2:StoreLocationID>24354</ns2:StoreLocationID>
+		<ns2:LoyaltyOfflineFlag value="no"/>
+	</ns2:RequestHeader>
+	<ns2:LoyaltyID entryMethod="manual">2405851628</ns2:LoyaltyID>
+	<ns2:TransactionData>
+		<ns2:TransactionHeader>
+			<ns3:OutsideSalesFlag value="no"/>
+			<ns3:RegisterID>2</ns3:RegisterID>
+			<ns3:CashierID>15</ns3:CashierID>
+			<ns2:TillID>002</ns2:TillID>
+			<ns2:POSTransactionID>0102446739</ns2:POSTransactionID>
+			<ns2:BusinessPeriod>
+				<ns3:BusinessDate>2026-01-05</ns3:BusinessDate>
+				<ns3:PrimaryReportPeriod interval="day">2906</ns3:PrimaryReportPeriod>
+				<ns3:BeginDate>2026-01-04</ns3:BeginDate>
+				<ns3:BeginTime>23:00:48-05:00</ns3:BeginTime>
+				<ns3:EndDate>2100-01-01</ns3:EndDate>
+				<ns3:EndTime>00:00:00-05:00</ns3:EndTime>
+			</ns2:BusinessPeriod>
+			<ns3:EventStartDate>2026-01-05</ns3:EventStartDate>
+			<ns3:EventStartTime>13:22:10-05:00</ns3:EventStartTime>
+		</ns2:TransactionHeader>
+		<ns2:TransactionDetailGroup>
+			<ns2:TransactionLine status="normal">
+				<ns2:LineNumber>1</ns2:LineNumber>
+				<ns2:ItemLine discountable="yes">
+					<ns3:ItemCode>
+						<ns3:POSCodeFormat format="plu"/>
+						<ns3:POSCode>90003</ns3:POSCode>
+						<ns3:POSCodeModifier>0</ns3:POSCodeModifier>
+					</ns3:ItemCode>
+					<ns3:MerchandiseCode>30</ns3:MerchandiseCode>
+					<ns3:Description>20OZ COFFEE</ns3:Description>
+					<ns3:ActualSalesPrice>2.49</ns3:ActualSalesPrice>
+					<ns3:RegularSellPrice>2.49</ns3:RegularSellPrice>
+					<ns3:SellingUnits>1.000</ns3:SellingUnits>
+					<ns3:SalesQuantity>1</ns3:SalesQuantity>
+					<ns3:SalesAmount>2.49</ns3:SalesAmount>
+					<ns2:SalesUOM>EA</ns2:SalesUOM>
+					<ns3:PaymentSystemsProductCode>430</ns3:PaymentSystemsProductCode>
+				</ns2:ItemLine>
+			</ns2:TransactionLine>
+			<ns2:TransactionLine status="normal">
+				<ns2:LineNumber>2</ns2:LineNumber>
+				<ns2:MerchandiseCodeLine discountable="no">
+					<ns3:MerchandiseCode>n/a</ns3:MerchandiseCode>
+					<ns3:ActualSalesPrice>0.15</ns3:ActualSalesPrice>
+					<ns3:SalesQuantity>1</ns3:SalesQuantity>
+					<ns3:SalesAmount>0.15</ns3:SalesAmount>
+					<ns2:SalesUOM>EA</ns2:SalesUOM>
+					<ns3:PaymentSystemsProductCode>950</ns3:PaymentSystemsProductCode>
+				</ns2:MerchandiseCodeLine>
+			</ns2:TransactionLine>
+			<ns2:TransactionLine status="normal">
+				<ns2:LineNumber>3</ns2:LineNumber>
+				<ns2:TenderInfo entryMethod="other">
+					<ns3:TenderCode>cash</ns3:TenderCode>
+					<ns2:TenderSubCode>Other</ns2:TenderSubCode>
+					<ns3:TenderAmount currency="USD">2.64</ns3:TenderAmount>
+					<ns3:ChangeFlag value="no"/>
+				</ns2:TenderInfo>
+			</ns2:TransactionLine>
+		</ns2:TransactionDetailGroup>
+	</ns2:TransactionData>
+</ns2:FinalizeRewardsRequest>
+
+
+================================================================================
+[2026-01-05 13:22:10.931] SENT TO EPS
+================================================================================
+<?xml version="1.0" ?>
+<ns3:FinalizeRewardsResponse xmlns:ns2="http://www.naxml.org/POSBO/Vocabulary/2003-10-16" xmlns:ns4="http://www.pcats.org/schema/core/v01" xmlns:ns3="http://www.pcats.org/schema/naxml/loyalty/v01">
+	
+  
+	<ns3:ResponseHeader overallResult="success">
+		<ns3:POSLoyaltyInterfaceVersion>1.0</ns3:POSLoyaltyInterfaceVersion>
+		<ns2:VendorName>BirdiesLoyalty</ns2:VendorName>
+		<ns2:VendorModelVersion>1.0</ns2:VendorModelVersion>
+		<ns3:POSSequenceID>1021764877544419</ns3:POSSequenceID>
+		<ns3:LoyaltySequenceID>LOY-665306BE56C2</ns3:LoyaltySequenceID>
+		<ns4:Result>
+			<Success/>
+		</ns4:Result>
+	</ns3:ResponseHeader>
+	
+  
+	<ns3:CustomerMessageData>
+		
+    
+		<ns3:ReceiptData>
+			
+      
+			<ns3:ReceiptLine>Punches Recorded:</ns3:ReceiptLine>
+			
+      
+			<ns3:ReceiptLine>  Coffee Club: +1 (2/5)</ns3:ReceiptLine>
+			
+    
+		</ns3:ReceiptData>
+		
+  
+	</ns3:CustomerMessageData>
+	
+
+</ns3:FinalizeRewardsResponse>
+
+
+================================================================================
+[2026-01-05 13:23:31.687] RECEIVED FROM EPS
+================================================================================
+<?xml version="1.0" ?>
+<ns2:GetRewardsRequest xmlns:ns2="http://www.pcats.org/schema/naxml/loyalty/v01" xmlns:ns4="http://www.pcats.org/schema/core/v01" xmlns:ns3="http://www.naxml.org/POSBO/Vocabulary/2003-10-16">
+	<ns2:RequestHeader>
+		<ns2:POSLoyaltyInterfaceVersion>1.1</ns2:POSLoyaltyInterfaceVersion>
+		<ns3:VendorName>VIPER:ruby2</ns3:VendorName>
+		<ns3:VendorModelVersion>9.03.00:Base 053.40.00</ns3:VendorModelVersion>
+		<ns2:POSSequenceID>1021764877544424</ns2:POSSequenceID>
+		<ns2:StoreLocationID>24354</ns2:StoreLocationID>
+		<ns2:LoyaltyOfflineFlag value="no"/>
+	</ns2:RequestHeader>
+	<ns2:LoyaltyID entryMethod="manual">2405851628</ns2:LoyaltyID>
+	<ns2:FuelPriceData/>
+	<ns2:TransactionData>
+		<ns2:TransactionHeader>
+			<ns3:OutsideSalesFlag value="no"/>
+			<ns3:RegisterID>2</ns3:RegisterID>
+			<ns3:CashierID>15</ns3:CashierID>
+			<ns2:TillID>002</ns2:TillID>
+			<ns2:POSTransactionID>0102446800</ns2:POSTransactionID>
+			<ns2:BusinessPeriod>
+				<ns3:BusinessDate>2026-01-05</ns3:BusinessDate>
+				<ns3:PrimaryReportPeriod interval="day">2906</ns3:PrimaryReportPeriod>
+				<ns3:BeginDate>2026-01-04</ns3:BeginDate>
+				<ns3:BeginTime>23:00:48-05:00</ns3:BeginTime>
+				<ns3:EndDate>2100-01-01</ns3:EndDate>
+				<ns3:EndTime>00:00:00-05:00</ns3:EndTime>
+			</ns2:BusinessPeriod>
+			<ns3:EventStartDate>2026-01-05</ns3:EventStartDate>
+			<ns3:EventStartTime>13:23:32-05:00</ns3:EventStartTime>
+		</ns2:TransactionHeader>
+		<ns2:TransactionDetailGroup>
+			<ns2:TransactionLine status="normal">
+				<ns2:LineNumber>1</ns2:LineNumber>
+				<ns2:ItemLine discountable="yes">
+					<ns3:ItemCode>
+						<ns3:POSCodeFormat format="plu"/>
+						<ns3:POSCode>90003</ns3:POSCode>
+						<ns3:POSCodeModifier>0</ns3:POSCodeModifier>
+					</ns3:ItemCode>
+					<ns3:MerchandiseCode>30</ns3:MerchandiseCode>
+					<ns3:Description>20OZ COFFEE</ns3:Description>
+					<ns3:ActualSalesPrice>2.49</ns3:ActualSalesPrice>
+					<ns3:RegularSellPrice>2.49</ns3:RegularSellPrice>
+					<ns3:SellingUnits>1.000</ns3:SellingUnits>
+					<ns3:SalesQuantity>1</ns3:SalesQuantity>
+					<ns3:SalesAmount>2.49</ns3:SalesAmount>
+					<ns2:SalesUOM>EA</ns2:SalesUOM>
+					<ns3:PaymentSystemsProductCode>430</ns3:PaymentSystemsProductCode>
+				</ns2:ItemLine>
+			</ns2:TransactionLine>
+			<ns2:TransactionLine status="normal">
+				<ns2:LineNumber>2</ns2:LineNumber>
+				<ns2:ItemLine discountable="yes">
+					<ns3:ItemCode>
+						<ns3:POSCodeFormat format="plu"/>
+						<ns3:POSCode>90003</ns3:POSCode>
+						<ns3:POSCodeModifier>0</ns3:POSCodeModifier>
+					</ns3:ItemCode>
+					<ns3:MerchandiseCode>30</ns3:MerchandiseCode>
+					<ns3:Description>20OZ COFFEE</ns3:Description>
+					<ns3:ActualSalesPrice>2.49</ns3:ActualSalesPrice>
+					<ns3:RegularSellPrice>2.49</ns3:RegularSellPrice>
+					<ns3:SellingUnits>1.000</ns3:SellingUnits>
+					<ns3:SalesQuantity>1</ns3:SalesQuantity>
+					<ns3:SalesAmount>2.49</ns3:SalesAmount>
+					<ns2:SalesUOM>EA</ns2:SalesUOM>
+					<ns3:PaymentSystemsProductCode>430</ns3:PaymentSystemsProductCode>
+				</ns2:ItemLine>
+			</ns2:TransactionLine>
+			<ns2:TransactionLine status="normal">
+				<ns2:LineNumber>3</ns2:LineNumber>
+				<ns2:ItemLine discountable="yes">
+					<ns3:ItemCode>
+						<ns3:POSCodeFormat format="plu"/>
+						<ns3:POSCode>90003</ns3:POSCode>
+						<ns3:POSCodeModifier>0</ns3:POSCodeModifier>
+					</ns3:ItemCode>
+					<ns3:MerchandiseCode>30</ns3:MerchandiseCode>
+					<ns3:Description>20OZ COFFEE</ns3:Description>
+					<ns3:ActualSalesPrice>2.49</ns3:ActualSalesPrice>
+					<ns3:RegularSellPrice>2.49</ns3:RegularSellPrice>
+					<ns3:SellingUnits>1.000</ns3:SellingUnits>
+					<ns3:SalesQuantity>1</ns3:SalesQuantity>
+					<ns3:SalesAmount>2.49</ns3:SalesAmount>
+					<ns2:SalesUOM>EA</ns2:SalesUOM>
+					<ns3:PaymentSystemsProductCode>430</ns3:PaymentSystemsProductCode>
+				</ns2:ItemLine>
+			</ns2:TransactionLine>
+			<ns2:TransactionLine status="normal">
+				<ns2:LineNumber>4</ns2:LineNumber>
+				<ns2:ItemLine discountable="yes">
+					<ns3:ItemCode>
+						<ns3:POSCodeFormat format="plu"/>
+						<ns3:POSCode>90003</ns3:POSCode>
+						<ns3:POSCodeModifier>0</ns3:POSCodeModifier>
+					</ns3:ItemCode>
+					<ns3:MerchandiseCode>30</ns3:MerchandiseCode>
+					<ns3:Description>20OZ COFFEE</ns3:Description>
+					<ns3:ActualSalesPrice>2.49</ns3:ActualSalesPrice>
+					<ns3:RegularSellPrice>2.49</ns3:RegularSellPrice>
+					<ns3:SellingUnits>1.000</ns3:SellingUnits>
+					<ns3:SalesQuantity>1</ns3:SalesQuantity>
+					<ns3:SalesAmount>2.49</ns3:SalesAmount>
+					<ns2:SalesUOM>EA</ns2:SalesUOM>
+					<ns3:PaymentSystemsProductCode>430</ns3:PaymentSystemsProductCode>
+				</ns2:ItemLine>
+			</ns2:TransactionLine>
+			<ns2:TransactionLine status="normal">
+				<ns2:LineNumber>5</ns2:LineNumber>
+				<ns2:MerchandiseCodeLine discountable="no">
+					<ns3:MerchandiseCode>n/a</ns3:MerchandiseCode>
+					<ns3:ActualSalesPrice>0.60</ns3:ActualSalesPrice>
+					<ns3:SalesQuantity>1</ns3:SalesQuantity>
+					<ns3:SalesAmount>0.60</ns3:SalesAmount>
+					<ns2:SalesUOM>EA</ns2:SalesUOM>
+					<ns3:PaymentSystemsProductCode>950</ns3:PaymentSystemsProductCode>
+				</ns2:MerchandiseCodeLine>
+			</ns2:TransactionLine>
+		</ns2:TransactionDetailGroup>
+	</ns2:TransactionData>
+</ns2:GetRewardsRequest>
+
+
+================================================================================
+[2026-01-05 13:23:31.713] SENT TO EPS
+================================================================================
+<?xml version="1.0" ?>
+<ns3:GetRewardsResponse xmlns:ns2="http://www.naxml.org/POSBO/Vocabulary/2003-10-16" xmlns:ns4="http://www.pcats.org/schema/core/v01" xmlns:ns3="http://www.pcats.org/schema/naxml/loyalty/v01">
+	
+  
+	<ns3:ResponseHeader overallResult="success">
+		<ns3:POSLoyaltyInterfaceVersion>1.0</ns3:POSLoyaltyInterfaceVersion>
+		<ns2:VendorName>BirdiesLoyalty</ns2:VendorName>
+		<ns2:VendorModelVersion>1.0</ns2:VendorModelVersion>
+		<ns3:POSSequenceID>1021764877544424</ns3:POSSequenceID>
+		<ns3:LoyaltySequenceID>LOY-C65FF8DFA8E5</ns3:LoyaltySequenceID>
+		<ns4:Result>
+			<Success/>
+		</ns4:Result>
+	</ns3:ResponseHeader>
+	
+  
+	<ns3:LoyaltyIDValidFlag value="no">System Error</ns3:LoyaltyIDValidFlag>
+	
+  
+	<ns3:RewardActions/>
+	
+
+</ns3:GetRewardsResponse>
+
+
+================================================================================
+[2026-01-05 13:23:50.281] RECEIVED FROM EPS
+================================================================================
+<?xml version="1.0" ?>
+<ns2:GetRewardsRequest xmlns:ns2="http://www.pcats.org/schema/naxml/loyalty/v01" xmlns:ns4="http://www.pcats.org/schema/core/v01" xmlns:ns3="http://www.naxml.org/POSBO/Vocabulary/2003-10-16">
+	<ns2:RequestHeader>
+		<ns2:POSLoyaltyInterfaceVersion>1.1</ns2:POSLoyaltyInterfaceVersion>
+		<ns3:VendorName>VIPER:ruby2</ns3:VendorName>
+		<ns3:VendorModelVersion>9.03.00:Base 053.40.00</ns3:VendorModelVersion>
+		<ns2:POSSequenceID>1021764877544424</ns2:POSSequenceID>
+		<ns2:LoyaltySequenceID>LOY-C65FF8DFA8E5</ns2:LoyaltySequenceID>
+		<ns2:StoreLocationID>24354</ns2:StoreLocationID>
+		<ns2:LoyaltyOfflineFlag value="no"/>
+	</ns2:RequestHeader>
+	<ns2:LoyaltyID entryMethod="manual">2405851628</ns2:LoyaltyID>
+	<ns2:TransactionData>
+		<ns2:TransactionHeader>
+			<ns3:OutsideSalesFlag value="no"/>
+			<ns3:RegisterID>2</ns3:RegisterID>
+			<ns3:CashierID>15</ns3:CashierID>
+			<ns2:TillID>002</ns2:TillID>
+			<ns2:POSTransactionID>0102446800</ns2:POSTransactionID>
+			<ns2:BusinessPeriod>
+				<ns3:BusinessDate>2026-01-05</ns3:BusinessDate>
+				<ns3:PrimaryReportPeriod interval="day">2906</ns3:PrimaryReportPeriod>
+				<ns3:BeginDate>2026-01-04</ns3:BeginDate>
+				<ns3:BeginTime>23:00:48-05:00</ns3:BeginTime>
+				<ns3:EndDate>2100-01-01</ns3:EndDate>
+				<ns3:EndTime>00:00:00-05:00</ns3:EndTime>
+			</ns2:BusinessPeriod>
+			<ns3:EventStartDate>2026-01-05</ns3:EventStartDate>
+			<ns3:EventStartTime>13:23:32-05:00</ns3:EventStartTime>
+		</ns2:TransactionHeader>
+		<ns2:TransactionDetailGroup>
+			<ns2:TransactionLine status="normal">
+				<ns2:LineNumber>1</ns2:LineNumber>
+				<ns2:ItemLine discountable="yes">
+					<ns3:ItemCode>
+						<ns3:POSCodeFormat format="plu"/>
+						<ns3:POSCode>90003</ns3:POSCode>
+						<ns3:POSCodeModifier>0</ns3:POSCodeModifier>
+					</ns3:ItemCode>
+					<ns3:MerchandiseCode>30</ns3:MerchandiseCode>
+					<ns3:Description>20OZ COFFEE</ns3:Description>
+					<ns3:ActualSalesPrice>2.49</ns3:ActualSalesPrice>
+					<ns3:RegularSellPrice>2.49</ns3:RegularSellPrice>
+					<ns3:SellingUnits>1.000</ns3:SellingUnits>
+					<ns3:SalesQuantity>1</ns3:SalesQuantity>
+					<ns3:SalesAmount>2.49</ns3:SalesAmount>
+					<ns2:SalesUOM>EA</ns2:SalesUOM>
+					<ns3:PaymentSystemsProductCode>430</ns3:PaymentSystemsProductCode>
+				</ns2:ItemLine>
+			</ns2:TransactionLine>
+			<ns2:TransactionLine status="normal">
+				<ns2:LineNumber>2</ns2:LineNumber>
+				<ns2:ItemLine discountable="yes">
+					<ns3:ItemCode>
+						<ns3:POSCodeFormat format="plu"/>
+						<ns3:POSCode>90003</ns3:POSCode>
+						<ns3:POSCodeModifier>0</ns3:POSCodeModifier>
+					</ns3:ItemCode>
+					<ns3:MerchandiseCode>30</ns3:MerchandiseCode>
+					<ns3:Description>20OZ COFFEE</ns3:Description>
+					<ns3:ActualSalesPrice>2.49</ns3:ActualSalesPrice>
+					<ns3:RegularSellPrice>2.49</ns3:RegularSellPrice>
+					<ns3:SellingUnits>1.000</ns3:SellingUnits>
+					<ns3:SalesQuantity>1</ns3:SalesQuantity>
+					<ns3:SalesAmount>2.49</ns3:SalesAmount>
+					<ns2:SalesUOM>EA</ns2:SalesUOM>
+					<ns3:PaymentSystemsProductCode>430</ns3:PaymentSystemsProductCode>
+				</ns2:ItemLine>
+			</ns2:TransactionLine>
+			<ns2:TransactionLine status="normal">
+				<ns2:LineNumber>3</ns2:LineNumber>
+				<ns2:ItemLine discountable="yes">
+					<ns3:ItemCode>
+						<ns3:POSCodeFormat format="plu"/>
+						<ns3:POSCode>90003</ns3:POSCode>
+						<ns3:POSCodeModifier>0</ns3:POSCodeModifier>
+					</ns3:ItemCode>
+					<ns3:MerchandiseCode>30</ns3:MerchandiseCode>
+					<ns3:Description>20OZ COFFEE</ns3:Description>
+					<ns3:ActualSalesPrice>2.49</ns3:ActualSalesPrice>
+					<ns3:RegularSellPrice>2.49</ns3:RegularSellPrice>
+					<ns3:SellingUnits>1.000</ns3:SellingUnits>
+					<ns3:SalesQuantity>1</ns3:SalesQuantity>
+					<ns3:SalesAmount>2.49</ns3:SalesAmount>
+					<ns2:SalesUOM>EA</ns2:SalesUOM>
+					<ns3:PaymentSystemsProductCode>430</ns3:PaymentSystemsProductCode>
+				</ns2:ItemLine>
+			</ns2:TransactionLine>
+			<ns2:TransactionLine status="normal">
+				<ns2:LineNumber>4</ns2:LineNumber>
+				<ns2:ItemLine discountable="yes">
+					<ns3:ItemCode>
+						<ns3:POSCodeFormat format="plu"/>
+						<ns3:POSCode>90003</ns3:POSCode>
+						<ns3:POSCodeModifier>0</ns3:POSCodeModifier>
+					</ns3:ItemCode>
+					<ns3:MerchandiseCode>30</ns3:MerchandiseCode>
+					<ns3:Description>20OZ COFFEE</ns3:Description>
+					<ns3:ActualSalesPrice>2.49</ns3:ActualSalesPrice>
+					<ns3:RegularSellPrice>2.49</ns3:RegularSellPrice>
+					<ns3:SellingUnits>1.000</ns3:SellingUnits>
+					<ns3:SalesQuantity>1</ns3:SalesQuantity>
+					<ns3:SalesAmount>2.49</ns3:SalesAmount>
+					<ns2:SalesUOM>EA</ns2:SalesUOM>
+					<ns3:PaymentSystemsProductCode>430</ns3:PaymentSystemsProductCode>
+				</ns2:ItemLine>
+			</ns2:TransactionLine>
+			<ns2:TransactionLine status="normal">
+				<ns2:LineNumber>5</ns2:LineNumber>
+				<ns2:MerchandiseCodeLine discountable="no">
+					<ns3:MerchandiseCode>n/a</ns3:MerchandiseCode>
+					<ns3:ActualSalesPrice>0.60</ns3:ActualSalesPrice>
+					<ns3:SalesQuantity>1</ns3:SalesQuantity>
+					<ns3:SalesAmount>0.60</ns3:SalesAmount>
+					<ns2:SalesUOM>EA</ns2:SalesUOM>
+					<ns3:PaymentSystemsProductCode>950</ns3:PaymentSystemsProductCode>
+				</ns2:MerchandiseCodeLine>
+			</ns2:TransactionLine>
+		</ns2:TransactionDetailGroup>
+	</ns2:TransactionData>
+</ns2:GetRewardsRequest>
+
+
+================================================================================
+[2026-01-05 13:23:51.005] SENT TO EPS
+================================================================================
+<?xml version="1.0" ?>
+<ns3:GetRewardsResponse xmlns:ns2="http://www.naxml.org/POSBO/Vocabulary/2003-10-16" xmlns:ns4="http://www.pcats.org/schema/core/v01" xmlns:ns3="http://www.pcats.org/schema/naxml/loyalty/v01">
+	
+  
+	<ns3:ResponseHeader overallResult="success">
+		<ns3:POSLoyaltyInterfaceVersion>1.0</ns3:POSLoyaltyInterfaceVersion>
+		<ns2:VendorName>BirdiesLoyalty</ns2:VendorName>
+		<ns2:VendorModelVersion>1.0</ns2:VendorModelVersion>
+		<ns3:POSSequenceID>1021764877544424</ns3:POSSequenceID>
+		<ns3:LoyaltySequenceID>LOY-C65FF8DFA8E5</ns3:LoyaltySequenceID>
+		<ns4:Result>
+			<Success/>
+		</ns4:Result>
+	</ns3:ResponseHeader>
+	
+  
+	<ns3:LoyaltyIDValidFlag value="yes">******1628</ns3:LoyaltyIDValidFlag>
+	
+  
+	<ns3:RewardActions>
+		
+
+    
+		<ns3:AddReward>
+			
+      
+			<ns3:LoyaltyRewardID>PUNCH-5</ns3:LoyaltyRewardID>
+			
+      
+			<ns3:InstantRewardFlag value="yes"/>
+			
+      
+			<ns3:RewardTargetLineNumber>0</ns3:RewardTargetLineNumber>
+			
+      
+			<ns3:RewardDiscountMethod>amountOff</ns3:RewardDiscountMethod>
+			
+      
+			<ns3:RewardValue>0.60</ns3:RewardValue>
+			
+      
+			<ns3:RewardReceiptDescShort>FREE</ns3:RewardReceiptDescShort>
+			
+      
+			<ns3:RewardReceiptDescLong>Coffee Club FREE</ns3:RewardReceiptDescLong>
+			
+    
+		</ns3:AddReward>
+		
+
+	</ns3:RewardActions>
+	
+
+</ns3:GetRewardsResponse>
+
+birdies_verifone_punch_raw_log.txt
+Displaying birdies_verifone_punch_raw_log.txt.
