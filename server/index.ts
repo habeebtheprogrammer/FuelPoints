@@ -134,11 +134,11 @@ app.post("/api/public/signup", async (req, res) => {
   try {
     const { firstName, lastName, phone, dateOfBirth, email, password, zipCode } = req.body;
 
-    if (!firstName || !lastName || !phone || !dateOfBirth || !password) {
+    if (!firstName || !lastName || !phone || !dateOfBirth || !password || !zipCode) {
       return res
         .status(400)
         .json({
-          error: "First name, last name, phone, date of birth, and password are required",
+          error: "First name, last name, phone, date of birth, zip code, and password are required",
         });
     }
 
@@ -179,7 +179,7 @@ app.post("/api/public/signup", async (req, res) => {
       email: email || null,
       phone: normalizedPhone,
       dateOfBirth,
-      zipCode: zipCode || null,
+      zipCode,
       password: hashedPassword,
       accountNumber,
       loyaltyId,

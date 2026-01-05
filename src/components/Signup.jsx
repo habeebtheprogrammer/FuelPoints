@@ -187,7 +187,7 @@ function Signup() {
             </div>
 
             <div className="form-group">
-              <label htmlFor="zipCode">Zip Code (Optional)</label>
+              <label htmlFor="zipCode">Zip Code *</label>
               <input
                 type="text"
                 id="zipCode"
@@ -196,6 +196,7 @@ function Signup() {
                 onChange={handleChange}
                 placeholder="12345"
                 maxLength={10}
+                required
               />
             </div>
 

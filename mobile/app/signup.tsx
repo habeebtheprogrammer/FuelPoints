@@ -111,7 +111,7 @@ export default function SignupScreen() {
           lastName,
           phone: phoneDigits,
           dateOfBirth: formattedDate,
-          zipCode: formData.zipCode || undefined,
+          zipCode: formData.zipCode,
           email: email || undefined,
           password,
         }),
@@ -204,7 +204,7 @@ export default function SignupScreen() {
             </View>
 
             <View style={styles.inputContainer}>
-              <Text style={styles.inputLabel}>Zip Code (Optional)</Text>
+              <Text style={styles.inputLabel}>Zip Code *</Text>
               <TextInput
                 style={styles.input}
                 placeholder="12345"
