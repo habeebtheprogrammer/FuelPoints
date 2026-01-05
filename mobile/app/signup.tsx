@@ -22,6 +22,7 @@ export default function SignupScreen() {
     lastName: '',
     phone: '',
     dateOfBirth: '',
+    zipCode: '',
     email: '',
     password: '',
     confirmPassword: '',
@@ -110,6 +111,7 @@ export default function SignupScreen() {
           lastName,
           phone: phoneDigits,
           dateOfBirth: formattedDate,
+          zipCode: formData.zipCode || undefined,
           email: email || undefined,
           password,
         }),
@@ -197,6 +199,19 @@ export default function SignupScreen() {
                 keyboardType="number-pad"
                 value={formData.dateOfBirth}
                 onChangeText={handleBirthdayChange}
+                maxLength={10}
+              />
+            </View>
+
+            <View style={styles.inputContainer}>
+              <Text style={styles.inputLabel}>Zip Code (Optional)</Text>
+              <TextInput
+                style={styles.input}
+                placeholder="12345"
+                placeholderTextColor={Colors.textLight}
+                keyboardType="number-pad"
+                value={formData.zipCode}
+                onChangeText={(v) => handleChange('zipCode', v)}
                 maxLength={10}
               />
             </View>

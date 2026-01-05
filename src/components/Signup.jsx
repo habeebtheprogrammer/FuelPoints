@@ -14,6 +14,7 @@ function Signup() {
     lastName: '',
     phone: '',
     dateOfBirth: '',
+    zipCode: '',
     email: '',
     password: '',
     confirmPassword: '',
@@ -90,6 +91,7 @@ function Signup() {
         lastName: '',
         phone: '',
         dateOfBirth: '',
+        zipCode: '',
         email: '',
         password: '',
         confirmPassword: '',
@@ -181,6 +183,19 @@ function Signup() {
                 value={formData.dateOfBirth}
                 onChange={handleChange}
                 required
+              />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="zipCode">Zip Code (Optional)</label>
+              <input
+                type="text"
+                id="zipCode"
+                name="zipCode"
+                value={formData.zipCode}
+                onChange={handleChange}
+                placeholder="12345"
+                maxLength={10}
               />
             </div>
 

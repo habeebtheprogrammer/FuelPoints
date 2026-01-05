@@ -132,7 +132,7 @@ app.post("/api/register", async (req, res) => {
 // Public customer signup (password required, email optional)
 app.post("/api/public/signup", async (req, res) => {
   try {
-    const { firstName, lastName, phone, dateOfBirth, email, password } = req.body;
+    const { firstName, lastName, phone, dateOfBirth, email, password, zipCode } = req.body;
 
     if (!firstName || !lastName || !phone || !dateOfBirth || !password) {
       return res
@@ -179,6 +179,7 @@ app.post("/api/public/signup", async (req, res) => {
       email: email || null,
       phone: normalizedPhone,
       dateOfBirth,
+      zipCode: zipCode || null,
       password: hashedPassword,
       accountNumber,
       loyaltyId,

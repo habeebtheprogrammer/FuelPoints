@@ -8,6 +8,7 @@ export const users = pgTable('users', {
   email: varchar('email', { length: 255 }).unique(),
   phone: varchar('phone', { length: 20 }).notNull(),
   dateOfBirth: varchar('date_of_birth', { length: 20 }).notNull(),
+  zipCode: varchar('zip_code', { length: 10 }),
   password: varchar('password', { length: 255 }),
   accountNumber: varchar('account_number', { length: 18 }).notNull().unique(),
   loyaltyId: varchar('loyalty_id', { length: 22 }).notNull().unique(),
