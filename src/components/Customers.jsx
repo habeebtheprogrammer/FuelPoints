@@ -136,6 +136,7 @@ function Customers() {
             <th>Name</th>
             <th>Email</th>
             <th>Phone</th>
+            <th>Zip Code</th>
             <th>Date of Birth</th>
             <th>Loyalty ID</th>
             <th>Points</th>
@@ -146,7 +147,7 @@ function Customers() {
         <tbody>
           {customers.length === 0 ? (
             <tr>
-              <td colSpan="8" className="empty">No customers found</td>
+              <td colSpan="9" className="empty">No customers found</td>
             </tr>
           ) : (
             customers.map((customer) => (
@@ -154,6 +155,7 @@ function Customers() {
                 <td>{customer.firstName} {customer.lastName}</td>
                 <td>{customer.email}</td>
                 <td>{customer.phone || 'N/A'}</td>
+                <td>{customer.zipCode || 'N/A'}</td>
                 <td>{customer.dateOfBirth || 'N/A'}</td>
                 <td style={{ fontFamily: 'monospace', color: 'var(--primary)', fontWeight: 600 }}>
                   {customer.loyaltyId}
@@ -187,6 +189,7 @@ function Customers() {
             <p><strong>Name:</strong> {selectedCustomer.firstName} {selectedCustomer.lastName}</p>
             <p><strong>Email:</strong> {selectedCustomer.email}</p>
             <p><strong>Phone:</strong> {selectedCustomer.phone}</p>
+            <p><strong>Zip Code:</strong> {selectedCustomer.zipCode || 'N/A'}</p>
             <p><strong>Date of Birth:</strong> {selectedCustomer.dateOfBirth}</p>
             <p><strong>Loyalty ID:</strong> {selectedCustomer.loyaltyId}</p>
             <p><strong>Points:</strong> {selectedCustomer.points}</p>
