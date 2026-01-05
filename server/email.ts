@@ -50,7 +50,7 @@ export async function sendWelcomeEmail(email: string, firstName: string, loyalty
                       </p>
                       
                       <p style="font-size: 16px; color: #555; line-height: 1.6; margin: 0 0 30px;">
-                        Start earning points on every purchase and enjoy exclusive rewards at all Birdies locations.
+                        Start collecting punches and enjoy FREE rewards at all Birdies locations!
                       </p>
                       
                       <!-- Loyalty ID Box -->
@@ -75,7 +75,7 @@ export async function sendWelcomeEmail(email: string, firstName: string, loyalty
                                   <div style="width: 30px; height: 30px; background-color: #1E3A8A; border-radius: 50%; text-align: center; line-height: 30px; color: white; font-weight: bold;">1</div>
                                 </td>
                                 <td style="padding-left: 10px; font-size: 15px; color: #555;">
-                                  <strong>Earn 5 points</strong> for every dollar you spend
+                                  <strong>Scan your card</strong> at checkout to collect punches
                                 </td>
                               </tr>
                             </table>
@@ -89,7 +89,7 @@ export async function sendWelcomeEmail(email: string, firstName: string, loyalty
                                   <div style="width: 30px; height: 30px; background-color: #1E3A8A; border-radius: 50%; text-align: center; line-height: 30px; color: white; font-weight: bold;">2</div>
                                 </td>
                                 <td style="padding-left: 10px; font-size: 15px; color: #555;">
-                                  <strong>Redeem 100 points</strong> for $1.00 off your purchase
+                                  <strong>Collect punches</strong> on special items like coffee, snacks & more
                                 </td>
                               </tr>
                             </table>
@@ -103,7 +103,7 @@ export async function sendWelcomeEmail(email: string, firstName: string, loyalty
                                   <div style="width: 30px; height: 30px; background-color: #1E3A8A; border-radius: 50%; text-align: center; line-height: 30px; color: white; font-weight: bold;">3</div>
                                 </td>
                                 <td style="padding-left: 10px; font-size: 15px; color: #555;">
-                                  <strong>Collect punches</strong> on special items for free rewards
+                                  <strong>Get FREE items</strong> when your punch card is full!
                                 </td>
                               </tr>
                             </table>

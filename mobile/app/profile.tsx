@@ -203,19 +203,11 @@ export default function ProfileScreen() {
               </Text>
             </View>
 
-            <View style={styles.divider} />
-
-            <View style={styles.infoRow}>
-              <Text style={styles.infoLabel}>Points Balance</Text>
-              <Text style={[styles.infoValue, styles.pointsText]}>
-                {customer?.pointsBalance?.toLocaleString() || 0} pts
-              </Text>
-            </View>
           </View>
         </View>
 
         <View style={styles.section}>
-          <Text style={styles.sectionTitle}>How Points Work</Text>
+          <Text style={styles.sectionTitle}>How Punch Cards Work</Text>
 
           <View style={styles.infoCard}>
             <View style={styles.howItWorksRow}>
@@ -223,9 +215,9 @@ export default function ProfileScreen() {
                 <Text style={styles.iconText}>🛒</Text>
               </View>
               <View style={styles.howItWorksContent}>
-                <Text style={styles.howItWorksTitle}>Earn Points</Text>
+                <Text style={styles.howItWorksTitle}>Collect Punches</Text>
                 <Text style={styles.howItWorksDesc}>
-                  Get 5 points for every $1 you spend
+                  Buy qualifying items to earn punches
                 </Text>
               </View>
             </View>
@@ -237,9 +229,9 @@ export default function ProfileScreen() {
                 <Text style={styles.iconText}>🎁</Text>
               </View>
               <View style={styles.howItWorksContent}>
-                <Text style={styles.howItWorksTitle}>Redeem Rewards</Text>
+                <Text style={styles.howItWorksTitle}>Get FREE Items</Text>
                 <Text style={styles.howItWorksDesc}>
-                  100 points = $1.00 off your purchase
+                  Fill your punch card and get a FREE reward!
                 </Text>
               </View>
             </View>

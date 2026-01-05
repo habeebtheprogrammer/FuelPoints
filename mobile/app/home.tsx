@@ -269,43 +269,21 @@ export default function HomeScreen() {
         </Modal>
 
         <Text style={styles.greeting}>Good {getGreeting()}, {customer?.firstName || 'Guest'}!</Text>
-        <Text style={styles.tagline}>Keep earning towards FREE rewards!</Text>
+        <Text style={styles.tagline}>Keep collecting punches for FREE rewards!</Text>
 
         <View style={styles.pointsSection}>
           <View style={styles.pointsHeader}>
-            <Text style={styles.pointsLabel}>REWARD POINTS</Text>
-            <Text style={styles.earnRate}>$1 = 5 POINTS</Text>
-          </View>
-          <View style={styles.progressContainer}>
-            <View style={styles.progressBg}>
-              <LinearGradient
-                colors={['#1E3A8A', '#3B82F6']}
-                start={{ x: 0, y: 0 }}
-                end={{ x: 1, y: 0 }}
-                style={[styles.progressFill, { width: `${Math.min((totalPoints % 100), 100)}%` }]}
-              />
-            </View>
+            <Text style={styles.pointsLabel}>MY LOYALTY CARD</Text>
           </View>
           <View style={styles.pointsRow}>
             <View style={styles.pointsInfo}>
-              <Text style={styles.pointsValue}>{totalPoints.toLocaleString()}</Text>
-              <Text style={styles.pointsSubtext}>Total points</Text>
+              <Text style={styles.pointsSubtext}>Scan at checkout to collect punches</Text>
             </View>
             <TouchableOpacity style={styles.rewardButton} onPress={() => router.push('/barcode')}>
               <Text style={styles.rewardButtonText}>VIEW BARCODE</Text>
             </TouchableOpacity>
           </View>
         </View>
-
-        {totalPoints >= 100 && (
-          <View style={styles.cashBanner}>
-            <Text style={styles.cashIcon}>💰</Text>
-            <View style={styles.cashContent}>
-              <Text style={styles.cashTitle}>${cashValue} Available</Text>
-              <Text style={styles.cashSubtext}>Redeem at your next visit!</Text>
-            </View>
-          </View>
-        )}
 
         {punchCards.length > 0 && (
           <View style={styles.punchSection}>

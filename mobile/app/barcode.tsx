@@ -226,10 +226,7 @@ export default function BarcodeScreen() {
 
           <View style={styles.cardFooter}>
             <View style={styles.pointsInfo}>
-              <Text style={styles.pointsLabel}>Points Balance</Text>
-              <Text style={styles.pointsValue}>
-                {customer?.pointsBalance?.toLocaleString() || 0}
-              </Text>
+              <Text style={styles.pointsLabel}>Birdies Rewards Member</Text>
             </View>
           </View>
         </LinearGradient>
@@ -251,7 +248,7 @@ export default function BarcodeScreen() {
           <View style={styles.instructionItem}>
             <Text style={styles.instructionNumber}>3</Text>
             <Text style={styles.instructionText}>
-              Earn 5 points for every $1 spent
+              Collect punches toward FREE rewards!
             </Text>
           </View>
         </View>

@@ -110,7 +110,7 @@ export default function LoginScreen() {
             <Text style={styles.logoIcon}>🐦</Text>
           </View>
           <Text style={styles.title}>Birdies Rewards</Text>
-          <Text style={styles.subtitle}>Earn points, get rewards</Text>
+          <Text style={styles.subtitle}>Collect punches, get FREE rewards!</Text>
         </View>
 
         <View style={styles.card}>
