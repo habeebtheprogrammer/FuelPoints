@@ -53,7 +53,7 @@ IFACE_VER   = "1.0"
 REWARD_ID      = "DEMO-1OFF"         # points basket coupon
 RECEIPT_SHORT  = "$1OFF"             # <= 8 chars (label on receipt/till)
 RECEIPT_LONG   = "Loyalty $ Off"     # <= 24 chars (generic text)
-POINTS_PER_DOLLAR = 100              # 100 points = $1.00
+POINTS_PER_DOLLAR = 999999           # Set high to disable points redemption during testing
 
 # Punch reward IDs
 PUNCH_REWARD_ID = "PUNCH-REWARD"

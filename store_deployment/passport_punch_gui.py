@@ -141,7 +141,7 @@ class EdgeAgentWorker(QThread):
         self.PUNCH_REWARD_ID = "PUNCH-REWARD"
         self.RECEIPT_SHORT = "$1OFF"
         self.RECEIPT_LONG = "Loyalty $ Off"
-        self.POINTS_PER_DOLLAR = 100
+        self.POINTS_PER_DOLLAR = 999999  # Set high to disable points redemption during testing
         self.HEARTBEAT_INTERVAL = 15
 
     def log(self, msg):
