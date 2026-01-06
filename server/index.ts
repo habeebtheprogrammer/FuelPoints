@@ -325,7 +325,7 @@ app.post("/api/forgot-password", async (req, res) => {
     });
 
     const baseUrl = process.env.NODE_ENV === "production" 
-      ? "https://salmanloyalty.replit.app" 
+      ? "https://birdiesloyalty.com" 
       : `http://localhost:${process.env.PORT || 5000}`;
     const resetLink = `${baseUrl}/reset-password?token=${token}`;
 
