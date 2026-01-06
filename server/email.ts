@@ -180,9 +180,17 @@ export async function sendPasswordResetEmail(email: string, firstName: string, r
                       <table width="100%" cellpadding="0" cellspacing="0" style="margin: 30px 0;">
                         <tr>
                           <td align="center">
-                            <a href="${resetLink}" style="display: inline-block; background-color: #1E3A8A; color: #ffffff; font-size: 16px; font-weight: bold; padding: 15px 40px; text-decoration: none; border-radius: 8px;">
+                            <!--[if mso]>
+                            <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="${resetLink}" style="height:50px;v-text-anchor:middle;width:200px;" arcsize="16%" strokecolor="#1E3A8A" fillcolor="#1E3A8A">
+                              <w:anchorlock/>
+                              <center style="color:#ffffff;font-family:Arial,sans-serif;font-size:16px;font-weight:bold;">Reset Password</center>
+                            </v:roundrect>
+                            <![endif]-->
+                            <!--[if !mso]><!-->
+                            <a href="${resetLink}" target="_blank" style="display: inline-block; background-color: #1E3A8A; color: #ffffff !important; font-size: 16px; font-weight: bold; padding: 15px 40px; text-decoration: none; border-radius: 8px; mso-hide: all;">
                               Reset Password
                             </a>
+                            <!--<![endif]-->
                           </td>
                         </tr>
                       </table>
