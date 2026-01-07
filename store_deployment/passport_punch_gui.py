@@ -726,8 +726,9 @@ class EdgeAgentWorker(QThread):
     # =========================================================================
     
     def handle_client(self, conn: socket.socket, addr):
-        self.log(f"POS connected: {addr[0]}")
-        self.signals.status_changed.emit(f"Connected: {addr[0]}", "green")
+        peer = f"{addr[0]}:{addr[1]}"
+        self.log(f"POS connected: {peer}")
+        self.signals.status_changed.emit(f"Connected: {peer}", "green")
         
         try:
             # Enable TCP keepalive to detect dead connections without closing live ones
@@ -741,50 +742,87 @@ class EdgeAgentWorker(QThread):
             except (AttributeError, OSError):
                 pass
             
-            # No timeout - keep connection alive indefinitely
-            conn.settimeout(None)
-            self.log(f"Persistent connection established: {addr[0]}")
+            # Use blocking recv with short timeout for retry logic
+            conn.settimeout(5.0)
+            self.log(f"Persistent connection established: {peer}")
+            
+            empty_recv_count = 0
+            max_empty_retries = 12  # 12 x 5 seconds = 60 seconds of silence before giving up
             
             while self.running:
-                hdr = self.recv_exact(conn, 28)
-                if not hdr:
-                    break
+                try:
+                    hdr = self.recv_exact(conn, 28)
                     
-                action, data_len, chk_data = self.parse_header(hdr)
-                
-                if action == self.ACTION_HEARTBEAT:
-                    hb_resp = self.pack_header(b"", self.ACTION_HEARTBEAT)
-                    conn.sendall(hb_resp)
+                    if not hdr:
+                        empty_recv_count += 1
+                        if empty_recv_count >= max_empty_retries:
+                            self.log(f"POS connection appears dead after {max_empty_retries * 5}s of silence: {peer}")
+                            break
+                        continue
+                    
+                    # Reset counter on successful receive
+                    empty_recv_count = 0
+                        
+                    action, data_len, chk_data = self.parse_header(hdr)
+                    
+                    if action == self.ACTION_HEARTBEAT:
+                        hb_resp = self.pack_header(b"", self.ACTION_HEARTBEAT)
+                        conn.sendall(hb_resp)
+                        continue
+                        
+                    xml_bytes = self.recv_exact(conn, data_len)
+                    if not xml_bytes:
+                        continue  # Don't break, just retry
+                        
+                    try:
+                        root, raw = self.parse_xml(xml_bytes)
+                    except Exception as e:
+                        self.log(f"XML parse error (ignoring): {e}")
+                        continue
+                        
+                    tag = root.tag
+                    
+                    if "GetLoyaltyOnlineStatus" in tag:
+                        resp = self.build_online_status_response(root)
+                    elif "GetRewards" in tag:
+                        resp = self.build_get_rewards_response(root)
+                    elif "FinalizeRewards" in tag:
+                        resp = self.build_finalize_response(root)
+                    elif "CancelTransaction" in tag:
+                        resp = self.build_cancel_response(root)
+                    else:
+                        pos_seq, loy_seq = self.get_req_ids(root)
+                        resp = f"<UnknownResponse>{self.resp_header(pos_seq, loy_seq)}</UnknownResponse>"
+                    
+                    self.send_xml(conn, resp)
+                    
+                except socket.timeout:
+                    # Timeout is normal - just means no data yet, keep waiting
                     continue
-                    
-                xml_bytes = self.recv_exact(conn, data_len)
-                if not xml_bytes:
+                except ConnectionResetError:
+                    self.log(f"POS connection reset by peer: {peer}")
                     break
-                    
-                root, raw = self.parse_xml(xml_bytes)
-                tag = root.tag
-                
-                if "GetLoyaltyOnlineStatus" in tag:
-                    resp = self.build_online_status_response(root)
-                elif "GetRewards" in tag:
-                    resp = self.build_get_rewards_response(root)
-                elif "FinalizeRewards" in tag:
-                    resp = self.build_finalize_response(root)
-                elif "CancelTransaction" in tag:
-                    resp = self.build_cancel_response(root)
-                else:
-                    pos_seq, loy_seq = self.get_req_ids(root)
-                    resp = f"<UnknownResponse>{self.resp_header(pos_seq, loy_seq)}</UnknownResponse>"
-                
-                self.send_xml(conn, resp)
+                except BrokenPipeError:
+                    self.log(f"POS broken pipe: {peer}")
+                    break
+                except OSError as e:
+                    if e.errno in (10053, 10054, 10057):  # Windows connection errors
+                        self.log(f"POS connection error: {peer}")
+                        break
+                    raise
                 
         except Exception as e:
-            self.log(f"Connection error: {e}")
+            self.log(f"POS fatal error: {e}")
         finally:
+            # Reset state
+            self.current_customer = None
+            self.last_punch_cards = []
+            self.last_punches_to_record = []
             try:
                 conn.close()
             except Exception:
                 pass
+            self.log(f"POS session ended: {peer}")
             self.signals.status_changed.emit("Online - Waiting for POS", "green")
 
 # =============================================================================

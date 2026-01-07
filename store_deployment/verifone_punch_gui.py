@@ -808,64 +808,84 @@ class EdgeAgentWorker(QThread):
             
             # Windows-specific keepalive settings (keepalive time=60s, interval=10s)
             try:
-                # TCP_KEEPIDLE = 60 seconds before first probe
                 conn.setsockopt(socket.IPPROTO_TCP, socket.TCP_KEEPIDLE, 60)
-                # TCP_KEEPINTVL = 10 seconds between probes
                 conn.setsockopt(socket.IPPROTO_TCP, socket.TCP_KEEPINTVL, 10)
-                # TCP_KEEPCNT = 6 probes before giving up (60 seconds total)
                 conn.setsockopt(socket.IPPROTO_TCP, socket.TCP_KEEPCNT, 6)
             except (AttributeError, OSError):
-                # Windows may not support all keepalive options, that's ok
                 pass
             
-            # No timeout - keep connection alive indefinitely
-            conn.settimeout(None)
+            # Use blocking recv with short timeout for retry logic
+            conn.settimeout(5.0)
             self.log(f"Persistent connection established: {peer}")
+            self.signals.status_changed.emit(f"Connected: {peer}", "green")
+            
+            empty_recv_count = 0
+            max_empty_retries = 12  # 12 x 5 seconds = 60 seconds of silence before giving up
             
             while self.running:
-                frame = self.recv_frame(conn)
-                if not frame:
-                    self.log(f"EPS disconnected: {peer}")
-                    break
-
                 try:
-                    root, _raw = self.parse_xml(frame)
-                except Exception as e:
-                    self.log(f"XML parse error: {e}")
-                    break
+                    frame = self.recv_frame(conn)
+                    
+                    if not frame:
+                        empty_recv_count += 1
+                        if empty_recv_count >= max_empty_retries:
+                            self.log(f"EPS connection appears dead after {max_empty_retries * 5}s of silence: {peer}")
+                            break
+                        # Don't log every empty recv, just wait
+                        continue
+                    
+                    # Reset counter on successful receive
+                    empty_recv_count = 0
 
-                tag = (root.tag or "").strip()
-                self.log(f"Request: {tag}")
+                    try:
+                        root, _raw = self.parse_xml(frame)
+                    except Exception as e:
+                        self.log(f"XML parse error (ignoring): {e}")
+                        continue  # Don't break on parse errors, just skip this frame
 
-                if tag == "GetLoyaltyOnlineStatusRequest":
-                    resp = self.build_online_status_response(root, addr[0])
-                elif tag == "GetRewardsRequest":
-                    resp = self.build_get_rewards_response(root)
-                elif tag == "FinalizeRewardsRequest":
-                    resp = self.build_finalize_response(root)
-                elif tag == "CancelTransactionRequest":
-                    resp = self.build_cancel_response(root)
-                elif tag == "ReverseTransactionRequest":
-                    resp = self.build_reverse_response(root)
-                elif tag == "EndPeriodRequest":
-                    resp = self.build_end_period_response(root)
-                elif tag == "GetCustomerMessagingRequest":
-                    resp = self.build_customer_msg_response(root)
-                else:
-                    self.log(f"Unhandled request: {tag}")
-                    pos_seq, loy_seq = self.get_req_ids(root)
-                    resp = f"""<ns3:UnknownResponse {NS_DECLS}>
+                    tag = (root.tag or "").strip()
+                    self.log(f"Request: {tag}")
+
+                    if tag == "GetLoyaltyOnlineStatusRequest":
+                        resp = self.build_online_status_response(root, addr[0])
+                    elif tag == "GetRewardsRequest":
+                        resp = self.build_get_rewards_response(root)
+                    elif tag == "FinalizeRewardsRequest":
+                        resp = self.build_finalize_response(root)
+                    elif tag == "CancelTransactionRequest":
+                        resp = self.build_cancel_response(root)
+                    elif tag == "ReverseTransactionRequest":
+                        resp = self.build_reverse_response(root)
+                    elif tag == "EndPeriodRequest":
+                        resp = self.build_end_period_response(root)
+                    elif tag == "GetCustomerMessagingRequest":
+                        resp = self.build_customer_msg_response(root)
+                    else:
+                        self.log(f"Unhandled request: {tag}")
+                        pos_seq, loy_seq = self.get_req_ids(root)
+                        resp = f"""<ns3:UnknownResponse {NS_DECLS}>
   {self.resp_header(pos_seq, loy_seq)}
 </ns3:UnknownResponse>"""
 
-                self.send_xml(conn, resp)
+                    self.send_xml(conn, resp)
+                    
+                except socket.timeout:
+                    # Timeout is normal - just means no data yet, keep waiting
+                    continue
+                except ConnectionResetError:
+                    self.log(f"EPS connection reset by peer: {peer}")
+                    break
+                except BrokenPipeError:
+                    self.log(f"EPS broken pipe: {peer}")
+                    break
+                except OSError as e:
+                    if e.errno in (10053, 10054, 10057):  # Windows connection errors
+                        self.log(f"EPS connection error: {peer}")
+                        break
+                    raise
 
-        except socket.timeout:
-            self.log(f"EPS keepalive timeout: {peer}")
-        except ConnectionResetError:
-            self.log(f"EPS connection reset: {peer}")
         except Exception as e:
-            self.log(f"EPS error: {e}")
+            self.log(f"EPS fatal error: {e}")
         finally:
             # Reset state on disconnect
             self.current_customer = None
@@ -877,6 +897,7 @@ class EdgeAgentWorker(QThread):
             except Exception:
                 pass
             self.log(f"EPS session ended: {peer}")
+            self.signals.status_changed.emit("Online - Waiting for EPS", "green")
 
 # =============================================================================
 # SETUP WIZARD
