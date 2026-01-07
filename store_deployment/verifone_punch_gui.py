@@ -803,7 +803,25 @@ class EdgeAgentWorker(QThread):
         self.log(f"EPS connected from {peer}")
 
         try:
-            conn.settimeout(180)
+            # Enable TCP keepalive to detect dead connections without closing live ones
+            conn.setsockopt(socket.SOL_SOCKET, socket.SO_KEEPALIVE, 1)
+            
+            # Windows-specific keepalive settings (keepalive time=60s, interval=10s)
+            try:
+                # TCP_KEEPIDLE = 60 seconds before first probe
+                conn.setsockopt(socket.IPPROTO_TCP, socket.TCP_KEEPIDLE, 60)
+                # TCP_KEEPINTVL = 10 seconds between probes
+                conn.setsockopt(socket.IPPROTO_TCP, socket.TCP_KEEPINTVL, 10)
+                # TCP_KEEPCNT = 6 probes before giving up (60 seconds total)
+                conn.setsockopt(socket.IPPROTO_TCP, socket.TCP_KEEPCNT, 6)
+            except (AttributeError, OSError):
+                # Windows may not support all keepalive options, that's ok
+                pass
+            
+            # No timeout - keep connection alive indefinitely
+            conn.settimeout(None)
+            self.log(f"Persistent connection established: {peer}")
+            
             while self.running:
                 frame = self.recv_frame(conn)
                 if not frame:
@@ -843,7 +861,7 @@ class EdgeAgentWorker(QThread):
                 self.send_xml(conn, resp)
 
         except socket.timeout:
-            self.log(f"EPS timeout: {peer}")
+            self.log(f"EPS keepalive timeout: {peer}")
         except ConnectionResetError:
             self.log(f"EPS connection reset: {peer}")
         except Exception as e:

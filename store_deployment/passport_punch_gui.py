@@ -730,7 +730,21 @@ class EdgeAgentWorker(QThread):
         self.signals.status_changed.emit(f"Connected: {addr[0]}", "green")
         
         try:
-            conn.settimeout(120)
+            # Enable TCP keepalive to detect dead connections without closing live ones
+            conn.setsockopt(socket.SOL_SOCKET, socket.SO_KEEPALIVE, 1)
+            
+            # Windows-specific keepalive settings (keepalive time=60s, interval=10s)
+            try:
+                conn.setsockopt(socket.IPPROTO_TCP, socket.TCP_KEEPIDLE, 60)
+                conn.setsockopt(socket.IPPROTO_TCP, socket.TCP_KEEPINTVL, 10)
+                conn.setsockopt(socket.IPPROTO_TCP, socket.TCP_KEEPCNT, 6)
+            except (AttributeError, OSError):
+                pass
+            
+            # No timeout - keep connection alive indefinitely
+            conn.settimeout(None)
+            self.log(f"Persistent connection established: {addr[0]}")
+            
             while self.running:
                 hdr = self.recv_exact(conn, 28)
                 if not hdr:
