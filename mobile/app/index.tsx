@@ -11,6 +11,7 @@ import {
   Platform,
   ActivityIndicator,
   Dimensions,
+  Image,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Colors, Spacing, FontSize, BorderRadius, Shadows } from '../constants/theme';
@@ -107,7 +108,11 @@ export default function LoginScreen() {
       >
         <View style={styles.header}>
           <View style={styles.logoContainer}>
-            <Text style={styles.logoIcon}>🐦</Text>
+            <Image
+              source={require('../assets/birdies-logo.jpg')}
+              style={styles.logoImage}
+              resizeMode="contain"
+            />
           </View>
           <Text style={styles.title}>Birdies Rewards</Text>
           <Text style={styles.subtitle}>Collect punches, get FREE rewards!</Text>
@@ -207,8 +212,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: Spacing.md,
   },
-  logoIcon: {
-    fontSize: 40,
+  logoImage: {
+    width: 70,
+    height: 70,
+    borderRadius: 35,
   },
   title: {
     fontSize: FontSize.xxxl,

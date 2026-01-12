@@ -11,6 +11,7 @@ import {
   Platform,
   ActivityIndicator,
   ScrollView,
+  Image,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Colors, Spacing, FontSize, BorderRadius, Shadows } from '../constants/theme';
@@ -153,7 +154,11 @@ export default function SignupScreen() {
         >
           <View style={styles.header}>
             <View style={styles.logoContainer}>
-              <Text style={styles.logoIcon}>🐦</Text>
+              <Image
+                source={require('../assets/birdies-logo.jpg')}
+                style={styles.logoImage}
+                resizeMode="contain"
+              />
             </View>
             <Text style={styles.title}>Join Birdies Rewards</Text>
             <Text style={styles.subtitle}>Create your account</Text>
@@ -323,8 +328,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: Spacing.sm,
   },
-  logoIcon: {
-    fontSize: 35,
+  logoImage: {
+    width: 60,
+    height: 60,
+    borderRadius: 30,
   },
   title: {
     fontSize: FontSize.xxl,
