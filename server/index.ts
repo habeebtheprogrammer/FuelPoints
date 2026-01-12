@@ -134,9 +134,11 @@ app.post("/api/public/signup", async (req, res) => {
   try {
     const { firstName, lastName, phone, dateOfBirth, email, password, pin, zipCode } = req.body;
     
-    console.log("Signup attempt:", { firstName, lastName, phone, dateOfBirth, zipCode, hasPin: !!pin, hasPassword: !!password });
+    console.log("Signup attempt:", { firstName, lastName, phone, dateOfBirth, zipCode, pin, hasPin: !!pin, hasPassword: !!password });
 
     if (!firstName || !lastName || !phone || !dateOfBirth || !zipCode) {
+      console.log("Missing required fields");
+
       return res
         .status(400)
         .json({
@@ -146,22 +148,26 @@ app.post("/api/public/signup", async (req, res) => {
 
     // New users use PIN, legacy support for password
     if (!pin && !password) {
+      console.log("No PIN or password provided");
       return res.status(400).json({ error: "4-digit PIN is required" });
     }
 
     // Validate PIN if provided (must be exactly 4 digits)
     if (pin && (pin.length !== 4 || !/^\d{4}$/.test(pin))) {
+      console.log("PIN validation failed:", pin);
       return res.status(400).json({ error: "PIN must be exactly 4 digits" });
     }
 
     // Validate password if provided (legacy support)
     if (password && password.length < 6) {
+      console.log("Password too short");
       return res.status(400).json({ error: "Password must be at least 6 characters" });
     }
 
     // Validate phone number (must be 10 digits)
     const phoneDigits = phone.replace(/\D/g, "");
     if (phoneDigits.length !== 10) {
+      console.log("Phone validation failed:", phoneDigits);
       return res.status(400).json({ error: "Phone number must be 10 digits" });
     }
 
@@ -171,6 +177,7 @@ app.post("/api/public/signup", async (req, res) => {
     // Check if phone number already exists
     const existingUser = await storage.getUserByPhone(normalizedPhone);
     if (existingUser) {
+      console.log("Phone already registered:", normalizedPhone);
       return res.status(400).json({ error: "Phone number already registered" });
     }
 
