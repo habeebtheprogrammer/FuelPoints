@@ -144,7 +144,7 @@ app.post("/api/public/signup", async (req, res) => {
 
     // New users use PIN, legacy support for password
     if (!pin && !password) {
-      return res.status(400).json({ error: "PIN is required" });
+      return res.status(400).json({ error: "4-digit PIN is required" });
     }
 
     // Validate PIN if provided (must be exactly 4 digits)
