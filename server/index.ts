@@ -133,6 +133,8 @@ app.post("/api/register", async (req, res) => {
 app.post("/api/public/signup", async (req, res) => {
   try {
     const { firstName, lastName, phone, dateOfBirth, email, password, pin, zipCode } = req.body;
+    
+    console.log("Signup attempt:", { firstName, lastName, phone, dateOfBirth, zipCode, hasPin: !!pin, hasPassword: !!password });
 
     if (!firstName || !lastName || !phone || !dateOfBirth || !zipCode) {
       return res
