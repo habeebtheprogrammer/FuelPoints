@@ -24,8 +24,8 @@ export default function SignupScreen() {
     dateOfBirth: '',
     zipCode: '',
     email: '',
-    password: '',
-    confirmPassword: '',
+    pin: '',
+    confirmPin: '',
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -70,9 +70,9 @@ export default function SignupScreen() {
   };
 
   const handleSignup = async () => {
-    const { firstName, lastName, phone, dateOfBirth, email, password, confirmPassword } = formData;
+    const { firstName, lastName, phone, dateOfBirth, zipCode, email, pin, confirmPin } = formData;
 
-    if (!firstName || !lastName || !phone || !dateOfBirth || !password) {
+    if (!firstName || !lastName || !phone || !dateOfBirth || !zipCode || !pin) {
       setError('Please fill in all required fields');
       return;
     }
@@ -83,13 +83,19 @@ export default function SignupScreen() {
       return;
     }
 
-    if (password.length < 6) {
-      setError('Password must be at least 6 characters');
+    const zipDigits = zipCode.replace(/\D/g, '');
+    if (zipDigits.length !== 5) {
+      setError('Please enter a valid 5-digit zip code');
       return;
     }
 
-    if (password !== confirmPassword) {
-      setError('Passwords do not match');
+    if (pin.length !== 4 || !/^\d{4}$/.test(pin)) {
+      setError('PIN must be exactly 4 digits');
+      return;
+    }
+
+    if (pin !== confirmPin) {
+      setError('PINs do not match');
       return;
     }
 
@@ -111,9 +117,9 @@ export default function SignupScreen() {
           lastName,
           phone: phoneDigits,
           dateOfBirth: formattedDate,
-          zipCode: formData.zipCode,
+          zipCode: zipDigits,
           email: email || undefined,
-          password,
+          pin,
         }),
       });
 
@@ -229,28 +235,33 @@ export default function SignupScreen() {
               />
             </View>
 
-            <View style={styles.inputContainer}>
-              <Text style={styles.inputLabel}>Password *</Text>
-              <TextInput
-                style={styles.input}
-                placeholder="At least 6 characters"
-                placeholderTextColor={Colors.textLight}
-                secureTextEntry
-                value={formData.password}
-                onChangeText={(v) => handleChange('password', v)}
-              />
-            </View>
-
-            <View style={styles.inputContainer}>
-              <Text style={styles.inputLabel}>Confirm Password *</Text>
-              <TextInput
-                style={styles.input}
-                placeholder="Confirm your password"
-                placeholderTextColor={Colors.textLight}
-                secureTextEntry
-                value={formData.confirmPassword}
-                onChangeText={(v) => handleChange('confirmPassword', v)}
-              />
+            <View style={styles.row}>
+              <View style={[styles.inputContainer, styles.halfWidth]}>
+                <Text style={styles.inputLabel}>4-Digit PIN *</Text>
+                <TextInput
+                  style={styles.input}
+                  placeholder="1234"
+                  placeholderTextColor={Colors.textLight}
+                  keyboardType="number-pad"
+                  secureTextEntry
+                  maxLength={4}
+                  value={formData.pin}
+                  onChangeText={(v) => handleChange('pin', v.replace(/\D/g, ''))}
+                />
+              </View>
+              <View style={[styles.inputContainer, styles.halfWidth]}>
+                <Text style={styles.inputLabel}>Confirm PIN *</Text>
+                <TextInput
+                  style={styles.input}
+                  placeholder="1234"
+                  placeholderTextColor={Colors.textLight}
+                  keyboardType="number-pad"
+                  secureTextEntry
+                  maxLength={4}
+                  value={formData.confirmPin}
+                  onChangeText={(v) => handleChange('confirmPin', v.replace(/\D/g, ''))}
+                />
+              </View>
             </View>
 
             {error ? <Text style={styles.errorText}>{error}</Text> : null}

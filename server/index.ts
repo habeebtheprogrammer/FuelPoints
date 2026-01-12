@@ -129,20 +129,31 @@ app.post("/api/register", async (req, res) => {
   }
 });
 
-// Public customer signup (password required, email optional)
+// Public customer signup (PIN for new users, password for legacy)
 app.post("/api/public/signup", async (req, res) => {
   try {
-    const { firstName, lastName, phone, dateOfBirth, email, password, zipCode } = req.body;
+    const { firstName, lastName, phone, dateOfBirth, email, password, pin, zipCode } = req.body;
 
-    if (!firstName || !lastName || !phone || !dateOfBirth || !password || !zipCode) {
+    if (!firstName || !lastName || !phone || !dateOfBirth || !zipCode) {
       return res
         .status(400)
         .json({
-          error: "First name, last name, phone, date of birth, zip code, and password are required",
+          error: "First name, last name, phone, date of birth, and zip code are required",
         });
     }
 
-    if (password.length < 6) {
+    // New users use PIN, legacy support for password
+    if (!pin && !password) {
+      return res.status(400).json({ error: "PIN is required" });
+    }
+
+    // Validate PIN if provided (must be exactly 4 digits)
+    if (pin && (pin.length !== 4 || !/^\d{4}$/.test(pin))) {
+      return res.status(400).json({ error: "PIN must be exactly 4 digits" });
+    }
+
+    // Validate password if provided (legacy support)
+    if (password && password.length < 6) {
       return res.status(400).json({ error: "Password must be at least 6 characters" });
     }
 
@@ -171,7 +182,9 @@ app.post("/api/public/signup", async (req, res) => {
 
     const accountNumber = generateAccountNumber();
     const loyaltyId = generateLoyaltyId(accountNumber);
-    const hashedPassword = await bcrypt.hash(password, 10);
+    
+    // Hash password if provided (legacy), otherwise store PIN directly (4 digits only)
+    const hashedPassword = password ? await bcrypt.hash(password, 10) : null;
 
     const user = await storage.createUser({
       firstName,
@@ -181,6 +194,7 @@ app.post("/api/public/signup", async (req, res) => {
       dateOfBirth,
       zipCode,
       password: hashedPassword,
+      pin: pin || null,
       accountNumber,
       loyaltyId,
     });
@@ -235,10 +249,10 @@ app.post("/api/login", async (req, res) => {
   }
 });
 
-// Mobile app login - phone required, password optional for legacy users
+// Mobile app login - phone required, PIN or password for authentication
 app.post("/api/mobile/login", async (req, res) => {
   try {
-    const { phone, password } = req.body;
+    const { phone, password, pin } = req.body;
 
     if (!phone) {
       return res.status(400).json({ error: "Phone number is required" });
@@ -256,8 +270,17 @@ app.post("/api/mobile/login", async (req, res) => {
       return res.status(401).json({ error: "Account not found. Please sign up first." });
     }
 
-    // If user has a password set, verify it
-    if (user.password) {
+    // Check authentication based on what the user has set
+    if (user.pin) {
+      // User has PIN set - verify PIN
+      if (!pin) {
+        return res.status(401).json({ error: "PIN is required" });
+      }
+      if (user.pin !== pin) {
+        return res.status(401).json({ error: "Invalid PIN" });
+      }
+    } else if (user.password) {
+      // User has password set (legacy) - verify password
       if (!password) {
         return res.status(401).json({ error: "Password is required" });
       }
@@ -266,7 +289,7 @@ app.post("/api/mobile/login", async (req, res) => {
         return res.status(401).json({ error: "Invalid password" });
       }
     }
-    // If user has no password (legacy user), allow login without password
+    // If user has neither PIN nor password, allow login (very old legacy user)
 
     const rewards = await storage.getUserRewards(user.id);
     

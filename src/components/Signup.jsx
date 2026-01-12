@@ -16,8 +16,8 @@ function Signup() {
     dateOfBirth: '',
     zipCode: '',
     email: '',
-    password: '',
-    confirmPassword: '',
+    pin: '',
+    confirmPin: '',
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -59,15 +59,23 @@ function Signup() {
       return;
     }
 
-    // Validate password
-    if (formData.password.length < 6) {
-      setError('Password must be at least 6 characters');
+    // Validate zip code
+    const zipDigits = formData.zipCode.replace(/\D/g, '');
+    if (zipDigits.length !== 5) {
+      setError('Please enter a valid 5-digit zip code');
       setLoading(false);
       return;
     }
 
-    if (formData.password !== formData.confirmPassword) {
-      setError('Passwords do not match');
+    // Validate PIN
+    if (formData.pin.length !== 4 || !/^\d{4}$/.test(formData.pin)) {
+      setError('PIN must be exactly 4 digits');
+      setLoading(false);
+      return;
+    }
+
+    if (formData.pin !== formData.confirmPin) {
+      setError('PINs do not match');
       setLoading(false);
       return;
     }
@@ -93,8 +101,8 @@ function Signup() {
         dateOfBirth: '',
         zipCode: '',
         email: '',
-        password: '',
-        confirmPassword: '',
+        pin: '',
+        confirmPin: '',
       });
     } catch (err) {
       setError(err.message);
@@ -212,31 +220,37 @@ function Signup() {
               />
             </div>
 
-            <div className="form-group">
-              <label htmlFor="password">Password *</label>
-              <input
-                type="password"
-                id="password"
-                name="password"
-                value={formData.password}
-                onChange={handleChange}
-                required
-                placeholder="At least 6 characters"
-                minLength={6}
-              />
-            </div>
-
-            <div className="form-group">
-              <label htmlFor="confirmPassword">Confirm Password *</label>
-              <input
-                type="password"
-                id="confirmPassword"
-                name="confirmPassword"
-                value={formData.confirmPassword}
-                onChange={handleChange}
-                required
-                placeholder="Confirm your password"
-              />
+            <div className="form-row">
+              <div className="form-group">
+                <label htmlFor="pin">4-Digit PIN *</label>
+                <input
+                  type="password"
+                  id="pin"
+                  name="pin"
+                  value={formData.pin}
+                  onChange={(e) => setFormData(prev => ({ ...prev, pin: e.target.value.replace(/\D/g, '').slice(0, 4) }))}
+                  required
+                  placeholder="1234"
+                  maxLength={4}
+                  inputMode="numeric"
+                  pattern="\d{4}"
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="confirmPin">Confirm PIN *</label>
+                <input
+                  type="password"
+                  id="confirmPin"
+                  name="confirmPin"
+                  value={formData.confirmPin}
+                  onChange={(e) => setFormData(prev => ({ ...prev, confirmPin: e.target.value.replace(/\D/g, '').slice(0, 4) }))}
+                  required
+                  placeholder="1234"
+                  maxLength={4}
+                  inputMode="numeric"
+                  pattern="\d{4}"
+                />
+              </div>
             </div>
 
             <button type="submit" className="signup-btn" disabled={loading}>

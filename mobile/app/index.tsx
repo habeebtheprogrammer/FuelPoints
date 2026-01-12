@@ -20,7 +20,7 @@ const { width } = Dimensions.get('window');
 
 export default function LoginScreen() {
   const [phone, setPhone] = useState('');
-  const [password, setPassword] = useState('');
+  const [pin, setPin] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [checkingAuth, setCheckingAuth] = useState(true);
@@ -73,7 +73,7 @@ export default function LoginScreen() {
       const response = await fetch(`${API_BASE_URL}/api/mobile/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ phone: digits, password: password || undefined }),
+        body: JSON.stringify({ phone: digits, pin: pin || undefined }),
       });
 
       const data = await response.json();
@@ -131,14 +131,16 @@ export default function LoginScreen() {
           </View>
 
           <View style={styles.inputContainer}>
-            <Text style={styles.inputLabel}>Password</Text>
+            <Text style={styles.inputLabel}>4-Digit PIN</Text>
             <TextInput
               style={styles.input}
-              placeholder="Enter password (if you have one)"
+              placeholder="Enter your PIN"
               placeholderTextColor={Colors.textLight}
+              keyboardType="number-pad"
               secureTextEntry
-              value={password}
-              onChangeText={setPassword}
+              maxLength={4}
+              value={pin}
+              onChangeText={(v) => setPin(v.replace(/\D/g, ''))}
             />
           </View>
 
@@ -165,7 +167,7 @@ export default function LoginScreen() {
           </TouchableOpacity>
 
           <TouchableOpacity onPress={() => router.push('/forgot-password')} style={styles.forgotButton}>
-            <Text style={styles.forgotText}>Forgot Password?</Text>
+            <Text style={styles.forgotText}>Forgot PIN?</Text>
           </TouchableOpacity>
 
           <TouchableOpacity onPress={() => router.push('/signup')} style={styles.linkButton}>

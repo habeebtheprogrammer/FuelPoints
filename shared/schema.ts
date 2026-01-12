@@ -10,6 +10,7 @@ export const users = pgTable('users', {
   dateOfBirth: varchar('date_of_birth', { length: 20 }).notNull(),
   zipCode: varchar('zip_code', { length: 10 }),
   password: varchar('password', { length: 255 }),
+  pin: varchar('pin', { length: 4 }),
   accountNumber: varchar('account_number', { length: 18 }).notNull().unique(),
   loyaltyId: varchar('loyalty_id', { length: 22 }).notNull().unique(),
   createdAt: timestamp('created_at').defaultNow().notNull(),

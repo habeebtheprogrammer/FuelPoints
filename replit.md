@@ -16,7 +16,14 @@ The admin portal features a modern, professional UI with a left sidebar navigati
 
 ### Technical Implementations
 
-The frontend is built with **React v19.1.0** and **Vite v7.1.9**, utilizing functional components and `fetch` API. The backend uses **Express v5.1.0**, **Drizzle ORM v0.44.6** with **Neon-backed PostgreSQL**, and a REST API for authentication with bcrypt for password hashing.
+The frontend is built with **React v19.1.0** and **Vite v7.1.9**, utilizing functional components and `fetch` API. The backend uses **Express v5.1.0**, **Drizzle ORM v0.44.6** with **Neon-backed PostgreSQL**, and a REST API for authentication.
+
+### Customer Authentication
+
+*   **New Users (Jan 2026+)**: Use 4-digit PIN for authentication
+*   **Legacy Users**: Continue using password (bcrypt hashed)
+*   **Login Flow**: System checks if user has PIN first, then falls back to password
+*   **Required Fields**: First name, last name, phone, date of birth, zip code, PIN
 
 ### Feature Specifications
 
