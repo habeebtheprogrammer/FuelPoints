@@ -100,6 +100,7 @@ export default function LocationsScreen() {
         });
         coords = { lat: position.coords.latitude, lng: position.coords.longitude };
         setUserCoords(coords);
+        console.log('Got GPS coords:', coords);
       } catch (err) {
         console.log('Error getting position:', err);
       }
