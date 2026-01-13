@@ -28,6 +28,40 @@ app.use("/api/sales", salesRoutes);
 app.use("/api/loyalty", loyaltyRoutes);
 app.use("/api/punch-cards", punchCardRoutes);
 
+// Geocoding endpoint for zip code to coordinates
+const geocodeCache: { [zip: string]: { lat: number; lng: number } } = {};
+
+app.get("/api/geocode/:zipCode", async (req, res) => {
+  const { zipCode } = req.params;
+  
+  if (geocodeCache[zipCode]) {
+    return res.json(geocodeCache[zipCode]);
+  }
+  
+  const apiKey = process.env.GOOGLE_MAPS_API_KEY;
+  if (!apiKey) {
+    return res.status(500).json({ error: "Geocoding not configured" });
+  }
+  
+  try {
+    const response = await fetch(
+      `https://maps.googleapis.com/maps/api/geocode/json?address=${zipCode}&key=${apiKey}`
+    );
+    const data = await response.json();
+    
+    if (data.results && data.results.length > 0) {
+      const { lat, lng } = data.results[0].geometry.location;
+      geocodeCache[zipCode] = { lat, lng };
+      res.json({ lat, lng });
+    } else {
+      res.status(404).json({ error: "Zip code not found" });
+    }
+  } catch (error) {
+    console.log("Geocoding error:", error);
+    res.status(500).json({ error: "Geocoding failed" });
+  }
+});
+
 // Admin login endpoint
 app.post("/api/admin/login", async (req, res) => {
   try {

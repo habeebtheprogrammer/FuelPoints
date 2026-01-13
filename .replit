@@ -65,3 +65,8 @@ packages = ["unzip"]
 deploymentTarget = "vm"
 run = ["npm", "start"]
 build = ["npm", "run", "build"]
+
+[userenv]
+
+[userenv.shared]
+GOOGLE_MAPS_API_KEY = "AIzaSyCeF7IEwOed2icVhhIzWtpSRfPQ-uvVH00"

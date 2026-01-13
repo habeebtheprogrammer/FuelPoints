@@ -39,7 +39,7 @@ The frontend is built with **React v19.1.0** and **Vite v7.1.9**, utilizing func
     *   Isolated from existing loyalty points system to prevent breaking production
 *   **Loyalty ID Generation**: GS1-128 compliant 22-digit IDs.
 *   **Users Management**: CRUD operations for admin user accounts.
-*   **Locations Management**: CRUD operations for store locations including PDI store number, POS ID, address, and POS type.
+*   **Locations Management**: CRUD operations for store locations including PDI store number, POS ID, address, and POS type. Mobile app shows distance-sorted locations using Google Maps Geocoding API with server-side caching.
 *   **POS Status Dashboard**: Real-time monitoring of online/offline status for all locations, with auto-refresh.
 *   **Item Groups Management**: Create and manage item groups, linking with UPCs from a 19,023-item pricebook.
 *   **Pricebook Management**: View and search product catalog by UPC or description.

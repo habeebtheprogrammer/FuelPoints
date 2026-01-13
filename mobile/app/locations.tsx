@@ -26,27 +26,23 @@ interface StoreLocation {
   distance?: number;
 }
 
-const ZIP_COORDS: { [key: string]: { lat: number; lng: number } } = {
-  '21054': { lat: 39.0458, lng: -76.6413 },
-  '21401': { lat: 38.9784, lng: -76.4922 },
-  '21403': { lat: 38.9370, lng: -76.4850 },
-  '20601': { lat: 38.6590, lng: -76.8980 },
-  '20602': { lat: 38.5950, lng: -76.9200 },
-  '20603': { lat: 38.6010, lng: -76.9650 },
-  '20640': { lat: 38.5120, lng: -77.0180 },
-  '20646': { lat: 38.5290, lng: -77.0020 },
-  '20748': { lat: 38.8180, lng: -76.9320 },
-  '20772': { lat: 38.8260, lng: -76.8720 },
-  '20774': { lat: 38.8770, lng: -76.8520 },
-  '20706': { lat: 38.9660, lng: -76.8770 },
-  '20785': { lat: 38.9290, lng: -76.8820 },
-  '21060': { lat: 39.1650, lng: -76.6050 },
-  '21061': { lat: 39.1370, lng: -76.6320 },
-  '21225': { lat: 39.2260, lng: -76.6100 },
-  '21226': { lat: 39.2090, lng: -76.5450 },
-  '21122': { lat: 39.1180, lng: -76.5010 },
-  '21114': { lat: 39.0330, lng: -76.6790 },
-  '20912': { lat: 38.9820, lng: -77.0030 },
+const coordsCache: { [key: string]: { lat: number; lng: number } } = {};
+
+const getCoords = async (zipCode: string): Promise<{ lat: number; lng: number } | null> => {
+  if (coordsCache[zipCode]) {
+    return coordsCache[zipCode];
+  }
+  try {
+    const response = await fetch(`${API_BASE_URL}/api/geocode/${zipCode}`);
+    if (response.ok) {
+      const data = await response.json();
+      coordsCache[zipCode] = data;
+      return data;
+    }
+  } catch (err) {
+    console.log('Geocoding error:', err);
+  }
+  return null;
 };
 
 const getDistance = (lat1: number, lng1: number, lat2: number, lng2: number): number => {
@@ -84,17 +80,21 @@ export default function LocationsScreen() {
       if (response.ok) {
         const data: StoreLocation[] = await response.json();
         
-        if (customerZip && ZIP_COORDS[customerZip]) {
-          const userCoords = ZIP_COORDS[customerZip];
-          const withDistance = data.map(loc => {
-            const locCoords = ZIP_COORDS[loc.zipCode];
-            if (locCoords) {
-              return { ...loc, distance: getDistance(userCoords.lat, userCoords.lng, locCoords.lat, locCoords.lng) };
-            }
-            return { ...loc, distance: 999 };
-          });
-          withDistance.sort((a, b) => (a.distance || 999) - (b.distance || 999));
-          setLocations(withDistance);
+        if (customerZip) {
+          const userCoords = await getCoords(customerZip);
+          if (userCoords) {
+            const withDistance = await Promise.all(data.map(async (loc) => {
+              const locCoords = await getCoords(loc.zipCode);
+              if (locCoords) {
+                return { ...loc, distance: getDistance(userCoords.lat, userCoords.lng, locCoords.lat, locCoords.lng) };
+              }
+              return { ...loc, distance: 999 };
+            }));
+            withDistance.sort((a, b) => (a.distance || 999) - (b.distance || 999));
+            setLocations(withDistance);
+          } else {
+            setLocations(data);
+          }
         } else {
           setLocations(data);
         }
