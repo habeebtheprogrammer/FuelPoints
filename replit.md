@@ -29,7 +29,7 @@ The frontend is built with **React v19.1.0** and **Vite v7.1.9**, utilizing func
 
 *   **Customer Management**: View customer data, loyalty IDs, points balances, and detailed purchase history with clickable transaction receipts.
 *   **Rewards System**: Tracks points accumulation and transaction history (5 pts/$ earning, 100 pts = $1 redemption).
-*   **Promotions Management**: Create flexible promotions including "Multi-Pack" (e.g., "2 for $5"), "Amount-Off" (e.g., "$1.80 off"), and "Buy X Get Y Free" options. Promotions can be loyalty-restricted, location-targeted, and date-ranged.
+*   **Promotions Management**: Create flexible promotions including "Multi-Pack" (e.g., "2 for $5"), "Amount-Off" (e.g., "$1.80 off"), and "Buy X Get Y Free" options. Promotions can be loyalty-restricted, location-targeted, and date-ranged. Includes UPC conflict detection that warns admins when item groups contain UPCs already used in other promotions or punch cards.
 *   **Punch Card Loyalty System**: Multi-visit reward program allowing customers to earn punches on specific item groups. Features include:
     *   Configurable punch cards linked to item groups (e.g., "Buy 10 coffees, get 1 free")
     *   Reward types: free item, percentage off, or dollar amount off
