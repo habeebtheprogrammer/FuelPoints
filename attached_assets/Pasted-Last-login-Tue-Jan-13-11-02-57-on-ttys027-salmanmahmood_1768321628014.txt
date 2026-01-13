@@ -1,0 +1,45 @@
+Last login: Tue Jan 13 11:02:57 on ttys027
+salmanmahmood@Salmans-MacBook-Pro ~ % cd downloads
+salmanmahmood@Salmans-MacBook-Pro downloads % cd fuelpoints7
+salmanmahmood@Salmans-MacBook-Pro fuelpoints7 % cd mobile
+salmanmahmood@Salmans-MacBook-Pro mobile % npm install
+npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+npm warn deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported
+npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
+npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
+
+added 797 packages, and audited 798 packages in 5s
+
+69 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+salmanmahmood@Salmans-MacBook-Pro mobile % npx expo start
+Starting project at /Users/salmanmahmood/Downloads/fuelpoints7/mobile
+PluginError: Failed to resolve plugin for module "expo-location" relative to "/Users/salmanmahmood/Downloads/fuelpoints7/mobile". Do you have node modules installed?
+PluginError: Failed to resolve plugin for module "expo-location" relative to "/Users/salmanmahmood/Downloads/fuelpoints7/mobile". Do you have node modules installed?
+    at resolvePluginForModule (/Users/salmanmahmood/Downloads/fuelpoints7/mobile/node_modules/expo/node_modules/@expo/config-plugins/build/utils/plugin-resolver.js:96:9)
+    at resolveConfigPluginFunctionWithInfo (/Users/salmanmahmood/Downloads/fuelpoints7/mobile/node_modules/expo/node_modules/@expo/config-plugins/build/utils/plugin-resolver.js:145:7)
+    at resolveConfigPluginFunction (/Users/salmanmahmood/Downloads/fuelpoints7/mobile/node_modules/expo/node_modules/@expo/config-plugins/build/utils/plugin-resolver.js:136:7)
+    at withStaticPlugin (/Users/salmanmahmood/Downloads/fuelpoints7/mobile/node_modules/expo/node_modules/@expo/config-plugins/build/plugins/withStaticPlugin.js:85:70)
+    at /Users/salmanmahmood/Downloads/fuelpoints7/mobile/node_modules/expo/node_modules/@expo/config-plugins/build/plugins/withPlugins.js:30:84
+    at Array.reduce (<anonymous>)
+    at withPlugins (/Users/salmanmahmood/Downloads/fuelpoints7/mobile/node_modules/expo/node_modules/@expo/config-plugins/build/plugins/withPlugins.js:30:18)
+    at withConfigPlugins (/Users/salmanmahmood/Downloads/fuelpoints7/mobile/node_modules/expo/node_modules/@expo/config/build/plugins/withConfigPlugins.js:35:47)
+    at fillAndReturnConfig (/Users/salmanmahmood/Downloads/fuelpoints7/mobile/node_modules/expo/node_modules/@expo/config/build/Config.js:236:78)
+    at getConfig (/Users/salmanmahmood/Downloads/fuelpoints7/mobile/node_modules/expo/node_modules/@expo/config/build/Config.js:293:10)
+salmanmahmood@Salmans-MacBook-Pro mobile % npx expo start
+Starting project at /Users/salmanmahmood/Downloads/fuelpoints7/mobile
+PluginError: Failed to resolve plugin for module "expo-location" relative to "/Users/salmanmahmood/Downloads/fuelpoints7/mobile". Do you have node modules installed?
+PluginError: Failed to resolve plugin for module "expo-location" relative to "/Users/salmanmahmood/Downloads/fuelpoints7/mobile". Do you have node modules installed?
+    at resolvePluginForModule (/Users/salmanmahmood/Downloads/fuelpoints7/mobile/node_modules/expo/node_modules/@expo/config-plugins/build/utils/plugin-resolver.js:96:9)
+    at resolveConfigPluginFunctionWithInfo (/Users/salmanmahmood/Downloads/fuelpoints7/mobile/node_modules/expo/node_modules/@expo/config-plugins/build/utils/plugin-resolver.js:145:7)
+    at resolveConfigPluginFunction (/Users/salmanmahmood/Downloads/fuelpoints7/mobile/node_modules/expo/node_modules/@expo/config-plugins/build/utils/plugin-resolver.js:136:7)
+    at withStaticPlugin (/Users/salmanmahmood/Downloads/fuelpoints7/mobile/node_modules/expo/node_modules/@expo/config-plugins/build/plugins/withStaticPlugin.js:85:70)
+    at /Users/salmanmahmood/Downloads/fuelpoints7/mobile/node_modules/expo/node_modules/@expo/config-plugins/build/plugins/withPlugins.js:30:84
+    at Array.reduce (<anonymous>)
+    at withPlugins (/Users/salmanmahmood/Downloads/fuelpoints7/mobile/node_modules/expo/node_modules/@expo/config-plugins/build/plugins/withPlugins.js:30:18)
+    at withConfigPlugins (/Users/salmanmahmood/Downloads/fuelpoints7/mobile/node_modules/expo/node_modules/@expo/config/build/plugins/withConfigPlugins.js:35:47)
+    at fillAndReturnConfig (/Users/salmanmahmood/Downloads/fuelpoints7/mobile/node_modules/expo/node_modules/@expo/config/build/Config.js:236:78)
+    at getConfig (/Users/salmanmahmood/Downloads/fuelpoints7/mobile/node_modules/expo/node_modules/@expo/config/build/Config.js:293:10)
+salmanmahmood@Salmans-MacBook-Pro mobile % 
