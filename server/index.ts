@@ -11,7 +11,7 @@ import punchCardRoutes from "./routes/punchcards.js";
 import { db } from "./db.js";
 import { sendWelcomeEmail, sendPasswordResetEmail } from "./email.js";
 import crypto from "crypto";
-import { loyaltyTransactions, loyaltyFailedLookups, passwordResetTokens, adminUsers } from "../shared/schema.js";
+import { loyaltyTransactions, loyaltyFailedLookups, passwordResetTokens, adminUsers, promotions, punchCardPromotions, itemGroups, itemGroupUpcs, pricebook } from "../shared/schema.js";
 import { sql, eq, and, gt } from "drizzle-orm";
 
 const __filename = fileURLToPath(import.meta.url);
@@ -902,6 +902,147 @@ app.delete("/api/admin/item-group-upcs/:id", async (req, res) => {
   } catch (error) {
     console.log("Delete item group UPC error:", error);
     res.status(500).json({ error: "Failed to delete item group UPC" });
+  }
+});
+
+// Admin API - UPC Conflict Detection
+app.get("/api/admin/upc-conflicts", async (req, res) => {
+  try {
+    const itemGroupId = parseInt(req.query.itemGroupId as string);
+    const context = req.query.context as string; // 'promotion' or 'punchCard'
+    const excludeId = req.query.excludeId ? parseInt(req.query.excludeId as string) : null;
+
+    if (!itemGroupId) {
+      return res.status(400).json({ error: "itemGroupId is required" });
+    }
+
+    // Get all UPCs in the selected item group
+    const upcsInGroup = await db
+      .select({ upc: itemGroupUpcs.upc })
+      .from(itemGroupUpcs)
+      .where(eq(itemGroupUpcs.itemGroupId, itemGroupId));
+
+    if (upcsInGroup.length === 0) {
+      return res.json({ conflicts: [], hasConflicts: false });
+    }
+
+    const upcList = upcsInGroup.map(u => u.upc);
+    const conflicts: Array<{
+      upc: string;
+      description: string | null;
+      usedIn: Array<{ type: string; id: number; name: string }>;
+    }> = [];
+
+    // Find which item groups contain these UPCs
+    const upcItemGroupMap = await db
+      .select({
+        upc: itemGroupUpcs.upc,
+        itemGroupId: itemGroupUpcs.itemGroupId,
+        itemGroupName: itemGroups.name,
+      })
+      .from(itemGroupUpcs)
+      .innerJoin(itemGroups, eq(itemGroupUpcs.itemGroupId, itemGroups.id))
+      .where(sql`${itemGroupUpcs.upc} IN (${sql.join(upcList.map(u => sql`${u}`), sql`, `)})`);
+
+    // Get all active promotions and punch cards
+    const activePromotions = await db
+      .select({
+        id: promotions.id,
+        name: promotions.name,
+        itemGroupId: promotions.itemGroupId,
+      })
+      .from(promotions)
+      .where(eq(promotions.isActive, true));
+
+    const activePunchCards = await db
+      .select({
+        id: punchCardPromotions.id,
+        name: punchCardPromotions.name,
+        itemGroupId: punchCardPromotions.itemGroupId,
+      })
+      .from(punchCardPromotions)
+      .where(eq(punchCardPromotions.isActive, true));
+
+    // Get pricebook descriptions for UPCs
+    const pricebookItems = await db
+      .select({ upc: pricebook.upc, description: pricebook.description })
+      .from(pricebook)
+      .where(sql`${pricebook.upc} IN (${sql.join(upcList.map(u => sql`${u}`), sql`, `)})`);
+    
+    const upcDescriptions: Record<string, string> = {};
+    pricebookItems.forEach(item => {
+      upcDescriptions[item.upc] = item.description;
+    });
+
+    // Build a map of itemGroupId to promotions/punch cards
+    const itemGroupToPrograms: Record<number, Array<{ type: string; id: number; name: string }>> = {};
+    
+    for (const promo of activePromotions) {
+      if (context === 'promotion' && excludeId && promo.id === excludeId) continue;
+      if (!itemGroupToPrograms[promo.itemGroupId]) {
+        itemGroupToPrograms[promo.itemGroupId] = [];
+      }
+      itemGroupToPrograms[promo.itemGroupId].push({
+        type: 'promotion',
+        id: promo.id,
+        name: promo.name || `Promotion #${promo.id}`,
+      });
+    }
+
+    for (const card of activePunchCards) {
+      if (context === 'punchCard' && excludeId && card.id === excludeId) continue;
+      if (!itemGroupToPrograms[card.itemGroupId]) {
+        itemGroupToPrograms[card.itemGroupId] = [];
+      }
+      itemGroupToPrograms[card.itemGroupId].push({
+        type: 'punchCard',
+        id: card.id,
+        name: card.name,
+      });
+    }
+
+    // Check each UPC for conflicts
+    for (const upc of upcList) {
+      const usedIn: Array<{ type: string; id: number; name: string }> = [];
+      
+      // Find all item groups that contain this UPC
+      const itemGroupsWithUpc = upcItemGroupMap.filter(u => u.upc === upc);
+      
+      for (const ig of itemGroupsWithUpc) {
+        // Skip the current item group
+        if (ig.itemGroupId === itemGroupId) continue;
+        
+        // Check if this item group is used in any programs
+        const programs = itemGroupToPrograms[ig.itemGroupId];
+        if (programs) {
+          usedIn.push(...programs);
+        }
+      }
+      
+      // Also check if the current item group is used in other programs
+      const currentPrograms = itemGroupToPrograms[itemGroupId];
+      if (currentPrograms) {
+        usedIn.push(...currentPrograms);
+      }
+
+      if (usedIn.length > 0) {
+        conflicts.push({
+          upc,
+          description: upcDescriptions[upc] || null,
+          usedIn: [...new Map(usedIn.map(item => [`${item.type}-${item.id}`, item])).values()],
+        });
+      }
+    }
+
+    res.json({
+      conflicts,
+      hasConflicts: conflicts.length > 0,
+      totalUpcsChecked: upcList.length,
+      conflictingUpcs: conflicts.length,
+    });
+  } catch (error) {
+    console.log("UPC conflict check error:", error);
+    res.status(500).json({ error: "Failed to check UPC conflicts" });
   }
 });
 

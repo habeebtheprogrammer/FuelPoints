@@ -10,6 +10,8 @@ function Promotions() {
   const [locations, setLocations] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
+  const [conflicts, setConflicts] = useState(null);
+  const [showConflictModal, setShowConflictModal] = useState(false);
   const [formData, setFormData] = useState({
     id: '',
     name: '',
@@ -25,6 +27,42 @@ function Promotions() {
     endDate: '',
     locationIds: []
   });
+
+  const checkConflicts = async (itemGroupId, excludeId = null) => {
+    if (!itemGroupId) {
+      setConflicts(null);
+      return;
+    }
+    try {
+      const params = new URLSearchParams({
+        itemGroupId: itemGroupId.toString(),
+        context: 'promotion',
+      });
+      if (excludeId) params.set('excludeId', excludeId.toString());
+      
+      const response = await fetch(`/api/admin/upc-conflicts?${params}`);
+      const data = await response.json();
+      
+      if (data.hasConflicts) {
+        setConflicts(data);
+        setShowConflictModal(true);
+      } else {
+        setConflicts(null);
+      }
+    } catch (error) {
+      console.log('Error checking conflicts:', error);
+    }
+  };
+
+  const handleItemGroupChange = (e) => {
+    const newItemGroupId = e.target.value;
+    setFormData({ ...formData, itemGroupId: newItemGroupId });
+    if (newItemGroupId) {
+      checkConflicts(parseInt(newItemGroupId), formData.id || null);
+    } else {
+      setConflicts(null);
+    }
+  };
 
   useEffect(() => {
     loadPromotions();
@@ -350,7 +388,7 @@ function Promotions() {
             <label>Item Group *</label>
             <select
               value={formData.itemGroupId}
-              onChange={(e) => setFormData({ ...formData, itemGroupId: e.target.value })}
+              onChange={handleItemGroupChange}
               required
             >
               <option value="">Select Item Group</option>
@@ -500,6 +538,77 @@ function Promotions() {
           </div>
         </form>
       </Modal>
+
+      {showConflictModal && conflicts && (
+        <div className="modal active" onClick={() => setShowConflictModal(false)}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()} style={{ maxWidth: '600px' }}>
+            <div className="modal-header" style={{ background: '#FEF3C7', borderBottom: '2px solid #F59E0B' }}>
+              <h3 style={{ color: '#92400E', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                ⚠️ Item Overlap Detected
+              </h3>
+              <span className="close" onClick={() => setShowConflictModal(false)}>&times;</span>
+            </div>
+            <div className="modal-body" style={{ padding: '1.5rem' }}>
+              <p style={{ marginBottom: '1rem', color: '#92400E' }}>
+                <strong>{conflicts.conflictingUpcs}</strong> item(s) in this group are already used in other promotions or punch cards:
+              </p>
+              <div style={{ maxHeight: '300px', overflowY: 'auto' }}>
+                {conflicts.conflicts.map((conflict, idx) => (
+                  <div 
+                    key={idx} 
+                    style={{ 
+                      padding: '0.75rem', 
+                      marginBottom: '0.5rem', 
+                      background: '#FFF7ED', 
+                      borderRadius: '8px',
+                      border: '1px solid #FED7AA'
+                    }}
+                  >
+                    <div style={{ fontWeight: 'bold', marginBottom: '0.25rem' }}>
+                      {conflict.description || conflict.upc}
+                    </div>
+                    <div style={{ fontSize: '0.875rem', color: '#78716C' }}>
+                      UPC: {conflict.upc}
+                    </div>
+                    <div style={{ fontSize: '0.875rem', marginTop: '0.5rem' }}>
+                      <strong>Also in:</strong>
+                      {conflict.usedIn.map((program, pidx) => (
+                        <span 
+                          key={pidx}
+                          style={{ 
+                            display: 'inline-block',
+                            marginLeft: '0.5rem',
+                            padding: '0.125rem 0.5rem',
+                            background: program.type === 'punchCard' ? '#DBEAFE' : '#E0E7FF',
+                            color: program.type === 'punchCard' ? '#1E40AF' : '#4338CA',
+                            borderRadius: '4px',
+                            fontSize: '0.75rem',
+                            fontWeight: '500'
+                          }}
+                        >
+                          {program.type === 'punchCard' ? '🎯 ' : '🏷️ '}{program.name}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <p style={{ marginTop: '1rem', fontSize: '0.875rem', color: '#78716C' }}>
+                You can still proceed, but items may earn punches/discounts from multiple programs.
+              </p>
+            </div>
+            <div className="form-actions" style={{ borderTop: '1px solid #E5E7EB', padding: '1rem' }}>
+              <button 
+                type="button" 
+                className="btn btn-primary" 
+                onClick={() => setShowConflictModal(false)}
+              >
+                Got it, Continue
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
         </>
       )}
     </>
