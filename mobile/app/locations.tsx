@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { router } from 'expo-router';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   View,
   Text,
@@ -22,29 +23,91 @@ interface StoreLocation {
   state: string;
   zipCode: string;
   pdiStoreNumber?: string;
+  distance?: number;
 }
+
+const ZIP_COORDS: { [key: string]: { lat: number; lng: number } } = {
+  '21054': { lat: 39.0458, lng: -76.6413 },
+  '21401': { lat: 38.9784, lng: -76.4922 },
+  '21403': { lat: 38.9370, lng: -76.4850 },
+  '20601': { lat: 38.6590, lng: -76.8980 },
+  '20602': { lat: 38.5950, lng: -76.9200 },
+  '20603': { lat: 38.6010, lng: -76.9650 },
+  '20640': { lat: 38.5120, lng: -77.0180 },
+  '20646': { lat: 38.5290, lng: -77.0020 },
+  '20748': { lat: 38.8180, lng: -76.9320 },
+  '20772': { lat: 38.8260, lng: -76.8720 },
+  '20774': { lat: 38.8770, lng: -76.8520 },
+  '20706': { lat: 38.9660, lng: -76.8770 },
+  '20785': { lat: 38.9290, lng: -76.8820 },
+  '21060': { lat: 39.1650, lng: -76.6050 },
+  '21061': { lat: 39.1370, lng: -76.6320 },
+  '21225': { lat: 39.2260, lng: -76.6100 },
+  '21226': { lat: 39.2090, lng: -76.5450 },
+  '21122': { lat: 39.1180, lng: -76.5010 },
+  '21114': { lat: 39.0330, lng: -76.6790 },
+  '20912': { lat: 38.9820, lng: -77.0030 },
+};
+
+const getDistance = (lat1: number, lng1: number, lat2: number, lng2: number): number => {
+  const R = 3959;
+  const dLat = (lat2 - lat1) * Math.PI / 180;
+  const dLng = (lng2 - lng1) * Math.PI / 180;
+  const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+    Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+    Math.sin(dLng/2) * Math.sin(dLng/2);
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+  return R * c;
+};
 
 export default function LocationsScreen() {
   const [locations, setLocations] = useState<StoreLocation[]>([]);
   const [refreshing, setRefreshing] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [userZip, setUserZip] = useState<string | null>(null);
 
   useEffect(() => {
-    loadLocations();
+    loadUserAndLocations();
   }, []);
 
-  const loadLocations = async () => {
+  const loadUserAndLocations = async () => {
     try {
+      const customerData = await AsyncStorage.getItem('customer');
+      let customerZip: string | null = null;
+      if (customerData) {
+        const customer = JSON.parse(customerData);
+        customerZip = customer.zipCode || null;
+        setUserZip(customerZip);
+      }
+
       const response = await fetch(`${API_BASE_URL}/api/admin/locations`);
       if (response.ok) {
-        const data = await response.json();
-        setLocations(data);
+        const data: StoreLocation[] = await response.json();
+        
+        if (customerZip && ZIP_COORDS[customerZip]) {
+          const userCoords = ZIP_COORDS[customerZip];
+          const withDistance = data.map(loc => {
+            const locCoords = ZIP_COORDS[loc.zipCode];
+            if (locCoords) {
+              return { ...loc, distance: getDistance(userCoords.lat, userCoords.lng, locCoords.lat, locCoords.lng) };
+            }
+            return { ...loc, distance: 999 };
+          });
+          withDistance.sort((a, b) => (a.distance || 999) - (b.distance || 999));
+          setLocations(withDistance);
+        } else {
+          setLocations(data);
+        }
       }
     } catch (err) {
       console.log('Error loading locations:', err);
     } finally {
       setLoading(false);
     }
+  };
+
+  const loadLocations = async () => {
+    await loadUserAndLocations();
   };
 
   const onRefresh = async () => {
@@ -122,7 +185,12 @@ export default function LocationsScreen() {
                   <Text style={styles.storeEmoji}>⛽</Text>
                 </View>
                 <View style={styles.locationInfo}>
-                  <Text style={styles.locationName}>{location.locationName || `Birdies #${location.pdiStoreNumber || location.id}`}</Text>
+                  <View style={styles.nameRow}>
+                    <Text style={styles.locationName}>{location.locationName || `Birdies #${location.pdiStoreNumber || location.id}`}</Text>
+                    {location.distance !== undefined && location.distance < 999 && (
+                      <Text style={styles.distanceText}>{location.distance.toFixed(1)} mi</Text>
+                    )}
+                  </View>
                   <Text style={styles.locationAddress}>{location.address1}</Text>
                   {location.address2 && <Text style={styles.locationAddress}>{location.address2}</Text>}
                   <Text style={styles.locationCity}>
@@ -255,11 +323,23 @@ const styles = StyleSheet.create({
   locationInfo: {
     flex: 1,
   },
+  nameRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 4,
+  },
   locationName: {
     fontSize: 16,
     fontWeight: '700',
     color: '#1E293B',
-    marginBottom: 4,
+    flex: 1,
+  },
+  distanceText: {
+    fontSize: 13,
+    fontWeight: '600',
+    color: '#22C55E',
+    marginLeft: 8,
   },
   locationAddress: {
     fontSize: 14,
