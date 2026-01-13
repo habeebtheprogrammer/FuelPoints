@@ -275,9 +275,14 @@ export default function HomeScreen() {
           <View style={styles.pointsHeader}>
             <Text style={styles.pointsLabel}>MY LOYALTY CARD</Text>
           </View>
+          <View style={styles.pointsBalanceRow}>
+            <Text style={styles.pointsValue}>{totalPoints.toLocaleString()}</Text>
+            <Text style={styles.pointsUnit}>points</Text>
+            <Text style={styles.cashValue}>(${cashValue} value)</Text>
+          </View>
           <View style={styles.pointsRow}>
             <View style={styles.pointsInfo}>
-              <Text style={styles.pointsSubtext}>Scan at checkout to collect punches</Text>
+              <Text style={styles.pointsSubtext}>Scan at checkout to earn points & collect punches</Text>
             </View>
             <TouchableOpacity style={styles.rewardButton} onPress={() => router.push('/barcode')}>
               <Text style={styles.rewardButtonText}>VIEW BARCODE</Text>
@@ -488,10 +493,27 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'baseline',
   },
+  pointsBalanceRow: {
+    flexDirection: 'row',
+    alignItems: 'baseline',
+    marginBottom: 12,
+  },
   pointsValue: {
     fontSize: 32,
     fontWeight: '800',
     color: '#1E293B',
+  },
+  pointsUnit: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#64748B',
+    marginLeft: 6,
+  },
+  cashValue: {
+    fontSize: 14,
+    color: '#22C55E',
+    fontWeight: '600',
+    marginLeft: 8,
   },
   pointsSubtext: {
     fontSize: 14,
