@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { router } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import * as Location from 'expo-location';
 import {
   View,
   Text,
@@ -60,42 +61,91 @@ export default function LocationsScreen() {
   const [locations, setLocations] = useState<StoreLocation[]>([]);
   const [refreshing, setRefreshing] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [userZip, setUserZip] = useState<string | null>(null);
+  const [locationPermission, setLocationPermission] = useState<'granted' | 'denied' | 'undetermined'>('undetermined');
+  const [userCoords, setUserCoords] = useState<{ lat: number; lng: number } | null>(null);
 
   useEffect(() => {
-    loadUserAndLocations();
+    initializeLocation();
   }, []);
 
-  const loadUserAndLocations = async () => {
+  const requestLocationPermission = async () => {
     try {
-      const customerData = await AsyncStorage.getItem('customer');
-      let customerZip: string | null = null;
-      if (customerData) {
-        const customer = JSON.parse(customerData);
-        customerZip = customer.zipCode || null;
-        setUserZip(customerZip);
+      const { status } = await Location.requestForegroundPermissionsAsync();
+      setLocationPermission(status === 'granted' ? 'granted' : 'denied');
+      if (status === 'granted') {
+        const position = await Location.getCurrentPositionAsync({
+          accuracy: Location.Accuracy.Balanced,
+        });
+        const coords = { lat: position.coords.latitude, lng: position.coords.longitude };
+        setUserCoords(coords);
+        return coords;
       }
+    } catch (err) {
+      console.log('Location error:', err);
+      setLocationPermission('denied');
+    }
+    return null;
+  };
 
+  const initializeLocation = async () => {
+    const { status } = await Location.getForegroundPermissionsAsync();
+    setLocationPermission(status === 'granted' ? 'granted' : status === 'denied' ? 'denied' : 'undetermined');
+    
+    let coords: { lat: number; lng: number } | null = null;
+    
+    if (status === 'granted') {
+      try {
+        const position = await Location.getCurrentPositionAsync({
+          accuracy: Location.Accuracy.Balanced,
+        });
+        coords = { lat: position.coords.latitude, lng: position.coords.longitude };
+        setUserCoords(coords);
+      } catch (err) {
+        console.log('Error getting position:', err);
+      }
+    }
+    
+    await loadLocations(coords);
+  };
+
+  const loadLocations = async (gpsCoords?: { lat: number; lng: number } | null) => {
+    try {
       const response = await fetch(`${API_BASE_URL}/api/admin/locations`);
       if (response.ok) {
         const data: StoreLocation[] = await response.json();
         
-        if (customerZip) {
-          const userCoords = await getCoords(customerZip);
-          if (userCoords) {
-            const withDistance = await Promise.all(data.map(async (loc) => {
-              const locCoords = await getCoords(loc.zipCode);
-              if (locCoords) {
-                return { ...loc, distance: getDistance(userCoords.lat, userCoords.lng, locCoords.lat, locCoords.lng) };
-              }
-              return { ...loc, distance: 999 };
-            }));
-            withDistance.sort((a, b) => (a.distance || 999) - (b.distance || 999));
-            setLocations(withDistance);
-          } else {
-            setLocations(data);
-          }
+        const sourceCoords = gpsCoords || userCoords;
+        
+        if (sourceCoords) {
+          const withDistance = await Promise.all(data.map(async (loc) => {
+            const locCoords = await getCoords(loc.zipCode);
+            if (locCoords) {
+              return { ...loc, distance: getDistance(sourceCoords.lat, sourceCoords.lng, locCoords.lat, locCoords.lng) };
+            }
+            return { ...loc, distance: 999 };
+          }));
+          withDistance.sort((a, b) => (a.distance || 999) - (b.distance || 999));
+          setLocations(withDistance);
         } else {
+          const customerData = await AsyncStorage.getItem('customer');
+          if (customerData) {
+            const customer = JSON.parse(customerData);
+            if (customer.zipCode) {
+              const zipCoords = await getCoords(customer.zipCode);
+              if (zipCoords) {
+                const withDistance = await Promise.all(data.map(async (loc) => {
+                  const locCoords = await getCoords(loc.zipCode);
+                  if (locCoords) {
+                    return { ...loc, distance: getDistance(zipCoords.lat, zipCoords.lng, locCoords.lat, locCoords.lng) };
+                  }
+                  return { ...loc, distance: 999 };
+                }));
+                withDistance.sort((a, b) => (a.distance || 999) - (b.distance || 999));
+                setLocations(withDistance);
+                return;
+              }
+            }
+          }
           setLocations(data);
         }
       }
@@ -106,8 +156,12 @@ export default function LocationsScreen() {
     }
   };
 
-  const loadLocations = async () => {
-    await loadUserAndLocations();
+  const handleEnableLocation = async () => {
+    const coords = await requestLocationPermission();
+    if (coords) {
+      setLoading(true);
+      await loadLocations(coords);
+    }
   };
 
   const onRefresh = async () => {
@@ -166,6 +220,28 @@ export default function LocationsScreen() {
               : 'Loading locations...'}
           </Text>
         </TouchableOpacity>
+
+        {locationPermission !== 'granted' && (
+          <TouchableOpacity style={styles.locationBanner} onPress={handleEnableLocation}>
+            <View style={styles.locationBannerIcon}>
+              <Text style={styles.locationPinIcon}>📍</Text>
+            </View>
+            <View style={styles.locationBannerText}>
+              <Text style={styles.locationBannerTitle}>Enable Location</Text>
+              <Text style={styles.locationBannerSubtitle}>
+                See stores sorted by distance from you
+              </Text>
+            </View>
+            <Text style={styles.locationBannerArrow}>→</Text>
+          </TouchableOpacity>
+        )}
+
+        {locationPermission === 'granted' && userCoords && (
+          <View style={styles.locationEnabledBanner}>
+            <Text style={styles.locationEnabledIcon}>✓</Text>
+            <Text style={styles.locationEnabledText}>Showing nearest stores first</Text>
+          </View>
+        )}
 
         <Text style={styles.sectionTitle}>ALL LOCATIONS</Text>
 
@@ -275,6 +351,67 @@ const styles = StyleSheet.create({
   heroSubtext: {
     fontSize: 14,
     color: 'rgba(255,255,255,0.8)',
+  },
+  locationBanner: {
+    backgroundColor: '#FFF',
+    borderRadius: 12,
+    padding: 16,
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 16,
+    borderWidth: 2,
+    borderColor: '#22C55E',
+    borderStyle: 'dashed',
+  },
+  locationBannerIcon: {
+    width: 44,
+    height: 44,
+    backgroundColor: '#DCFCE7',
+    borderRadius: 22,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginRight: 12,
+  },
+  locationPinIcon: {
+    fontSize: 22,
+  },
+  locationBannerText: {
+    flex: 1,
+  },
+  locationBannerTitle: {
+    fontSize: 16,
+    fontWeight: '700',
+    color: '#1E293B',
+    marginBottom: 2,
+  },
+  locationBannerSubtitle: {
+    fontSize: 13,
+    color: '#64748B',
+  },
+  locationBannerArrow: {
+    fontSize: 20,
+    color: '#22C55E',
+    fontWeight: '600',
+  },
+  locationEnabledBanner: {
+    backgroundColor: '#DCFCE7',
+    borderRadius: 8,
+    padding: 12,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 16,
+  },
+  locationEnabledIcon: {
+    fontSize: 16,
+    color: '#16A34A',
+    marginRight: 8,
+    fontWeight: '700',
+  },
+  locationEnabledText: {
+    fontSize: 14,
+    color: '#16A34A',
+    fontWeight: '600',
   },
   sectionTitle: {
     fontSize: 13,

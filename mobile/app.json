@@ -18,7 +18,8 @@
       "supportsTablet": true,
       "bundleIdentifier": "com.birdies.rewards",
       "infoPlist": {
-        "ITSAppUsesNonExemptEncryption": false
+        "ITSAppUsesNonExemptEncryption": false,
+        "NSLocationWhenInUseUsageDescription": "Birdies uses your location to find the nearest stores and show you how far they are."
       }
     },
     "android": {
@@ -26,7 +27,8 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.birdies.rewards"
+      "package": "com.birdies.rewards",
+      "permissions": ["ACCESS_COARSE_LOCATION", "ACCESS_FINE_LOCATION"]
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -43,7 +45,13 @@
         }
       ],
       "expo-secure-store",
-      "expo-font"
+      "expo-font",
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "Birdies uses your location to find the nearest stores."
+        }
+      ]
     ],
     "extra": {
       "eas": {
