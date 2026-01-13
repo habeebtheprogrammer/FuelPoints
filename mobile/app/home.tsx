@@ -272,51 +272,71 @@ export default function HomeScreen() {
         <Text style={styles.tagline}>Keep collecting punches for FREE rewards!</Text>
 
         <TouchableOpacity style={styles.pointsSection} onPress={() => router.push('/barcode')}>
-          <View style={styles.pointsHeader}>
-            <Text style={styles.pointsLabel}>MY LOYALTY CARD</Text>
-          </View>
-          <View style={styles.pointsBalanceRow}>
-            <Text style={styles.pointsValue}>{totalPoints.toLocaleString()}</Text>
-            <Text style={styles.pointsUnit}>points</Text>
-          </View>
-          <Text style={styles.pointsSubtextCentered}>Tap to view your barcode</Text>
+          <LinearGradient
+            colors={['#1E3A8A', '#3B82F6']}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 1 }}
+            style={styles.pointsGradient}
+          >
+            <Text style={styles.pointsLabel}>MY REWARDS</Text>
+            <View style={styles.pointsBalanceRow}>
+              <Text style={styles.pointsValue}>{totalPoints.toLocaleString()}</Text>
+              <Text style={styles.pointsUnit}>pts</Text>
+            </View>
+            <View style={styles.cashValueBadge}>
+              <Text style={styles.cashValueText}>= ${cashValue} value</Text>
+            </View>
+          </LinearGradient>
         </TouchableOpacity>
 
         {punchCards.length > 0 && (
           <View style={styles.punchSection}>
-            <Text style={styles.sectionTitle}>PUNCH CARDS</Text>
+            <Text style={styles.sectionTitle}>🐦 PUNCH CARDS</Text>
             <ScrollView 
               horizontal 
               showsHorizontalScrollIndicator={false}
               contentContainerStyle={styles.punchScroll}
             >
               {punchCards.map((card) => (
-                <View key={card.punchCardId} style={styles.punchCard}>
-                  <Text style={styles.punchTitle} numberOfLines={2}>{card.punchCardName.toUpperCase()}</Text>
-                  <View style={styles.punchVisual}>
-                    {Array.from({ length: Math.min(card.punchesRequired, 6) }).map((_, i) => (
-                      <View
-                        key={i}
-                        style={[
-                          styles.punchStar,
-                          i < card.currentPunches && styles.punchStarFilled
-                        ]}
-                      >
-                        <Text style={styles.starText}>{i < card.currentPunches ? '★' : '☆'}</Text>
-                      </View>
-                    ))}
+                <LinearGradient
+                  key={card.punchCardId}
+                  colors={card.rewardReady ? ['#10B981', '#059669'] : ['#FEF3C7', '#FDE68A']}
+                  style={styles.punchCard}
+                >
+                  <Text style={[styles.punchTitle, card.rewardReady && styles.punchTitleLight]} numberOfLines={2}>
+                    {card.punchCardName.toUpperCase()}
+                  </Text>
+                  <View style={styles.nestContainer}>
+                    <Text style={styles.nestEmoji}>🪺</Text>
+                    <View style={styles.birdPath}>
+                      {Array.from({ length: Math.min(card.punchesRequired, 6) }).map((_, i) => (
+                        <Text
+                          key={i}
+                          style={[
+                            styles.birdEmoji,
+                            i >= card.currentPunches && styles.birdEmpty
+                          ]}
+                        >
+                          {i < card.currentPunches ? '🐦' : '○'}
+                        </Text>
+                      ))}
+                    </View>
                   </View>
-                  <Text style={styles.punchProgress}>
-                    {card.currentPunches} of {card.punchesRequired} visits
+                  <Text style={[styles.punchProgress, card.rewardReady && styles.punchProgressLight]}>
+                    {card.punchesRemaining > 0 
+                      ? `${card.punchesRemaining} more to go!` 
+                      : 'All birds home!'}
                   </Text>
                   {card.rewardReady ? (
                     <View style={styles.rewardReady}>
-                      <Text style={styles.rewardReadyText}>REWARD READY!</Text>
+                      <Text style={styles.rewardReadyText}>🎉 CLAIM REWARD!</Text>
                     </View>
                   ) : (
-                    <Text style={styles.rewardLabel}>{getRewardText(card)}</Text>
+                    <View style={styles.rewardBadge}>
+                      <Text style={styles.rewardLabel}>{getRewardText(card)}</Text>
+                    </View>
                   )}
-                </View>
+                </LinearGradient>
               ))}
             </ScrollView>
           </View>
@@ -440,12 +460,17 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   pointsSection: {
-    backgroundColor: '#FFF',
-    borderRadius: 12,
-    padding: 20,
-    borderWidth: 1,
-    borderColor: '#E2E8F0',
-    marginBottom: 16,
+    borderRadius: 16,
+    marginBottom: 20,
+    overflow: 'hidden',
+    shadowColor: '#1E3A8A',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.3,
+    shadowRadius: 8,
+    elevation: 6,
+  },
+  pointsGradient: {
+    padding: 24,
     alignItems: 'center',
   },
   pointsHeader: {
@@ -453,10 +478,11 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   pointsLabel: {
-    fontSize: 13,
+    fontSize: 14,
     fontWeight: '700',
-    color: '#1E293B',
-    letterSpacing: 0.5,
+    color: 'rgba(255,255,255,0.9)',
+    letterSpacing: 1,
+    marginBottom: 8,
   },
   earnRate: {
     fontSize: 12,
@@ -489,23 +515,29 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'baseline',
     justifyContent: 'center',
-    marginBottom: 8,
-  },
-  pointsSubtextCentered: {
-    fontSize: 14,
-    color: '#64748B',
-    textAlign: 'center',
+    marginBottom: 12,
   },
   pointsValue: {
-    fontSize: 32,
-    fontWeight: '800',
-    color: '#1E293B',
+    fontSize: 48,
+    fontWeight: '900',
+    color: '#FFFFFF',
   },
   pointsUnit: {
-    fontSize: 16,
-    fontWeight: '600',
-    color: '#64748B',
+    fontSize: 20,
+    fontWeight: '700',
+    color: 'rgba(255,255,255,0.8)',
     marginLeft: 6,
+  },
+  cashValueBadge: {
+    backgroundColor: 'rgba(255,255,255,0.2)',
+    paddingHorizontal: 16,
+    paddingVertical: 6,
+    borderRadius: 20,
+  },
+  cashValueText: {
+    fontSize: 14,
+    fontWeight: '700',
+    color: '#FFFFFF',
   },
   cashValue: {
     fontSize: 14,
@@ -562,59 +594,78 @@ const styles = StyleSheet.create({
     paddingRight: 20,
   },
   punchCard: {
-    width: 160,
-    backgroundColor: '#FFF',
-    borderRadius: 12,
-    padding: 14,
+    width: 170,
+    borderRadius: 16,
+    padding: 16,
     marginRight: 12,
-    borderWidth: 1,
-    borderColor: '#E2E8F0',
     alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
   },
   punchTitle: {
     fontSize: 11,
-    fontWeight: '700',
-    color: '#1E293B',
+    fontWeight: '800',
+    color: '#92400E',
     textAlign: 'center',
-    marginBottom: 10,
+    marginBottom: 12,
     letterSpacing: 0.3,
   },
-  punchVisual: {
-    flexDirection: 'row',
-    gap: 4,
-    marginBottom: 8,
+  punchTitleLight: {
+    color: '#FFFFFF',
   },
-  punchStar: {
-    width: 22,
-    height: 22,
+  nestContainer: {
     alignItems: 'center',
-    justifyContent: 'center',
+    marginBottom: 10,
   },
-  punchStarFilled: {},
-  starText: {
-    fontSize: 18,
-    color: '#F59E0B',
-  },
-  punchProgress: {
-    fontSize: 11,
-    color: '#64748B',
+  nestEmoji: {
+    fontSize: 32,
     marginBottom: 6,
   },
+  birdPath: {
+    flexDirection: 'row',
+    gap: 3,
+  },
+  birdEmoji: {
+    fontSize: 18,
+  },
+  birdEmpty: {
+    opacity: 0.3,
+    fontSize: 14,
+    color: '#92400E',
+  },
+  punchProgress: {
+    fontSize: 12,
+    fontWeight: '600',
+    color: '#92400E',
+    marginBottom: 8,
+  },
+  punchProgressLight: {
+    color: 'rgba(255,255,255,0.9)',
+  },
   rewardReady: {
-    backgroundColor: '#4ECDC4',
-    paddingHorizontal: 10,
-    paddingVertical: 4,
-    borderRadius: 10,
+    backgroundColor: '#FFF',
+    paddingHorizontal: 14,
+    paddingVertical: 6,
+    borderRadius: 12,
   },
   rewardReadyText: {
-    color: '#FFF',
-    fontWeight: '700',
-    fontSize: 10,
+    color: '#059669',
+    fontWeight: '800',
+    fontSize: 11,
+  },
+  rewardBadge: {
+    backgroundColor: '#92400E',
+    paddingHorizontal: 12,
+    paddingVertical: 5,
+    borderRadius: 10,
   },
   rewardLabel: {
-    fontSize: 11,
-    fontWeight: '600',
-    color: '#1E3A8A',
+    fontSize: 10,
+    fontWeight: '700',
+    color: '#FFF',
   },
   sectionTitle: {
     fontSize: 14,
