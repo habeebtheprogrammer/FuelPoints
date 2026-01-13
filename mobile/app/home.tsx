@@ -278,13 +278,10 @@ export default function HomeScreen() {
             end={{ x: 1, y: 1 }}
             style={styles.pointsGradient}
           >
-            <Text style={styles.pointsLabel}>MY REWARDS</Text>
+            <Text style={styles.pointsLabel}>BIRDIES BUCKS</Text>
             <View style={styles.pointsBalanceRow}>
               <Text style={styles.pointsValue}>{totalPoints.toLocaleString()}</Text>
               <Text style={styles.pointsUnit}>pts</Text>
-            </View>
-            <View style={styles.cashValueBadge}>
-              <Text style={styles.cashValueText}>= ${cashValue} value</Text>
             </View>
           </LinearGradient>
         </TouchableOpacity>
@@ -342,7 +339,7 @@ export default function HomeScreen() {
           </View>
         )}
 
-        <Text style={styles.sectionTitle}>🔥 FEATURED</Text>
+        <Text style={styles.sectionTitle}>🔥 Birdies Deals!</Text>
         <View style={styles.promoStack}>
           {FEATURED_PROMOTIONS.map((promo) => (
             <View key={promo.id} style={styles.promoCardStacked}>
