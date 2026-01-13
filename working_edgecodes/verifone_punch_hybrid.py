@@ -29,10 +29,11 @@ from urllib3.util.retry import Retry
 # Configuration
 # =========================
 
-BACKEND_URL = os.environ.get("BACKEND_URL", "https://birdies-admin-portal-danielelondonob.replit.app")
-PDI_STORE_NUMBER = os.environ.get("PDI_STORE_NUMBER", "99999")
-TCP_PORT = int(os.environ.get("TCP_PORT", "5015"))
-EXPECTED_EPS_IP = os.environ.get("EXPECTED_EPS_IP", "")
+PDI_STORE_NUMBER = "0300"
+TCP_PORT = 5015
+EXPECTED_EPS_IP = ""  # Leave empty to accept from any IP
+
+BACKEND_URL = "https://salmanloyalty.replit.app"
 
 POINTS_PER_DOLLAR = 10000  # 10,000 pts = $1
 REQUEST_TIMEOUT = 8
@@ -328,7 +329,7 @@ def evaluate_promotions(items: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
 def evaluate_punch_cards(customer_id: int, items: List[Dict[str, Any]]) -> Dict[str, Any]:
     try:
         r = SESSION_HTTP.post(
-            f"{BACKEND_URL}/api/punchcards/evaluate",
+            f"{BACKEND_URL}/api/punch-cards/evaluate",
             json={"customerId": customer_id, "lineItems": items, "pdiStoreNumber": PDI_STORE_NUMBER},
             timeout=REQUEST_TIMEOUT,
         )
@@ -341,7 +342,7 @@ def evaluate_punch_cards(customer_id: int, items: List[Dict[str, Any]]) -> Dict[
 def record_punches(customer_id: int, items: List[Dict[str, Any]], txn_id: str) -> Dict[str, Any]:
     try:
         r = SESSION_HTTP.post(
-            f"{BACKEND_URL}/api/punchcards/record-purchase",
+            f"{BACKEND_URL}/api/punch-cards/record-purchase",
             json={
                 "customerId": customer_id,
                 "lineItems": items,
@@ -359,7 +360,7 @@ def record_punches(customer_id: int, items: List[Dict[str, Any]], txn_id: str) -
 def redeem_punch_reward(customer_id: int, punch_card_id: int, txn_id: str) -> Dict[str, Any]:
     try:
         r = SESSION_HTTP.post(
-            f"{BACKEND_URL}/api/punchcards/redeem",
+            f"{BACKEND_URL}/api/punch-cards/redeem",
             json={
                 "customerId": customer_id,
                 "punchCardId": punch_card_id,
