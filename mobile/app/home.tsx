@@ -161,7 +161,7 @@ export default function HomeScreen() {
   };
 
   const totalPoints = customer?.pointsBalance || 0;
-  const cashValue = (totalPoints / 10000).toFixed(2);
+  const cashValue = Math.floor(totalPoints / 10000);
 
   return (
     <SafeAreaView style={styles.container} edges={['top']}>
@@ -342,29 +342,25 @@ export default function HomeScreen() {
           </View>
         )}
 
-        <Text style={styles.sectionTitle}>FEATURED</Text>
-        <ScrollView
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          contentContainerStyle={styles.promoScroll}
-        >
+        <Text style={styles.sectionTitle}>🔥 FEATURED</Text>
+        <View style={styles.promoStack}>
           {FEATURED_PROMOTIONS.map((promo) => (
-            <View key={promo.id} style={styles.promoCard}>
+            <View key={promo.id} style={styles.promoCardStacked}>
               <Image
                 source={{ uri: promo.image }}
-                style={styles.promoImage}
+                style={styles.promoImageStacked}
                 resizeMode="cover"
               />
               <LinearGradient 
                 colors={['transparent', 'rgba(0,0,0,0.85)']} 
-                style={styles.promoOverlay}
+                style={styles.promoOverlayStacked}
               >
-                <Text style={styles.promoTitle}>{promo.title}</Text>
-                <Text style={styles.promoSubtitle}>{promo.subtitle}</Text>
+                <Text style={styles.promoTitleStacked}>{promo.title}</Text>
+                <Text style={styles.promoSubtitleStacked}>{promo.subtitle}</Text>
               </LinearGradient>
             </View>
           ))}
-        </ScrollView>
+        </View>
 
         <View style={styles.bottomSpacer} />
       </ScrollView>
@@ -676,6 +672,42 @@ const styles = StyleSheet.create({
   },
   promoScroll: {
     paddingBottom: 8,
+  },
+  promoStack: {
+    gap: 12,
+  },
+  promoCardStacked: {
+    width: '100%',
+    height: 120,
+    borderRadius: 16,
+    overflow: 'hidden',
+    backgroundColor: '#F1F5F9',
+  },
+  promoImageStacked: {
+    width: '100%',
+    height: '100%',
+    position: 'absolute',
+  },
+  promoOverlayStacked: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    padding: 16,
+    paddingTop: 40,
+    flexDirection: 'row',
+    alignItems: 'flex-end',
+    justifyContent: 'space-between',
+  },
+  promoTitleStacked: {
+    color: '#FFF',
+    fontSize: 28,
+    fontWeight: '900',
+  },
+  promoSubtitleStacked: {
+    color: 'rgba(255,255,255,0.9)',
+    fontSize: 14,
+    fontWeight: '600',
   },
   promoCard: {
     width: 200,
