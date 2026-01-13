@@ -161,7 +161,7 @@ export default function HomeScreen() {
   };
 
   const totalPoints = customer?.pointsBalance || 0;
-  const cashValue = (totalPoints / 100).toFixed(2);
+  const cashValue = (totalPoints / 10000).toFixed(2);
 
   return (
     <SafeAreaView style={styles.container} edges={['top']}>
@@ -271,24 +271,16 @@ export default function HomeScreen() {
         <Text style={styles.greeting}>Good {getGreeting()}, {customer?.firstName || 'Guest'}!</Text>
         <Text style={styles.tagline}>Keep collecting punches for FREE rewards!</Text>
 
-        <View style={styles.pointsSection}>
+        <TouchableOpacity style={styles.pointsSection} onPress={() => router.push('/barcode')}>
           <View style={styles.pointsHeader}>
             <Text style={styles.pointsLabel}>MY LOYALTY CARD</Text>
           </View>
           <View style={styles.pointsBalanceRow}>
             <Text style={styles.pointsValue}>{totalPoints.toLocaleString()}</Text>
             <Text style={styles.pointsUnit}>points</Text>
-            <Text style={styles.cashValue}>(${cashValue} value)</Text>
           </View>
-          <View style={styles.pointsRow}>
-            <View style={styles.pointsInfo}>
-              <Text style={styles.pointsSubtext}>Scan at checkout to earn points & collect punches</Text>
-            </View>
-            <TouchableOpacity style={styles.rewardButton} onPress={() => router.push('/barcode')}>
-              <Text style={styles.rewardButtonText}>VIEW BARCODE</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
+          <Text style={styles.pointsSubtextCentered}>Tap to view your barcode</Text>
+        </TouchableOpacity>
 
         {punchCards.length > 0 && (
           <View style={styles.punchSection}>
@@ -450,14 +442,14 @@ const styles = StyleSheet.create({
   pointsSection: {
     backgroundColor: '#FFF',
     borderRadius: 12,
-    padding: 16,
+    padding: 20,
     borderWidth: 1,
     borderColor: '#E2E8F0',
     marginBottom: 16,
+    alignItems: 'center',
   },
   pointsHeader: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    alignItems: 'center',
     marginBottom: 12,
   },
   pointsLabel: {
@@ -496,7 +488,13 @@ const styles = StyleSheet.create({
   pointsBalanceRow: {
     flexDirection: 'row',
     alignItems: 'baseline',
-    marginBottom: 12,
+    justifyContent: 'center',
+    marginBottom: 8,
+  },
+  pointsSubtextCentered: {
+    fontSize: 14,
+    color: '#64748B',
+    textAlign: 'center',
   },
   pointsValue: {
     fontSize: 32,
