@@ -71,7 +71,7 @@ DEFAULT_IFACE_VER = "1.0"
 # Points redemption config:
 # If your real program is "500 points = $1.00", keep 500.
 # If it is "100 points = $1.00", set to 100.
-POINTS_PER_DOLLAR = 500  # $1.00 off costs 500 points
+POINTS_PER_DOLLAR = 10000  # $1.00 off costs 10,000 points
 REWARD_ID = "DEMO-1OFF"
 RECEIPT_SHORT = "$OFF"
 RECEIPT_LONG = "Loyalty Discount"

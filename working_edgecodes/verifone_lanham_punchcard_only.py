@@ -54,7 +54,7 @@ VENDOR_VER = "1.0"
 REWARD_ID = "DEMO-1OFF"
 RECEIPT_SHORT = "$OFF"
 RECEIPT_LONG = "Loyalty Discount"
-POINTS_PER_DOLLAR = 500  # $1 off costs 500 points
+POINTS_PER_DOLLAR = 10000  # $1 off costs 10,000 points
 
 # Punch reward id prefix
 PUNCH_REWARD_ID = "PUNCH-REWARD"
