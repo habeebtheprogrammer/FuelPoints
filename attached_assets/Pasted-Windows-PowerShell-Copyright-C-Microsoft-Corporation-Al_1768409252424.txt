@@ -1,0 +1,215 @@
+Windows PowerShell
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+Install the latest PowerShell for new features and improvements! https://aka.ms/PSWindows
+
+PS C:\Users\store> cd downloads
+PS C:\Users\store\downloads> python .\hollywood_verifone.py
+[2026-01-14 11:44:25] Starting Birdies Loyalty Edge Agent (Verifone EPS)
+[2026-01-14 11:44:25] Store: 0300 | POS Type: Verifone-EPS | POS ID: 24379
+[2026-01-14 11:44:25] Backend: https://salmanloyalty.replit.app
+[2026-01-14 11:44:25] Listening on 0.0.0.0:9000
+[2026-01-14 11:44:25] ✓ Heartbeat thread started
+[2026-01-14 11:44:25] ✓ Heartbeat sent to backend (Store 0300)
+[2026-01-14 11:44:39] EPS connected from 192.168.87.1:28075
+[2026-01-14 11:44:39] ✓ TCP keep-alive configured for 192.168.87.1:28075
+[2026-01-14 11:44:39] ✓ Heartbeat sent to backend (Store 0300)
+[2026-01-14 11:44:39] ← Received from EPS:
+<?xml version="1.0" ?>
+<ns2:GetLoyaltyOnlineStatusRequest xmlns:ns2="http://www.pcats.org/schema/naxml/loyalty/v01" xmlns:ns4="http://www.pcats.org/schema/core/v01" xmlns:ns3="http://www.naxml.org/POSBO/Vocabulary/2003-10-16">
+        <ns2:RequestHeader>
+                <ns2:POSLoyaltyInterfaceVersion>1.3</ns2:POSLoyaltyInterfaceVersion>
+                <ns3:VendorName>VIPER</ns3:VendorName>
+                <ns3:VendorModelVersion>9.06.02</ns3:VendorModelVersion>
+                <ns2:POSSequenceID>1-101</ns2:POSSequenceID>
+                <ns2:LoyaltySequenceID/>
+                <ns2:StoreLocationID>24322</ns2:StoreLocationID>
+                <ns2:LoyaltyOfflineFlag value="no"/>
+        </ns2:RequestHeader>
+</ns2:GetLoyaltyOnlineStatusRequest>
+
+[2026-01-14 11:44:39] → Sent to EPS:
+<?xml version="1.0" ?>
+<ns3:GetLoyaltyOnlineStatusResponse xmlns:ns2="http://www.naxml.org/POSBO/Vocabulary/2003-10-16" xmlns:ns4="http://www.pcats.org/schema/core/v01" xmlns:ns3="http://www.pcats.org/schema/naxml/loyalty/v01">
+
+
+        <ns3:ResponseHeader overallResult="success">
+                <ns3:POSLoyaltyInterfaceVersion>1.0</ns3:POSLoyaltyInterfaceVersion>
+                <ns2:VendorName>BirdiesLoyalty</ns2:VendorName>
+                <ns2:VendorModelVersion>1.0</ns2:VendorModelVersion>
+                <ns3:POSSequenceID>1-101</ns3:POSSequenceID>
+                <ns3:LoyaltySequenceID>LOY-A45CD0A77103</ns3:LoyaltySequenceID>
+                <ns4:Result>
+                        <Success/>
+                </ns4:Result>
+        </ns3:ResponseHeader>
+
+
+        <ns3:PromptForLoyaltyFlag value="yes"/>
+
+
+</ns3:GetLoyaltyOnlineStatusResponse>
+
+[2026-01-14 11:44:40] ✓ Heartbeat sent to backend (Store 0300)
+[2026-01-14 11:44:41] ✓ Heartbeat sent to backend (Store 0300)
+[2026-01-14 11:44:56] ✓ Heartbeat sent to backend (Store 0300)
+[2026-01-14 11:45:11] ✓ Heartbeat sent to backend (Store 0300)
+[2026-01-14 11:45:27] ✓ Heartbeat sent to backend (Store 0300)
+[2026-01-14 11:45:42] ✓ Heartbeat sent to backend (Store 0300)
+[2026-01-14 11:45:57] ✓ Heartbeat sent to backend (Store 0300)
+[2026-01-14 11:46:00] ← Received from EPS:
+<?xml version="1.0" ?>
+<ns2:CancelTransactionRequest xmlns:ns2="http://www.pcats.org/schema/naxml/loyalty/v01" xmlns:ns4="http://www.pcats.org/schema/core/v01" xmlns:ns3="http://www.naxml.org/POSBO/Vocabulary/2003-10-16">
+        <ns2:RequestHeader>
+                <ns2:POSLoyaltyInterfaceVersion>1.3</ns2:POSLoyaltyInterfaceVersion>
+                <ns3:VendorName>VIPER:topaz</ns3:VendorName>
+                <ns3:VendorModelVersion>9.06.02:Base 055.02.04</ns3:VendorModelVersion>
+                <ns2:POSSequenceID>1011766055548818</ns2:POSSequenceID>
+                <ns2:LoyaltySequenceID> </ns2:LoyaltySequenceID>
+                <ns2:StoreLocationID>24322</ns2:StoreLocationID>
+                <ns2:LoyaltyOfflineFlag value="no"/>
+        </ns2:RequestHeader>
+</ns2:CancelTransactionRequest>
+
+[2026-01-14 11:46:00] Transaction cancelled; clearing session
+[2026-01-14 11:46:00] → Sent to EPS:
+<?xml version="1.0" ?>
+<ns3:CancelTransactionResponse xmlns:ns2="http://www.naxml.org/POSBO/Vocabulary/2003-10-16" xmlns:ns4="http://www.pcats.org/schema/core/v01" xmlns:ns3="http://www.pcats.org/schema/naxml/loyalty/v01">
+
+
+        <ns3:ResponseHeader overallResult="success">
+                <ns3:POSLoyaltyInterfaceVersion>1.0</ns3:POSLoyaltyInterfaceVersion>
+                <ns2:VendorName>BirdiesLoyalty</ns2:VendorName>
+                <ns2:VendorModelVersion>1.0</ns2:VendorModelVersion>
+                <ns3:POSSequenceID>1011766055548818</ns3:POSSequenceID>
+                <ns3:LoyaltySequenceID>LOY-CB2C26C828CA</ns3:LoyaltySequenceID>
+                <ns4:Result>
+                        <Success/>
+                </ns4:Result>
+        </ns3:ResponseHeader>
+
+
+</ns3:CancelTransactionResponse>
+
+[2026-01-14 11:46:13] ✓ Heartbeat sent to backend (Store 0300)
+[2026-01-14 11:46:23] ← Received from EPS:
+<?xml version="1.0" ?>
+<ns2:GetRewardsRequest xmlns:ns2="http://www.pcats.org/schema/naxml/loyalty/v01" xmlns:ns4="http://www.pcats.org/schema/core/v01" xmlns:ns3="http://www.naxml.org/POSBO/Vocabulary/2003-10-16">
+        <ns2:RequestHeader>
+                <ns2:POSLoyaltyInterfaceVersion>1.3</ns2:POSLoyaltyInterfaceVersion>
+                <ns3:VendorName>VIPER:topaz</ns3:VendorName>
+                <ns3:VendorModelVersion>9.06.02:Base 055.02.04</ns3:VendorModelVersion>
+                <ns2:POSSequenceID>1011766055548821</ns2:POSSequenceID>
+                <ns2:StoreLocationID>24322</ns2:StoreLocationID>
+                <ns2:LoyaltyOfflineFlag value="no"/>
+        </ns2:RequestHeader>
+        <ns2:LoyaltyID entryMethod="manual">4433708838</ns2:LoyaltyID>
+        <ns2:TransactionData>
+                <ns2:TransactionHeader>
+                        <ns3:OutsideSalesFlag value="no"/>
+                        <ns3:RegisterID>1</ns3:RegisterID>
+                        <ns3:CashierID>3</ns3:CashierID>
+                        <ns2:TillID>001</ns2:TillID>
+                        <ns2:POSTransactionID>0101127143</ns2:POSTransactionID>
+                        <ns2:BusinessPeriod>
+                                <ns3:BusinessDate>2026-01-14</ns3:BusinessDate>
+                                <ns3:PrimaryReportPeriod interval="day">721</ns3:PrimaryReportPeriod>
+                                <ns3:BeginDate>2026-01-13</ns3:BeginDate>
+                                <ns3:BeginTime>23:55:10-05:00</ns3:BeginTime>
+                                <ns3:EndDate>2100-01-01</ns3:EndDate>
+                                <ns3:EndTime>00:00:00-05:00</ns3:EndTime>
+                        </ns2:BusinessPeriod>
+                        <ns3:EventStartDate>2026-01-14</ns3:EventStartDate>
+                        <ns3:EventStartTime>11:40:01-05:00</ns3:EventStartTime>
+                </ns2:TransactionHeader>
+                <ns2:TransactionDetailGroup>
+                        <ns2:TransactionLine status="normal">
+                                <ns2:LineNumber>1</ns2:LineNumber>
+                                <ns2:ItemLine discountable="yes">
+                                        <ns3:ItemCode>
+                                                <ns3:POSCodeFormat format="plu"/>
+                                                <ns3:POSCode>7046203600</ns3:POSCode>
+                                                <ns3:POSCodeModifier>0</ns3:POSCodeModifier>
+                                        </ns3:ItemCode>
+                                        <ns3:MerchandiseCode>8</ns3:MerchandiseCode>
+                                        <ns3:Description>SOUR PATCH WATERMELON PE</ns3:Description>
+                                        <ns3:ActualSalesPrice>4.49</ns3:ActualSalesPrice>
+                                        <ns3:RegularSellPrice>4.49</ns3:RegularSellPrice>
+                                        <ns3:SellingUnits>1.000</ns3:SellingUnits>
+                                        <ns3:SalesQuantity>1</ns3:SalesQuantity>
+                                        <ns3:SalesAmount>4.49</ns3:SalesAmount>
+                                        <ns2:SalesUOM>EA</ns2:SalesUOM>
+                                        <ns3:PaymentSystemsProductCode>450</ns3:PaymentSystemsProductCode>
+                                </ns2:ItemLine>
+                        </ns2:TransactionLine>
+                        <ns2:TransactionLine status="normal">
+                                <ns2:LineNumber>2</ns2:LineNumber>
+                                <ns2:ItemLine discountable="yes">
+                                        <ns3:ItemCode>
+                                                <ns3:POSCodeFormat format="plu"/>
+                                                <ns3:POSCode>7046203600</ns3:POSCode>
+                                                <ns3:POSCodeModifier>0</ns3:POSCodeModifier>
+                                        </ns3:ItemCode>
+                                        <ns3:MerchandiseCode>8</ns3:MerchandiseCode>
+                                        <ns3:Description>SOUR PATCH WATERMELON PE</ns3:Description>
+                                        <ns3:ActualSalesPrice>4.49</ns3:ActualSalesPrice>
+                                        <ns3:RegularSellPrice>4.49</ns3:RegularSellPrice>
+                                        <ns3:SellingUnits>1.000</ns3:SellingUnits>
+                                        <ns3:SalesQuantity>1</ns3:SalesQuantity>
+                                        <ns3:SalesAmount>4.49</ns3:SalesAmount>
+                                        <ns2:SalesUOM>EA</ns2:SalesUOM>
+                                        <ns3:PaymentSystemsProductCode>450</ns3:PaymentSystemsProductCode>
+                                </ns2:ItemLine>
+                        </ns2:TransactionLine>
+                        <ns2:TransactionLine status="normal">
+                                <ns2:LineNumber>3</ns2:LineNumber>
+                                <ns2:MerchandiseCodeLine discountable="no">
+                                        <ns3:MerchandiseCode>n/a</ns3:MerchandiseCode>
+                                        <ns3:ActualSalesPrice>0.54</ns3:ActualSalesPrice>
+                                        <ns3:SalesQuantity>1</ns3:SalesQuantity>
+                                        <ns3:SalesAmount>0.54</ns3:SalesAmount>
+                                        <ns2:SalesUOM>EA</ns2:SalesUOM>
+                                        <ns3:PaymentSystemsProductCode>950</ns3:PaymentSystemsProductCode>
+                                </ns2:MerchandiseCodeLine>
+                        </ns2:TransactionLine>
+                </ns2:TransactionDetailGroup>
+        </ns2:TransactionData>
+</ns2:GetRewardsRequest>
+
+[2026-01-14 11:46:23] ============================================================
+[2026-01-14 11:46:23] 🛒 TRANSACTION ITEMS (3 items):
+[2026-01-14 11:46:23]   1. Line 1: UPC: 7046203600 | Qty 1.0 | Price $4.49 | Amount $4.49
+[2026-01-14 11:46:23]   2. Line 2: UPC: 7046203600 | Qty 1.0 | Price $4.49 | Amount $4.49
+[2026-01-14 11:46:23]   3. Line 3: UPC: 950 | Qty 1.0 | Price $0.54 | Amount $0.54
+[2026-01-14 11:46:23] ============================================================
+[2026-01-14 11:46:24] 📤 Calling promotion API: https://salmanloyalty.replit.app/api/pos/evaluate-promotions
+[2026-01-14 11:46:24]    Payload: {'pdiStoreNumber': '0300', 'items': [{'upc': '7046203600', 'quantity': 2.0, 'price': 4.49}, {'upc': '950', 'quantity': 1.0, 'price': 0.54}]}
+[2026-01-14 11:46:24] 📥 API Response: Status 200
+[2026-01-14 11:46:24]    Response data: {'promotions': []}
+[2026-01-14 11:46:24] → Sent to EPS:
+<?xml version="1.0" ?>
+<ns3:GetRewardsResponse xmlns:ns2="http://www.naxml.org/POSBO/Vocabulary/2003-10-16" xmlns:ns4="http://www.pcats.org/schema/core/v01" xmlns:ns3="http://www.pcats.org/schema/naxml/loyalty/v01">
+
+
+        <ns3:ResponseHeader overallResult="success">
+                <ns3:POSLoyaltyInterfaceVersion>1.0</ns3:POSLoyaltyInterfaceVersion>
+                <ns2:VendorName>BirdiesLoyalty</ns2:VendorName>
+                <ns2:VendorModelVersion>1.0</ns2:VendorModelVersion>
+                <ns3:POSSequenceID>1011766055548821</ns3:POSSequenceID>
+                <ns3:LoyaltySequenceID>LOY-DBAF351657F2</ns3:LoyaltySequenceID>
+                <ns4:Result>
+                        <Success/>
+                </ns4:Result>
+        </ns3:ResponseHeader>
+
+
+        <ns3:LoyaltyIDValidFlag value="yes">******8838</ns3:LoyaltyIDValidFlag>
+
+
+        <ns3:RewardActions/>
+
+
+</ns3:GetRewardsResponse>
+
+[2026-01-14 11:46:28] ✓ Heartbeat sent to backend (Store 0300)
+[2026-01-14 11:46:44] ✓ Heartbeat sent to backend (Store 0300)
