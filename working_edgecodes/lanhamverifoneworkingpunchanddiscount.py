@@ -80,8 +80,8 @@ RECEIPT_LONG = "Loyalty Discount"
 PUNCH_REWARD_ID = "PUNCH-REWARD"
 
 # Stacking policy switches
-PROMO_FIRST_DISABLE_LOYALTY_DISCOUNTS = True   # requested behavior
-DISABLE_EARNING_WHEN_PROMO = True            # if True: promos also block points earned + punches recorded
+PROMO_FIRST_DISABLE_LOYALTY_DISCOUNTS = False   # requested behavior
+DISABLE_EARNING_WHEN_PROMO = False            # if True: promos also block points earned + punches recorded
 
 SESSION_HTTP = requests.Session()
 REQUEST_TIMEOUT = (3, 5)  # (connect, read) seconds
