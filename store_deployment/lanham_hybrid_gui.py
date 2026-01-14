@@ -190,8 +190,8 @@ class EdgeAgentWorker(QThread):
         self.RECEIPT_SHORT = "$OFF"
         self.RECEIPT_LONG = "Loyalty Discount"
         
-        self.PROMO_FIRST_DISABLE_LOYALTY_DISCOUNTS = True
-        self.DISABLE_EARNING_WHEN_PROMO = True
+        self.PROMO_FIRST_DISABLE_LOYALTY_DISCOUNTS = False   # requested behavior
+        self.DISABLE_EARNING_WHEN_PROMO = False
         
         self.SESSIONS: Dict[str, TxnSession] = {}
         self.SESSION_TTL_SECONDS = 10 * 60
