@@ -14,6 +14,9 @@ Features:
   - PUNCH CARDS (free item)
   - POINTS REDEMPTION (10,000 pts = $1.00)
 
+Stacking Policy:
+  - All rewards can stack (promos + punch + points)
+
 Passport POSLOYALTY protocol:
   - TCP framing: 12-byte POSLOYALTY signature + header + CRC checksums
   - XML payloads with ResponseHeader
@@ -170,7 +173,7 @@ class EdgeAgentWorker(QThread):
         
         self.HOST = config.get("host_ip", "0.0.0.0")
         self.PORT = config.get("port", 9000)
-        self.PDI_STORE_NUMBER = config.get("pdi_store_number", "1340")
+        self.PDI_STORE_NUMBER = config.get("store_number", "1340")
         self.POS_ID = self.PDI_STORE_NUMBER
         self.BACKEND_URL = "https://salmanloyalty.replit.app"
         self.EXPECTED_POS_IP = None
@@ -279,7 +282,7 @@ class EdgeAgentWorker(QThread):
                 "pdiStoreNumber": self.PDI_STORE_NUMBER,
                 "posId": self.POS_ID,
                 "posType": "Passport",
-                "posIpAddress": pos_ip or self.EXPECTED_POS_IP or "",
+                "posIpAddress": pos_ip or "",
                 "edgeIpAddress": self.HOST,
                 "edgeVersion": "birdies-passport-hybrid-gui-1.0",
             }
@@ -829,14 +832,7 @@ class EdgeAgentWorker(QThread):
     def handle_client(self, conn: socket.socket, addr):
         peer = f"{addr[0]}:{addr[1]}"
         self.log(f"POS connected: {peer}")
-        self.signals.status_changed.emit("connected", peer)
-        if self.EXPECTED_POS_IP and addr[0] != self.EXPECTED_POS_IP:
-            self.log(f"⚠ Rejecting unexpected IP: {addr[0]}")
-            try:
-                conn.close()
-            except:
-                pass
-            return
+        self.signals.status_changed.emit("Connected", "green")
         self.send_heartbeat(addr[0])
         try:
             conn.settimeout(180)
@@ -885,15 +881,15 @@ class EdgeAgentWorker(QThread):
             except:
                 pass
             self.log(f"Connection closed: {peer}")
-            self.signals.status_changed.emit("listening", "")
+            self.signals.status_changed.emit("Listening...", "green")
     
     def run(self):
         self.running = True
-        self.log("Starting Birdies Passport Hybrid Edge Agent")
+        self.log("Starting Birdies Passport Hybrid Agent")
         self.log(f"Store: {self.PDI_STORE_NUMBER} | Port: {self.PORT}")
         self.log(f"Backend: {self.BACKEND_URL}")
         threading.Thread(target=self.heartbeat_loop, daemon=True).start()
-        self.signals.status_changed.emit("listening", "")
+        self.signals.status_changed.emit("Listening...", "green")
         self.server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         try:
@@ -909,7 +905,7 @@ class EdgeAgentWorker(QThread):
                     continue
         except Exception as e:
             self.log(f"Server error: {e}")
-            self.signals.status_changed.emit("error", str(e))
+            self.signals.status_changed.emit(f"Error: {e}", "red")
         finally:
             if self.server_socket:
                 try:
@@ -934,52 +930,98 @@ class SetupWizard(QWizard):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.setWindowTitle("Birdies Passport Hybrid - Setup")
-        self.setFixedSize(500, 400)
+        self.setFixedSize(550, 450)
         self.addPage(self.create_welcome_page())
-        self.addPage(self.create_config_page())
+        self.addPage(self.create_network_page())
+        self.addPage(self.create_store_page())
         self.addPage(self.create_finish_page())
     
     def create_welcome_page(self):
         page = QWizardPage()
-        page.setTitle("Welcome to Birdies Passport Hybrid")
+        page.setTitle("Welcome")
+        page.setSubTitle("Birdies Passport Hybrid Agent Setup")
         layout = QVBoxLayout()
-        label = QLabel("This wizard will help you configure the Passport edge agent for your store.\n\nFeatures:\n  - Promotions (2-for-$X, Buy X Get Y Free, Amount Off)\n  - Punch Cards (Buy N, Get 1 Free)\n  - Points Redemption (10,000 pts = $1.00)\n\nClick Next to continue.")
-        label.setWordWrap(True)
-        layout.addWidget(label)
+        info = QLabel(
+            "This wizard will configure the edge agent for your Gilbarco Passport POS.\n\n"
+            "Features:\n"
+            "  - PROMOTIONS (2-for-$X, Buy X Get Y, Amount Off)\n"
+            "  - PUNCH CARDS (Free Item)\n"
+            "  - POINTS REDEMPTION (10,000 pts = $1.00)\n\n"
+            "Stacking Policy:\n"
+            "  - All rewards can stack together"
+        )
+        info.setWordWrap(True)
+        layout.addWidget(info)
+        layout.addStretch()
         page.setLayout(layout)
         return page
     
-    def create_config_page(self):
+    def create_network_page(self):
         page = QWizardPage()
-        page.setTitle("Configuration")
+        page.setTitle("Network Configuration")
+        page.setSubTitle("Enter the IP address and port for the edge agent")
         layout = QFormLayout()
-        self.store_number_edit = QLineEdit("")
-        self.store_number_edit.setPlaceholderText("e.g. 1340")
-        layout.addRow("PDI Store Number:", self.store_number_edit)
-        self.port_spin = QSpinBox()
-        self.port_spin.setRange(1, 65535)
-        self.port_spin.setValue(9000)
-        layout.addRow("TCP Port:", self.port_spin)
-        self.host_ip_edit = QLineEdit("0.0.0.0")
-        layout.addRow("Host IP:", self.host_ip_edit)
+        self.host_input = QLineEdit()
+        self.host_input.setPlaceholderText("e.g., 10.5.50.175")
+        layout.addRow("Host IP Address:", self.host_input)
+        self.port_input = QSpinBox()
+        self.port_input.setRange(1, 65535)
+        self.port_input.setValue(9000)
+        layout.addRow("Port:", self.port_input)
+        note = QLabel(
+            "\nThe Host IP should be this computer's IP on the Passport network.\n"
+            "Port 9000 is the standard loyalty port for Passport."
+        )
+        note.setWordWrap(True)
+        note.setStyleSheet("color: #666;")
+        layout.addRow(note)
         page.setLayout(layout)
+        page.registerField("host_ip*", self.host_input)
+        return page
+    
+    def create_store_page(self):
+        page = QWizardPage()
+        page.setTitle("Store Configuration")
+        page.setSubTitle("Enter your store's PDI number")
+        layout = QFormLayout()
+        self.store_input = QLineEdit()
+        self.store_input.setPlaceholderText("e.g., 1340")
+        layout.addRow("PDI Store Number:", self.store_input)
+        note = QLabel(
+            "\nThis is your Birdies/PDI store number."
+        )
+        note.setWordWrap(True)
+        note.setStyleSheet("color: #666;")
+        layout.addRow(note)
+        page.setLayout(layout)
+        page.registerField("store_number*", self.store_input)
         return page
     
     def create_finish_page(self):
         page = QWizardPage()
-        page.setTitle("Setup Complete")
+        page.setTitle("Ready to Start")
+        page.setSubTitle("Configuration complete")
         layout = QVBoxLayout()
-        label = QLabel("Configuration saved!\n\nThe edge agent will start automatically.\nYou can access it from the system tray.")
-        label.setWordWrap(True)
-        layout.addWidget(label)
+        info = QLabel(
+            "The edge agent is ready to start.\n\n"
+            "Click 'Finish' to save the configuration and launch the agent.\n\n"
+            "The agent will:\n"
+            "  - Listen for Passport POSLOYALTY connections\n"
+            "  - Process promotions, punch cards, and points\n"
+            "  - Send heartbeats to the backend\n"
+            "  - Log all raw XML to a text file"
+        )
+        info.setWordWrap(True)
+        layout.addWidget(info)
+        layout.addStretch()
         page.setLayout(layout)
         return page
     
     def get_config(self):
         return {
-            "host_ip": self.host_ip_edit.text().strip() or "0.0.0.0",
-            "port": self.port_spin.value(),
-            "pdi_store_number": self.store_number_edit.text().strip() or "1340",
+            "host_ip": self.host_input.text().strip(),
+            "port": self.port_input.value(),
+            "store_number": self.store_input.text().strip(),
         }
 
 # =============================================================================
@@ -990,136 +1032,187 @@ class MainWindow(QMainWindow):
     def __init__(self, config):
         super().__init__()
         self.config = config
-        self.setWindowTitle(f"Birdies Passport Hybrid - Store {config.get('pdi_store_number', '1340')}")
-        self.setMinimumSize(700, 500)
-        self.signals = EdgeAgentSignals()
         self.worker = None
+        self.signals = EdgeAgentSignals()
+        
+        self.setWindowTitle("Birdies Passport Hybrid Agent")
+        self.setMinimumSize(750, 550)
+        
         self.setup_ui()
         self.setup_tray()
-        self.signals.log_message.connect(self.append_log)
-        self.signals.status_changed.connect(self.update_status)
-        self.signals.heartbeat_sent.connect(self.update_heartbeat)
-        self.start_worker()
+        self.connect_signals()
+        
+        QTimer.singleShot(500, self.start_agent)
     
     def setup_ui(self):
         central = QWidget()
         self.setCentralWidget(central)
         layout = QVBoxLayout(central)
-        status_group = QGroupBox("Status")
-        status_layout = QHBoxLayout()
+        layout.setContentsMargins(20, 20, 20, 20)
+        layout.setSpacing(15)
+        
+        header = QHBoxLayout()
+        title = QLabel("Birdies Passport Hybrid Agent")
+        title.setStyleSheet("font-size: 24px; font-weight: bold; color: #1E3A8A;")
+        header.addWidget(title)
+        header.addStretch()
+        
         self.status_indicator = QLabel()
         self.status_indicator.setFixedSize(20, 20)
-        self.update_indicator("gray")
-        status_layout.addWidget(self.status_indicator)
+        self.status_indicator.setStyleSheet("background-color: gray; border-radius: 10px;")
+        header.addWidget(self.status_indicator)
+        
         self.status_label = QLabel("Starting...")
-        status_layout.addWidget(self.status_label)
-        status_layout.addStretch()
-        self.heartbeat_label = QLabel("Last heartbeat: --")
-        status_layout.addWidget(self.heartbeat_label)
-        status_group.setLayout(status_layout)
-        layout.addWidget(status_group)
-        config_group = QGroupBox("Configuration")
-        config_layout = QFormLayout()
-        config_layout.addRow("Store:", QLabel(self.config.get("pdi_store_number", "1340")))
-        config_layout.addRow("Port:", QLabel(str(self.config.get("port", 9000))))
-        config_layout.addRow("Host:", QLabel(self.config.get("host_ip", "0.0.0.0")))
-        config_group.setLayout(config_layout)
-        layout.addWidget(config_group)
+        self.status_label.setStyleSheet("font-size: 14px;")
+        header.addWidget(self.status_label)
+        
+        layout.addLayout(header)
+        
+        info_group = QGroupBox("Configuration")
+        info_layout = QFormLayout()
+        info_layout.addRow("Host IP:", QLabel(self.config.get("host_ip", "")))
+        info_layout.addRow("Port:", QLabel(str(self.config.get("port", 9000))))
+        info_layout.addRow("Store:", QLabel(self.config.get("store_number", "")))
+        info_layout.addRow("Protocol:", QLabel("Passport POSLOYALTY"))
+        info_layout.addRow("Mode:", QLabel("Promos + Punch + Points (10K=$1)"))
+        info_group.setLayout(info_layout)
+        layout.addWidget(info_group)
+        
         log_group = QGroupBox("Activity Log")
         log_layout = QVBoxLayout()
         self.log_text = QTextEdit()
         self.log_text.setReadOnly(True)
-        self.log_text.setFont(QFont("Consolas", 9))
+        self.log_text.setStyleSheet("font-family: Consolas, monospace; font-size: 12px;")
         log_layout.addWidget(self.log_text)
         log_group.setLayout(log_layout)
-        layout.addWidget(log_group)
-        btn_layout = QHBoxLayout()
-        self.restart_btn = QPushButton("Restart")
-        self.restart_btn.clicked.connect(self.restart_worker)
-        btn_layout.addWidget(self.restart_btn)
-        self.clear_log_btn = QPushButton("Clear Log")
-        self.clear_log_btn.clicked.connect(lambda: self.log_text.clear())
-        btn_layout.addWidget(self.clear_log_btn)
-        btn_layout.addStretch()
-        self.hide_btn = QPushButton("Hide to Tray")
-        self.hide_btn.clicked.connect(self.hide)
-        btn_layout.addWidget(self.hide_btn)
-        layout.addLayout(btn_layout)
+        layout.addWidget(log_group, 1)
+        
+        buttons = QHBoxLayout()
+        
+        self.start_btn = QPushButton("Start")
+        self.start_btn.clicked.connect(self.start_agent)
+        self.start_btn.setEnabled(False)
+        buttons.addWidget(self.start_btn)
+        
+        self.stop_btn = QPushButton("Stop")
+        self.stop_btn.clicked.connect(self.stop_agent)
+        buttons.addWidget(self.stop_btn)
+        
+        self.open_log_btn = QPushButton("Open Raw Log")
+        self.open_log_btn.clicked.connect(self.open_raw_log)
+        buttons.addWidget(self.open_log_btn)
+        
+        buttons.addStretch()
+        
+        self.heartbeat_label = QLabel("Last heartbeat: --")
+        self.heartbeat_label.setStyleSheet("color: #666;")
+        buttons.addWidget(self.heartbeat_label)
+        
+        layout.addLayout(buttons)
     
     def setup_tray(self):
         self.tray_icon = QSystemTrayIcon(self)
+        
         pixmap = QPixmap(32, 32)
         pixmap.fill(QColor("#1E3A8A"))
         painter = QPainter(pixmap)
         painter.setPen(Qt.white)
         painter.setFont(QFont("Arial", 16, QFont.Bold))
-        painter.drawText(pixmap.rect(), Qt.AlignCenter, "B")
+        painter.drawText(pixmap.rect(), Qt.AlignCenter, "P")
         painter.end()
+        
         self.tray_icon.setIcon(QIcon(pixmap))
+        self.tray_icon.setToolTip("Birdies Passport Hybrid Agent")
+        
         tray_menu = QMenu()
         show_action = QAction("Show", self)
-        show_action.triggered.connect(self.show)
+        show_action.triggered.connect(self.show_window)
         tray_menu.addAction(show_action)
+        
         quit_action = QAction("Quit", self)
         quit_action.triggered.connect(self.quit_app)
         tray_menu.addAction(quit_action)
+        
         self.tray_icon.setContextMenu(tray_menu)
         self.tray_icon.activated.connect(self.tray_activated)
         self.tray_icon.show()
     
-    def tray_activated(self, reason):
-        if reason == QSystemTrayIcon.DoubleClick:
-            self.show()
-            self.activateWindow()
-    
-    def update_indicator(self, color):
-        pixmap = QPixmap(20, 20)
-        pixmap.fill(Qt.transparent)
-        painter = QPainter(pixmap)
-        painter.setBrush(QColor(color))
-        painter.setPen(Qt.NoPen)
-        painter.drawEllipse(2, 2, 16, 16)
-        painter.end()
-        self.status_indicator.setPixmap(pixmap)
+    def connect_signals(self):
+        self.signals.log_message.connect(self.append_log)
+        self.signals.status_changed.connect(self.update_status)
+        self.signals.heartbeat_sent.connect(self.update_heartbeat)
     
     def append_log(self, msg):
         self.log_text.append(msg)
+        self.log_text.verticalScrollBar().setValue(
+            self.log_text.verticalScrollBar().maximum()
+        )
     
-    def update_status(self, status, detail):
-        if status == "listening":
-            self.status_label.setText("Listening for POS connections...")
-            self.update_indicator("green")
-        elif status == "connected":
-            self.status_label.setText(f"Connected: {detail}")
-            self.update_indicator("blue")
-        elif status == "error":
-            self.status_label.setText(f"Error: {detail}")
-            self.update_indicator("red")
-        else:
-            self.status_label.setText(status)
-            self.update_indicator("gray")
+    def update_status(self, text, color):
+        self.status_label.setText(text)
+        color_map = {
+            "green": "#22c55e",
+            "yellow": "#eab308",
+            "red": "#ef4444",
+            "gray": "#6b7280",
+        }
+        self.status_indicator.setStyleSheet(
+            f"background-color: {color_map.get(color, '#6b7280')}; border-radius: 10px;"
+        )
     
     def update_heartbeat(self, time_str):
         self.heartbeat_label.setText(f"Last heartbeat: {time_str}")
     
-    def start_worker(self):
+    def start_agent(self):
+        if self.worker and self.worker.isRunning():
+            return
         self.worker = EdgeAgentWorker(self.config, self.signals)
         self.worker.start()
+        self.start_btn.setEnabled(False)
+        self.stop_btn.setEnabled(True)
     
-    def restart_worker(self):
+    def stop_agent(self):
         if self.worker:
             self.worker.stop()
-        self.start_worker()
+            self.worker.wait(2000)
+            self.worker = None
+        self.start_btn.setEnabled(True)
+        self.stop_btn.setEnabled(False)
+        self.update_status("Stopped", "gray")
     
-    def quit_app(self):
-        if self.worker:
-            self.worker.stop()
-        self.tray_icon.hide()
-        QApplication.quit()
+    def open_raw_log(self):
+        log_path = get_log_path()
+        if os.path.exists(log_path):
+            if sys.platform == "win32":
+                os.startfile(log_path)
+            elif sys.platform == "darwin":
+                os.system(f'open "{log_path}"')
+            else:
+                os.system(f'xdg-open "{log_path}"')
+        else:
+            QMessageBox.information(self, "Log File", "No log file exists yet.")
+    
+    def show_window(self):
+        self.showNormal()
+        self.activateWindow()
+    
+    def tray_activated(self, reason):
+        if reason == QSystemTrayIcon.DoubleClick:
+            self.show_window()
     
     def closeEvent(self, event):
         event.ignore()
         self.hide()
+        self.tray_icon.showMessage(
+            "Birdies Passport Hybrid",
+            "Agent is running in the background.",
+            QSystemTrayIcon.Information,
+            2000
+        )
+    
+    def quit_app(self):
+        self.stop_agent()
+        QApplication.quit()
 
 # =============================================================================
 # MAIN
@@ -1127,8 +1220,11 @@ class MainWindow(QMainWindow):
 
 def main():
     app = QApplication(sys.argv)
+    app.setApplicationName("Birdies Passport Hybrid Agent")
     app.setQuitOnLastWindowClosed(False)
+    
     config = load_config()
+    
     if not config:
         wizard = SetupWizard()
         if wizard.exec() == QWizard.Accepted:
@@ -1136,8 +1232,10 @@ def main():
             save_config(config)
         else:
             sys.exit(0)
+    
     window = MainWindow(config)
     window.show()
+    
     sys.exit(app.exec())
 
 if __name__ == "__main__":
