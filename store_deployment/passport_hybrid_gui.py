@@ -171,9 +171,9 @@ class EdgeAgentWorker(QThread):
         self.HOST = config.get("host_ip", "0.0.0.0")
         self.PORT = config.get("port", 9000)
         self.PDI_STORE_NUMBER = config.get("pdi_store_number", "1340")
-        self.POS_ID = config.get("pos_id", "24379")
-        self.BACKEND_URL = config.get("backend_url", "https://salmanloyalty.replit.app")
-        self.EXPECTED_POS_IP = config.get("expected_pos_ip") or None
+        self.POS_ID = self.PDI_STORE_NUMBER
+        self.BACKEND_URL = "https://salmanloyalty.replit.app"
+        self.EXPECTED_POS_IP = None
         
         self.VENDOR_NAME = "DemoLoyalty"
         self.VENDOR_VER = "1.0"
@@ -953,21 +953,15 @@ class SetupWizard(QWizard):
         page = QWizardPage()
         page.setTitle("Configuration")
         layout = QFormLayout()
-        self.host_ip_edit = QLineEdit("0.0.0.0")
-        layout.addRow("Host IP:", self.host_ip_edit)
+        self.store_number_edit = QLineEdit("")
+        self.store_number_edit.setPlaceholderText("e.g. 1340")
+        layout.addRow("PDI Store Number:", self.store_number_edit)
         self.port_spin = QSpinBox()
         self.port_spin.setRange(1, 65535)
         self.port_spin.setValue(9000)
         layout.addRow("TCP Port:", self.port_spin)
-        self.store_number_edit = QLineEdit("1340")
-        layout.addRow("PDI Store Number:", self.store_number_edit)
-        self.pos_id_edit = QLineEdit("24379")
-        layout.addRow("POS ID:", self.pos_id_edit)
-        self.backend_url_edit = QLineEdit("https://salmanloyalty.replit.app")
-        layout.addRow("Backend URL:", self.backend_url_edit)
-        self.expected_pos_ip_edit = QLineEdit("")
-        self.expected_pos_ip_edit.setPlaceholderText("Leave blank to allow all")
-        layout.addRow("Expected POS IP:", self.expected_pos_ip_edit)
+        self.host_ip_edit = QLineEdit("0.0.0.0")
+        layout.addRow("Host IP:", self.host_ip_edit)
         page.setLayout(layout)
         return page
     
@@ -986,9 +980,6 @@ class SetupWizard(QWizard):
             "host_ip": self.host_ip_edit.text().strip() or "0.0.0.0",
             "port": self.port_spin.value(),
             "pdi_store_number": self.store_number_edit.text().strip() or "1340",
-            "pos_id": self.pos_id_edit.text().strip() or "24379",
-            "backend_url": self.backend_url_edit.text().strip() or "https://salmanloyalty.replit.app",
-            "expected_pos_ip": self.expected_pos_ip_edit.text().strip() or None,
         }
 
 # =============================================================================
@@ -1031,7 +1022,7 @@ class MainWindow(QMainWindow):
         config_layout = QFormLayout()
         config_layout.addRow("Store:", QLabel(self.config.get("pdi_store_number", "1340")))
         config_layout.addRow("Port:", QLabel(str(self.config.get("port", 9000))))
-        config_layout.addRow("Backend:", QLabel(self.config.get("backend_url", "")))
+        config_layout.addRow("Host:", QLabel(self.config.get("host_ip", "0.0.0.0")))
         config_group.setLayout(config_layout)
         layout.addWidget(config_group)
         log_group = QGroupBox("Activity Log")
