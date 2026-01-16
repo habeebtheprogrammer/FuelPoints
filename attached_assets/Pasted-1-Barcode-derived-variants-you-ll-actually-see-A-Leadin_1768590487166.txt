@@ -1,0 +1,98 @@
+1) Barcode-derived variants you’ll actually see
+A) Leading-zero / length variants (most common)
+
+Same product can appear as:
+
+12-digit UPC-A (common on packaging)
+
+11-digit (UPC with the leading 0 dropped)
+
+sometimes 10-digit-ish (if the POS trims more aggressively, less common)
+
+Example pattern:
+
+Package: 07046203600 (11 digits) or 007046203600 (12 digits)
+
+POS might send: 7046203600 (leading zeros removed)
+
+This is the #1 reason one store “matches” and another doesn’t.
+
+B) EAN-13 vs UPC-A (common with imports)
+
+Package might be EAN-13: 4006381333931
+
+Some systems convert or store UPC-A, others keep EAN-13.
+
+C) GTIN-14 (less common at c-stores, but real)
+
+Some scanners/POS will send 14-digit GTIN (often with packaging indicator).
+
+Example: 10012345678905
+
+D) UPC-E (rare, but exists)
+
+Some small items have UPC-E printed; scanners may expand to UPC-A internally or keep UPC-E form.
+
+If you never see UPC-E in logs, don’t overbuild for it.
+
+2) POS-internal codes you’ll actually see
+
+These are not derivable from the package barcode by “variations”.
+
+A) PLU / POS pricebook code (very common)
+
+The POS sends a PLU-like number (often 4–7 digits, sometimes 10 digits).
+
+In your EPS logs, you literally have:
+
+<POSCodeFormat format="plu"/>
+
+<POSCode>7046203600</POSCode>
+So VIPER is telling you: “this is PLU format” even though it looks like a UPC-ish number.
+
+B) “POSCode” that equals the scanned barcode at one site, but not another
+
+Store A config: POSCode == barcode digits
+
+Store B config: POSCode == internal item ID
+Same product, different code strategy per store.
+
+C) Department/fee/other non-item codes
+
+Especially on Verifone EPS/VIPER you’ll see lines like:
+
+PSC (PaymentSystemsProductCode) e.g. 950 (you saw this)
+These are not products and should be excluded from promo matching.
+
+What differs between Verifone vs Passport specifically
+Verifone EPS/VIPER
+
+Usually sends <ItemCode><POSCode> + sometimes POSCodeFormat.
+
+You also get PSC lines (like 950) that are not promo-eligible.
+
+You’re already seeing “plu” formatting in the XML → strong hint codes aren’t guaranteed to be UPCs.
+
+Gilbarco Passport (POSLOYALTY)
+
+Sends <ItemCode><POSCode> too, but whether that’s barcode or internal ID depends heavily on Passport setup.
+
+Masked loyalty IDs are common (you fixed this with LoyaltySequenceID sessions).
+
+Promo/loyalty reward IDs appear in different places depending on config (you handled this by “find LoyaltyRewardID anywhere”).
+
+Practical takeaway for your backend item groups
+
+You should assume any item may be identified by:
+
+Barcode forms (UPC-A 12, EAN-13, GTIN-14, leading-zero variants)
+
+Store/POSCode/PLU (not derivable from barcode)
+
+So the right approach is:
+
+Generate barcode variations automatically AND
+
+Allow storing POSCode/PLU identifiers per store when needed
+
+If you paste 2–3 examples of the same product from both stores (what POSCode comes through in each), I can tell you whether it’s just a leading-zero normalization case or a true “different POS item ID” case.
