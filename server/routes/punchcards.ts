@@ -9,6 +9,7 @@ import {
   users
 } from '../../shared/schema';
 import { eq, and, desc, gte, lte, sql, inArray } from 'drizzle-orm';
+import { upcMatchesAny } from '../utils';
 
 const router = Router();
 
@@ -198,7 +199,7 @@ router.post('/record-purchase', async (req: Request, res: Response) => {
       }
 
       for (const punchCard of punchCardItemGroups) {
-        if (punchCard.upcs.includes(upc)) {
+        if (upcMatchesAny(upc, punchCard.upcs)) {
           let [customerPunch] = await db
             .select()
             .from(customerPunches)
@@ -639,7 +640,7 @@ router.post('/evaluate', async (req: Request, res: Response) => {
           const amount = parseFloat(item.amount || 0);
           
           // Only count paid items (amount > 0), skip free/reward items
-          if (upcs.includes(upc) && amount > 0) {
+          if (upcMatchesAny(upc, upcs) && amount > 0) {
             punchesFromBasket += quantity;
           }
         }

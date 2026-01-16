@@ -4,7 +4,7 @@ import bcrypt from "bcrypt";
 import path from "path";
 import { fileURLToPath } from "url";
 import { storage } from "./storage";
-import { generateAccountNumber, generateLoyaltyId } from "./utils";
+import { generateAccountNumber, generateLoyaltyId, upcMatchesAny } from "./utils";
 import salesRoutes from "./routes/sales.js";
 import loyaltyRoutes from "./routes/loyalty.js";
 import punchCardRoutes from "./routes/punchcards.js";
@@ -1432,7 +1432,7 @@ app.post("/api/pos/evaluate-promotions", async (req, res) => {
         const upcs = await storage.getItemGroupUpcs(promo.itemGroupId);
         const upcList = upcs.map((u) => u.upc);
 
-        if (upcList.includes(upc)) {
+        if (upcMatchesAny(upc, upcList)) {
           const promoQty = promo.quantity;
           const freeQty = promo.freeQuantity || 0;
           const discountType = promo.discountType || "multipack";
