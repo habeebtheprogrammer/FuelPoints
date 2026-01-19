@@ -9,6 +9,7 @@ import Pricebook from './components/Pricebook';
 import PosStatus from './components/PosStatus';
 import SalesAnalytics from './components/SalesAnalytics';
 import BirdiesLoyalty from './components/BirdiesLoyalty';
+import JobApplications from './components/JobApplications';
 import AdminLogin from './components/AdminLogin';
 
 function App() {
@@ -81,6 +82,7 @@ function App() {
     { id: 'pricebook', label: 'Pricebook', icon: '📖', component: Pricebook },
     { id: 'sales', label: 'Sales Analytics', icon: '📊', component: SalesAnalytics },
     { id: 'loyalty', label: 'Birdies Loyalty', icon: '🎯', component: BirdiesLoyalty },
+    { id: 'job-applications', label: 'Job Applications', icon: '📋', component: JobApplications },
   ];
 
   const ActiveComponent = tabs.find(tab => tab.id === activeTab)?.component;
