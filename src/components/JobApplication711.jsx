@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 const STORE_ADDRESS = "3599 East-West Hwy, Hyattsville, MD 20782";
+const STORE_OPENING_DATE = "February 10, 2026";
 
 export default function JobApplication711() {
   const [formData, setFormData] = useState({
@@ -8,6 +9,7 @@ export default function JobApplication711() {
     lastName: '',
     phone: '',
     email: '',
+    dateOfBirth: '',
     isOver18: null,
     position: '',
     employmentType: '',
@@ -75,6 +77,10 @@ export default function JobApplication711() {
       setError('Please fill in all required fields.');
       return;
     }
+    if (!formData.dateOfBirth) {
+      setError('Please enter your date of birth.');
+      return;
+    }
     if (formData.isOver18 === null) {
       setError('Please confirm if you are 18 or older.');
       return;
@@ -112,7 +118,7 @@ export default function JobApplication711() {
         body: JSON.stringify({
           ...formData,
           availableShifts: formData.availableShifts.join(', '),
-          storeLocation: STORE_ADDRESS
+          storeLocation: STORE_ADDRESS + ' (Opening: ' + STORE_OPENING_DATE + ')'
         })
       });
 
@@ -168,6 +174,9 @@ export default function JobApplication711() {
         <h1 style={styles.title}>Join Our Team!</h1>
         <p style={styles.subtitle}>Now Hiring at Our New Location</p>
         <p style={styles.address}>{STORE_ADDRESS}</p>
+        <div style={{ textAlign: 'center', marginBottom: '24px' }}>
+          <span style={styles.openingDate}>Store Opening: {STORE_OPENING_DATE}</span>
+        </div>
 
         <form onSubmit={handleSubmit} style={styles.form}>
           <div style={styles.section}>
@@ -221,6 +230,17 @@ export default function JobApplication711() {
                   placeholder="email@example.com"
                 />
               </div>
+            </div>
+
+            <div style={styles.field}>
+              <label style={styles.label}>Date of Birth *</label>
+              <input
+                type="date"
+                name="dateOfBirth"
+                value={formData.dateOfBirth}
+                onChange={handleChange}
+                style={styles.input}
+              />
             </div>
 
             <div style={styles.field}>
@@ -527,7 +547,21 @@ const styles = {
     textAlign: 'center',
     color: '#666',
     fontSize: '14px',
+    margin: '0 0 8px 0',
+  },
+  openingDate: {
+    textAlign: 'center',
+    color: '#006241',
+    fontSize: '16px',
+    fontWeight: '600',
     margin: '0 0 24px 0',
+    padding: '8px 16px',
+    background: '#e8f5e9',
+    borderRadius: '20px',
+    display: 'inline-block',
+    width: 'fit-content',
+    marginLeft: 'auto',
+    marginRight: 'auto',
   },
   form: {
     display: 'flex',

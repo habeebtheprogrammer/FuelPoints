@@ -421,6 +421,7 @@ export const jobApplications = pgTable('job_applications', {
   lastName: varchar('last_name', { length: 100 }).notNull(),
   phone: varchar('phone', { length: 20 }).notNull(),
   email: varchar('email', { length: 255 }).notNull(),
+  dateOfBirth: varchar('date_of_birth', { length: 20 }),
   isOver18: boolean('is_over_18').notNull(),
   position: varchar('position', { length: 100 }).notNull(),
   employmentType: varchar('employment_type', { length: 50 }).notNull(),
