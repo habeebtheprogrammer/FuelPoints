@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 const STORE_ADDRESS = "3599 East-West Hwy, Hyattsville, MD 20782";
-const STORE_OPENING_DATE = "February 10, 2026";
+const STORE_OPENING_DATE = "March 4, 2026";
 
 export default function JobApplication711() {
   const [formData, setFormData] = useState({

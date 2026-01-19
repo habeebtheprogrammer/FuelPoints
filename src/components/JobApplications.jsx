@@ -44,6 +44,219 @@ export default function JobApplications() {
     }
   };
 
+  const printApplication = (app) => {
+    const printWindow = window.open('', '_blank');
+    const appliedDate = new Date(app.createdAt).toLocaleDateString('en-US', {
+      month: 'long',
+      day: 'numeric',
+      year: 'numeric'
+    });
+    
+    printWindow.document.write(`
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <title>Job Application - ${app.firstName} ${app.lastName}</title>
+        <style>
+          * { margin: 0; padding: 0; box-sizing: border-box; }
+          body { 
+            font-family: Arial, sans-serif; 
+            padding: 40px; 
+            max-width: 800px; 
+            margin: 0 auto;
+            color: #333;
+          }
+          .header { 
+            text-align: center; 
+            margin-bottom: 30px; 
+            border-bottom: 2px solid #1E3A8A;
+            padding-bottom: 20px;
+          }
+          .header h1 { 
+            color: #1E3A8A; 
+            font-size: 24px;
+            margin-bottom: 5px;
+          }
+          .header p { color: #666; font-size: 14px; }
+          .applicant-name { 
+            font-size: 28px; 
+            font-weight: bold; 
+            margin-bottom: 5px;
+          }
+          .position { 
+            font-size: 18px; 
+            color: #666; 
+            margin-bottom: 20px;
+          }
+          .section { 
+            margin-bottom: 25px; 
+          }
+          .section-title { 
+            font-size: 14px; 
+            font-weight: bold; 
+            color: #1E3A8A;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+          }
+          .field { 
+            display: flex; 
+            margin-bottom: 8px;
+          }
+          .field-label { 
+            font-weight: 600; 
+            width: 180px;
+            flex-shrink: 0;
+          }
+          .field-value { 
+            flex: 1;
+          }
+          .text-block {
+            background: #f9f9f9;
+            padding: 12px;
+            border-radius: 4px;
+            margin-top: 8px;
+            white-space: pre-wrap;
+          }
+          .footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            font-size: 12px;
+            color: #666;
+            text-align: center;
+          }
+          .status-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+          }
+          .status-new { background: #dbeafe; color: #1e40af; }
+          .status-reviewed { background: #fef3c7; color: #92400e; }
+          .status-interviewed { background: #e0e7ff; color: #3730a3; }
+          .status-hired { background: #d1fae5; color: #065f46; }
+          .status-rejected { background: #fee2e2; color: #991b1b; }
+          @media print {
+            body { padding: 20px; }
+            .no-print { display: none; }
+          }
+        </style>
+      </head>
+      <body>
+        <div class="header">
+          <h1>7-ELEVEN JOB APPLICATION</h1>
+          <p>3599 East-West Hwy, Hyattsville, MD 20782</p>
+        </div>
+        
+        <div class="applicant-name">${app.firstName} ${app.lastName}</div>
+        <div class="position">${app.position}</div>
+        <div style="margin-bottom: 20px;">
+          <span class="status-badge status-${app.status}">${app.status}</span>
+          <span style="margin-left: 15px; color: #666; font-size: 14px;">Applied: ${appliedDate}</span>
+        </div>
+
+        <div class="section">
+          <div class="section-title">Contact Information</div>
+          <div class="field">
+            <span class="field-label">Phone:</span>
+            <span class="field-value">${app.phone}</span>
+          </div>
+          <div class="field">
+            <span class="field-label">Email:</span>
+            <span class="field-value">${app.email}</span>
+          </div>
+          ${app.dateOfBirth ? `
+          <div class="field">
+            <span class="field-label">Date of Birth:</span>
+            <span class="field-value">${app.dateOfBirth}</span>
+          </div>
+          ` : ''}
+          <div class="field">
+            <span class="field-label">18 or Older:</span>
+            <span class="field-value">${app.isOver18 ? 'Yes' : 'No'}</span>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-title">Availability</div>
+          <div class="field">
+            <span class="field-label">Employment Type:</span>
+            <span class="field-value">${app.employmentType}</span>
+          </div>
+          <div class="field">
+            <span class="field-label">Available Shifts:</span>
+            <span class="field-value">${app.availableShifts}</span>
+          </div>
+          <div class="field">
+            <span class="field-label">Start Date:</span>
+            <span class="field-value">${app.startDate}</span>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-title">Requirements</div>
+          <div class="field">
+            <span class="field-label">Authorized to Work:</span>
+            <span class="field-value">${app.authorizedToWork ? 'Yes' : 'No'}</span>
+          </div>
+          <div class="field">
+            <span class="field-label">Can Lift/Stand:</span>
+            <span class="field-value">${app.canLiftAndStand ? 'Yes' : 'No'}</span>
+          </div>
+          <div class="field">
+            <span class="field-label">Retail Experience:</span>
+            <span class="field-value">${app.retailExperience ? 'Yes' : 'No'}</span>
+          </div>
+        </div>
+
+        ${app.previousExperience ? `
+        <div class="section">
+          <div class="section-title">Previous Experience</div>
+          <div class="text-block">${app.previousExperience}</div>
+        </div>
+        ` : ''}
+
+        ${app.whyWorkHere ? `
+        <div class="section">
+          <div class="section-title">Why Work Here</div>
+          <div class="text-block">${app.whyWorkHere}</div>
+        </div>
+        ` : ''}
+
+        <div class="section">
+          <div class="section-title">Additional Information</div>
+          <div class="field">
+            <span class="field-label">Referral Source:</span>
+            <span class="field-value">${app.referralSource || 'Not specified'}</span>
+          </div>
+        </div>
+
+        <div class="footer">
+          <p>Application ID: ${app.id} | Printed on ${new Date().toLocaleDateString()}</p>
+        </div>
+
+        <div class="no-print" style="margin-top: 30px; text-align: center;">
+          <button onclick="window.print()" style="
+            background: #1E3A8A;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+          ">Print / Save as PDF</button>
+        </div>
+      </body>
+      </html>
+    `);
+    printWindow.document.close();
+  };
+
   const filteredApps = applications.filter(app => {
     if (filter === 'all') return true;
     return app.status === filter;
@@ -130,6 +343,7 @@ export default function JobApplications() {
                     <th>Position</th>
                     <th>Status</th>
                     <th>Date</th>
+                    <th></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -149,6 +363,24 @@ export default function JobApplications() {
                       <td>{getStatusBadge(app.status)}</td>
                       <td style={{ fontSize: '12px', color: '#666' }}>
                         {new Date(app.createdAt).toLocaleDateString()}
+                      </td>
+                      <td>
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            printApplication(app);
+                          }}
+                          title="Open PDF / Print"
+                          style={{
+                            background: 'none',
+                            border: 'none',
+                            cursor: 'pointer',
+                            fontSize: '16px',
+                            padding: '4px 8px'
+                          }}
+                        >
+                          📄
+                        </button>
                       </td>
                     </tr>
                   ))}
@@ -172,7 +404,16 @@ export default function JobApplications() {
                     </h3>
                     <p style={{ margin: 0, color: '#666' }}>{selectedApp.position}</p>
                   </div>
-                  {getStatusBadge(selectedApp.status)}
+                  <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+                    <button
+                      onClick={() => printApplication(selectedApp)}
+                      className="btn btn-secondary"
+                      style={{ padding: '6px 12px', fontSize: '13px' }}
+                    >
+                      📄 Print / PDF
+                    </button>
+                    {getStatusBadge(selectedApp.status)}
+                  </div>
                 </div>
 
                 <div style={{ marginBottom: '20px' }}>
