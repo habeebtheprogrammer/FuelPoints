@@ -1,5 +1,5 @@
 export default function JobApplicationQR() {
-  const applicationUrl = "https://salmanloyalty.replit.app/apply/7-11";
+  const applicationUrl = "https://birdiesloyalty.com/apply/7-11";
   const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=${encodeURIComponent(applicationUrl)}`;
 
   const handlePrint = () => {
