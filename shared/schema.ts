@@ -414,3 +414,28 @@ export type CustomerPunch = typeof customerPunches.$inferSelect;
 export type InsertCustomerPunch = typeof customerPunches.$inferInsert;
 export type PunchCardHistory = typeof punchCardHistory.$inferSelect;
 export type InsertPunchCardHistory = typeof punchCardHistory.$inferInsert;
+
+export const jobApplications = pgTable('job_applications', {
+  id: serial('id').primaryKey(),
+  firstName: varchar('first_name', { length: 100 }).notNull(),
+  lastName: varchar('last_name', { length: 100 }).notNull(),
+  phone: varchar('phone', { length: 20 }).notNull(),
+  email: varchar('email', { length: 255 }).notNull(),
+  isOver18: boolean('is_over_18').notNull(),
+  position: varchar('position', { length: 100 }).notNull(),
+  employmentType: varchar('employment_type', { length: 50 }).notNull(),
+  availableShifts: text('available_shifts').notNull(),
+  startDate: varchar('start_date', { length: 50 }).notNull(),
+  previousExperience: text('previous_experience'),
+  retailExperience: boolean('retail_experience').default(false),
+  authorizedToWork: boolean('authorized_to_work').notNull(),
+  canLiftAndStand: boolean('can_lift_and_stand').notNull(),
+  whyWorkHere: text('why_work_here'),
+  referralSource: varchar('referral_source', { length: 100 }),
+  storeLocation: varchar('store_location', { length: 255 }),
+  status: varchar('status', { length: 50 }).default('new').notNull(),
+  createdAt: timestamp('created_at').defaultNow().notNull(),
+});
+
+export type JobApplication = typeof jobApplications.$inferSelect;
+export type InsertJobApplication = typeof jobApplications.$inferInsert;

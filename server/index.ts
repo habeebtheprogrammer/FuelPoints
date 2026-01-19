@@ -11,8 +11,8 @@ import punchCardRoutes from "./routes/punchcards.js";
 import { db } from "./db.js";
 import { sendWelcomeEmail, sendPasswordResetEmail } from "./email.js";
 import crypto from "crypto";
-import { loyaltyTransactions, loyaltyFailedLookups, passwordResetTokens, adminUsers, promotions, punchCardPromotions, itemGroups, itemGroupUpcs, pricebook } from "../shared/schema.js";
-import { sql, eq, and, gt } from "drizzle-orm";
+import { loyaltyTransactions, loyaltyFailedLookups, passwordResetTokens, adminUsers, promotions, punchCardPromotions, itemGroups, itemGroupUpcs, pricebook, jobApplications } from "../shared/schema.js";
+import { sql, eq, and, gt, desc } from "drizzle-orm";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -1730,6 +1730,99 @@ app.get("/api/transactions/customer/:customerId", async (req, res) => {
   } catch (error) {
     console.log("Get customer transactions error:", error);
     res.status(500).json({ error: "Failed to get transactions" });
+  }
+});
+
+// Job Applications API
+app.post("/api/job-applications", async (req, res) => {
+  try {
+    const {
+      firstName,
+      lastName,
+      phone,
+      email,
+      isOver18,
+      position,
+      employmentType,
+      availableShifts,
+      startDate,
+      previousExperience,
+      retailExperience,
+      authorizedToWork,
+      canLiftAndStand,
+      whyWorkHere,
+      referralSource,
+      storeLocation,
+    } = req.body;
+
+    if (!firstName || !lastName || !phone || !email) {
+      return res.status(400).json({ error: "Missing required fields" });
+    }
+
+    const [application] = await db
+      .insert(jobApplications)
+      .values({
+        firstName,
+        lastName,
+        phone,
+        email,
+        isOver18: Boolean(isOver18),
+        position,
+        employmentType,
+        availableShifts,
+        startDate,
+        previousExperience: previousExperience || null,
+        retailExperience: Boolean(retailExperience),
+        authorizedToWork: Boolean(authorizedToWork),
+        canLiftAndStand: Boolean(canLiftAndStand),
+        whyWorkHere: whyWorkHere || null,
+        referralSource: referralSource || null,
+        storeLocation: storeLocation || null,
+        status: "new",
+      })
+      .returning();
+
+    console.log(`New job application from ${firstName} ${lastName}`);
+    res.json({ success: true, id: application.id });
+  } catch (error) {
+    console.log("Job application error:", error);
+    res.status(500).json({ error: "Failed to submit application" });
+  }
+});
+
+app.get("/api/job-applications", async (req, res) => {
+  try {
+    const applications = await db
+      .select()
+      .from(jobApplications)
+      .orderBy(desc(jobApplications.createdAt));
+
+    res.json(applications);
+  } catch (error) {
+    console.log("Get job applications error:", error);
+    res.status(500).json({ error: "Failed to get applications" });
+  }
+});
+
+app.patch("/api/job-applications/:id/status", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { status } = req.body;
+
+    const [updated] = await db
+      .update(jobApplications)
+      .set({ status })
+      .where(eq(jobApplications.id, parseInt(id)))
+      .returning();
+
+    if (!updated) {
+      return res.status(404).json({ error: "Application not found" });
+    }
+
+    res.json(updated);
+  } catch (error) {
+    console.log("Update job application error:", error);
+    res.status(500).json({ error: "Failed to update application" });
   }
 });
 
