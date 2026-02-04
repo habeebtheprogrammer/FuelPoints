@@ -1,6 +1,6 @@
 export default function AppStoreQR() {
   const iosUrl = "https://apps.apple.com/us/app/birdies-rewards/id6757185748";
-  const androidUrl = "https://play.google.com/store/apps/details?id=com.birdiesstore&pcampaignid=web_share";
+  const androidUrl = "https://play.google.com/store/apps/details?id=com.birdies.rewards&hl=en_US";
   
   const iosQR = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(iosUrl)}`;
   const androidQR = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(androidUrl)}`;
