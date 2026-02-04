@@ -73,11 +73,12 @@ export default function AppStoreQR() {
             padding: '20px',
             textAlign: 'center'
           }}>
-            <div style={{
-              fontSize: '40px',
-              marginBottom: '10px'
-            }}>🍎</div>
-            <h3 style={{ margin: '0 0 15px 0', color: '#333' }}>iPhone / iPad</h3>
+            <img 
+              src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
+              alt="Download on the App Store"
+              style={{ height: '40px', marginBottom: '15px' }}
+            />
+            <h3 style={{ margin: '0 0 15px 0', color: '#333' }}>iPhone</h3>
             <img 
               src={iosQR} 
               alt="App Store QR Code"
@@ -112,10 +113,11 @@ export default function AppStoreQR() {
             padding: '20px',
             textAlign: 'center'
           }}>
-            <div style={{
-              fontSize: '40px',
-              marginBottom: '10px'
-            }}>🤖</div>
+            <img 
+              src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png"
+              alt="Get it on Google Play"
+              style={{ height: '60px', marginBottom: '5px', marginTop: '-10px' }}
+            />
             <h3 style={{ margin: '0 0 15px 0', color: '#333' }}>Android</h3>
             <img 
               src={androidQR} 
@@ -132,7 +134,7 @@ export default function AppStoreQR() {
               download="birdies-app-android-qr.png"
               className="no-print"
               style={{
-                background: '#3DDC84',
+                background: '#01875f',
                 color: 'white',
                 padding: '8px 16px',
                 borderRadius: '6px',
