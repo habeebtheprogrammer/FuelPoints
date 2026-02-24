@@ -7,6 +7,7 @@ import ResetPassword from './components/ResetPassword';
 import JobApplication711 from './components/JobApplication711';
 import JobApplicationQR from './components/JobApplicationQR';
 import AppStoreQR from './components/AppStoreQR';
+import DeleteAccount from './components/DeleteAccount';
 import './styles.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -18,6 +19,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/apply/7-11" element={<JobApplication711 />} />
         <Route path="/qr/7-11" element={<JobApplicationQR />} />
         <Route path="/qr/app" element={<AppStoreQR />} />
+        <Route path="/delete-account" element={<DeleteAccount />} />
         <Route path="/*" element={<App />} />
       </Routes>
     </BrowserRouter>

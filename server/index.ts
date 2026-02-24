@@ -11,7 +11,7 @@ import punchCardRoutes from "./routes/punchcards.js";
 import { db } from "./db.js";
 import { sendWelcomeEmail, sendPasswordResetEmail } from "./email.js";
 import crypto from "crypto";
-import { loyaltyTransactions, loyaltyFailedLookups, passwordResetTokens, adminUsers, promotions, punchCardPromotions, itemGroups, itemGroupUpcs, pricebook, jobApplications } from "../shared/schema.js";
+import { loyaltyTransactions, loyaltyFailedLookups, passwordResetTokens, adminUsers, promotions, punchCardPromotions, itemGroups, itemGroupUpcs, pricebook, jobApplications, users, rewards, transactions, customerPunches, punchCardHistory } from "../shared/schema.js";
 import { sql, eq, and, gt, desc } from "drizzle-orm";
 
 const __filename = fileURLToPath(import.meta.url);
@@ -441,6 +441,93 @@ app.post("/api/reset-password", async (req, res) => {
   } catch (error) {
     console.log("Reset password error:", error);
     res.status(500).json({ error: "Failed to reset password. Please try again." });
+  }
+});
+
+app.post("/api/public/verify-delete-account", async (req, res) => {
+  try {
+    const { phone, pin, dateOfBirth } = req.body;
+
+    if (!phone || !pin || !dateOfBirth) {
+      return res.status(400).json({ error: "Phone, PIN, and date of birth are required." });
+    }
+
+    const phoneDigits = phone.replace(/\D/g, "");
+    if (phoneDigits.length !== 10) {
+      return res.status(400).json({ error: "Invalid phone number." });
+    }
+
+    const normalizedPhone = `${phoneDigits.slice(0, 3)}-${phoneDigits.slice(3, 6)}-${phoneDigits.slice(6)}`;
+    const user = await storage.getUserByPhone(normalizedPhone);
+
+    if (!user) {
+      return res.status(404).json({ error: "Account not found." });
+    }
+
+    if (user.pin) {
+      if (user.pin !== pin) {
+        return res.status(401).json({ error: "Invalid PIN." });
+      }
+    } else if (user.password) {
+      return res.status(400).json({ error: "This account uses a password. Please contact support for account deletion." });
+    }
+
+    const storedDOB = (user.dateOfBirth || "").trim();
+    const providedDOB = (dateOfBirth || "").trim();
+    if (storedDOB !== providedDOB) {
+      return res.status(401).json({ error: "Date of birth does not match our records." });
+    }
+
+    res.json({ success: true, customerName: `${user.firstName} ${user.lastName}` });
+  } catch (error) {
+    console.log("Verify delete account error:", error);
+    res.status(500).json({ error: "Something went wrong. Please try again." });
+  }
+});
+
+app.post("/api/public/delete-account", async (req, res) => {
+  try {
+    const { phone, pin, dateOfBirth } = req.body;
+
+    if (!phone || !pin || !dateOfBirth) {
+      return res.status(400).json({ error: "Phone, PIN, and date of birth are required." });
+    }
+
+    const phoneDigits = phone.replace(/\D/g, "");
+    const normalizedPhone = `${phoneDigits.slice(0, 3)}-${phoneDigits.slice(3, 6)}-${phoneDigits.slice(6)}`;
+    const user = await storage.getUserByPhone(normalizedPhone);
+
+    if (!user) {
+      return res.status(404).json({ error: "Account not found." });
+    }
+
+    if (user.pin) {
+      if (user.pin !== pin) {
+        return res.status(401).json({ error: "Invalid PIN." });
+      }
+    } else if (user.password) {
+      return res.status(400).json({ error: "This account uses a password. Please contact support for account deletion." });
+    }
+
+    const storedDOB = (user.dateOfBirth || "").trim();
+    const providedDOB = (dateOfBirth || "").trim();
+    if (storedDOB !== providedDOB) {
+      return res.status(401).json({ error: "Date of birth does not match our records." });
+    }
+
+    await db.delete(punchCardHistory).where(eq(punchCardHistory.customerId, user.id));
+    await db.delete(customerPunches).where(eq(customerPunches.customerId, user.id));
+    await db.delete(passwordResetTokens).where(eq(passwordResetTokens.userId, user.id));
+    await db.update(loyaltyTransactions).set({ customerId: null }).where(eq(loyaltyTransactions.customerId, user.id));
+    await db.delete(transactions).where(eq(transactions.userId, user.id));
+    await db.delete(rewards).where(eq(rewards.userId, user.id));
+    await db.delete(users).where(eq(users.id, user.id));
+
+    console.log(`Account deleted: ${user.firstName} ${user.lastName} (ID: ${user.id}, Phone: ${normalizedPhone})`);
+    res.json({ success: true, message: "Account deleted successfully." });
+  } catch (error) {
+    console.log("Delete account error:", error);
+    res.status(500).json({ error: "Failed to delete account. Please try again." });
   }
 });
 
