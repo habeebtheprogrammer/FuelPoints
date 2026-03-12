@@ -1,6 +1,26 @@
+import { useEffect, useState } from 'react';
+
 export default function AppDownload() {
   const iosUrl = "https://apps.apple.com/us/app/birdies-rewards/id6757185748";
   const androidUrl = "https://play.google.com/store/apps/details?id=com.birdies.rewards&hl=en_US";
+  const [status, setStatus] = useState("Checking your device and sending you to the right app store...");
+
+  useEffect(() => {
+    const ua = navigator.userAgent || navigator.vendor || window.opera || '';
+    const isAndroid = /Android/i.test(ua);
+    const isIOS = /iPhone|iPad|iPod/i.test(ua) ||
+                  (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+
+    if (isIOS) {
+      setStatus('iPhone detected. Opening the App Store...');
+      setTimeout(() => { window.location.replace(iosUrl); }, 300);
+    } else if (isAndroid) {
+      setStatus('Android detected. Opening Google Play...');
+      setTimeout(() => { window.location.replace(androidUrl); }, 300);
+    } else {
+      setStatus('Choose your app store below to download Birdies Rewards.');
+    }
+  }, []);
 
   return (
     <div style={{
@@ -31,8 +51,8 @@ export default function AppDownload() {
         <h1 style={{ margin: '0 0 12px', fontSize: '28px', color: '#1E3A8A', fontWeight: 'bold' }}>
           Birdies Rewards
         </h1>
-        <p id="status" style={{ lineHeight: 1.55, color: '#444', fontSize: '16px' }}>
-          Checking your device and sending you to the right app store...
+        <p style={{ lineHeight: 1.55, color: '#444', fontSize: '16px' }}>
+          {status}
         </p>
         <div style={{ display: 'grid', gap: '12px', marginTop: '24px' }}>
           <a
@@ -86,29 +106,6 @@ export default function AppDownload() {
           If nothing happens automatically, tap the button for your device.
         </p>
       </div>
-
-      <script dangerouslySetInnerHTML={{ __html: `
-        (function () {
-          var iosUrl = 'https://apps.apple.com/us/app/birdies-rewards/id6757185748';
-          var androidUrl = 'https://play.google.com/store/apps/details?id=com.birdies.rewards&hl=en_US';
-          var ua = navigator.userAgent || navigator.vendor || window.opera || '';
-          var isAndroid = /Android/i.test(ua);
-          var isIOS = /iPhone|iPad|iPod/i.test(ua) ||
-                      (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-          var status = document.getElementById('status');
-          if (isIOS) {
-            if (status) status.textContent = 'iPhone detected. Opening the App Store...';
-            setTimeout(function() { window.location.replace(iosUrl); }, 400);
-            return;
-          }
-          if (isAndroid) {
-            if (status) status.textContent = 'Android detected. Opening Google Play...';
-            setTimeout(function() { window.location.replace(androidUrl); }, 400);
-            return;
-          }
-          if (status) status.textContent = 'Choose your app store below to download Birdies Rewards.';
-        })();
-      `}} />
     </div>
   );
 }
