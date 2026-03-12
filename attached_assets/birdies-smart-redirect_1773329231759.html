@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Birdies Rewards Download</title>
+  <meta name="robots" content="noindex,nofollow" />
+  <style>
+    :root { color-scheme: light dark; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f7f7f7;
+      color: #111;
+      display: grid;
+      min-height: 100vh;
+      place-items: center;
+      padding: 24px;
+    }
+    .card {
+      width: 100%;
+      max-width: 560px;
+      background: white;
+      border-radius: 18px;
+      box-shadow: 0 12px 30px rgba(0,0,0,.08);
+      padding: 32px;
+      text-align: center;
+    }
+    h1 { margin: 0 0 12px; font-size: 2rem; }
+    p { line-height: 1.55; color: #444; }
+    .buttons {
+      display: grid;
+      gap: 12px;
+      margin-top: 24px;
+    }
+    a.btn {
+      display: block;
+      padding: 16px 18px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 700;
+      background: #111;
+      color: white;
+    }
+    a.btn.secondary {
+      background: #e9e9e9;
+      color: #111;
+    }
+    .small { font-size: .95rem; color: #666; margin-top: 16px; }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <h1>Birdies Rewards</h1>
+    <p id="status">Checking your device and sending you to the right app store…</p>
+    <div class="buttons">
+      <a class="btn" id="appleBtn" href="https://apps.apple.com/us/app/birdies-rewards/id6757185748">Open in App Store</a>
+      <a class="btn secondary" id="androidBtn" href="https://play.google.com/store/apps/details?id=com.birdies.rewards&pcampaignid">Open in Google Play</a>
+    </div>
+    <p class="small">If nothing happens automatically, tap the button for your device.</p>
+  </main>
+
+  <script>
+    (function () {
+      const iosUrl = 'https://apps.apple.com/us/app/birdies-rewards/id6757185748';
+      const androidUrl = 'https://play.google.com/store/apps/details?id=com.birdies.rewards&pcampaignid';
+      const ua = navigator.userAgent || navigator.vendor || window.opera || '';
+      const isAndroid = /Android/i.test(ua);
+      const isIOS = /iPhone|iPad|iPod/i.test(ua) ||
+                    (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+
+      const status = document.getElementById('status');
+
+      if (isIOS) {
+        status.textContent = 'iPhone or iPad detected. Opening the App Store…';
+        setTimeout(() => window.location.replace(iosUrl), 300);
+        return;
+      }
+
+      if (isAndroid) {
+        status.textContent = 'Android device detected. Opening Google Play…';
+        setTimeout(() => window.location.replace(androidUrl), 300);
+        return;
+      }
+
+      status.textContent = 'We could not detect a phone, so choose your app store below.';
+    })();
+  </script>
+</body>
+</html>

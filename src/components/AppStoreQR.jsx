@@ -1,9 +1,6 @@
 export default function AppStoreQR() {
-  const iosUrl = "https://apps.apple.com/us/app/birdies-rewards/id6757185748";
-  const androidUrl = "https://play.google.com/store/apps/details?id=com.birdies.rewards&hl=en_US";
-  
-  const iosQR = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(iosUrl)}`;
-  const androidQR = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(androidUrl)}`;
+  const downloadUrl = window.location.origin + "/download";
+  const qrCode = `https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=${encodeURIComponent(downloadUrl)}`;
 
   const handlePrint = () => {
     window.print();
@@ -34,7 +31,8 @@ export default function AppStoreQR() {
         borderRadius: '16px',
         padding: '40px',
         textAlign: 'center',
-        maxWidth: '800px',
+        maxWidth: '500px',
+        width: '100%',
         boxShadow: '0 20px 60px rgba(0,0,0,0.3)'
       }}>
         <img 
@@ -56,122 +54,81 @@ export default function AppStoreQR() {
         <p style={{
           color: '#666',
           fontSize: '16px',
-          margin: '0 0 30px 0'
+          margin: '0 0 25px 0'
         }}>
           Earn points, get rewards, and save on every visit!
         </p>
 
         <div style={{
-          display: 'flex',
-          gap: '40px',
-          justifyContent: 'center',
-          flexWrap: 'wrap'
+          background: '#f8f9fa',
+          borderRadius: '12px',
+          padding: '25px',
+          display: 'inline-block',
         }}>
-          <div style={{
-            background: '#f8f9fa',
-            borderRadius: '12px',
-            padding: '20px',
-            textAlign: 'center'
-          }}>
-            <img 
-              src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
-              alt="Download on the App Store"
-              style={{ height: '40px', marginBottom: '15px' }}
-            />
-            <h3 style={{ margin: '0 0 15px 0', color: '#333' }}>iPhone</h3>
-            <img 
-              src={iosQR} 
-              alt="App Store QR Code"
-              style={{
-                width: '200px',
-                height: '200px',
-                display: 'block',
-                margin: '0 auto 15px'
-              }}
-            />
-            <a
-              href={iosQR}
-              download="birdies-app-ios-qr.png"
-              className="no-print"
-              style={{
-                background: '#000',
-                color: 'white',
-                padding: '8px 16px',
-                borderRadius: '6px',
-                textDecoration: 'none',
-                fontSize: '13px',
-                display: 'inline-block'
-              }}
-            >
-              Download QR
-            </a>
-          </div>
+          <img 
+            src={qrCode} 
+            alt="Download Birdies Rewards QR Code"
+            style={{
+              width: '250px',
+              height: '250px',
+              display: 'block',
+              margin: '0 auto'
+            }}
+          />
+        </div>
 
-          <div style={{
-            background: '#f8f9fa',
-            borderRadius: '12px',
-            padding: '20px',
-            textAlign: 'center'
-          }}>
-            <img 
-              src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png"
-              alt="Get it on Google Play"
-              style={{ height: '60px', marginBottom: '5px', marginTop: '-10px' }}
-            />
-            <h3 style={{ margin: '0 0 15px 0', color: '#333' }}>Android</h3>
-            <img 
-              src={androidQR} 
-              alt="Google Play QR Code"
-              style={{
-                width: '200px',
-                height: '200px',
-                display: 'block',
-                margin: '0 auto 15px'
-              }}
-            />
-            <a
-              href={androidQR}
-              download="birdies-app-android-qr.png"
-              className="no-print"
-              style={{
-                background: '#01875f',
-                color: 'white',
-                padding: '8px 16px',
-                borderRadius: '6px',
-                textDecoration: 'none',
-                fontSize: '13px',
-                display: 'inline-block'
-              }}
-            >
-              Download QR
-            </a>
-          </div>
+        <div style={{ marginTop: '20px', display: 'flex', justifyContent: 'center', gap: '15px', alignItems: 'center' }}>
+          <img 
+            src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
+            alt="Download on the App Store"
+            style={{ height: '40px' }}
+          />
+          <img 
+            src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png"
+            alt="Get it on Google Play"
+            style={{ height: '60px' }}
+          />
         </div>
 
         <div style={{
-          marginTop: '30px',
+          marginTop: '20px',
           padding: '15px',
           background: '#1E3A8A',
           borderRadius: '8px',
           color: 'white'
         }}>
           <div style={{ fontSize: '14px', opacity: 0.9, marginBottom: '4px' }}>
-            Scan with your phone camera to download
+            Scan with your phone camera
           </div>
           <div style={{ fontSize: '18px', fontWeight: 'bold' }}>
-            Birdies Rewards
+            Works for iPhone & Android
           </div>
         </div>
 
-        <div className="no-print" style={{ marginTop: '25px' }}>
+        <div className="no-print" style={{ marginTop: '20px', display: 'flex', gap: '12px', justifyContent: 'center' }}>
+          <a
+            href={qrCode}
+            download="birdies-app-qr.png"
+            style={{
+              background: '#1E3A8A',
+              color: 'white',
+              padding: '10px 20px',
+              borderRadius: '8px',
+              textDecoration: 'none',
+              fontSize: '14px',
+              fontWeight: '600',
+            }}
+          >
+            Download QR
+          </a>
           <button
             onClick={handlePrint}
             style={{
               background: '#1E3A8A',
               color: 'white',
               border: 'none',
-              padding: '12px 30px',
-              fontSize: '16px',
+              padding: '10px 20px',
+              fontSize: '14px',
               borderRadius: '8px',
               cursor: 'pointer',
               fontWeight: '600'
