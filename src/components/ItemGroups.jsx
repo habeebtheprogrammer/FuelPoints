@@ -14,6 +14,9 @@ function ItemGroups() {
   const [upcSearch, setUpcSearch] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const [searchTimeout, setSearchTimeout] = useState(null);
+  const [bulkFile, setBulkFile] = useState(null);
+  const [bulkUploading, setBulkUploading] = useState(false);
+  const [bulkResult, setBulkResult] = useState(null);
 
   useEffect(() => {
     loadItemGroups();
@@ -200,7 +203,39 @@ function ItemGroups() {
     setShowUpcModal(false);
     setUpcSearch('');
     setSearchResults([]);
+    setBulkFile(null);
+    setBulkResult(null);
     loadItemGroups();
+  };
+
+  const handleBulkUpload = async () => {
+    if (!bulkFile) return;
+    setBulkUploading(true);
+    setBulkResult(null);
+    try {
+      const formData = new FormData();
+      formData.append('file', bulkFile);
+      const response = await fetch(`/api/admin/item-groups/${currentGroupId}/upcs/bulk`, {
+        method: 'POST',
+        body: formData,
+      });
+      const result = await response.json();
+      if (response.ok) {
+        setBulkResult(result);
+        setBulkFile(null);
+        const res2 = await fetch(`/api/admin/item-groups/${currentGroupId}/upcs`);
+        const items = await res2.json();
+        setSelectedItems(items);
+        setSelectedUpcs(new Set(items.map(item => item.upc)));
+        loadItemGroups();
+      } else {
+        setBulkResult({ error: result.error || 'Upload failed' });
+      }
+    } catch (err) {
+      setBulkResult({ error: 'Upload failed' });
+    } finally {
+      setBulkUploading(false);
+    }
   };
 
   if (loading) {
@@ -300,7 +335,41 @@ function ItemGroups() {
         onClose={closeUpcModal}
         title={`Manage Items - ${currentGroupName}`}
       >
-        <div className="form-group">
+        <div className="form-group" style={{ background: 'var(--card-bg, #f8fafc)', border: '1px dashed var(--border)', borderRadius: '8px', padding: '1rem' }}>
+          <label style={{ fontWeight: 600 }}>Bulk Upload UPCs</label>
+          <p style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', margin: '0.25rem 0 0.75rem' }}>
+            Upload a CSV or Excel file with one UPC per row (no headers needed). Duplicates are skipped automatically.
+          </p>
+          <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center', flexWrap: 'wrap' }}>
+            <input
+              type="file"
+              accept=".csv,.xlsx,.xls,.txt"
+              onChange={(e) => { setBulkFile(e.target.files[0]); setBulkResult(null); }}
+              style={{ flex: 1, fontSize: '0.875rem' }}
+            />
+            <button
+              type="button"
+              className="btn btn-primary"
+              onClick={handleBulkUpload}
+              disabled={!bulkFile || bulkUploading}
+              style={{ padding: '0.5rem 1rem', whiteSpace: 'nowrap' }}
+            >
+              {bulkUploading ? 'Uploading...' : 'Upload'}
+            </button>
+          </div>
+          {bulkResult && !bulkResult.error && (
+            <div style={{ marginTop: '0.75rem', padding: '0.5rem 0.75rem', background: '#dcfce7', borderRadius: '6px', fontSize: '0.875rem', color: '#166534' }}>
+              ✓ Done — <strong>{bulkResult.added} added</strong>, {bulkResult.skipped} skipped (already existed) out of {bulkResult.total} total
+            </div>
+          )}
+          {bulkResult?.error && (
+            <div style={{ marginTop: '0.75rem', padding: '0.5rem 0.75rem', background: '#fee2e2', borderRadius: '6px', fontSize: '0.875rem', color: '#991b1b' }}>
+              ✗ {bulkResult.error}
+            </div>
+          )}
+        </div>
+
+        <div className="form-group" style={{ marginTop: '1rem' }}>
           <label>Add UPC</label>
           <div style={{ position: 'relative' }}>
             <div style={{ display: 'flex', gap: '0.5rem' }}>

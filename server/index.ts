@@ -3,6 +3,8 @@ import cors from "cors";
 import bcrypt from "bcrypt";
 import path from "path";
 import { fileURLToPath } from "url";
+import multer from "multer";
+import * as XLSX from "xlsx";
 import { storage } from "./storage";
 import { generateAccountNumber, generateLoyaltyId, upcMatchesAny } from "./utils";
 import salesRoutes from "./routes/sales.js";
@@ -23,6 +25,8 @@ const PORT = Number(process.env.PORT) || (isProduction ? 5000 : 3001);
 
 app.use(cors());
 app.use(express.json({ limit: "50mb" }));
+
+const upload = multer({ storage: multer.memoryStorage(), limits: { fileSize: 10 * 1024 * 1024 } });
 
 app.use("/api/sales", salesRoutes);
 app.use("/api/loyalty", loyaltyRoutes);
@@ -965,6 +969,51 @@ app.post("/api/admin/item-groups/:id/upcs", async (req, res) => {
         .json({ error: "This item is already in the group" });
     }
     res.status(500).json({ error: "Failed to add UPC to item group" });
+  }
+});
+
+app.post("/api/admin/item-groups/:id/upcs/bulk", upload.single("file"), async (req, res) => {
+  try {
+    const itemGroupId = parseInt(req.params.id);
+    if (!req.file) return res.status(400).json({ error: "No file uploaded" });
+
+    const buf = req.file.buffer;
+    const filename = req.file.originalname.toLowerCase();
+
+    let upcs: string[] = [];
+
+    if (filename.endsWith(".csv") || filename.endsWith(".txt")) {
+      const text = buf.toString("utf-8");
+      upcs = text.split(/\r?\n/).map(l => l.split(",")[0].trim()).filter(Boolean);
+    } else {
+      const wb = XLSX.read(buf, { type: "buffer" });
+      const ws = wb.Sheets[wb.SheetNames[0]];
+      const rows: any[][] = XLSX.utils.sheet_to_json(ws, { header: 1 });
+      upcs = rows.map(r => String(r[0] ?? "").trim()).filter(Boolean);
+    }
+
+    if (upcs.length === 0) return res.status(400).json({ error: "No UPCs found in file" });
+
+    const existing = await db.select({ upc: itemGroupUpcs.upc })
+      .from(itemGroupUpcs)
+      .where(eq(itemGroupUpcs.itemGroupId, itemGroupId));
+    const existingSet = new Set(existing.map(r => r.upc));
+
+    const newUpcs = upcs.filter(u => !existingSet.has(u));
+    let added = 0;
+
+    for (let i = 0; i < newUpcs.length; i += 500) {
+      const batch = newUpcs.slice(i, i + 500);
+      if (batch.length > 0) {
+        await db.insert(itemGroupUpcs).values(batch.map(upc => ({ itemGroupId, upc })));
+        added += batch.length;
+      }
+    }
+
+    res.json({ added, skipped: upcs.length - added, total: upcs.length });
+  } catch (error: any) {
+    console.log("Bulk UPC upload error:", error);
+    res.status(500).json({ error: "Failed to bulk upload UPCs" });
   }
 });
 
