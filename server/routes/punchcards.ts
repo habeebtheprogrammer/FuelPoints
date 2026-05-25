@@ -652,8 +652,13 @@ router.post('/evaluate', async (req: Request, res: Response) => {
       const projectedTotal = currentCount + punchesFromBasket;
       const punchesRequired = pc.punchesRequired || 10;
 
-      // Check if reward should trigger with projected punches
-      const rewardReady = projectedTotal >= punchesRequired;
+      // Check if reward should trigger with projected punches.
+      // IMPORTANT: punchesFromBasket must be > 0 — the customer must actually
+      // be buying an eligible item in this transaction. Without this check, a
+      // customer with stored punches >= required (e.g. 10 coffee punches banked)
+      // would trigger a free coffee reward even if they only bought cigarettes,
+      // causing the reward to misfire onto whatever is on line 1 of the basket.
+      const rewardReady = projectedTotal >= punchesRequired && punchesFromBasket > 0;
 
       projectedPunches.push({
         punchCardId: pc.id,
