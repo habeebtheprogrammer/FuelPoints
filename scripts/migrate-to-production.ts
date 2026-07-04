@@ -7,13 +7,9 @@
  * 2. Run: npx tsx scripts/migrate-to-production.ts
  */
 
-import { drizzle } from 'drizzle-orm/neon-serverless';
-import { neonConfig, Pool } from '@neondatabase/serverless';
-import ws from 'ws';
+import { drizzle } from 'drizzle-orm/node-postgres';
+import { Pool } from 'pg';
 import * as schema from '../shared/schema';
-
-// Configure WebSocket for Neon
-neonConfig.webSocketConstructor = ws;
 
 const DEV_DATABASE_URL = process.env.DATABASE_URL;
 const PROD_DATABASE_URL = process.env.PRODUCTION_DATABASE_URL;
@@ -33,8 +29,8 @@ console.log('🚀 Starting data migration from development to production...\n');
 
 async function migrate() {
   // Connect to both databases
-  const devPool = new Pool({ connectionString: DEV_DATABASE_URL });
-  const prodPool = new Pool({ connectionString: PROD_DATABASE_URL });
+  const devPool = createPool(DEV_DATABASE_URL);
+  const prodPool = createPool(PROD_DATABASE_URL);
   
   const devDb = drizzle(devPool, { schema });
   const prodDb = drizzle(prodPool, { schema });
@@ -137,6 +133,18 @@ async function migrate() {
     await devPool.end();
     await prodPool.end();
   }
+}
+
+function createPool(connectionString: string) {
+  const databaseUrl = new URL(connectionString);
+  const sslEnabled =
+    databaseUrl.searchParams.get('sslmode') === 'require' ||
+    process.env.PGSSLMODE === 'require';
+
+  return new Pool({
+    connectionString,
+    ssl: sslEnabled ? { rejectUnauthorized: false } : undefined,
+  });
 }
 
 migrate();

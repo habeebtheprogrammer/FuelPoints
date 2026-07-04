@@ -11,13 +11,12 @@
     "db:push": "drizzle-kit push"
   },
   "dependencies": {
-    "@neondatabase/serverless": "^1.0.2",
     "@react-native-async-storage/async-storage": "2.2.0",
     "@types/bcrypt": "^6.0.0",
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.3",
     "@types/nodemailer": "^7.0.4",
-    "@types/ws": "^8.18.1",
+    "@types/pg": "^8.20.0",
     "@types/xml2js": "^0.4.14",
     "@vitejs/plugin-react": "^5.0.4",
     "bcrypt": "^6.0.0",
@@ -35,6 +34,7 @@
     "express": "^5.1.0",
     "multer": "^2.1.1",
     "nodemailer": "^7.0.12",
+    "pg": "^8.22.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-native": "0.81.4",
@@ -46,7 +46,6 @@
     "react-router-dom": "^7.10.1",
     "tsx": "^4.20.6",
     "vite": "^7.1.9",
-    "ws": "^8.18.3",
     "xlsx": "^0.18.5",
     "xml2js": "^0.6.2"
   },

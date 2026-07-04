@@ -28,6 +28,10 @@ app.use(express.json({ limit: "50mb" }));
 
 const upload = multer({ storage: multer.memoryStorage(), limits: { fileSize: 10 * 1024 * 1024 } });
 
+app.get("/api/health", (_req, res) => {
+  res.json({ ok: true, service: "fuelpoints", environment: process.env.NODE_ENV || "development" });
+});
+
 app.use("/api/sales", salesRoutes);
 app.use("/api/loyalty", loyaltyRoutes);
 app.use("/api/punch-cards", punchCardRoutes);

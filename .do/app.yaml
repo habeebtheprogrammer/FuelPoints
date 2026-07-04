@@ -1,0 +1,54 @@
+name: fuelpoints
+ingress:
+  rules:
+    - match:
+        path:
+          prefix: /
+      component:
+        name: web
+        preserve_path_prefix: true
+services:
+  - name: web
+    environment_slug: node-js
+    github:
+      repo: habeebtheprogrammer/FuelPoints
+      branch: main
+      deploy_on_push: true
+    source_dir: /
+    build_command: npm ci && npm run build
+    run_command: npm start
+    http_port: 5000
+    instance_count: 1
+    instance_size_slug: basic-xxs
+    health_check:
+      http_path: /api/health
+    envs:
+      - key: NODE_ENV
+        value: production
+        scope: RUN_TIME
+        type: GENERAL
+      - key: DATABASE_URL
+        value: ${fuelpoints-db.DATABASE_URL}
+        scope: RUN_TIME
+        type: GENERAL
+      - key: PGSSLMODE
+        value: require
+        scope: RUN_TIME
+        type: GENERAL
+      - key: GOOGLE_MAPS_API_KEY
+        scope: RUN_TIME
+        type: SECRET
+      - key: SMTP_USER
+        scope: RUN_TIME
+        type: SECRET
+      - key: SMTP_PASSWORD
+        scope: RUN_TIME
+        type: SECRET
+databases:
+  - name: fuelpoints-db
+    engine: PG
+    version: "16"
+    production: true
+    cluster_name: fuelpoints-db-cluster
+    db_name: fuelpoints
+    db_user: fuelpoints
